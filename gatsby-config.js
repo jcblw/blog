@@ -6,17 +6,11 @@ module.exports = {
   siteMetadata: {
     title: 'Human tech.',
     description: 'Personal blog of Jacob Lowe',
-    author: '',
+    siteUrl: 'https://jcbl.ws',
+    author: 'Jacob Lowe',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images`,
-      },
-    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {

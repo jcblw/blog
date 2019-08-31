@@ -1,8 +1,8 @@
 {
-  "name": "jcblw",
+  "name": "human-tech",
   "private": true,
-  "description": "",
-  "version": "0.1.0",
+  "description": "Personal blog for Jacob Lowe",
+  "version": "1.0.0",
   "author": "Jacob Lowe",
   "dependencies": {
     "@emotion/core": "^10.0.16",
