@@ -1,42 +1,44 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import '../_setup'
+import { Box } from '@mujo/box'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Container } from './container'
+import { Header5, Paragraph } from './fonts'
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+const Header = () => (
+  <Box Component="header" backgroundColor="masala">
+    <Container
+      display="flex"
+      alignItems="baseline"
+      direction="row"
+      paddingTop="m"
+      paddingBottom="m"
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+      <Header5
+        alt="Jacob Lowe"
+        color="polar"
+        marginRight="s"
+        marginTop="none"
+        marginBottom="none"
+        display="flex"
+      >
+        Human tech.
+      </Header5>
+      <Paragraph
+        flex="1"
+        display="inlineFlex"
+        color="blackSqueez"
+        marginTop="none"
+        marginBottom="none"
+      >
+        Personal blog of Jacob Lowe.
+      </Paragraph>
+    </Container>
+  </Box>
 )
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+Header.propTypes = { siteTitle: PropTypes.string }
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+Header.defaultProps = { siteTitle: '' }
 
 export default Header
