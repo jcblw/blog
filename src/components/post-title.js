@@ -1,4 +1,5 @@
 import { Box } from '@mujo/box'
+import format from 'date-fns/format'
 import React from 'react'
 import { Header1, Paragraph } from './fonts'
 
@@ -9,7 +10,7 @@ export const PostTitle = props => (
     </Header1>
     <Box display="flex" direction="row" color="polar">
       <Paragraph marginTop="none" marginBottom="none">
-        {props.frontmatter.date}
+        {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
       </Paragraph>
       <Paragraph
         paddingLeft="xs"

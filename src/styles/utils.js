@@ -40,3 +40,8 @@ export const layer = {
   1: css({ zIndex: 10 }),
   2: css({ zIndex: 100 }),
 }
+
+export const textDecoration = {
+  none: css({ textDecoration: 'none' }),
+  underline: css({ textDecoration: 'underline' }),
+}

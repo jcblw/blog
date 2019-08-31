@@ -1,6 +1,6 @@
 import { generateStyle } from './helpers'
 
-const names = {
+export const names = {
   // older colors
   outerSpace: '#353D42',
   mischka: '#EAE2EB',

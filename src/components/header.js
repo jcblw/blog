@@ -1,5 +1,6 @@
 import '../_setup'
 import { Box } from '@mujo/box'
+import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Container } from './container'
@@ -14,18 +15,18 @@ const Header = () => (
       paddingTop="m"
       paddingBottom="m"
     >
-      <Header5
-        Component="a"
-        href="/"
-        alt="Jacob Lowe"
-        color="polar"
-        marginRight="s"
-        marginTop="none"
-        marginBottom="none"
-        display="flex"
-      >
-        Human tech.
-      </Header5>
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <Header5
+          alt="Jacob Lowe"
+          color="polar"
+          marginRight="s"
+          marginTop="none"
+          marginBottom="none"
+          display="flex"
+        >
+          Human tech.
+        </Header5>
+      </Link>
       <Paragraph
         flex="1"
         display="inlineFlex"
