@@ -29,10 +29,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-feed',
-      options: mdxFeed,
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/content/blog`,

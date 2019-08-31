@@ -18,8 +18,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Query for markdown nodes to use in creating pages.
   const result = await graphql(
     `
-      query {
-        allMdx {
+      {
+        allMdx(sort: { fields: frontmatter___date, order: ASC }) {
           edges {
             node {
               id

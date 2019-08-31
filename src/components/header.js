@@ -15,6 +15,8 @@ const Header = () => (
       paddingBottom="m"
     >
       <Header5
+        Component="a"
+        href="/"
         alt="Jacob Lowe"
         color="polar"
         marginRight="s"

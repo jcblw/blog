@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "name": "@jcblw/blog",
+  "name": "jcblw-blog",
+  "alias": ["jcbl.ws"],
   "builds": [
     {
       "src": "package.json",
