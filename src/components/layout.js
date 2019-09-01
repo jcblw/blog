@@ -15,6 +15,7 @@ import {
   Header5,
   Header6,
 } from './fonts'
+import { Footer } from './footer'
 import { Header } from './header'
 import { Link } from './link'
 
@@ -41,19 +42,7 @@ const Layout = ({ children }) => (
       <Container flex="1">
         <Author />
       </Container>
-    </Box>
-    <Box
-      flex="0"
-      paddingLeft="l"
-      paddingRight="l"
-      backgroundColor="masala"
-      color="blackSqueez"
-      Component="footer"
-    >
-      <Paragraph>
-        Jacob Lowe © {new Date().getFullYear()}, Built with{' '}
-        <Link href="https://www.gatsbyjs.org">Gatsby</Link>
-      </Paragraph>
+      <Footer />
     </Box>
   </MDXProvider>
 )

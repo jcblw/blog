@@ -14,6 +14,7 @@ module.exports = {
     avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
     primaryColor: '#3C3736',
     secondaryColor: '#11C2AF',
+    source: 'https://github.com/jcblw/blog',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -39,6 +40,14 @@ module.exports = {
       options: {
         path: `${__dirname}/src/content/blog`,
         name: 'blog',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-54359707-1',
+        head: false,
+        anonymize: true,
       },
     },
     // TODO: try this again with latest version after this is merged

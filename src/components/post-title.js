@@ -4,7 +4,7 @@ import React from 'react'
 import { Header1, Paragraph } from './fonts'
 
 export const PostTitle = props => (
-  <Box paddingTop="l" paddingBottom="m">
+  <Box paddingTop="l">
     <Header1 color="java" marginTop="none" marginBottom="s">
       {props.frontmatter.title}
     </Header1>

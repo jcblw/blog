@@ -5,7 +5,7 @@ const BaseFont = props => (
   <Box
     marginTop={props.marginTop || 'm'}
     marginBottom={props.marginBottom || 'm'}
-    color={props.color || 'white'}
+    color={props.color || 'polar'}
     {...props}
   />
 )

@@ -3,6 +3,7 @@ import format from 'date-fns/format'
 import { Link } from 'gatsby'
 import React from 'react'
 import { Header3, Paragraph } from './fonts'
+import { HR } from './hr'
 
 export const PostExcerpt = props => (
   <Box paddingTop="l" paddingBottom="l">
@@ -16,8 +17,8 @@ export const PostExcerpt = props => (
         {props.frontmatter.title}
       </Header3>
     </Link>
-    <Box display="flex" direction="row" color="polar">
-      <Paragraph marginTop="none" marginBottom="none">
+    <Box display="flex" direction="row">
+      <Paragraph marginTop="none" marginBottom="none" color="polar">
         {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
       </Paragraph>
       <Paragraph
@@ -29,11 +30,12 @@ export const PostExcerpt = props => (
       >
         ~
       </Paragraph>
-      <Paragraph marginTop="none" marginBottom="none">
+      <Paragraph marginTop="none" marginBottom="none" color="polar">
         {props.timeToRead} minute read
       </Paragraph>
     </Box>
-    <Paragraph marginTop="s" marginBottom="none">
+    <HR margin="s" />
+    <Paragraph marginTop="none" marginBottom="none" color="white">
       {props.frontmatter.description}
     </Paragraph>
   </Box>

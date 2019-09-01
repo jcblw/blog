@@ -3,7 +3,7 @@ import { css } from '@emotion/core'
 export const maxWidth = {
   '100%': css({ maxWidth: '100%' }),
   '300px': css({ maxWidth: '300px' }),
-  '700px': css({ maxWidth: '700px' }),
+  '600px': css({ maxWidth: '600px' }),
 }
 
 export const textOverflow = {
@@ -52,6 +52,7 @@ export const width = {
 }
 
 export const height = {
+  '1px': css({ height: '1px' }),
   '100px': css({ height: '100px' }),
   '60px': css({ height: '60px' }),
 }
