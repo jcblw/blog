@@ -20,6 +20,7 @@ export const SEO = ({ description, lang = 'en', meta, title }) => {
             title
             description
             author
+            primaryColor
           }
         }
       }
@@ -34,6 +35,10 @@ export const SEO = ({ description, lang = 'en', meta, title }) => {
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
+        {
+          name: 'theme-color',
+          content: site.siteMetadata.primaryColor,
+        },
         {
           name: 'description',
           content: metaDescription,
