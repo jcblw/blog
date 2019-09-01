@@ -6,7 +6,6 @@ import React from 'react'
 import { GlobalStyles } from '../styles/globals'
 import { Author } from './author'
 import { Container } from './container'
-
 import {
   Paragraph,
   Header1,
