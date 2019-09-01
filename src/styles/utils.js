@@ -45,3 +45,13 @@ export const textDecoration = {
   none: css({ textDecoration: 'none' }),
   underline: css({ textDecoration: 'underline' }),
 }
+
+export const width = {
+  '100px': css({ width: '100px' }),
+  '60px': css({ width: '60px' }),
+}
+
+export const height = {
+  '100px': css({ height: '100px' }),
+  '60px': css({ height: '60px' }),
+}
