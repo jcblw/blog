@@ -1,18 +1,16 @@
 import { graphql } from 'gatsby'
 import React from 'react'
+import { Header1, Paragraph } from '../components/fonts'
 import Layout from '../components/layout'
-import SEO from '../components/seo'
+import { SEO } from '../components/seo'
 
-const NotFoundPage = props => {
-  console.log(props)
-  return (
-    <Layout>
-      <SEO title="404: Not found" />
-      <h1>NOT FOUND</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </Layout>
-  )
-}
+const NotFoundPage = props => (
+  <Layout noAuthor>
+    <SEO title="404 - Not found" />
+    <Header1>Not Found</Header1>
+    <Paragraph>Everything in life is temporary, like this page.</Paragraph>
+  </Layout>
+)
 
 export default NotFoundPage
 

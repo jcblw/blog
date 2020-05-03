@@ -18,7 +18,7 @@ import { Footer } from './footer'
 import { Header } from './header'
 import { Link } from './link'
 
-const Layout = ({ children }) => (
+const Layout = ({ children, noAuthor }) => (
   <MDXProvider
     components={{
       // Map HTML element tag to React component
@@ -34,13 +34,17 @@ const Layout = ({ children }) => (
   >
     <GlobalStyles />
     <Header />
-    <Box backgroundColor="masala" color="blackSqueez" flex={1}>
+    <Box color="blackSqueez" flex={1} display="flex" flexDirection="column">
       <Container flex="1">
-        <Box Component="main">{children}</Box>
+        <Box Component="main" display="flex" flexDirection="column">
+          {children}
+        </Box>
       </Container>
-      <Container flex="1">
-        <Author />
-      </Container>
+      {!noAuthor && (
+        <Container flex="1">
+          <Author />
+        </Container>
+      )}
       <Footer />
     </Box>
   </MDXProvider>

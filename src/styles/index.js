@@ -1,6 +1,6 @@
 import { makeStyles } from '@mujo/box'
 import { names } from './colors'
-import { sizes, weights } from './fonts'
+import { sizes, weights, font } from './fonts'
 import { spacing } from './spacing'
 
 export const styleGuide = {
@@ -21,6 +21,7 @@ export const styleGuide = {
   backgroundColor: makeStyles('backgroundColor', names),
 
   // fonts
+  font,
   fontSize: makeStyles('fontSize', sizes),
   fontWeight: makeStyles('fontWeight', weights),
 

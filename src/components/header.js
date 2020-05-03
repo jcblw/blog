@@ -18,7 +18,7 @@ export const Header = () => {
     `
   )
   return (
-    <Box Component="header" backgroundColor="masala">
+    <Box Component="header" backgroundColor="limedSpruce">
       <Container
         display="flex"
         alignItems="baseline"
@@ -29,7 +29,7 @@ export const Header = () => {
         <Link to="/" style={{ textDecoration: 'none' }}>
           <Header5
             alt="Jacob Lowe"
-            color="polar"
+            color="white"
             marginRight="s"
             marginTop="none"
             marginBottom="none"
@@ -41,7 +41,7 @@ export const Header = () => {
         <Paragraph
           flex="1"
           display="inlineFlex"
-          color="blackSqueez"
+          color="linen"
           marginTop="none"
           marginBottom="none"
         >

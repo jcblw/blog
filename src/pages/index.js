@@ -4,6 +4,8 @@ import Layout from '../components/layout'
 import { PostExcerpt } from '../components/post-excerpt'
 import { SEO } from '../components/seo'
 import { getPostData } from '../lib/get-post-data'
+import { Header1, Paragraph } from '../components/fonts'
+import { Box } from '../components/box'
 
 const AllPostsTemplate = props => {
   const posts = getPostData(props.data)
@@ -15,7 +17,12 @@ const AllPostsTemplate = props => {
         {hasPosts ? (
           posts.map(post => <PostExcerpt key={post.id} {...post} />)
         ) : (
-          <div>no post found</div>
+          <Box padding="l">
+            <Header1>Not Found</Header1>
+            <Paragraph>
+              Everything in life is temporary, like this page.
+            </Paragraph>
+          </Box>
         )}
       </Layout>
     </>

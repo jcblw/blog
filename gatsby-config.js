@@ -7,7 +7,7 @@ module.exports = {
     siteUrl: 'https://jcbl.ws',
     author: 'Jacob Lowe',
     aboutAuthor: [
-      'I am an engineer and the CEO of Mujo LLC. ',
+      'I am an EM at PlayVS and the founder of Mujo LLC. ',
       'I believe that tech should be more human and ',
       'allow humans to better there lives',
     ].join(''),

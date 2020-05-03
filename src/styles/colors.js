@@ -1,8 +1,7 @@
 export const names = {
-  masala: '#3C3736',
-  emperor: '#585250',
-  java: '#11C2AF',
-  polar: '#E8FAF8',
-  blackSqueez: '#F1FAF9',
+  limedSpruce: '#3D474F',
+  blueBayoux: '#516473',
+  hitPink: '#FFA47B',
+  linen: '#FAF3E8',
   white: '#FFF',
 }

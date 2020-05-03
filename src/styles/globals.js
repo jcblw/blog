@@ -1,5 +1,6 @@
 import { Global } from '@emotion/core'
 import React from 'react'
+import { names } from './colors'
 
 export const GlobalStyles = () => (
   <>
@@ -10,6 +11,7 @@ export const GlobalStyles = () => (
           padding: 0,
           minHeight: '100%',
           height: '100%',
+          backgroundColor: names.limedSpruce,
         },
         '*': { fontFamily: "'IBM Plex Sans', sans-serif" },
         'h1, h2, h3, h4, h5, h6, p': {

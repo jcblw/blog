@@ -6,5 +6,6 @@ export const spacing = {
   l: 32,
   xl: 40,
   xxl: 56,
+  xxxl: 80,
   zero: 0,
 }
