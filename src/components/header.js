@@ -21,7 +21,7 @@ export const Header = () => {
     <Box Component="header" backgroundColor="limedSpruce">
       <Container
         display="flex"
-        alignItems="baseline"
+        alignItems="center"
         flexDirection="row"
         paddingTop="m"
         paddingBottom="m"

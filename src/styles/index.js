@@ -4,18 +4,6 @@ import { sizes, weights, font } from './fonts'
 import { spacing } from './spacing'
 
 export const styleGuide = {
-  // flex overrides
-  alignItems: {
-    flexStart: { alignItems: 'flexStart' },
-    flexEnd: { alignItems: 'flexEnd' },
-    streach: { alignItems: 'streach' },
-    center: { alignItems: 'center' },
-    spaceBetween: { alignItems: 'spaceBetween' },
-    spaceAround: { alignItems: 'spaceAround' },
-    spaceEvenly: { alignItems: 'spaceEvenly' },
-    baseline: { alignItems: 'baseline' },
-  },
-
   // colors
   color: makeStyles('color', names),
   backgroundColor: makeStyles('backgroundColor', names),

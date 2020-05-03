@@ -12,8 +12,8 @@ module.exports = {
       'allow humans to better there lives',
     ].join(''),
     avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
-    primaryColor: '#3C3736',
-    secondaryColor: '#11C2AF',
+    primaryColor: '#516473',
+    secondaryColor: '#3D474F',
     source: 'https://github.com/jcblw/blog',
   },
   plugins: [
