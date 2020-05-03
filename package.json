@@ -8,7 +8,7 @@
     "@emotion/core": "^10.0.28",
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
-    "@mujo/box": "^4.0.2",
+    "@mujo/box": "^4.0.3",
     "@mujo/eslint-config": "^1.1.0",
     "date-fns": "^2.12.0",
     "gatsby": "^2.21.9",
