@@ -1,6 +1,6 @@
-import { Box } from '@mujo/box'
 import format from 'date-fns/format'
 import React from 'react'
+import { Box } from './box'
 import { Header1, Paragraph } from './fonts'
 
 export const PostTitle = props => (
@@ -8,7 +8,7 @@ export const PostTitle = props => (
     <Header1 color="java" marginTop="none" marginBottom="s">
       {props.frontmatter.title}
     </Header1>
-    <Box display="flex" direction="row" color="polar">
+    <Box display="flex" flexDirection="row" color="polar">
       <Paragraph marginTop="none" marginBottom="none">
         {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
       </Paragraph>

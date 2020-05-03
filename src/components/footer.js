@@ -1,7 +1,6 @@
-import '../_setup'
-import { Box } from '@mujo/box'
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
+import { Box } from './box'
 import { Container } from './container'
 import { Paragraph } from './fonts'
 import { Link } from './link'

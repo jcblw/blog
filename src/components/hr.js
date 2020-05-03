@@ -1,5 +1,5 @@
-import { Box } from '@mujo/box'
 import React from 'react'
+import { Box } from './box'
 
 export const HR = ({ margin = 'l' }) => (
   <Box

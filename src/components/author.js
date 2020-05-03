@@ -1,7 +1,6 @@
-import '../_setup'
-import { Box } from '@mujo/box'
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
+import { Box } from './box'
 import { Container } from './container'
 import { Header5, Paragraph } from './fonts'
 
@@ -20,19 +19,19 @@ export const Author = () => {
     `
   )
   return (
-    <Box Component="aside" backgroundColor="masala">
+    <Box Component="aside">
       <Container
         display="flex"
         alignItems="baseline"
-        direction="row"
+        flexDirection="row"
         paddingLeft="none"
         paddingRight="none"
       >
         <Box
           backgroundColor="emperor"
           padding="l"
-          borderRadius="l"
-          direction="row"
+          borderRadius="s"
+          flexDirection="row"
           flex="1"
           display="flex"
         >

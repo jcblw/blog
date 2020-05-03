@@ -1,12 +1,14 @@
-import { Box } from '@mujo/box'
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
+import { Box } from '../components/box'
 import { HR } from '../components/hr'
 import Layout from '../components/layout'
 import { Link } from '../components/link'
 import { PostTitle } from '../components/post-title'
 import { SEO } from '../components/seo'
+
+const components = { wrapper: ({ children }) => <>{children}</> }
 
 const PostTemplate = props => {
   const { mdx, site } = props.data
@@ -24,10 +26,10 @@ const PostTemplate = props => {
         <PostTitle {...mdx} />
         <HR />
         <Box color="white">
-          <MDXRenderer>{mdx.body}</MDXRenderer>
+          <MDXRenderer components={components}>{mdx.body}</MDXRenderer>
         </Box>
         <HR />
-        <Box display="flex" direction="row">
+        <Box display="flex" flexDirection="row">
           <Link
             href={`https://mobile.twitter.com/search?q=${meta.siteUrl}`}
             paddingRight="l"

@@ -1,6 +1,6 @@
-import { Box } from '@mujo/box'
 import React from 'react'
+import { Box } from './box'
 
 export const Container = props => (
-  <Box paddingLeft="l" paddingRight="l" maxWidth="600px" {...props} />
+  <Box paddingLeft="xl" paddingRight="xl" maxWidth="600px" {...props} />
 )

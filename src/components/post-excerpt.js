@@ -1,7 +1,7 @@
-import { Box } from '@mujo/box'
 import format from 'date-fns/format'
 import { Link } from 'gatsby'
 import React from 'react'
+import { Box } from './box'
 import { Header3, Paragraph } from './fonts'
 import { HR } from './hr'
 
@@ -17,7 +17,7 @@ export const PostExcerpt = props => (
         {props.frontmatter.title}
       </Header3>
     </Link>
-    <Box display="flex" direction="row">
+    <Box display="flex" flexDirection="row">
       <Paragraph marginTop="none" marginBottom="none" color="polar">
         {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
       </Paragraph>

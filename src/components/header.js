@@ -1,7 +1,6 @@
-import '../_setup'
-import { Box } from '@mujo/box'
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
+import { Box } from './box'
 import { Container } from './container'
 import { Header5, Paragraph } from './fonts'
 
@@ -23,7 +22,7 @@ export const Header = () => {
       <Container
         display="flex"
         alignItems="baseline"
-        direction="row"
+        flexDirection="row"
         paddingTop="m"
         paddingBottom="m"
       >

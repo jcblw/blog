@@ -1,10 +1,9 @@
-import '../_setup'
 import { MDXProvider } from '@mdx-js/react'
-import { Box } from '@mujo/box'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { GlobalStyles } from '../styles/globals'
 import { Author } from './author'
+import { Box } from './box'
 import { Container } from './container'
 import {
   Paragraph,
