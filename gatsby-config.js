@@ -9,7 +9,7 @@ module.exports = {
     aboutAuthor: [
       'I am an EM at PlayVS and the founder of Mujo LLC. ',
       'I believe that tech should be more human and ',
-      'allow humans to better there lives',
+      'allow humans to better their lives',
     ].join(''),
     avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
     primaryColor: '#516473',
