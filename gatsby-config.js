@@ -3,11 +3,11 @@ const layout = require.resolve('./src/components/layout.js')
 module.exports = {
   siteMetadata: {
     title: 'Human tech.',
-    description: 'Personal blog of Jacob Lowe',
+    description: 'Blog of Jacob Lowe',
     siteUrl: 'https://jcbl.ws',
     author: 'Jacob Lowe',
     aboutAuthor: [
-      'I am an EM at PlayVS and the founder of Mujo LLC. ',
+      'I am an Engineering Manager at Toucan and the founder of Mujo LLC. ',
       'I believe that tech should be more human and ',
       'allow humans to better their lives',
     ].join(''),
