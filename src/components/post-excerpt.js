@@ -9,7 +9,7 @@ export const PostExcerpt = props => (
   <Box paddingTop="l" paddingBottom="l">
     <Link to={props.frontmatter.slug} style={{ textDecoration: 'none' }}>
       <Header3
-        color="hitPink"
+        color="periwinkleGray"
         marginTop="none"
         marginBottom="none"
         textDecoration="none"
@@ -18,7 +18,7 @@ export const PostExcerpt = props => (
       </Header3>
     </Link>
     <Box display="flex" flexDirection="row">
-      <Paragraph marginTop="none" marginBottom="none" color="linen">
+      <Paragraph marginTop="none" marginBottom="none" color="aeroBlue">
         {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
       </Paragraph>
       <Paragraph
@@ -26,11 +26,11 @@ export const PostExcerpt = props => (
         paddingRight="xs"
         marginTop="none"
         marginBottom="none"
-        color="hitPink"
+        color="periwinkleGray"
       >
         ~
       </Paragraph>
-      <Paragraph marginTop="none" marginBottom="none" color="linen">
+      <Paragraph marginTop="none" marginBottom="none" color="aeroBlue">
         {props.timeToRead} minute read
       </Paragraph>
     </Box>

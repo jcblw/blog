@@ -22,7 +22,7 @@ export const Footer = () => {
   return (
     <Box
       flex="0"
-      backgroundColor="limedSpruce"
+      backgroundColor="steelGrey"
       color="blackSqueez"
       Component="footer"
     >

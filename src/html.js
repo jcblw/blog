@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 const googleFonts = 'https://fonts.googleapis.com/'
-const fonts = `${googleFonts}css?family=IBM+Plex+Sans&display=swap`
+const fonts = 'css2?family=Inconsolata&family=Oxygen:wght@300;400&display=swap'
 
 export default function HTML(props) {
   return (
@@ -14,7 +14,10 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <link href={fonts} rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link href={`${googleFonts}${fonts}`} rel="stylesheet" />
+        <stylesheet dangerouslySetInnerHTML={{ __html: props.css }} />
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>

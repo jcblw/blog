@@ -6,10 +6,10 @@ export const sizes = {
   xl: '40px',
 }
 export const weights = {
-  regular: 'regular',
-  italic: 'italic',
-  bold: 'bold',
-  boldItalic: 'bold italic',
+  regular: 300,
+  italic: 300,
+  bold: 400,
+  boldItalic: 400,
 }
 
 export const font = {
@@ -40,5 +40,6 @@ export const font = {
   paragraph: {
     fontSize: sizes.s,
     fontWeight: weights.regular,
+    lineHeight: '2em',
   },
 }

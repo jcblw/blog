@@ -33,7 +33,7 @@ export default AllPostsTemplate
 
 export const pageQuery = graphql`
   query {
-    allMdx(sort: { fields: frontmatter___date, order: ASC }) {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           id

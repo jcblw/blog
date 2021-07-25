@@ -1,12 +1,14 @@
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import React from 'react'
+import React, { useEffect } from 'react'
+import Prism from 'prismjs'
 import { Box } from '../components/box'
 import { HR } from '../components/hr'
 import Layout from '../components/layout'
 import { Link } from '../components/link'
 import { PostTitle } from '../components/post-title'
 import { SEO } from '../components/seo'
+import { PrismaStyles } from '../styles/prisma'
 
 const components = { wrapper: ({ children }) => <>{children}</> }
 
@@ -16,12 +18,17 @@ const PostTemplate = props => {
   const { parent: mdxp } = mdx
   const srcPath = `src/content/blog/${mdxp.relativePath}`
   const github = `${meta.source}/tree/master/${srcPath}`
+
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
   return (
     <>
       <SEO
         title={mdx.frontmatter.title}
         description={mdx.frontmatter.description}
       />
+      <PrismaStyles />
       <Layout location={props.location}>
         <PostTitle {...mdx} />
         <HR />

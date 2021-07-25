@@ -5,10 +5,10 @@ import { Header1, Paragraph } from './fonts'
 
 export const PostTitle = props => (
   <Box paddingTop="l">
-    <Header1 color="hitPink" marginTop="none" marginBottom="s">
+    <Header1 color="periwinkleGray" marginTop="none" marginBottom="s">
       {props.frontmatter.title}
     </Header1>
-    <Box display="flex" flexDirection="row" color="linen">
+    <Box display="flex" flexDirection="row" color="aeroBlue">
       <Paragraph marginTop="none" marginBottom="none">
         {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
       </Paragraph>
@@ -17,7 +17,7 @@ export const PostTitle = props => (
         paddingRight="xs"
         marginTop="none"
         marginBottom="none"
-        color="hitPink"
+        color="periwinkleGray"
       >
         ~
       </Paragraph>

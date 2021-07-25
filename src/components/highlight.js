@@ -5,16 +5,16 @@ import { Header5, Paragraph } from './fonts'
 
 const designs = {
   light: {
-    color: 'limedSpruce',
-    backgroundColor: 'linen',
+    color: 'vulcan',
+    backgroundColor: 'aeroBlue',
   },
   bright: {
-    color: 'limedSpruce',
-    backgroundColor: 'hitPink',
+    color: 'vulcan',
+    backgroundColor: 'periwinkleGray',
   },
   dark: {
-    color: 'linen',
-    backgroundColor: 'blueBayoux',
+    color: 'aeroBlue',
+    backgroundColor: 'vulcan',
   },
 }
 

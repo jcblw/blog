@@ -5,7 +5,7 @@ export const HR = ({ margin = 'l' }) => (
   <Box
     flex="0"
     height="1px"
-    backgroundColor="blueBayoux"
+    backgroundColor="vulcan"
     borderRadius="s"
     marginTop={margin}
     marginBottom={margin}
