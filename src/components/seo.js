@@ -9,7 +9,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Helmet from 'react-helmet'
-import favico from './favico.png'
+import favico from './favico.svg'
 
 export const SEO = ({ description, lang = 'en', meta, title }) => {
   const { site } = useStaticQuery(
@@ -72,7 +72,9 @@ export const SEO = ({ description, lang = 'en', meta, title }) => {
           content: metaDescription,
         },
       ].concat(meta)}
-      link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favico}` }]}
+      link={[
+        { rel: 'shortcut icon', type: 'image/svg+xml', href: `${favico}` },
+      ]}
     />
   )
 }
