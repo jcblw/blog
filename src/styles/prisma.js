@@ -36,6 +36,9 @@ export const PrismaStyles = () => (
         ":not(pre) > code[class*='language-'], pre[class*='language-']": {
           background: names.vulcan,
           borderRadius: '0.5em',
+          maxWidth: '100%',
+          width: '75vw',
+          overflowX: 'scroll',
         },
 
         /* Inline code */

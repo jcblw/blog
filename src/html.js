@@ -15,7 +15,11 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
         <link href={`${googleFonts}${fonts}`} rel="stylesheet" />
         <stylesheet dangerouslySetInnerHTML={{ __html: props.css }} />
         {props.headComponents}
