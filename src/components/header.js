@@ -28,9 +28,9 @@ export const Header = () => {
       >
         <Link to="/" style={{ textDecoration: 'none' }}>
           <Header5
-            alt="Jacob Lowe"
+            alt={site.siteMetadata.description}
             color="white"
-            marginRight="s"
+            marginRight="m"
             marginTop="none"
             marginBottom="none"
             display="flex"
@@ -38,15 +38,30 @@ export const Header = () => {
             {site.siteMetadata.title}
           </Header5>
         </Link>
-        <Paragraph
-          flex="1"
-          display="inlineFlex"
-          color="aeroBlue"
-          marginTop="none"
-          marginBottom="none"
-        >
-          {site.siteMetadata.description}
-        </Paragraph>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Paragraph
+            flex="1"
+            display="inlineFlex"
+            marginRight="m"
+            color="periwinkleGray"
+            marginTop="none"
+            marginBottom="none"
+          >
+            blog
+          </Paragraph>
+        </Link>
+        <Link to="/talks" style={{ textDecoration: 'none' }}>
+          <Paragraph
+            flex="1"
+            display="inlineFlex"
+            marginRight="m"
+            color="periwinkleGray"
+            marginTop="none"
+            marginBottom="none"
+          >
+            talks
+          </Paragraph>
+        </Link>
       </Container>
     </Box>
   )

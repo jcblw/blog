@@ -40,6 +40,7 @@ export const styleGuide = {
     '100%': { maxWidth: '100%' },
     '300px': { maxWidth: '300px' },
     '600px': { maxWidth: '600px' },
+    '720px': { maxWidth: '720px' },
   },
 
   textOverflow: {

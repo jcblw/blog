@@ -2,15 +2,12 @@ const layout = require.resolve('./src/components/layout.js')
 
 module.exports = {
   siteMetadata: {
-    title: 'Human tech.',
+    title: 'jcblw',
     description: 'Blog of Jacob Lowe',
     siteUrl: 'https://jcbl.ws',
     author: 'Jacob Lowe',
-    aboutAuthor: [
-      'I am an Engineering Manager at Toucan and the founder of Mujo LLC. ',
-      'I believe that tech should be more human and ',
-      'allow humans to better their lives',
-    ].join(''),
+    aboutAuthor:
+      'I am an Engineering Manager at Toucan and the founder of Mujo.',
     avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
     primaryColor: '#516473',
     secondaryColor: '#3D474F',
