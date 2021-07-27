@@ -8,7 +8,6 @@ export const Container = props => (
     maxWidth="720px"
     css={{
       margin: '0 auto',
-      width: '100%',
     }}
     {...props}
   />
