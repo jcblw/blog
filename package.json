@@ -7,7 +7,7 @@
   "dependencies": {
     "@emotion/core": "^10.1.1",
     "@mdx-js/mdx": "^1.6.14",
-    "@mdx-js/react": "^1.6.14",
+    "@mdx-js/react": "^1.6.22",
     "@mujo/box": "^4.1.1",
     "@mujo/eslint-config": "^1.1.0",
     "date-fns": "^2.15.0",
