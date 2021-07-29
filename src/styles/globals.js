@@ -30,6 +30,10 @@ export const GlobalStyles = () => (
           backgroundColor: names.vulcan,
           height: `1px`,
         },
+        li: {
+          paddingBottom: '8px',
+          paddingTop: '8px',
+        },
       }}
     />
   </>
