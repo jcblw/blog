@@ -18,7 +18,7 @@ export const Header = () => {
     `
   )
   return (
-    <Box Component="header" backgroundColor="steelGrey">
+    <Box Component="header" layer={1}>
       <Container
         display="flex"
         alignItems="center"

@@ -1,6 +1,7 @@
 import { MDXProvider } from '@mdx-js/react'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useRef } from 'react'
+import { Canvas, Canvas2d } from 'react-scribble'
 import { GlobalStyles } from '../styles/globals'
 import { Author } from './author'
 import { Box } from './box'
@@ -15,8 +16,11 @@ import {
   Header6,
 } from './fonts'
 import { Footer } from './footer'
+import { Blob } from './gerative-art'
 import { Header } from './header'
 import { Link } from './link'
+
+const { Clear, AntiAlias } = Canvas2d
 
 const Layout = ({ children, noAuthor }) => (
   <MDXProvider
@@ -33,8 +37,26 @@ const Layout = ({ children, noAuthor }) => (
     }}
   >
     <GlobalStyles />
+    <Canvas
+      loop
+      width={300}
+      height={300}
+      style={{
+        position: 'fixed',
+        top: 0,
+        zIndex: 0,
+      }}
+      meta={useRef(0)}
+    >
+      <Clear />
+      {/* 
+        TODO see if we can get the context to wrap around articles 
+        so they can modify the canvas 
+      */}
+      <Blob x={50} y={50} radius={100} lr={50} />
+    </Canvas>
     <Header />
-    <Box color="blackSqueez" flex={1} display="flex" flexDirection="column">
+    <Box color="white" flex={1} display="flex" flexDirection="column" layer={1}>
       <Container flex="1">
         <Box Component="main" display="flex" flexDirection="column">
           {children}

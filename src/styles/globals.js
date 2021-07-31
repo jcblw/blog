@@ -12,6 +12,7 @@ export const GlobalStyles = () => (
           minHeight: '100%',
           height: '100%',
           backgroundColor: names.steelGrey,
+          position: 'relative',
         },
         '*': { fontFamily: "'Oxygen', sans-serif" },
         'h1, h2, h3, h4, h5, h6, p': {
