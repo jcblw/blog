@@ -30,60 +30,71 @@ const safeWindow =
         innerHeight: 600,
       }
 
-const Layout = ({ children, noAuthor }) => (
-  <MDXProvider
-    components={{
-      // Map HTML element tag to React component
-      h1: Header1,
-      h2: Header2,
-      h3: Header3,
-      h4: Header4,
-      h5: Header5,
-      h6: Header6,
-      p: Paragraph,
-      a: Link,
-    }}
-  >
-    <GlobalStyles />
-    <Canvas
-      loop
-      width={safeWindow.innerWidth}
-      height={safeWindow.innerHeight}
-      style={{
-        position: 'fixed',
-        top: 0,
-        zIndex: 0,
+const Layout = ({ children, noAuthor }) => {
+  const canvasMeta = useRef(0)
+  return (
+    <MDXProvider
+      components={{
+        // Map HTML element tag to React component
+        h1: Header1,
+        h2: Header2,
+        h3: Header3,
+        h4: Header4,
+        h5: Header5,
+        h6: Header6,
+        p: Paragraph,
+        a: Link,
       }}
-      meta={useRef(0)}
     >
-      <Clear />
-      {/* 
+      <GlobalStyles />
+      {typeof window === 'object' && (
+        <Canvas
+          loop
+          width={safeWindow.innerWidth}
+          height={safeWindow.innerHeight}
+          style={{
+            position: 'fixed',
+            top: 0,
+            zIndex: 0,
+          }}
+          meta={canvasMeta}
+        >
+          <Clear />
+          {/* 
         TODO see if we can get the context to wrap around articles 
         so they can modify the canvas 
       */}
-      <Blob
-        x={safeWindow.innerHeight * 0.5}
-        y={safeWindow.innerHeight * 0.5}
-        radius={safeWindow.innerHeight * 0.1}
-        lr={safeWindow.innerHeight * 0.5}
-      />
-    </Canvas>
-    <Header />
-    <Box color="white" flex={1} display="flex" flexDirection="column" layer={1}>
-      <Container flex="1">
-        <Box Component="main" display="flex" flexDirection="column">
-          {children}
-        </Box>
-      </Container>
-      {!noAuthor && (
-        <Container flex="1">
-          <Author />
-        </Container>
+          <Blob
+            x={safeWindow.innerHeight * 0.5}
+            y={safeWindow.innerHeight * 0.5}
+            radius={safeWindow.innerHeight * 0.1}
+            lr={safeWindow.innerHeight * 0.5}
+          />
+        </Canvas>
       )}
-      <Footer />
-    </Box>
-  </MDXProvider>
-)
+      <Header />
+      <Box
+        color="white"
+        flex={1}
+        display="flex"
+        flexDirection="column"
+        layer={1}
+      >
+        <Container flex="1">
+          <Box Component="main" display="flex" flexDirection="column">
+            {children}
+          </Box>
+        </Container>
+        {!noAuthor && (
+          <Container flex="1">
+            <Author />
+          </Container>
+        )}
+        <Footer />
+      </Box>
+    </MDXProvider>
+  )
+}
 
 Layout.propTypes = { children: PropTypes.node.isRequired }
 
