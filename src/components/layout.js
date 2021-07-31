@@ -22,6 +22,14 @@ import { Link } from './link'
 
 const { Clear } = Canvas2d
 
+const safeWindow =
+  typeof window !== 'undefined'
+    ? window
+    : {
+        innerWidth: 800,
+        innerHeight: 600,
+      }
+
 const Layout = ({ children, noAuthor }) => (
   <MDXProvider
     components={{
@@ -39,8 +47,8 @@ const Layout = ({ children, noAuthor }) => (
     <GlobalStyles />
     <Canvas
       loop
-      width={window.innerWidth}
-      height={window.innerHeight}
+      width={safeWindow.innerWidth}
+      height={safeWindow.innerHeight}
       style={{
         position: 'fixed',
         top: 0,
@@ -54,10 +62,10 @@ const Layout = ({ children, noAuthor }) => (
         so they can modify the canvas 
       */}
       <Blob
-        x={window.innerHeight * 0.5}
-        y={window.innerHeight * 0.5}
-        radius={window.innerHeight * 0.1}
-        lr={window.innerHeight * 0.5}
+        x={safeWindow.innerHeight * 0.5}
+        y={safeWindow.innerHeight * 0.5}
+        radius={safeWindow.innerHeight * 0.1}
+        lr={safeWindow.innerHeight * 0.5}
       />
     </Canvas>
     <Header />
