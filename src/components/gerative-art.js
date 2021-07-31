@@ -36,9 +36,9 @@ export const drawBlob = ({
     const perlinPoint = getPointOnCircle(...noiseCenter, angle, 0.5)
     const off = normalize(simplex.noise(...perlinPoint), 0, 1, lr, ur)
 
-    const radi = radius * scale + off
-    const px = radi * Math.cos(angle) + center[0]
-    const py = radi * Math.sin(angle) + center[1]
+    const radii = radius * scale + off
+    const px = radii * Math.cos(angle) + center[0]
+    const py = radii * Math.sin(angle) + center[1]
     arr.push([px, py])
   }
 
@@ -69,11 +69,13 @@ export const drawBlob = ({
   ctx.fill()
 
   if (animated) {
-    meta.current += 0.01
+    Object.assign(meta, {
+      current: meta.current + 0.01,
+    })
   }
 }
 
-const rando = () => Math.floor(Math.random() * 100)
+const randomN = (n = 100) => Math.floor(Math.random() * n)
 const initialSimplex = new SimplexNoise()
 
 export const Blob = ({
@@ -89,9 +91,9 @@ export const Blob = ({
   angles = 50,
   simplex = initialSimplex,
 }) => {
-  const noisePoint = useMemo(() => [rando(), rando()], [])
+  const noisePoint = useMemo(() => [randomN(), randomN()], [])
   const draw = useCallback(
-    (ctx, canvas, meta) => {
+    (ctx, _canvas, meta) => {
       drawBlob({
         scale,
         x,

@@ -20,12 +20,7 @@ export const Footer = () => {
   )
 
   return (
-    <Box
-      flex="0"
-      backgroundColor="steelGrey"
-      color="blackSqueez"
-      Component="footer"
-    >
+    <Box flex="0" color="white" Component="footer">
       <Container>
         <Paragraph>
           <Box Component="span">{site.siteMetadata.author} © </Box>

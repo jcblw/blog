@@ -20,7 +20,7 @@ import { Blob } from './gerative-art'
 import { Header } from './header'
 import { Link } from './link'
 
-const { Clear, AntiAlias } = Canvas2d
+const { Clear } = Canvas2d
 
 const Layout = ({ children, noAuthor }) => (
   <MDXProvider
@@ -39,8 +39,8 @@ const Layout = ({ children, noAuthor }) => (
     <GlobalStyles />
     <Canvas
       loop
-      width={300}
-      height={300}
+      width={window.innerWidth}
+      height={window.innerHeight}
       style={{
         position: 'fixed',
         top: 0,
@@ -53,7 +53,12 @@ const Layout = ({ children, noAuthor }) => (
         TODO see if we can get the context to wrap around articles 
         so they can modify the canvas 
       */}
-      <Blob x={50} y={50} radius={100} lr={50} />
+      <Blob
+        x={window.innerHeight * 0.5}
+        y={window.innerHeight * 0.5}
+        radius={window.innerHeight * 0.1}
+        lr={window.innerHeight * 0.5}
+      />
     </Canvas>
     <Header />
     <Box color="white" flex={1} display="flex" flexDirection="column" layer={1}>
