@@ -49,7 +49,7 @@ export const PrismaStyles = () => (
         },
 
         '.token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata': {
-          color: names.steelGrey,
+          color: '#4d5162',
         },
 
         '.token.punctuation': {
