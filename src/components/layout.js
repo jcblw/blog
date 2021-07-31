@@ -16,7 +16,7 @@ import {
   Header6,
 } from './fonts'
 import { Footer } from './footer'
-import { Blob } from './gerative-art'
+import { Blob } from './genrative-art'
 import { Header } from './header'
 import { Link } from './link'
 
