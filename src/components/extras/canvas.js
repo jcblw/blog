@@ -1,13 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Canvas as ScribbleCanvas, Canvas2d } from 'react-scribble'
 import { Blob } from './generative'
 
 const { Clear } = Canvas2d
 
 export const Canvas = () => {
-  const canvasMeta = useRef()
+  const canvasMeta = useRef(0)
   const [hasMounted, setHasMounted] = useState(false)
-  React.useEffect(() => {
+
+  useEffect(() => {
     setHasMounted(true)
   }, [])
 
