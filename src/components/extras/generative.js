@@ -7,8 +7,8 @@ import {
   radianBetweenPoints,
   distance,
   angleToRadian,
-} from '../lib/math'
-import { names } from '../styles/colors'
+} from '../../lib/math'
+import { names } from '../../styles/colors'
 
 export const drawBlob = ({
   scale,
