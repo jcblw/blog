@@ -70,7 +70,7 @@ export const drawBlob = ({
 
   if (animated) {
     Object.assign(meta, {
-      current: meta.current + 0.01,
+      current: meta.current + 0.001,
     })
   }
 }
