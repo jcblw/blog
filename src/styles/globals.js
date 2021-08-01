@@ -35,6 +35,11 @@ export const GlobalStyles = () => (
           paddingBottom: '8px',
           paddingTop: '8px',
         },
+        '.anchor.before': {
+          position: 'absolute',
+          left: '-24px',
+          fill: names.periwinkleGray,
+        },
       }}
     />
   </>

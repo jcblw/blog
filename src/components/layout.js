@@ -19,7 +19,7 @@ import { Header } from './header'
 import { Link } from './link'
 import { Canvas } from './extras/canvas'
 
-const Layout = ({ children, noAuthor }) => (
+const Layout = ({ children, noAuthor, sidebarContent }) => (
   <MDXProvider
     components={{
       // Map HTML element tag to React component
@@ -37,13 +37,13 @@ const Layout = ({ children, noAuthor }) => (
     <Canvas />
     <Header />
     <Box color="white" flex={1} display="flex" flexDirection="column" layer={1}>
-      <Container flex="1">
+      <Container sidebarContent={sidebarContent}>
         <Box Component="main" display="flex" flexDirection="column">
           {children}
         </Box>
       </Container>
       {!noAuthor && (
-        <Container flex="1">
+        <Container>
           <Author />
         </Container>
       )}

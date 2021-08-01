@@ -43,6 +43,12 @@ export const styleGuide = {
     '720px': { maxWidth: '720px' },
   },
 
+  textAlign: {
+    left: { textAlign: 'left' },
+    center: { textAlign: 'center' },
+    right: { textAlign: 'right' },
+  },
+
   textOverflow: {
     ellipsis: { textOverflow: 'ellipsis' },
     clip: { textOverflow: 'clip' },
@@ -77,11 +83,20 @@ export const styleGuide = {
   width: {
     '100px': { width: '100px' },
     '60px': { width: '60px' },
+    '100%': { width: '100%' },
   },
 
   height: {
     '1px': { height: '1px' },
     '100px': { height: '100px' },
     '60px': { height: '60px' },
+  },
+
+  minHeight: {
+    'fit-content': { minHeight: 'fit-content' },
+  },
+
+  top: {
+    0: { top: 0 },
   },
 }

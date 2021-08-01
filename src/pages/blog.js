@@ -40,7 +40,10 @@ export default AllPostsTemplate
 
 export const pageQuery = graphql`
   query {
-    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+    allMdx(
+      sort: { fields: frontmatter___date, order: DESC }
+      filter: { frontmatter: { status: { eq: "published" } } }
+    ) {
       edges {
         node {
           id

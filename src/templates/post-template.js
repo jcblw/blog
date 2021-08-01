@@ -9,6 +9,7 @@ import { Link } from '../components/link'
 import { PostTitle } from '../components/post-title'
 import { SEO } from '../components/seo'
 import { PrismaStyles } from '../styles/prisma'
+import { TableOfContents } from '../components/table-of-contents'
 
 const components = { wrapper: ({ children }) => <>{children}</> }
 
@@ -29,7 +30,15 @@ const PostTemplate = props => {
         description={mdx.frontmatter.description}
       />
       <PrismaStyles />
-      <Layout location={props.location}>
+      <Layout
+        location={props.location}
+        sidebarContent={
+          mdx.tableOfContents &&
+          mdx.tableOfContents.items && (
+            <TableOfContents contents={mdx.tableOfContents} />
+          )
+        }
+      >
         <PostTitle {...mdx} />
         <HR />
         <Box color="white">
@@ -75,6 +84,7 @@ export const pageQuery = graphql`
         slug
         title
       }
+      tableOfContents
       parent {
         ... on File {
           relativePath
