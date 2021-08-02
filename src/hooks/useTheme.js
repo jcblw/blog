@@ -32,8 +32,7 @@ export const ThemeProvider = ({ children }) => {
 }
 
 export const useThemeProvider = () => {
-  const { scheme: userPref } = useColorScheme()
-  const [scheme, setScheme] = useLocalStorage('jcblw:user-prefer', userPref)
+  const [scheme, setScheme] = useLocalStorage('jcblw:user-prefer', 'dark')
   return {
     theme: themes[scheme] ?? themes.dark,
     setScheme,
