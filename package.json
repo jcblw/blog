@@ -30,7 +30,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
-    "react-scribble": "^1.0.1"
+    "react-scribble": "^1.0.1",
+    "use-color-scheme": "^1.1.3"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

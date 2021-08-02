@@ -1,22 +1,8 @@
 import React from 'react'
+import { useTheme } from '../hooks/useTheme'
 import { Box } from './box'
 import { Container } from './container'
 import { Header5, Paragraph } from './fonts'
-
-const designs = {
-  light: {
-    color: 'vulcan',
-    backgroundColor: 'aeroBlue',
-  },
-  bright: {
-    color: 'vulcan',
-    backgroundColor: 'periwinkleGray',
-  },
-  dark: {
-    color: 'aeroBlue',
-    backgroundColor: 'vulcan',
-  },
-}
 
 export const Highlight = ({
   title,
@@ -27,6 +13,21 @@ export const Highlight = ({
   round,
   design = 'light',
 }) => {
+  const theme = useTheme()
+  const designs = {
+    light: {
+      color: 'vulcan',
+      backgroundColor: 'aeroBlue',
+    },
+    bright: {
+      color: 'vulcan',
+      backgroundColor: 'periwinkleGray',
+    },
+    dark: {
+      color: theme.header,
+      backgroundColor: theme.backgroundSecondary,
+    },
+  }
   const { color, backgroundColor } = designs[design] || designs.light
   return (
     <Box>

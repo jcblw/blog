@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import { PostExcerpt } from '../components/post-excerpt'
 import { SEO } from '../components/seo'
 import { getPostData } from '../lib/get-post-data'
-import { Header1, Header6, Paragraph } from '../components/fonts'
+import { Header1, Overline, Paragraph } from '../components/fonts'
 import { Box } from '../components/box'
 
 const AllPostsTemplate = props => {
@@ -16,9 +16,7 @@ const AllPostsTemplate = props => {
       <Layout location={props.location}>
         {hasPosts ? (
           <>
-            <Header6 marginBottom="zero" color="calico">
-              Latest blog posts
-            </Header6>
+            <Overline marginBottom="zero">Latest blog posts</Overline>
             {posts.map(post => (
               <PostExcerpt key={post.id} {...post} />
             ))}

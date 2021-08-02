@@ -1,6 +1,7 @@
 import SimplexNoise from 'perlin-simplex'
 import { useCallback, useMemo } from 'react'
 import { useDraw } from 'react-scribble'
+import { useTheme } from '../../hooks/useTheme'
 import {
   getPointOnCircle,
   normalize,
@@ -18,7 +19,6 @@ export const drawBlob = ({
   ur,
   simplex,
   ctx,
-  color,
   radius,
   noisePoint,
   angles,
@@ -29,7 +29,7 @@ export const drawBlob = ({
   const center = [x, y]
   const noiseCenter = getPointOnCircle(
     ...noisePoint,
-    angleToRadian(meta.current),
+    angleToRadian(meta.current.time),
     10
   )
   for (let angle = 0; angle <= Math.PI * 2; angle += Math.PI / angles) {
@@ -56,7 +56,7 @@ export const drawBlob = ({
 
   let started = false
   ctx.beginPath()
-  ctx.fillStyle = color
+  ctx.fillStyle = meta.current.color
   newArr.forEach(([px, py], ii) => {
     if (started) {
       ctx.lineTo(px, py)
@@ -70,7 +70,7 @@ export const drawBlob = ({
 
   if (animated) {
     Object.assign(meta, {
-      current: meta.current + 0.001,
+      current: { time: meta.current.time + 0.001, color: meta.current.color },
     })
   }
 }
@@ -85,7 +85,6 @@ export const Blob = ({
   y = 0,
   lr = 10,
   ur = 20,
-  color = names.vulcan,
   radius = 100,
   animated = true,
   angles = 50,
@@ -103,7 +102,6 @@ export const Blob = ({
         ur,
         simplex,
         ctx,
-        color,
         radius,
         animated,
         noisePoint,
@@ -111,20 +109,7 @@ export const Blob = ({
         meta,
       })
     },
-    [
-      angles,
-      animated,
-      color,
-      lr,
-      noisePoint,
-      radius,
-      scale,
-      simplex,
-      ur,
-      x,
-      x2,
-      y,
-    ]
+    [angles, animated, lr, noisePoint, radius, scale, simplex, ur, x, x2, y]
   )
   useDraw(draw)
   return null

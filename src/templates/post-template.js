@@ -11,6 +11,7 @@ import { SEO } from '../components/seo'
 import { PrismaStyles } from '../styles/prisma'
 import { TableOfContents } from '../components/table-of-contents'
 
+// eslint-disable-next-line react/display-name
 const components = { wrapper: ({ children }) => <>{children}</> }
 
 const PostTemplate = props => {

@@ -1,9 +1,11 @@
 import React from 'react'
+import { useTheme } from '../hooks/useTheme'
 import { Header6 } from './fonts'
 import { Box } from './box'
 import { Link } from './link'
 
 export const TableOfContents = ({ contents }) => {
+  const theme = useTheme()
   return (
     <>
       {/* This moves the content below the header of the article */}
@@ -23,11 +25,16 @@ export const TableOfContents = ({ contents }) => {
           textAlign="left"
           marginTop="xxl"
           borderRadius="m"
-          backgroundColor="vulcan"
+          backgroundColor={theme.backgroundSecondary}
           padding="s"
           marginRight="xl"
         >
-          <Header6 marginBottom="zero" marginTop="zero" paddingBottom="s">
+          <Header6
+            marginBottom="zero"
+            marginTop="zero"
+            paddingBottom="s"
+            color={theme.header}
+          >
             Table of Contents
           </Header6>
           {contents.items.map((item, index) => (
@@ -36,7 +43,9 @@ export const TableOfContents = ({ contents }) => {
               paddingBottom="xs"
               key={`${item.title}:${index}`}
             >
-              <Link href={item.url}>{item.title}</Link>
+              <Link href={item.url} color={theme.link}>
+                {item.title}
+              </Link>
             </Box>
           ))}
         </Box>

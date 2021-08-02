@@ -1,10 +1,13 @@
 import { Link, graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
+import { useTheme } from '../hooks/useTheme'
 import { Box } from './box'
 import { Container } from './container'
 import { Header5, Paragraph } from './fonts'
+import { DarkModeToggle } from './dark-mode-toggle'
 
 export const Header = () => {
+  const theme = useTheme()
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -29,7 +32,7 @@ export const Header = () => {
         <Link to="/" style={{ textDecoration: 'none' }}>
           <Header5
             alt={site.siteMetadata.description}
-            color="white"
+            color={theme.paragraph}
             marginRight="m"
             marginTop="none"
             marginBottom="none"
@@ -43,7 +46,7 @@ export const Header = () => {
             flex="1"
             display="inlineFlex"
             marginRight="m"
-            color="periwinkleGray"
+            color={theme.link}
             marginTop="none"
             marginBottom="none"
           >
@@ -55,13 +58,15 @@ export const Header = () => {
             flex="1"
             display="inlineFlex"
             marginRight="m"
-            color="periwinkleGray"
+            color={theme.link}
             marginTop="none"
             marginBottom="none"
           >
             talks
           </Paragraph>
         </Link>
+        <Box flex="1" />
+        <DarkModeToggle />
       </Container>
     </Box>
   )

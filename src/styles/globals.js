@@ -1,9 +1,11 @@
 import { Global } from '@emotion/core'
 import React from 'react'
+import { useTheme } from '../hooks/useTheme'
 import { names } from './colors'
 
-export const GlobalStyles = () => (
-  <>
+export const GlobalStyles = () => {
+  const theme = useTheme()
+  return (
     <Global
       styles={{
         'html, body': {
@@ -11,7 +13,7 @@ export const GlobalStyles = () => (
           padding: 0,
           minHeight: '100%',
           height: '100%',
-          backgroundColor: names.steelGrey,
+          backgroundColor: names[theme.background],
           position: 'relative',
         },
         '*': { fontFamily: "'Oxygen', sans-serif" },
@@ -28,19 +30,21 @@ export const GlobalStyles = () => (
         },
         hr: {
           border: 0,
-          backgroundColor: names.vulcan,
+          backgroundColor: names[theme.backgroundSecondary],
           height: `1px`,
         },
         li: {
           paddingBottom: '8px',
           paddingTop: '8px',
+          color: names[theme.paragraph],
+          fontWeight: 300,
         },
         '.anchor.before': {
           position: 'absolute',
           left: '-24px',
-          fill: names.periwinkleGray,
+          fill: names[theme.link],
         },
       }}
     />
-  </>
-)
+  )
+}

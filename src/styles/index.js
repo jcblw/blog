@@ -84,12 +84,15 @@ export const styleGuide = {
     '100px': { width: '100px' },
     '60px': { width: '60px' },
     '100%': { width: '100%' },
+    '32px': { width: '32px' },
   },
 
   height: {
     '1px': { height: '1px' },
+    '3px': { height: '3px' },
     '100px': { height: '100px' },
     '60px': { height: '60px' },
+    '32px': { height: '32px' },
   },
 
   minHeight: {
