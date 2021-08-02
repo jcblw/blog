@@ -1,7 +1,6 @@
 import SimplexNoise from 'perlin-simplex'
 import { useCallback, useMemo } from 'react'
 import { useDraw } from 'react-scribble'
-import { useTheme } from '../../hooks/useTheme'
 import {
   getPointOnCircle,
   normalize,
@@ -9,7 +8,6 @@ import {
   distance,
   angleToRadian,
 } from '../../lib/math'
-import { names } from '../../styles/colors'
 
 export const drawBlob = ({
   scale,

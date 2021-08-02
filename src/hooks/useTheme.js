@@ -1,5 +1,4 @@
-import React, { createContext, useState, useContext } from 'react'
-import { useColorScheme } from 'use-color-scheme'
+import React, { createContext, useContext } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
 export const themes = {
