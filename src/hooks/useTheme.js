@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { useLocalStorage } from './useLocalStorage'
+import { names } from '../styles/colors'
 
 export const themes = {
   light: {
@@ -22,6 +22,26 @@ export const themes = {
   },
 }
 
+export const themeCSSVariables = {
+  scheme: 'var(--scheme)',
+  paragraph: 'var(--paragraph)',
+  link: 'var(--link)',
+  header: 'var(--header)',
+  background: 'var(--background)',
+  backgroundSecondary: 'var(--backgroundSecondary)',
+  overline: 'var(--overline)',
+}
+
+export const themeNames = {
+  scheme: 'scheme',
+  paragraph: 'paragraph',
+  link: 'link',
+  header: 'header',
+  background: 'background',
+  backgroundSecondary: 'backgroundSecondary',
+  overline: 'overline',
+}
+
 const context = createContext({})
 const { Provider } = context
 
@@ -30,21 +50,20 @@ export const ThemeProvider = ({ children }) => {
   return <Provider value={value}>{children}</Provider>
 }
 
-export const useThemeProvider = () => {
-  const [scheme, setScheme] = useLocalStorage('jcblw:user-prefer', 'dark')
-  return {
-    theme: themes[scheme] ?? themes.dark,
-    setScheme,
-    scheme,
-  }
-}
+export const useThemeProvider = () => ({
+  theme: themeNames,
+})
 
 export const useTheme = () => {
   const { theme } = useContext(context)
   return theme
 }
 
-export const useSetScheme = () => {
-  const { setScheme } = useContext(context)
-  return setScheme
-}
+export const useSetScheme = () => () => {}
+
+/**
+ * can only be used on the client
+ */
+export const useGetColorHex = () => name =>
+  // eslint-disable-next-line no-underscore-dangle
+  names[themes[window.__prefersColorScheme][name]]

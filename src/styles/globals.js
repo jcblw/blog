@@ -13,7 +13,7 @@ export const GlobalStyles = () => {
           padding: 0,
           minHeight: '100%',
           height: '100%',
-          backgroundColor: names[theme.background],
+          backgroundColor: `var(--background)`,
           position: 'relative',
         },
         '*': { fontFamily: "'Oxygen', sans-serif" },

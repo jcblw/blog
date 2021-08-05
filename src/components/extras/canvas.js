@@ -1,30 +1,28 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Canvas as ScribbleCanvas, Canvas2d } from 'react-scribble'
 import { names } from '../../styles/colors'
-import { useTheme } from '../../hooks/useTheme'
+import { useGetColorHex } from '../../hooks/useTheme'
 import { Blob } from './generative'
 
 const { Clear } = Canvas2d
 
 export const Canvas = () => {
   const [hasMounted, setHasMounted] = useState(false)
-  const theme = useTheme()
+  const getColor = useGetColorHex()
   const canvasMeta = useRef({
     time: 0,
-    color: names[theme.backgroundSecondary],
+    color: getColor('backgroundSecondary'),
   })
 
   useEffect(() => {
     setHasMounted(true)
   }, [])
 
-  canvasMeta.current.color = names[theme.backgroundSecondary]
+  canvasMeta.current.color = getColor('backgroundSecondary')
 
   if (!hasMounted) {
     return null
   }
-
-  console.log(canvasMeta)
   return (
     <ScribbleCanvas
       loop
@@ -47,7 +45,6 @@ export const Canvas = () => {
         y={window.innerHeight * 0.5}
         radius={window.innerHeight * 0.1}
         lr={window.innerHeight * 0.5}
-        color={names[theme.backgroundSecondary]}
       />
     </ScribbleCanvas>
   )

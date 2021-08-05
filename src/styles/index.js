@@ -1,12 +1,16 @@
 import { makeStyles } from '@mujo/box'
+import { themeCSSVariables } from '../hooks/useTheme'
 import { names } from './colors'
 import { sizes, weights, font } from './fonts'
 import { spacing } from './spacing'
 
 export const styleGuide = {
   // colors
-  color: makeStyles('color', names),
-  backgroundColor: makeStyles('backgroundColor', names),
+  color: makeStyles('color', { ...names, ...themeCSSVariables }),
+  backgroundColor: makeStyles('backgroundColor', {
+    ...names,
+    ...themeCSSVariables,
+  }),
 
   // fonts
   font,
