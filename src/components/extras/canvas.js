@@ -11,18 +11,19 @@ export const Canvas = () => {
   const getColor = useGetColorHex()
   const canvasMeta = useRef({
     time: 0,
-    color: getColor('backgroundSecondary'),
+    color: '#fff',
   })
 
   useEffect(() => {
     setHasMounted(true)
   }, [])
 
-  canvasMeta.current.color = getColor('backgroundSecondary')
-
   if (!hasMounted) {
     return null
   }
+
+  canvasMeta.current.color = getColor('backgroundSecondary')
+
   return (
     <ScribbleCanvas
       loop
