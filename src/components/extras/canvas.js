@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Canvas as ScribbleCanvas, Canvas2d } from 'react-scribble'
-import { names } from '../../styles/colors'
 import { useGetColorHex } from '../../hooks/useTheme'
 import { Blob } from './generative'
 
