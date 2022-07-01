@@ -17,7 +17,7 @@
     "gatsby-plugin-feed": "^2.5.11",
     "gatsby-plugin-google-analytics": "^2.11.0",
     "gatsby-plugin-manifest": "^2.4.21",
-    "gatsby-plugin-mdx": "^2.10.1",
+    "gatsby-plugin-mdx": "^2.14.2",
     "gatsby-plugin-offline": "^2.2.10",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sharp": "^2.6.23",
