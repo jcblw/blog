@@ -6,8 +6,7 @@ module.exports = {
     description: 'Blog of Jacob Lowe',
     siteUrl: 'https://jcbl.ws',
     author: 'Jacob Lowe',
-    aboutAuthor:
-      'I am an Engineering Manager at Toucan and the founder of Mujo.',
+    aboutAuthor: 'I am a founder of Mujō.',
     avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
     primaryColor: '#516473',
     secondaryColor: '#3D474F',
