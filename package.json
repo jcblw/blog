@@ -11,7 +11,7 @@
     "@mujo/box": "^4.1.1",
     "@mujo/eslint-config": "^1.1.0",
     "date-fns": "^2.15.0",
-    "gatsby": "^2.24.12",
+    "gatsby": "^2.32.13",
     "gatsby-image": "^3.10.0",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-feed": "^2.5.11",
