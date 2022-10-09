@@ -37,8 +37,11 @@ const AllPostsTemplate = props => {
 export default AllPostsTemplate
 
 export const pageQuery = graphql`
-  query {
-    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+  query allPosts {
+    allMdx(
+      filter: { frontmatter: { status: { ne: "draft" } } }
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
       edges {
         node {
           id

@@ -1,0 +1,51 @@
+---
+title: Learning AI with AI
+description: Github copilot helping me write Tensorflow code
+date: 2022-10-9
+slug: /learning-ai-with-ai/
+status: draft
+---
+
+import { Highlight } from '../../../components/highlight'
+import MujoLogo from '../mujo-a-calendar/mujo.svg'
+
+![Birth of a cyborg](./birth-of-a-cyborg.png)
+
+### AI takeover
+
+Seems like AI has recently been taking over social media. I think this largely had to do with thing like [DALLE-2](https://openai.com/dall-e-2/), [Stable Diffusion](https://stability.ai/blog/stable-diffusion-public-release) and [Midjourney](https://www.midjourney.com/home/). It also seems like AI have been making it into more consumer products like [Github Copilot](https://github.com/features/copilot) which helps users pair program with AI. These new technologies are everywhere now, but not without their controversies. Eg: [Copilots usage of licenced OSS](https://fossa.com/blog/analyzing-legal-implications-github-copilot/) and [Midjourney winning art contest in colorado](https://voicebot.ai/2022/09/05/midjourney-ai-generated-art-wins-colorado-state-fair-prize/).
+
+I have been using AI for a while in my workflows, mostly with the Github Copilot to write code faster, and these image generation tools to be able to come up with ideas for logo's, and things like finding artwork for blog posts. The images in this post are from DALLE-2.
+
+### Learning by example
+
+I have a web extension called [Mujō](https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao) that uses machine learning to determine suggested break times by essentially predicting what the user day is going to look like. I have been want to upgrade the mechanisms that do these predictions to something that is smarter, and I can add in more variables to it to increase the prediction. I have been looking at [Tensorflow](https://www.tensorflow.org/) for a while, but I have struggled quite a bit to get the concept of it.
+
+<Highlight
+  title="Check out Mujō"
+  description="Available on the Chrome Web Store"
+  image={MujoLogo}
+  href="https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao"
+/>
+
+I figured I could give it another shot. They had released a NodeJS version of Tensorflow, and I thought that it might have been more approachable for me since I know javascript. I would look at videos, documentation, and tutorials about the library, and was able to string together something that made some pretty graphs, but when trying to get predictions out of it. It really fell flat on its face, producing essentially random results. I was really frustrated, and kept search for examples.
+
+During this whole learning experience I had Copilot running. Usually, I use Copilot to find patterns in my code and to fill in repitious tasks. It can be fantastic with these tasks. I noticed something about Copilot suggestions when working with API's I had no idea about. I knew them better then I did.
+
+### Getting Copilot to help
+
+![Cyborg monk](./hex-cyborg-monk.png)
+
+As someone who has been using Copilot since around launch, I am pretty good a pursuading Copilot at writing code for me. To be honest, I enjoy writing out some comments about what I want to write before writing the code, and with Copilot this essentially is instructions for what Copilot is to write. You can think of this a text prompt for an art generator. Here is an example.
+
+```javascript
+// Create a model for predicting the next word
+// ^ I wrote this
+const model = tf.sequential()
+model.add(tf.layers.lstm({ units: 128, inputShape: [null, 1] }))
+model.add(tf.layers.dense({ units: 1, activation: 'softmax' }))
+model.compile({ loss: 'categoricalCrossentropy', optimizer: 'adam' })
+// ^ Copilot wrote all this code
+```
+
+When first getting into Tensorflow I had no idea what this meant. If you asked me what this does right now, I would have trouble telling you what this was doing.
