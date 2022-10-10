@@ -22,6 +22,7 @@ export default function HTML(props) {
         />
         <link href={`${googleFonts}${fonts}`} rel="stylesheet" />
         <stylesheet dangerouslySetInnerHTML={{ __html: props.css }} />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js"></script>
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>

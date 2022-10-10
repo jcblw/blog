@@ -1,42 +1,45 @@
 ---
 title: Learning AI with AI
-description: Github copilot helping me write Tensorflow code
-date: 2022-10-9
-slug: /learning-ai-with-ai/
-status: draft
+description: How I used GitHub Copilot to learn how to use Tensorflow
+date: 2022-10-10
+slug: /learning-tensorflow-with-copilot-ai/
+status: published
 ---
 
 import { Highlight } from '../../../components/highlight'
 import MujoLogo from '../mujo-a-calendar/mujo.svg'
 
+###### How I used GitHub Copilot to learn how to use Tensorflow
+
 ![Birth of a cyborg](./birth-of-a-cyborg.png)
 
 ### AI takeover
 
-Seems like AI has recently been taking over social media. I think this largely had to do with thing like [DALLE-2](https://openai.com/dall-e-2/), [Stable Diffusion](https://stability.ai/blog/stable-diffusion-public-release) and [Midjourney](https://www.midjourney.com/home/). It also seems like AI have been making it into more consumer products like [Github Copilot](https://github.com/features/copilot) which helps users pair program with AI. These new technologies are everywhere now, but not without their controversies. Eg: [Copilots usage of licenced OSS](https://fossa.com/blog/analyzing-legal-implications-github-copilot/) and [Midjourney winning art contest in colorado](https://voicebot.ai/2022/09/05/midjourney-ai-generated-art-wins-colorado-state-fair-prize/).
+Seems like AI has recently been taking over social media. I think this largely had to do with thing like [DALLE-2](https://openai.com/dall-e-2/), [Stable Diffusion](https://stability.ai/blog/stable-diffusion-public-release) and [Midjourney](https://www.midjourney.com/home/). It also seems like AI have been making it into more consumer products like [Github Copilot](https://github.com/features/copilot), which helps users pair program with AI. These new technologies are everywhere now, but not without their controversies. E.g., [Copilots usage of licensed OSS](https://fossa.com/blog/analyzing-legal-implications-github-copilot/) and [Midjourney winning art contest in Colorado, US](https://voicebot.ai/2022/09/05/midjourney-ai-generated-art-wins-colorado-state-fair-prize/).
 
-I have been using AI for a while in my workflows, mostly with the Github Copilot to write code faster, and these image generation tools to be able to come up with ideas for logo's, and things like finding artwork for blog posts. The images in this post are from DALLE-2.
+I have used AI for a while in my workflows, mainly with the Github Copilot to write code faster, image generation tools to develop logos ideas and things like finding artwork for blog posts, and [Grammarly](http://grammerly.com/) to fix my broken grammar.
 
 ### Learning by example
 
-I have a web extension called [Mujō](https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao) that uses machine learning to determine suggested break times by essentially predicting what the user day is going to look like. I have been want to upgrade the mechanisms that do these predictions to something that is smarter, and I can add in more variables to it to increase the prediction. I have been looking at [Tensorflow](https://www.tensorflow.org/) for a while, but I have struggled quite a bit to get the concept of it.
+I have a web extension called [Mujō](https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao) that uses machine learning to determine suggested break times by essentially predicting what the user day is going to look like. I have wanted to upgrade the mechanisms that make these predictions to something more intelligent, and I can add more variables to it to increase the prediction. I have been looking at [Tensorflow](https://www.tensorflow.org/) for a while, but I have struggled quite a bit to get the concept.
 
 <Highlight
-  title="Check out Mujō"
-  description="Available on the Chrome Web Store"
+  design="dark"
+  title="Check out Mujō."
+  description="Available on the Chrome Web Store."
   image={MujoLogo}
   href="https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao"
 />
 
-I figured I could give it another shot. They had released a NodeJS version of Tensorflow, and I thought that it might have been more approachable for me since I know javascript. I would look at videos, documentation, and tutorials about the library, and was able to string together something that made some pretty graphs, but when trying to get predictions out of it. It really fell flat on its face, producing essentially random results. I was really frustrated, and kept search for examples.
+I figured I could give it another shot. Google had released a NodeJS version of Tensorflow, and I thought it might have been more approachable for me since I know javascript. I would look at videos, documentation, and tutorials about the library and be able to string together something that made some pretty graphs, but when trying to get predictions out of it. It really fell flat on its face, producing essentially random results. I was really frustrated and kept searching for more examples.
 
-During this whole learning experience I had Copilot running. Usually, I use Copilot to find patterns in my code and to fill in repitious tasks. It can be fantastic with these tasks. I noticed something about Copilot suggestions when working with API's I had no idea about. I knew them better then I did.
+During this whole learning experience, I had Copilot running. Usually, I use Copilot to find patterns in my code and to fill in repetitious tasks. It can be fantastic with these tasks. I noticed something about Copilot's suggestions when working with APIs I had no idea about. It knew these APIs better than I did.
 
 ### Getting Copilot to help
 
 ![Cyborg monk](./hex-cyborg-monk.png)
 
-As someone who has been using Copilot since around launch, I am pretty good a pursuading Copilot at writing code for me. To be honest, I enjoy writing out some comments about what I want to write before writing the code, and with Copilot this essentially is instructions for what Copilot is to write. You can think of this a text prompt for an art generator. Here is an example.
+As someone who has been using Copilot since its launch, I am pretty good at persuading Copilot to write code for me. To be honest, I enjoy writing comments about what I want to write before writing the code, and with Copilot, this essentially is instructions for what Copilot is to write. You can think of this as a text prompt for an art generator. Here is an example.
 
 ```javascript
 // Create a model for predicting the next word
@@ -48,4 +51,42 @@ model.compile({ loss: 'categoricalCrossentropy', optimizer: 'adam' })
 // ^ Copilot wrote all this code
 ```
 
-When first getting into Tensorflow I had no idea what this meant. If you asked me what this does right now, I would have trouble telling you what this was doing.
+When first getting into Tensorflow, I had no idea what this meant. I would have trouble telling you what this was doing, but it seems Copilot thinks this is code I can use based on the prompt. This does not produce working code, but often time will give me the correct methods to use. I can then look up what these methods do and how to use them. I can then use this to write my own code or modify the code Copilot wrote to fit my needs.
+
+### Taking it one step further
+
+I learned a lot just by using the prior methods but did not have the desired result from my Tensorflow models. I did some research and found that there were some additional libraries I could use that fit my needs. The problem was that it was in Python. My Python coding experience is somewhat limited. I have only used Python for a handful of projects years apart.
+
+At first, I found a repository of example code online. It worked but was not quite what I wanted for my application. It needed some modifications to the model and additional functionality to generate predictions to ensure the model could predict data in ways expected from my application.
+
+At first, I worked with the example code and tried to get Copilot to help me modify the existing code. This sorta worked. Copilot showed me the general principle, but the data structures were off. I also started to dig through documentation to know what kind of data I should be passing.
+
+```python
+# Use the model to predict a set of next words
+# ^ I wrote this
+predictions = model.predict(x)
+# ^ Copilot wrote this
+```
+
+After trying to get something to work for hours, I started with a new file. I felt a clean slate would add some clarity, and I am glad I did this. Copilot was not just using its training data to spit out new code. It actually used the example file as a reference as well.
+
+```python
+# Create a model for predicting the next word
+model = tf.keras.Sequential()
+# Load the data from local CSV file
+data = pd.read_csv('data.csv')
+# Split the data into training and testing
+train, test = train_test_split(data, test_size=0.2)
+```
+
+I set up comments saying what I wanted Copilot to help with. I also included some data structure names in the comments. This was stuff that I had learned from the documentation. Copilot essentially wrote out most of the script. It was full of errors and missing modules, but it was a good start. I was able to use this to get a working model, and then I could modify it to fit my needs. I also got Copilot to use some specific algorithms when one was not spitting out good results.
+
+### Thoughts on learning with AI
+
+I enjoyed learning with AI, and it was a pleasant experience. It did not do everything for me. It was a conversation. I found the example code, and it showed me some new methods. I researched proper data structures and knew the methods to convert one format to another.
+
+AI is a tool to streamline our workflows and is an exciting way to learn something new. I will have to add some caveats to learning with AI.
+
+It can get frustrating working with AI since sometimes it likes to repeat itself. I had some broken code and tried to get Copilot to fix it by adding comments it was erroring code and the error it was throwing. This did not work at all, and Copilot spits out the same code repeatedly.
+
+I have been working with Copilot for a while and am pretty good at talking to it. If you are unfamiliar with Copilot, you should [explore its functionality](https://github.blog/2022-09-14-8-things-you-didnt-know-you-could-do-with-github-copilot/) and learn to communicate with Copilot before expecting it to do something that it potentially cannot do.
