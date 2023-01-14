@@ -19,6 +19,7 @@ import { Footer } from './footer'
 import { Header } from './header'
 import { Link } from './link'
 import { Canvas } from './extras/canvas'
+import { Blockquote } from './blockquote'
 
 const Layout = ({ children, noAuthor, sidebarContent }) => {
   const theme = useTheme()
@@ -34,6 +35,7 @@ const Layout = ({ children, noAuthor, sidebarContent }) => {
         h6: Header6,
         p: Paragraph,
         a: Link,
+        blockquote: Blockquote,
       }}
     >
       <GlobalStyles />

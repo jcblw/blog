@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -5,6 +6,7 @@
  */
 
 const path = require('path')
+const fetch = require('node-fetch')
 
 const getPostData = data => {
   if (!data || !data.allMdx) {
@@ -47,6 +49,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const postTemplate = path.resolve('src/templates/post-template.js')
   posts.forEach(post => {
     const { slug } = post.frontmatter
+    if (!slug) {
+      return
+    }
     createPage({
       path: slug,
       component: postTemplate,
@@ -57,5 +62,37 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
     reporter.info(`Page created: ${slug}`)
+  })
+}
+
+exports.sourceNodes = async ({
+  actions: { createNode },
+  createContentDigest,
+}) => {
+  // get data from GitHub API at build time
+  const result = await fetch(
+    `https://api.github.com/repos/jcblw/jcblw/contents/README.md`,
+    {
+      headers: {
+        Authorization: `token ${process.env.GITHUB_TOKEN}`,
+      },
+    }
+  )
+  const resultData = await result.json()
+  const buff = Buffer.from(resultData.content, 'base64')
+  const text = buff.toString('utf8')
+
+  // create node for build time data example in the docs
+  createNode({
+    id: `github_profile_readme_parent`,
+    parent: null,
+    children: [],
+    slug: '/github_profile_readme',
+    internal: {
+      type: `Github_Profile_Readme`,
+      contentDigest: createContentDigest(resultData),
+      mediaType: `text/markdown`,
+      content: text,
+    },
   })
 }

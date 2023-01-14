@@ -26,10 +26,6 @@ export const Footer = () => {
           <Box Component="span">{site.siteMetadata.author} © </Box>
           <Box Component="span">{new Date().getFullYear()} | </Box>
           <Link href={site.siteMetadata.source}>Source code</Link>
-          <Box Component="span">
-            {' '}
-            | Built with <Link href="https://www.gatsbyjs.org">Gatsby</Link>
-          </Box>
         </Paragraph>
       </Container>
     </Box>

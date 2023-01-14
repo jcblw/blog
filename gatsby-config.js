@@ -1,3 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+require('dotenv').config({
+  path: `.env`,
+})
+
 const layout = require.resolve('./src/components/layout.js')
 
 module.exports = {
@@ -5,6 +10,8 @@ module.exports = {
     title: 'jcblw',
     description: 'Blog of Jacob Lowe',
     siteUrl: 'https://jcbl.ws',
+    github: 'https://github.com/jcblw',
+    linkedin: 'https://www.linkedin.com/in/%F0%9F%8C%BF-jacob-lowe-50a49126/',
     author: 'Jacob Lowe',
     aboutAuthor: 'I am a founder of Mujō.',
     avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
@@ -51,6 +58,17 @@ module.exports = {
         trackingId: 'UA-54359707-1',
         head: false,
         anonymize: true,
+      },
+    },
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'GitHub',
+        fieldName: 'github',
+        url: 'https://api.github.com/graphql',
+        headers: {
+          Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        },
       },
     },
     // TODO: try this again with latest version after this is merged

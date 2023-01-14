@@ -41,7 +41,7 @@ export const Header = () => {
             {site.siteMetadata.title}
           </Header5>
         </Link>
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to="/blog" style={{ textDecoration: 'none' }}>
           <Paragraph
             flex="1"
             display="inlineFlex"

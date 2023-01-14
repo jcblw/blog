@@ -1,4 +1,4 @@
-import format from 'date-fns/format'
+import parse from 'date-fns/parse'
 import { Link } from 'gatsby'
 import React from 'react'
 import { useTheme } from '../hooks/useTheme'
@@ -8,6 +8,7 @@ import { HR } from './hr'
 
 export const PostExcerpt = props => {
   const theme = useTheme()
+  const [date] = props.frontmatter.date.split('T')
   return (
     <Box paddingTop="m" paddingBottom="m">
       <Link to={props.frontmatter.slug} style={{ textDecoration: 'none' }}>
@@ -26,7 +27,9 @@ export const PostExcerpt = props => {
       <HR margin="xs" />
       <Box display="flex" flexDirection="row">
         <Paragraph marginTop="none" marginBottom="none" color={theme.header}>
-          {format(new Date(props.frontmatter.date), 'MMMM dd yyyy')}
+          {new Intl.DateTimeFormat().format(
+            parse(date, 'yyyy-MM-d', new Date())
+          )}
         </Paragraph>
         <Paragraph
           paddingLeft="xs"

@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { format } from 'date-fns'
 import { useTheme } from '../hooks/useTheme'
 import { Header3, Paragraph } from './fonts'
 import { Box } from './box'
@@ -13,7 +12,7 @@ export const Talk = ({ title, date, youtube, description }) => {
         {title}
       </Header3>
       <Paragraph marginTop="zero" color={theme.header}>
-        {format(date, 'MMMM do yyyy')}
+        {new Intl.DateTimeFormat().format(date)}
       </Paragraph>
       <Box
         paddingLeft="md"

@@ -12,12 +12,12 @@ const AllPostsTemplate = props => {
   const hasPosts = posts.length > 0
   return (
     <>
-      <SEO title="Homepage" />
+      <SEO title="All blog post" />
       <Layout location={props.location}>
         {hasPosts ? (
           <>
             <Header6 marginBottom="zero" color="calico">
-              Latest blog posts
+              All blog posts
             </Header6>
             {posts.map(post => (
               <PostExcerpt key={post.id} {...post} />
@@ -42,7 +42,7 @@ export const pageQuery = graphql`
   query {
     allMdx(
       sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { status: { eq: "published" } } }
+      filter: { frontmatter: { status: { ne: "draft" }, slug: { ne: null } } }
     ) {
       edges {
         node {
