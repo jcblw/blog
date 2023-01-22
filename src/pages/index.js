@@ -12,7 +12,7 @@ import { GithubRepo } from '../components/github-repo'
 import { Icon } from '../components/icon'
 
 const AllPostsTemplate = props => {
-  const posts = getPostData(props.data)
+  const posts = getPostData(props.data).slice(0, 3)
   const profile = props.data.site.siteMetadata
   const about = props.data.mdx.body
   const featuredProjects = props.data.github.user.pinnedItems.nodes
@@ -126,7 +126,7 @@ export default AllPostsTemplate
 export const pageQuery = graphql`
   query allPosts($username: String = "jcblw") {
     allMdx(
-      limit: 3
+      limit: 10
       filter: { frontmatter: { status: { ne: "draft" }, slug: { ne: null } } }
       sort: { fields: frontmatter___date, order: DESC }
     ) {
