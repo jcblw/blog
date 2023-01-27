@@ -38,7 +38,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import-order-alphabetical": "0.0.2",
     "eslint-plugin-prettier": "^3.1.4",
-    "gatsby-remark-images": "^3.3.22",
+    "gatsby-remark-images": "^3.11.1",
     "prettier": "^1.19.1"
   },
   "keywords": [
