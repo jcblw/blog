@@ -2,6 +2,8 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React, { useEffect } from 'react'
 import Prism from 'prismjs'
+import { DiscussionEmbed } from 'disqus-react'
+
 import { Box } from '../components/box'
 import { HR } from '../components/hr'
 import Layout from '../components/layout'
@@ -20,6 +22,10 @@ const PostTemplate = props => {
   const { parent: mdxp } = mdx
   const srcPath = `src/content/blog/${mdxp.relativePath}`
   const github = `${meta.source}/tree/master/${srcPath}`
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME,
+    config: { identifier: mdx.frontmatter.slug, title: mdx.frontmatter.title },
+  }
 
   useEffect(() => {
     Prism.highlightAll()
@@ -60,6 +66,9 @@ const PostTemplate = props => {
           </Link>
         </Box>
         <HR />
+        <Box>
+          <DiscussionEmbed {...disqusConfig} />
+        </Box>
       </Layout>
     </>
   )
