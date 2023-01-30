@@ -6,6 +6,8 @@ slug: /avoid-double-use-effect-react-18-use-sync-external-store/
 status: published
 ---
 
+![futurist bullet train](/bullet-train.png)
+
 ### The problem of double "useEffect" calls
 
 The problem of double useEffect calls in React 18 is caused by a feature in React 18 called "[strict mode](https://reactjs.org/docs/strict-mode.html)," which is a helpful tool that helps you catch issues in your code. This feature causes useEffect to run twice when there are zero dependencies. In prior versions of React, this is how you would run code on [mount](https://stackoverflow.com/questions/31556450/what-is-mounting-in-react-js) of a component. This can lead to problems such as sending data fetching requests twice and double tracking page view events. This can cause unexpected behavior in your application.
