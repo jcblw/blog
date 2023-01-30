@@ -71,6 +71,64 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+            {
+              site {
+                siteMetadata {
+                  title
+                  description
+                  siteUrl
+                }
+              }
+            }
+          `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) =>
+              allMdx.edges.map(({ node }) => ({
+                ...node.frontmatter,
+                description: node.frontmatter.description,
+                date: node.frontmatter.date,
+                url: site.siteMetadata.siteUrl + node.frontmatter.slug,
+                guid: site.siteMetadata.siteUrl + node.frontmatter.slug,
+                custom_elements: [{ 'content:encoded': node.html }],
+              })),
+            query: `
+              {
+                allMdx(
+                  sort: { fields: frontmatter___date, order: DESC }
+                  filter: { frontmatter: { status: { ne: "draft" }, slug: { ne: null } } }
+                ) {
+                  edges {
+                    node {
+                      id
+                      frontmatter {
+                        title
+                        slug
+                        date
+                        description
+                      }
+                      timeToRead
+                    }
+                  }
+                }
+              }
+              `,
+            output: '/rss.xml',
+            title: "jcblw's RSS Feed",
+            // optional configuration to insert feed reference in pages:
+            // if `string` is used, it will be used to create RegExp and then test if pathname of
+            // current page satisfied this regular expression;
+            // if not provided or `undefined`, all pages will have feed reference inserted
+            // optional configuration to specify external rss feed, such as feedburner
+            // link: 'https://feeds.feedburner.com/gatsby/blog',
+          },
+        ],
+      },
+    },
     // TODO: try this again with latest version after this is merged
     // https://github.com/emotion-js/emotion/pull/1485
     // 'gatsby-plugin-emotion',
