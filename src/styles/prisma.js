@@ -6,6 +6,18 @@ export const PrismaStyles = () => (
   <>
     <Global
       styles={{
+        pre: {
+          '::-webkit-scrollbar': {
+            width: '0.5em',
+            height: '0.5em',
+            backgroundColor: 'transparent',
+          },
+          '::-webkit-scrollbar-thumb': {
+            backgroundColor: names.pictonBlue,
+            borderRadius: '1em',
+          },
+        },
+
         "code[class*='language-'], pre[class*='language-'] ": {
           color: names.pictonBlue,
           background: 'none',
