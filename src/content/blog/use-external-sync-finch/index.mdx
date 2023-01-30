@@ -18,7 +18,7 @@ You can turn off this feature by commenting out `<React.StrictMode />` at the en
 
 When upgrading to React 18, in my [Mujō Chrome Extension](https://getmujo.com) codebase, I encountered a problem with double useEffect calls in my codebase. Specifically, all inter-process communication (IPC) was firing twice. After researching and experimenting, I discovered that the issue was caused by using an IPC request in an useEffect called twice.
 
-To solve this issue, I introduced observables into my library, [Finch GraphQL](https://github.com/jcblw/finch-graphql), and updated my React component to listen to the observables using the `useSyncExternalStore` hook. This allowed me to synchronize my component's local state with the external store and avoid the double useEffect calls.
+To solve this issue, I introduced observables into my library, [Finch GraphQL](https://github.com/jcblw/finch-graphql), and updated my React component to listen to the [observables](https://en.wikipedia.org/wiki/Observer_pattern#:~:text=In%20software%20design%20and%20engineering,calling%20one%20of%20their%20methods.) using the [`useSyncExternalStore`](https://beta.reactjs.org/reference/react/useSyncExternalStore) hook. This allowed me to synchronize my component's local state with the external store and avoid the double useEffect calls.
 
 Observables are a great way to get notified when data changes happen. In this case, I could hold on to requests and response data from IPC calls in this observable. Once having that data, it was straightforward to subscribe to those changes in a custom hook using `useSyncExternalStore.`
 
