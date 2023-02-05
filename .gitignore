@@ -54,10 +54,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# gatsby files
-.cache/
-public
-
 # Mac files
 .DS_Store
 
@@ -68,5 +64,7 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
+# astro cache, and builds
 dist
 .astro
+.cache
