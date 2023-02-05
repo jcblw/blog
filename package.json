@@ -1,65 +1,33 @@
 {
-  "name": "jcblw-blog",
+  "name": "@example/blog",
+  "type": "module",
+  "version": "0.0.1",
   "private": true,
-  "description": "Personal blog for Jacob Lowe",
-  "version": "1.0.0",
-  "author": "Jacob Lowe",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
   "dependencies": {
-    "@emotion/core": "^10.1.1",
-    "@mdx-js/mdx": "^1.6.14",
-    "@mdx-js/react": "^1.6.22",
-    "@mujo/box": "^4.1.1",
-    "@mujo/eslint-config": "^1.1.0",
-    "date-fns": "^2.15.0",
+    "@astrojs/mdx": "^0.16.0",
+    "@astrojs/react": "^2.0.2",
+    "@astrojs/rss": "^2.1.0",
+    "@astrojs/sitemap": "^1.0.1",
+    "@astropub/md": "^0.1.4",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^2.0.5",
     "disqus-react": "^1.1.5",
-    "gatsby": "^2.24.12",
-    "gatsby-image": "^3.10.0",
-    "gatsby-plugin-emotion": "^4.3.10",
-    "gatsby-plugin-feed": "^2.5.11",
-    "gatsby-plugin-google-analytics": "^2.11.0",
-    "gatsby-plugin-manifest": "^2.4.21",
-    "gatsby-plugin-mdx": "^2.10.1",
-    "gatsby-plugin-offline": "^2.2.10",
-    "gatsby-plugin-react-helmet": "^3.3.10",
-    "gatsby-plugin-sharp": "^2.6.23",
-    "gatsby-remark-autolink-headers": "^2.11.0",
-    "gatsby-source-filesystem": "^2.3.23",
-    "gatsby-source-graphql": "^5.4.0",
-    "gatsby-transformer-sharp": "^2.5.11",
-    "perlin-simplex": "^0.0.3",
-    "prismjs": "^1.24.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^5.2.1",
-    "react-scribble": "^1.0.1"
+    "mdast-util-to-string": "^3.1.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-slug": "^5.1.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import-order-alphabetical": "0.0.2",
-    "eslint-plugin-prettier": "^3.1.4",
-    "gatsby-remark-images": "^3.3.22",
-    "prettier": "^1.19.1"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "now-build": "npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "prop-types": "^15.8.1"
   }
 }

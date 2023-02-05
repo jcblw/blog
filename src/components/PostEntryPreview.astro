@@ -1,0 +1,25 @@
+---
+import Time from './Time.astro';
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+  href: string;
+  title: string;
+  description: string;
+  date: Date;
+  class?: string;
+}
+
+const { href, title, description, date, class: className, ...props } = Astro.props;
+const formattedDescription = description.length > 247 ? description.slice(0, 250) + '...' : description;
+---
+
+<div class="py--m" {...props}>
+  <h3 class="pt--zero pb--s color--link">
+    <a href={href} class:list={[className, 'py--none no-underline']}>
+      {title}
+    </a>
+  </h3>
+  <p class="py--zero">{formattedDescription}</p>
+  <hr />
+  <Time date={date} class="p--zero color--header" />
+</div>

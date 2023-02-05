@@ -1,0 +1,42 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { siteMetadata } from '../../consts';
+import { getCollection } from 'astro:content';
+import PostEntryPreview from '../../components/PostEntryPreview.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={siteMetadata.title} description={siteMetadata.description} />
+		<style>
+			ul {
+				list-style-type: none;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="container">
+			<section>
+				<h6 class="color--overline">All blog posts</h6>
+				<ul class="my--zero p--zero">
+					{
+						posts.map((post) => (
+							<li>
+								<PostEntryPreview {...post.data} href={`${post.slug}`} />
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,13 @@
+---
+import HeaderLink from './HeaderLink.astro';
+
+const { title = 'jcblw'} = Astro.props;
+---
+
+<header class="container">
+	<nav class:list={['py--l flex items--center']}>
+		<HeaderLink href="/" class="h3">{title}</HeaderLink>
+		<HeaderLink href="/blog">Blog</HeaderLink>
+		<HeaderLink href="/talks">Talks</HeaderLink>
+	</nav>
+</header>

@@ -1,0 +1,22 @@
+---
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+  date: Date
+  prefix?: string
+  suffix?: string
+}
+
+const { date, prefix, suffix, ...props } = Astro.props;
+
+---
+
+<p {...props}>
+  {prefix && <span>{prefix} </span>}
+  <time datetime={date.toISOString()}>
+    {date.toLocaleDateString('en-us', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })}
+  </time>
+  {suffix && <span>{suffix} </span>}
+</p>

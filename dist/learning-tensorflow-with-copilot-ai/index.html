@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="astro-BVZIHDZO">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favico.svg">
+<meta name="generator" content="Astro v2.0.5">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://jcbl.ws/learning-tensorflow-with-copilot-ai/">
+
+<!-- Primary Meta Tags -->
+<title>Learning AI with AI</title>
+<meta name="title" content="Learning AI with AI">
+<meta name="description" content="How I used GitHub Copilot to learn how to use Tensorflow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jcbl.ws/learning-tensorflow-with-copilot-ai/">
+<meta property="og:title" content="Learning AI with AI">
+<meta property="og:description" content="How I used GitHub Copilot to learn how to use Tensorflow">
+<meta property="og:image" content="https://jcbl.ws/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://jcbl.ws/learning-tensorflow-with-copilot-ai/">
+<meta property="twitter:title" content="Learning AI with AI">
+<meta property="twitter:description" content="How I used GitHub Copilot to learn how to use Tensorflow">
+<meta property="twitter:image" content="https://jcbl.ws/placeholder-social.jpg">
+
+<!-- Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&#38;family=Oxygen:wght@300;400&#38;display=swap" rel="stylesheet">
+		
+	</head>
+
+	<body class="astro-BVZIHDZO">
+		<header class="container">
+	<nav class="py--l flex items--center">
+		<a href="/" class="h3 flex items--center justify--center pr--s py--xs no-underline color--link">
+	jcblw
+</a>
+		<a href="/blog" class="flex items--center justify--center pr--s py--xs no-underline color--link">
+	Blog
+</a>
+		<a href="/talks" class="flex items--center justify--center pr--s py--xs no-underline color--link">
+	Talks
+</a>
+	</nav>
+</header>
+		<main class="relative astro-BVZIHDZO">
+			<div class="flex items--center justify--center px--xs astro-BVZIHDZO">
+				<img src="/birth-of-a-cyborg.png" alt="Learning AI with AI" class="hero-image rounded--m astro-BVZIHDZO">
+			</div>
+			
+<aside class="sticky table-of-contents astro-XVRFUPWN">
+  <div class="absolute top-0 bg--backgroundSecondary rounded--m py--xs px--m mt--m astro-XVRFUPWN">
+    <details class="astro-XVRFUPWN">
+    <summary class="astro-XVRFUPWN"><h5 class="inline-flex bold pb--xs pt--xs astro-XVRFUPWN">Sections</h5></summary>
+    <p class="py--zero astro-XVRFUPWN"><a href="#how-i-used-github-copilot-to-learn-how-to-use-tensorflow" class="astro-XVRFUPWN">How I used GitHub Copilot to learn how to use Tensorflow</a></p><p class="py--zero astro-XVRFUPWN"><a href="#ai-takeover" class="astro-XVRFUPWN">AI takeover</a></p><p class="py--zero astro-XVRFUPWN"><a href="#learning-by-example" class="astro-XVRFUPWN">Learning by example</a></p><p class="py--zero astro-XVRFUPWN"><a href="#getting-copilot-to-help" class="astro-XVRFUPWN">Getting Copilot to help</a></p><p class="py--zero astro-XVRFUPWN"><a href="#taking-it-one-step-further" class="astro-XVRFUPWN">Taking it one step further</a></p><p class="py--zero astro-XVRFUPWN"><a href="#thoughts-on-learning-with-ai" class="astro-XVRFUPWN">Thoughts on learning with AI</a></p>
+    </details>
+  </div>
+</aside>
+			<section class="container astro-BVZIHDZO">
+				<div class="author-section flex row items--center py--s px--m mt--m bg--backgroundSecondary rounded--xxl astro-BVZIHDZO">
+					<img class="rounded--full flex--0 astro-BVZIHDZO" width="45px" height="45px" src="https://avatars1.githubusercontent.com/u/578259?s=460&#38;v=4" alt="Jacob Lowe">
+					<div class="pl--s flex--1 astro-BVZIHDZO">
+						<h6 class="color--overline pt--zero pb--xs bold astro-BVZIHDZO">Jacob Lowe</h6>
+						<p class="py--zero published-at astro-BVZIHDZO">
+  <span>Published  </span>
+  <time datetime="2022-10-10T00:00:00.000Z">
+    Oct 9, 2022
+  </time>
+  <span>  ●  6 min read </span>
+</p>
+					</div>
+				</div>
+			</section>
+			<article class="container blog-post astro-BVZIHDZO">
+				<h1 class="color--link astro-BVZIHDZO">Learning AI with AI</h1>
+				<hr class="astro-BVZIHDZO">
+				<h6 id="how-i-used-github-copilot-to-learn-how-to-use-tensorflow"><a aria-hidden="true" tabIndex="-1" href="#how-i-used-github-copilot-to-learn-how-to-use-tensorflow"><span class="heading-link">⌗</span></a>How I used GitHub Copilot to learn how to use Tensorflow</h6>
+<h3 id="ai-takeover"><a aria-hidden="true" tabIndex="-1" href="#ai-takeover"><span class="heading-link">⌗</span></a>AI takeover</h3>
+<p>Seems like AI has recently been taking over social media. I think this largely had to do with thing like <a href="https://openai.com/dall-e-2/">DALLE-2</a>, <a href="https://stability.ai/blog/stable-diffusion-public-release">Stable Diffusion</a> and <a href="https://www.midjourney.com/home/">Midjourney</a>. It also seems like AI have been making it into more consumer products like <a href="https://github.com/features/copilot">Github Copilot</a>, which helps users pair program with AI. These new technologies are everywhere now, but not without their controversies. E.g., <a href="https://fossa.com/blog/analyzing-legal-implications-github-copilot/">Copilots usage of licensed OSS</a> and <a href="https://voicebot.ai/2022/09/05/midjourney-ai-generated-art-wins-colorado-state-fair-prize/">Midjourney winning art contest in Colorado, US</a>.</p>
+<p>I have used AI for a while in my workflows, mainly with the Github Copilot to write code faster, image generation tools to develop logos ideas and things like finding artwork for blog posts, and <a href="http://grammerly.com/">Grammarly</a> to fix my broken grammar.</p>
+<h3 id="learning-by-example"><a aria-hidden="true" tabIndex="-1" href="#learning-by-example"><span class="heading-link">⌗</span></a>Learning by example</h3>
+<p>I have a web extension called <a href="https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao">Mujō</a> that uses machine learning to determine suggested break times by essentially predicting what the user day is going to look like. I have wanted to upgrade the mechanisms that make these predictions to something more intelligent, and I can add more variables to it to increase the prediction. I have been looking at <a href="https://www.tensorflow.org/">Tensorflow</a> for a while, but I have struggled quite a bit to get the concept.</p>
+
+<link rel="stylesheet" href="/_astro/_...slug_.e1b8cc14.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.e6843b2e.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.592bcd50.css" /><link rel="stylesheet" href="/_astro/Highlight.astro_astro_type_style_index_0_lang.848fed66.css" /><div class="flex items--baseline row px--zero astro-SWZZBXBD" style="--color: var(--header);--backgroundColor: var(--background-secondary);">
+  <div class="highlight-bg p--m rounded--m flex row flex--1 astro-SWZZBXBD">
+    <div class="flex flex--0 items--center justify--center astro-SWZZBXBD">
+      <div class="highlight-imageContainer mr--m flex items--center justify--center rounded--xl overflow--hidden astro-SWZZBXBD">
+        <img class="highlight-image astro-SWZZBXBD" src="/mujo.svg">
+      </div>
+    </div>
+    <div class="flex--1 flex column justify--center astro-SWZZBXBD">
+      <h4 class="highlight-color py--zero astro-SWZZBXBD">
+        Check out Mujō.
+      </h4>
+      <a class="highlight-color py--zero astro-SWZZBXBD" href="https://chrome.google.com/webstore/detail/muj%C5%8D-be-mindful-of-your-t/pdhdkakfpnlcbipchahefkoaiohkehao">Available on the Chrome Web Store.</a>
+    </div>
+  </div>
+</div>
+<p>I figured I could give it another shot. Google had released a NodeJS version of Tensorflow, and I thought it might have been more approachable for me since I know javascript. I would look at videos, documentation, and tutorials about the library and be able to string together something that made some pretty graphs, but when trying to get predictions out of it. It really fell flat on its face, producing essentially random results. I was really frustrated and kept searching for more examples.</p>
+<p>During this whole learning experience, I had Copilot running. Usually, I use Copilot to find patterns in my code and to fill in repetitious tasks. It can be fantastic with these tasks. I noticed something about Copilot’s suggestions when working with APIs I had no idea about. It knew these APIs better than I did.</p>
+<h3 id="getting-copilot-to-help"><a aria-hidden="true" tabIndex="-1" href="#getting-copilot-to-help"><span class="heading-link">⌗</span></a>Getting Copilot to help</h3>
+<p><img src="/hex-cyborg-monk.png" alt="Cyborg monk"/></p>
+<p>As someone who has been using Copilot since its launch, I am pretty good at persuading Copilot to write code for me. To be honest, I enjoy writing comments about what I want to write before writing the code, and with Copilot, this essentially is instructions for what Copilot is to write. You can think of this as a text prompt for an art generator. Here is an example.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// Create a model for predicting the next word</span>
+<span class="token comment">// ^ I wrote this</span>
+<span class="token keyword">const</span> model <span class="token operator">=</span> tf<span class="token punctuation">.</span><span class="token function">sequential</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+model<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>layers<span class="token punctuation">.</span><span class="token function">lstm</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">units</span><span class="token operator">:</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token literal-property property">inputShape</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+model<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>layers<span class="token punctuation">.</span><span class="token function">dense</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">units</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">activation</span><span class="token operator">:</span> <span class="token string">&quot;softmax&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+model<span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">loss</span><span class="token operator">:</span> <span class="token string">&quot;categoricalCrossentropy&quot;</span><span class="token punctuation">,</span> <span class="token literal-property property">optimizer</span><span class="token operator">:</span> <span class="token string">&quot;adam&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ^ Copilot wrote all this code</span></code></pre>
+<p>When first getting into Tensorflow, I had no idea what this meant. I would have trouble telling you what this was doing, but it seems Copilot thinks this is code I can use based on the prompt. This does not produce working code, but often time will give me the correct methods to use. I can then look up what these methods do and how to use them. I can then use this to write my own code or modify the code Copilot wrote to fit my needs.</p>
+<h3 id="taking-it-one-step-further"><a aria-hidden="true" tabIndex="-1" href="#taking-it-one-step-further"><span class="heading-link">⌗</span></a>Taking it one step further</h3>
+<p>I learned a lot just by using the prior methods but did not have the desired result from my Tensorflow models. I did some research and found that there were some additional libraries I could use that fit my needs. The problem was that it was in Python. My Python coding experience is somewhat limited. I have only used Python for a handful of projects years apart.</p>
+<p>At first, I found a repository of example code online. It worked but was not quite what I wanted for my application. It needed some modifications to the model and additional functionality to generate predictions to ensure the model could predict data in ways expected from my application.</p>
+<p>At first, I worked with the example code and tried to get Copilot to help me modify the existing code. This sorta worked. Copilot showed me the general principle, but the data structures were off. I also started to dig through documentation to know what kind of data I should be passing.</p>
+<pre class="language-python"><code class="language-python"><span class="token comment"># Use the model to predict a set of next words</span>
+<span class="token comment"># ^ I wrote this</span>
+predictions <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token comment"># ^ Copilot wrote this</span></code></pre>
+<p>After trying to get something to work for hours, I started with a new file. I felt a clean slate would add some clarity, and I am glad I did this. Copilot was not just using its training data to spit out new code. It actually used the example file as a reference as well.</p>
+<pre class="language-python"><code class="language-python"><span class="token comment"># Create a model for predicting the next word</span>
+model <span class="token operator">=</span> tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># Load the data from local CSV file</span>
+data <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">&#39;data.csv&#39;</span><span class="token punctuation">)</span>
+<span class="token comment"># Split the data into training and testing</span>
+train<span class="token punctuation">,</span> test <span class="token operator">=</span> train_test_split<span class="token punctuation">(</span>data<span class="token punctuation">,</span> test_size<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">)</span></code></pre>
+<p>I set up comments saying what I wanted Copilot to help with. I also included some data structure names in the comments. This was stuff that I had learned from the documentation. Copilot essentially wrote out most of the script. It was full of errors and missing modules, but it was a good start. I was able to use this to get a working model, and then I could modify it to fit my needs. I also got Copilot to use some specific algorithms when one was not spitting out good results.</p>
+<h3 id="thoughts-on-learning-with-ai"><a aria-hidden="true" tabIndex="-1" href="#thoughts-on-learning-with-ai"><span class="heading-link">⌗</span></a>Thoughts on learning with AI</h3>
+<p>I enjoyed learning with AI, and it was a pleasant experience. It did not do everything for me. It was a conversation. I found the example code, and it showed me some new methods. I researched proper data structures and knew the methods to convert one format to another.</p>
+<p>AI is a tool to streamline our workflows and is an exciting way to learn something new. I will have to add some caveats to learning with AI.</p>
+<p>It can get frustrating working with AI since sometimes it likes to repeat itself. I had some broken code and tried to get Copilot to fix it by adding comments it was erroring code and the error it was throwing. This did not work at all, and Copilot spits out the same code repeatedly.</p>
+<p>I have been working with Copilot for a while and am pretty good at talking to it. If you are unfamiliar with Copilot, you should <a href="https://github.blog/2022-09-14-8-things-you-didnt-know-you-could-do-with-github-copilot/">explore its functionality</a> and learn to communicate with Copilot before expecting it to do something that it potentially cannot do.</p>
+			</article>
+			<section class="container astro-BVZIHDZO">
+				<style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).only=t=>{(async()=>await(await t())())()},window.dispatchEvent(new Event("astro:only"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="ZwKxwE" component-url="/_astro/Comments.f3e8a87c.js" component-export="Comments" renderer-url="/_astro/client.38423ee9.js" props="{&quot;slug&quot;:[0,&quot;/learning-tensorflow-with-copilot-ai&quot;],&quot;title&quot;:[0,&quot;Learning AI with AI&quot;],&quot;shortname&quot;:[0,&quot;jcbl-ws&quot;],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;Comments&quot;,&quot;value&quot;:true}"></astro-island>
+			</section>
+			<div class="flex row container astro-BVZIHDZO">
+				<a href="https://mobile.twitter.com/search?q=https://jcbl.ws/blog/learning-tensorflow-with-copilot-ai" class="pr--l my--m  astro-BVZIHDZO">
+					Discuss it on Twitter
+				</a>
+				<a href="https://github.com/jcblw/blog/src/content/blog/learning-tensorflow-with-copilot-ai" class="pr--l my--m  astro-BVZIHDZO">
+					Edit on Github
+				</a>
+			</div>
+		</main>
+		<footer class="container">
+	<hr>
+	<p class="pb--xxl">&copy; 2023 Jacob Lowe. All rights reserved.</p>
+</footer>
+	</body></html>

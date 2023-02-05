@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" class="astro-BVZIHDZO">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favico.svg">
+<meta name="generator" content="Astro v2.0.5">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://jcbl.ws/chrome-extension-react-devtools/">
+
+<!-- Primary Meta Tags -->
+<title>Effortlessly Debug Your Chrome Extension with React Devtools</title>
+<meta name="title" content="Effortlessly Debug Your Chrome Extension with React Devtools">
+<meta name="description" content="Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jcbl.ws/chrome-extension-react-devtools/">
+<meta property="og:title" content="Effortlessly Debug Your Chrome Extension with React Devtools">
+<meta property="og:description" content="Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.">
+<meta property="og:image" content="https://jcbl.ws/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://jcbl.ws/chrome-extension-react-devtools/">
+<meta property="twitter:title" content="Effortlessly Debug Your Chrome Extension with React Devtools">
+<meta property="twitter:description" content="Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.">
+<meta property="twitter:image" content="https://jcbl.ws/placeholder-social.jpg">
+
+<!-- Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&#38;family=Oxygen:wght@300;400&#38;display=swap" rel="stylesheet">
+		
+	<link rel="stylesheet" href="/_astro/_...slug_.e1b8cc14.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.e6843b2e.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.592bcd50.css" /></head>
+
+	<body class="astro-BVZIHDZO">
+		<header class="container">
+	<nav class="py--l flex items--center">
+		<a href="/" class="h3 flex items--center justify--center pr--s py--xs no-underline color--link">
+	jcblw
+</a>
+		<a href="/blog" class="flex items--center justify--center pr--s py--xs no-underline color--link">
+	Blog
+</a>
+		<a href="/talks" class="flex items--center justify--center pr--s py--xs no-underline color--link">
+	Talks
+</a>
+	</nav>
+</header>
+		<main class="relative astro-BVZIHDZO">
+			<div class="flex items--center justify--center px--xs astro-BVZIHDZO">
+				<img src="/react-devtools.png" alt="Effortlessly Debug Your Chrome Extension with React Devtools" class="hero-image rounded--m astro-BVZIHDZO">
+			</div>
+			
+<aside class="sticky table-of-contents astro-XVRFUPWN">
+  <div class="absolute top-0 bg--backgroundSecondary rounded--m py--xs px--m mt--m astro-XVRFUPWN">
+    <details class="astro-XVRFUPWN">
+    <summary class="astro-XVRFUPWN"><h5 class="inline-flex bold pb--xs pt--xs astro-XVRFUPWN">Sections</h5></summary>
+    <p class="py--zero astro-XVRFUPWN"><a href="#tooling-is-important" class="astro-XVRFUPWN">Tooling is important</a></p><p class="py--zero astro-XVRFUPWN"><a href="#not-working" class="astro-XVRFUPWN">Not working</a></p><p class="py--zero astro-XVRFUPWN"><a href="#standalone" class="astro-XVRFUPWN">Standalone</a></p><p class="py--zero astro-XVRFUPWN"><a href="#adding-the-script-to-the-page" class="astro-XVRFUPWN">Adding the script to the page</a></p><p class="py--zero astro-XVRFUPWN"><a href="#why-should-you-give-it-a-try" class="astro-XVRFUPWN">Why should you give it a try?</a></p><p class="py--zero astro-XVRFUPWN"><a href="#manifest-v3" class="astro-XVRFUPWN">Manifest v3</a></p>
+    </details>
+  </div>
+</aside>
+			<section class="container astro-BVZIHDZO">
+				<div class="author-section flex row items--center py--s px--m mt--m bg--backgroundSecondary rounded--xxl astro-BVZIHDZO">
+					<img class="rounded--full flex--0 astro-BVZIHDZO" width="45px" height="45px" src="https://avatars1.githubusercontent.com/u/578259?s=460&#38;v=4" alt="Jacob Lowe">
+					<div class="pl--s flex--1 astro-BVZIHDZO">
+						<h6 class="color--overline pt--zero pb--xs bold astro-BVZIHDZO">Jacob Lowe</h6>
+						<p class="py--zero published-at astro-BVZIHDZO">
+  <span>Published  </span>
+  <time datetime="2021-08-07T00:00:00.000Z">
+    Aug 6, 2021
+  </time>
+  <span>  ●  4 min read </span>
+</p>
+					</div>
+				</div>
+			</section>
+			<article class="container blog-post astro-BVZIHDZO">
+				<h1 class="color--link astro-BVZIHDZO">Effortlessly Debug Your Chrome Extension with React Devtools</h1>
+				<hr class="astro-BVZIHDZO">
+				<h2 id="tooling-is-important"><a aria-hidden="true" tabIndex="-1" href="#tooling-is-important"><span class="heading-link">⌗</span></a>Tooling is important</h2>
+<p>I have been building out Chrome extensions for years now, and one thing that has been lacking is tooling. Last month, I talked about this a little bit in my <a href="/finch-graphql">finch graphql</a> post. It can be an issue. I recently had some performance issues with <a href="https://jointoucan.com">Toucan</a> that were very hard to reason about on the surface. I debugged the problem, but it still was not very clear on what was going on. So instead of wasting another hour of my life and not getting anywhere. Since Toucan is a React app, I decided to try to use <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React devtools</a> to help me understand what was going on.</p>
+<h2 id="not-working"><a aria-hidden="true" tabIndex="-1" href="#not-working"><span class="heading-link">⌗</span></a>Not working</h2>
+<p>What I was trying to debug was the content script of the application, and when opening up the inspector, you would see that no react app is detected. This of course, if the page you are currently on is not a React app too. This wasn’t very reassuring to see, but not an uncommon thing in the Chrome extension world. Let me outline why it was not working.</p>
+<pre class="language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span>__REACT_DEVTOOLS_APPEND_COMPONENT_STACK__ <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>__REACT_DEVTOOLS_BREAK_ON_CONSOLE_ERRORS__ <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>__REACT_DEVTOOLS_COMPONENT_FILTERS__ <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token literal-property property">isEnabled</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>__REACT_DEVTOOLS_SHOW_INLINE_WARNINGS_AND_ERRORS__ <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></code></pre>
+<p>This is what is in the script that gets injected into the page. As you can see, React dev tools uses the <strong>window</strong> object to attach some global flags. This will not work with a React app in a content script because we do not have access to the same <strong>window</strong> as the page. The dev tools is built to work with web pages first and foremost. To get it to work, we need to do a little bit of hacking to give it access to our window.</p>
+<h2 id="standalone"><a aria-hidden="true" tabIndex="-1" href="#standalone"><span class="heading-link">⌗</span></a>Standalone</h2>
+<p>Chrome extension scripts run in an <a href="https://developer.chrome.com/docs/extensions/mv3/content_scripts/#isolated_world">isolated world</a>, and I am not sure if another extension can get access to that world easily. Sadly, this means we can <strong>not</strong> use the extension version of the React dev tools. There is a version of <a href="https://www.npmjs.com/package/react-devtools">React devtools</a> that is standalone which runs in an electron app, it instead of communicating with the extension via the window, it uses WebSockets. We will need to use this version, and luckily it is pretty easy to install.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">yarn</span> <span class="token function">add</span> react-devtools</code></pre>
+<p>Then you can start up the app.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">yarn</span> react-devtools</code></pre>
+<p>You can install this globally, but I like to make sure the version my team and I are using is consistent.</p>
+<h2 id="adding-the-script-to-the-page"><a aria-hidden="true" tabIndex="-1" href="#adding-the-script-to-the-page"><span class="heading-link">⌗</span></a>Adding the script to the page</h2>
+<p>There is a script that the standalone React dev tools hosts. You can see this script by visiting <strong><a href="http://localhost:8097">http://localhost:8097</a></strong>. This script is the code we want to inject into the page.</p>
+<p>There is several ways to add a script to a content script. You can add it in the manifest file or programmatically inject the script into the page via the <code>executeScript</code> method. I will use the second option because this is how we inject our other content script as well.</p>
+<p>To inject that script, I downloaded the script and added it to our Chrome extension. This is because you can not execute remote scripts in a content script of a Chrome extension. I save the file to something like <strong>./scripts/react-devtools.js</strong>.</p>
+<p>Then when I am injecting my main content script, I also inject the react devtools script.</p>
+<pre class="language-javascript"><code class="language-javascript">browser<span class="token punctuation">.</span>tabs<span class="token punctuation">.</span><span class="token function">executeScript</span><span class="token punctuation">(</span>tabId<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">file</span><span class="token operator">:</span> <span class="token string">&quot;./scripts/react-devtools.js&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>Once the injection happens and your React app starts up, you should see the React devtools connect, and you should be able to see your React app in the devtools 🪄.</p>
+<h2 id="why-should-you-give-it-a-try"><a aria-hidden="true" tabIndex="-1" href="#why-should-you-give-it-a-try"><span class="heading-link">⌗</span></a>Why should you give it a try?</h2>
+<p>This helped tremendously for the team. We were able to squash a bunch of random performance issues that were happening in our app. Using the devtools, we were able to crush them in only a couple of lines of code. I would encourage you to give it a try.</p>
+<h2 id="manifest-v3"><a aria-hidden="true" tabIndex="-1" href="#manifest-v3"><span class="heading-link">⌗</span></a>Manifest v3</h2>
+<p>I am not sure if this works in manifest v3 only because you can not connect to external sources inside a content script. This is is something that might take some significant reworking of the devtools script to pipe socket message through the background script.</p>
+			</article>
+			<section class="container astro-BVZIHDZO">
+				<style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).only=t=>{(async()=>await(await t())())()},window.dispatchEvent(new Event("astro:only"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="hY525" component-url="/_astro/Comments.f3e8a87c.js" component-export="Comments" renderer-url="/_astro/client.38423ee9.js" props="{&quot;slug&quot;:[0,&quot;/chrome-extension-react-devtools&quot;],&quot;title&quot;:[0,&quot;Effortlessly Debug Your Chrome Extension with React Devtools&quot;],&quot;shortname&quot;:[0,&quot;jcbl-ws&quot;],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;Comments&quot;,&quot;value&quot;:true}"></astro-island>
+			</section>
+			<div class="flex row container astro-BVZIHDZO">
+				<a href="https://mobile.twitter.com/search?q=https://jcbl.ws/blog/chrome-extension-react-devtools" class="pr--l my--m  astro-BVZIHDZO">
+					Discuss it on Twitter
+				</a>
+				<a href="https://github.com/jcblw/blog/src/content/blog/chrome-extension-react-devtools" class="pr--l my--m  astro-BVZIHDZO">
+					Edit on Github
+				</a>
+			</div>
+		</main>
+		<footer class="container">
+	<hr>
+	<p class="pb--xxl">&copy; 2023 Jacob Lowe. All rights reserved.</p>
+</footer>
+	</body></html>

@@ -1,0 +1,69 @@
+---
+title: "Effortlessly Debug Your Chrome Extension with React Devtools"
+description: "Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level."
+date: 2021-08-07
+status: published
+heroImage: /react-devtools.png
+slug: /chrome-extension-react-devtools
+---
+
+## Tooling is important
+
+I have been building out Chrome extensions for years now, and one thing that has been lacking is tooling. Last month, I talked about this a little bit in my [finch graphql](/finch-graphql) post. It can be an issue. I recently had some performance issues with [Toucan](https://jointoucan.com) that were very hard to reason about on the surface. I debugged the problem, but it still was not very clear on what was going on. So instead of wasting another hour of my life and not getting anywhere. Since Toucan is a React app, I decided to try to use [React devtools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) to help me understand what was going on.
+
+## Not working
+
+What I was trying to debug was the content script of the application, and when opening up the inspector, you would see that no react app is detected. This of course, if the page you are currently on is not a React app too. This wasn't very reassuring to see, but not an uncommon thing in the Chrome extension world. Let me outline why it was not working.
+
+```javascript
+window.__REACT_DEVTOOLS_APPEND_COMPONENT_STACK__ = true;
+window.__REACT_DEVTOOLS_BREAK_ON_CONSOLE_ERRORS__ = false;
+window.__REACT_DEVTOOLS_COMPONENT_FILTERS__ = [
+  { type: 1, value: 7, isEnabled: true },
+];
+window.__REACT_DEVTOOLS_SHOW_INLINE_WARNINGS_AND_ERRORS__ = true;
+```
+
+This is what is in the script that gets injected into the page. As you can see, React dev tools uses the **window** object to attach some global flags. This will not work with a React app in a content script because we do not have access to the same **window** as the page. The dev tools is built to work with web pages first and foremost. To get it to work, we need to do a little bit of hacking to give it access to our window.
+
+## Standalone
+
+Chrome extension scripts run in an [isolated world](https://developer.chrome.com/docs/extensions/mv3/content_scripts/#isolated_world), and I am not sure if another extension can get access to that world easily. Sadly, this means we can **not** use the extension version of the React dev tools. There is a version of [React devtools](https://www.npmjs.com/package/react-devtools) that is standalone which runs in an electron app, it instead of communicating with the extension via the window, it uses WebSockets. We will need to use this version, and luckily it is pretty easy to install.
+
+```bash
+yarn add react-devtools
+```
+
+Then you can start up the app.
+
+```bash
+yarn react-devtools
+```
+
+You can install this globally, but I like to make sure the version my team and I are using is consistent.
+
+## Adding the script to the page
+
+There is a script that the standalone React dev tools hosts. You can see this script by visiting **http://localhost:8097**. This script is the code we want to inject into the page.
+
+There is several ways to add a script to a content script. You can add it in the manifest file or programmatically inject the script into the page via the `executeScript` method. I will use the second option because this is how we inject our other content script as well.
+
+To inject that script, I downloaded the script and added it to our Chrome extension. This is because you can not execute remote scripts in a content script of a Chrome extension. I save the file to something like **./scripts/react-devtools.js**.
+
+Then when I am injecting my main content script, I also inject the react devtools script.
+
+```javascript
+browser.tabs.executeScript(tabId, {
+  file: "./scripts/react-devtools.js",
+});
+```
+
+Once the injection happens and your React app starts up, you should see the React devtools connect, and you should be able to see your React app in the devtools 🪄.
+
+## Why should you give it a try?
+
+This helped tremendously for the team. We were able to squash a bunch of random performance issues that were happening in our app. Using the devtools, we were able to crush them in only a couple of lines of code. I would encourage you to give it a try.
+
+## Manifest v3
+
+I am not sure if this works in manifest v3 only because you can not connect to external sources inside a content script. This is is something that might take some significant reworking of the devtools script to pipe socket message through the background script.

@@ -1,0 +1,55 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  projects: { 
+    nameWithOwner: string, 
+    description: string, 
+    stargazerCount: number; 
+    url: string, 
+    id: string,
+    name: string,
+  }[];
+}
+
+const { projects } = Astro.props;
+
+---
+<style>
+  .repo-container {
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .repo-container {
+      width: calc(50% - var(--spacing-m));
+    }
+  }
+</style>
+<h5 class="color--overline bold">Featured Projects</h5>
+<div class="flex row wrap justify--between">
+  {projects.map(({ name, url, description, stargazerCount }) => (
+    <div class="repo-container flex column bg--backgroundSecondary rounded--m mb--l p--m">
+      <div class="flex--1">
+        <h5 class="pt--zero pb--xs">
+          <a href={url}>{name}</a>
+        </h5>
+        <p class="pt--zero pb--s">
+          {description}
+        </p>
+      </div>
+      <div class="flex justify--end items--center">
+        <Icon
+          icon="star"
+          width="24"
+          height="24"
+          className="mr--xxs"
+          color="var(--overline)"
+        />
+        <p class="pt--zero pb--zero">
+          {Intl.NumberFormat().format(stargazerCount)}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>

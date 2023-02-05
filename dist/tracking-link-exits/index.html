@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="astro-BVZIHDZO">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favico.svg">
+<meta name="generator" content="Astro v2.0.5">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://jcbl.ws/tracking-link-exits/">
+
+<!-- Primary Meta Tags -->
+<title>Tracking link exits</title>
+<meta name="title" content="Tracking link exits">
+<meta name="description" content="while preserving native browser functionality.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jcbl.ws/tracking-link-exits/">
+<meta property="og:title" content="Tracking link exits">
+<meta property="og:description" content="while preserving native browser functionality.">
+<meta property="og:image" content="https://jcbl.ws/placeholder-social.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://jcbl.ws/tracking-link-exits/">
+<meta property="twitter:title" content="Tracking link exits">
+<meta property="twitter:description" content="while preserving native browser functionality.">
+<meta property="twitter:image" content="https://jcbl.ws/placeholder-social.jpg">
+
+<!-- Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&#38;family=Oxygen:wght@300;400&#38;display=swap" rel="stylesheet">
+		
+	<link rel="stylesheet" href="/_astro/_...slug_.e1b8cc14.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.e6843b2e.css" />
+<link rel="stylesheet" href="/_astro/_...slug_.592bcd50.css" /></head>
+
+	<body class="astro-BVZIHDZO">
+		<header class="container">
+	<nav class="py--l flex items--center">
+		<a href="/" class="h3 flex items--center justify--center pr--s py--xs no-underline color--link">
+	jcblw
+</a>
+		<a href="/blog" class="flex items--center justify--center pr--s py--xs no-underline color--link">
+	Blog
+</a>
+		<a href="/talks" class="flex items--center justify--center pr--s py--xs no-underline color--link">
+	Talks
+</a>
+	</nav>
+</header>
+		<main class="relative astro-BVZIHDZO">
+			<div class="flex items--center justify--center px--xs astro-BVZIHDZO">
+				
+			</div>
+			
+<aside class="sticky table-of-contents astro-XVRFUPWN">
+  <div class="absolute top-0 bg--backgroundSecondary rounded--m py--xs px--m mt--m astro-XVRFUPWN">
+    <details class="astro-XVRFUPWN">
+    <summary class="astro-XVRFUPWN"><h5 class="inline-flex bold pb--xs pt--xs astro-XVRFUPWN">Sections</h5></summary>
+    <p class="py--zero astro-XVRFUPWN"><a href="#the-issue" class="astro-XVRFUPWN">The issue</a></p><p class="py--zero astro-XVRFUPWN"><a href="#our-solution" class="astro-XVRFUPWN">Our solution</a></p><p class="py--zero astro-XVRFUPWN"><a href="#going-further" class="astro-XVRFUPWN">Going further.</a></p><p class="py--zero astro-XVRFUPWN"><a href="#link-disabling" class="astro-XVRFUPWN">Link disabling</a></p><p class="py--zero astro-XVRFUPWN"><a href="#timeout" class="astro-XVRFUPWN">Timeout</a></p><p class="py--zero astro-XVRFUPWN"><a href="#filtering-link-clicks" class="astro-XVRFUPWN">Filtering link clicks</a></p><p class="py--zero astro-XVRFUPWN"><a href="#modifier-handling" class="astro-XVRFUPWN">Modifier handling</a></p>
+    </details>
+  </div>
+</aside>
+			<section class="container astro-BVZIHDZO">
+				<div class="author-section flex row items--center py--s px--m mt--m bg--backgroundSecondary rounded--xxl astro-BVZIHDZO">
+					<img class="rounded--full flex--0 astro-BVZIHDZO" width="45px" height="45px" src="https://avatars1.githubusercontent.com/u/578259?s=460&#38;v=4" alt="Jacob Lowe">
+					<div class="pl--s flex--1 astro-BVZIHDZO">
+						<h6 class="color--overline pt--zero pb--xs bold astro-BVZIHDZO">Jacob Lowe</h6>
+						<p class="py--zero published-at astro-BVZIHDZO">
+  <span>Published  </span>
+  <time datetime="2014-12-15T00:00:00.000Z">
+    Dec 14, 2014
+  </time>
+  <span>  ●  4 min read </span>
+</p>
+					</div>
+				</div>
+			</section>
+			<article class="container blog-post astro-BVZIHDZO">
+				<h1 class="color--link astro-BVZIHDZO">Tracking link exits</h1>
+				<hr class="astro-BVZIHDZO">
+				<p>Here at Hone, we have been strengthening our analytics and conversion metrics to give our customers the most insightful information about their audience. One useful event is that we track clicks to external sites. After searching for a good way to track our links, and not finding an elegant solution we decided to roll our own. We would like to share what we implemented.</p>
+<h3 id="the-issue"><a aria-hidden="true" tabIndex="-1" href="#the-issue"><span class="heading-link">⌗</span></a>The issue</h3>
+<p>On the surface, it sounds super simple to just listen to all the click events on a given page and try to log them to a rest API. It’s a bit trickier than that. The issue is that all the XHR calls will be canceled once the page changes.</p>
+<p>The first solution we found is to grab the event, and call event.preventDefault then set window.location after we have tracked the event.</p>
+<pre class="language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&quot;click&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> href <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>href<span class="token punctuation">;</span>
+
+  <span class="token comment">// this makes the xhr call</span>
+  <span class="token function">trackEvent</span><span class="token punctuation">(</span><span class="token string">&quot;link exit&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span>location <span class="token operator">=</span> href<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>We were not a huge fan of this because it would take shift + clicks and ctrl + clicks and make them work the same way a normal click does when clearly that was not the user’s intent.</p>
+<h3 id="our-solution"><a aria-hidden="true" tabIndex="-1" href="#our-solution"><span class="heading-link">⌗</span></a>Our solution</h3>
+<p>We decided that the event needed to stay an event and dispatch again once we have tracked it.</p>
+<pre class="language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&quot;click&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>tracked<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> mockEvent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">e<span class="token punctuation">.</span>constructor</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>type<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  mockEvent<span class="token punctuation">.</span>tracked <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+  <span class="token function">trackEvent</span><span class="token punctuation">(</span><span class="token string">&quot;link exit&quot;</span><span class="token punctuation">,</span> e<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>mockEvent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>What is nice about this approach is that now the click events will work as intended. Whenever a user ctrl + clicks it still works because with this approach we copy the event via new e.constructor( e.type, e ), so all the modifier keys are still intact when dispatching the event again.</p>
+<h3 id="going-further"><a aria-hidden="true" tabIndex="-1" href="#going-further"><span class="heading-link">⌗</span></a>Going further.</h3>
+<p>This is better but not a complete solution. There are a few things that would make this script a lot better.</p>
+<h4 id="link-disabling"><a aria-hidden="true" tabIndex="-1" href="#link-disabling"><span class="heading-link">⌗</span></a>Link disabling</h4>
+<p>Since we are deferring the navigation of the link there is a higher chance the user will click the link again. We do not want two events just because of a slow connection. So we temporary disable the link and re-enable it once we have dispatched the event.</p>
+<h4 id="timeout"><a aria-hidden="true" tabIndex="-1" href="#timeout"><span class="heading-link">⌗</span></a>Timeout</h4>
+<p>Sometimes an HTTP request can take more than 2 seconds. That is way too long for a user to wait after they have clicked a link. So instead of making the users wait, we will give the call a smaller amount of time to complete. It can be done by simply setting a short XHR timeout and then make sure xhr.ontimeout is handled. eg xhr.timeout = 1000</p>
+<h4 id="filtering-link-clicks"><a aria-hidden="true" tabIndex="-1" href="#filtering-link-clicks"><span class="heading-link">⌗</span></a>Filtering link clicks</h4>
+<p>With the window click events we will get a lot more events that are not anchor tag clicks so we filter all those out. We also track internal navigation a bit differently than external linking so we filter out those events.</p>
+<h4 id="modifier-handling"><a aria-hidden="true" tabIndex="-1" href="#modifier-handling"><span class="heading-link">⌗</span></a>Modifier handling</h4>
+<p>When a user is using a modifier key, lets say ctrl, tracking is not a problem because the page will not change. So instead of waiting we just dispatch those events right away.</p>
+<p>Here is the full code:</p>
+<pre class="language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&quot;click&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// this means the click has already been canceled</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>defaultPrevented<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// ensure link</span>
+  <span class="token keyword">var</span> el <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">,</span>
+    origin<span class="token punctuation">,</span>
+    mockEvent<span class="token punctuation">,</span>
+    dispathed<span class="token punctuation">;</span>
+
+  <span class="token comment">// checking parents to see if we are nested in an anchor tag</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>el <span class="token operator">&amp;&amp;</span> <span class="token string">&quot;A&quot;</span> <span class="token operator">!==</span> el<span class="token punctuation">.</span>nodeName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    el <span class="token operator">=</span> el<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// check the el is an achor tag</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>el <span class="token operator">||</span> <span class="token string">&quot;A&quot;</span> <span class="token operator">!==</span> el<span class="token punctuation">.</span>nodeName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// getting origin</span>
+  origin <span class="token operator">=</span> location<span class="token punctuation">.</span>protocol <span class="token operator">+</span> <span class="token string">&quot;//&quot;</span> <span class="token operator">+</span> location<span class="token punctuation">.</span>hostname<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>location<span class="token punctuation">.</span>port<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    origin <span class="token operator">+=</span> <span class="token string">&quot;:&quot;</span> <span class="token operator">+</span> location<span class="token punctuation">.</span>port<span class="token punctuation">;</span> <span class="token comment">// add port to origin</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// same origin</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>el<span class="token punctuation">.</span>href <span class="token operator">&amp;&amp;</span> <span class="token number">0</span> <span class="token operator">===</span> el<span class="token punctuation">.</span>href<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// check to see if we already tracked the event</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>tracked<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  mockEvent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">e<span class="token punctuation">.</span>constructor</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>type<span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  mockEvent<span class="token punctuation">.</span>tracked <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>metaKey <span class="token operator">||</span> e<span class="token punctuation">.</span>ctrlKey <span class="token operator">||</span> e<span class="token punctuation">.</span>shiftKey<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dispatched <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// set this so we dont send this out twice</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">trackEvent</span><span class="token punctuation">(</span>
+    <span class="token string">&quot;link exit&quot;</span><span class="token punctuation">,</span>
+    e<span class="token punctuation">,</span>
+    <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>dispatched<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>mockEvent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token number">1500</span> <span class="token comment">/* this sets the timeout */</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+			</article>
+			<section class="container astro-BVZIHDZO">
+				<style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).only=t=>{(async()=>await(await t())())()},window.dispatchEvent(new Event("astro:only"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="9pM86" component-url="/_astro/Comments.f3e8a87c.js" component-export="Comments" renderer-url="/_astro/client.38423ee9.js" props="{&quot;slug&quot;:[0,&quot;/tracking-link-exits&quot;],&quot;title&quot;:[0,&quot;Tracking link exits&quot;],&quot;shortname&quot;:[0,&quot;jcbl-ws&quot;],&quot;class&quot;:[0,&quot;astro-BVZIHDZO&quot;]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;Comments&quot;,&quot;value&quot;:true}"></astro-island>
+			</section>
+			<div class="flex row container astro-BVZIHDZO">
+				<a href="https://mobile.twitter.com/search?q=https://jcbl.ws/blog/tracking-link-exits" class="pr--l my--m  astro-BVZIHDZO">
+					Discuss it on Twitter
+				</a>
+				<a href="https://github.com/jcblw/blog/src/content/blog/tracking-link-exits" class="pr--l my--m  astro-BVZIHDZO">
+					Edit on Github
+				</a>
+			</div>
+		</main>
+		<footer class="container">
+	<hr>
+	<p class="pb--xxl">&copy; 2023 Jacob Lowe. All rights reserved.</p>
+</footer>
+	</body></html>
