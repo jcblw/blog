@@ -40,7 +40,6 @@ export const drawBlob = ({
   animated: boolean
   meta: any
 }) => {
-  console.log('render')
   ctx.canvas.width = window.innerWidth
   ctx.canvas.height = window.innerHeight
   const arr: Point[] = []
