@@ -7,7 +7,9 @@ export interface Props extends astroHTML.JSX.ImgHTMLAttributes {
 }
 
 const { src, alt, quality = 75, width = 828, ...rest } = Astro.props;
-const optimizedURL = `/_vercel/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`
+const optimizedURL = import.meta.env.MODE === 'production' ? 
+  `/_vercel/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`: 
+  src;
 ---
 
 <img src={optimizedURL} alt={alt} {...rest} />
