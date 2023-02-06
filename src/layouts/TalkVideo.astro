@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteMetadata } from '../consts';
+import Time from '../components/Time.astro';
+
+import "../styles/prism.css"
+
+type TalkData = CollectionEntry<'videos'>['data'];
+
+interface Props extends TalkData {
+	slug: string;
+};
+
+const { title, description, date, slug, youtubeId } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.hero-image {
+				max-width: 100%;
+				height: auto;
+				max-height: 70vh;
+			}
+
+			.author-section {
+				width: 100%;
+			}
+
+			.published-at {
+				line-height: 1em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main class="relative layer--1">
+			<article class="container talk-video">
+        <iframe
+          width="760"
+          height="428"
+          src={`https://www.youtube.com/embed/${youtubeId}`}
+          frameborder="0"
+          allowfullscreen
+          title={title}
+        />
+        <div class="author-section flex row items--center py--l">
+          <img class="rounded--full flex--0" width="80px" height="80px" src={siteMetadata.avatar} alt={siteMetadata.author} />
+          <div class="pl--s flex--1">
+            <h1 class="color--paragraph pb--xs pt--zero h2 bold">{title}</h1>
+            {date &&	(
+              <Time prefix={`by ${siteMetadata.author} on `} class="py--zero published-at inline color--overline" date={date} />
+            )}
+          </div>
+        </div>
+        <slot />
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

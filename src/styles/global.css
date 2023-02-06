@@ -1,0 +1,247 @@
+/* import variables */
+@import './variables.css';
+@import './typography.css';
+@import './colors.css';
+@import './spacing.css';
+@import './flex.css';
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--background);
+  position: relative;
+}
+
+* { 
+  font-family: 'Oxygen', sans-serif;
+  box-sizing: border-box;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.table {
+  display: table;
+}
+
+.static {
+  position: static;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.sticky {
+  position: sticky;
+}
+
+.top--0 {
+  top: 0;
+}
+
+.right--0 {
+  right: 0;
+}
+
+.bottom--0 {
+  bottom: 0;
+}
+
+.left--0 {
+  left: 0;
+}
+
+.overflow--hidden {
+  overflow: hidden;
+}
+
+.overflow--auto {
+  overflow: auto;
+}
+
+.overflow--scroll {
+  overflow: scroll;
+}
+
+.overflow--visible {
+  overflow: visible;
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y--hidden {
+  overflow-y: hidden;
+}
+
+.overflow-x--auto {
+  overflow-x: auto;
+}
+
+.overflow-y--auto {
+  overflow-y: auto;
+}
+
+.overflow-x--scroll {
+  overflow-x: scroll;
+}
+
+.overflow-y--scroll {
+  overflow-y: scroll;
+}
+
+.overflow-x-visible {
+  overflow-x: visible;
+}
+
+.overflow-y-visible {
+  overflow-y: visible;
+}
+
+::marker {
+  color: var(--header);
+}
+
+main, main > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.container {
+  width: min(760px, 100%);
+  max-width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+.rounded--xxs {
+  border-radius: var(--spacing-xxs);
+}
+
+.rounded--xs {
+  border-radius: var(--spacing-xs);
+}
+
+.rounded--s {
+  border-radius: var(--spacing-s);
+}
+
+.rounded--m {
+  border-radius: var(--spacing-m);
+}
+
+.rounded--l {
+  border-radius: var(--spacing-l);
+}
+
+.rounded--xl {
+  border-radius: var(--spacing-xl);
+}
+
+.rounded--xxl {
+  border-radius: var(--spacing-xxl);
+}
+
+.rounded--xxxl {
+  border-radius: var(--spacing-xxxl);
+}
+
+.rounded--full {
+  border-radius: 100%;
+}
+
+
+hr {
+  border: 0;
+  background-color: var(--background-secondary);
+  height: 1px;
+}
+
+blockquote {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: var(--spacing-m);
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: var(--spacing-s);
+  margin-top: var(--spacing-s);
+}
+
+blockquote::before {
+  content: '';
+  display: block;
+  background-color: var(--overline);
+  width: var(--spacing-xxs);
+  border-radius: var(--spacing-xxs);
+  height: 50%;
+  position: absolute;
+  left: 0;
+}
+
+li {
+  padding-bottom: var(--spacing-xs);
+  padding-top: var(--spacing-xs);
+  color: var(--paragraph);
+  font-weight: var(--font-regular);
+}
+
+.anchor.before {
+  position: absolute;
+  left: calc(-1 * var(--spacing-m));
+  fill: var(--link);
+}
+
+.blog-post img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.layer--0 {
+  z-index: 0;
+}
+
+.layer--1 {
+  z-index: 10;
+}
+
+.layer--2 {
+  z-index: 20;
+}
+
+.layer--3 {
+  z-index: 30;
+}
+
+.layer--4 {
+  z-index: 40;
+}

@@ -1,0 +1,121 @@
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+  color: var(--paragraph);
+}
+
+h1, .h1 {
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--header);
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+}
+
+h2, .h2 {
+  font-size: var(--font-l);
+  font-weight: var(--font-regular);
+  color: var(--header);
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+}
+
+h3, .h3 {
+  font-size: var(--font-l);
+  font-weight: var(--font-bold);
+  color: var(--header);
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+}
+
+h4, .h4 {
+  font-size: var(--font-m);
+  font-weight: var(--font-bold);
+  color: var(--header);
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+}
+
+h5, .h5 {
+  font-size: var(--font-s);
+  font-weight: var(--font-regular);
+  color: var(--header);
+  padding-top: var(--spacing-m);
+  padding-bottom: var(--spacing-m);
+}
+
+h6, .h6 {
+  font-size: var(--font-s);
+  font-weight: var(--font-bold);
+  color: var(--header);
+  padding-top: var(--spacing-s);
+  padding-bottom: var(--spacing-s);
+}
+
+p, .paragraph {
+  font-size: var(--font-s);
+  font-weight: var(--font-regular);
+  line-height: 2em;
+  color: var(--paragraph);
+  padding-top: var(--spacing-s);
+  padding-bottom: var(--spacing-s);
+}
+
+a, .link {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover, .link:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+a:visited, .link:visited {
+  color: var(--link);
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: var(--font-bold);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+h1 .heading-link, h2 .heading-link, h3 .heading-link, h4 .heading-link, h5 .heading-link, h6 .heading-link {
+  color: inherit;
+  text-decoration: none;
+  position: absolute;
+  transform: translate(-100%, -0.25em);
+  font-size: 0.75em;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  padding-right: var(--spacing-xs);
+}
+
+
+h1:hover .heading-link, h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover .heading-link, h6:hover .heading-link {
+  display: block;
+  opacity: 1;
+}

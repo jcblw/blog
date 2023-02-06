@@ -1,0 +1,76 @@
+---
+export interface Props {
+  title: string
+  description: string
+  href?: string
+  image: string
+  imageAlt: string
+  round?: boolean
+  design?: 'light' | 'bright' | 'dark'
+}
+
+const {
+  title,
+  description,
+  href,
+  image,
+  imageAlt,
+  round,
+  design = 'light',
+} = Astro.props
+
+const designs = {
+    light: {
+      color: 'var(--vulcan)',
+      backgroundColor: 'var(--aero-blue)',
+    },
+    bright: {
+      color: 'var(--vulcan)',
+      backgroundColor: 'var(--periwinkleGray)',
+    },
+    dark: {
+      color: 'var(--header)',
+      backgroundColor: 'var(--background-secondary)',
+    },
+  }
+
+const { color, backgroundColor } = designs[design] || designs.light
+
+---
+<style define:vars={{ color, backgroundColor}}>
+  .highlight-bg {
+    background-color: var(--backgroundColor);
+  }
+
+  .highlight-color {
+    color: var(--color);
+  }
+
+  .highlight-imageContainer {
+    width: 60px;
+    height: 60px;
+  }
+
+  .highlight-image {
+    max-width: 100%;
+  }
+</style>
+<div class="flex items--baseline row px--zero">
+  <div class="highlight-bg p--m rounded--m flex row flex--1">
+    <div class="flex flex--0 items--center justify--center">
+      <div class="highlight-imageContainer mr--m flex items--center justify--center rounded--xl overflow--hidden">
+        <img class="highlight-image" alt={imageAlt} src={image} />
+      </div>
+    </div>
+    <div class="flex--1 flex column justify--center">
+      <h4 class="highlight-color py--zero">
+        {title}
+      </h4>
+      {href ? (
+        <a class="highlight-color py--zero" href={href}>{description}</a>
+      ): (
+        <p class="highlight-color py--zero">{description}</p>
+      )}
+    </div>
+  </div>
+</div>

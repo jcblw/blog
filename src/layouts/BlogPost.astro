@@ -1,0 +1,85 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteMetadata } from '../consts';
+import Time from '../components/Time.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+import "../styles/prism.css"
+import { Comments } from '../components/Comments';
+
+type BlogData = CollectionEntry<'blog'>['data'];
+
+interface Props extends BlogData {
+	minutesRead: string;
+	headings: {href: string, label:string}[];
+	slug: string;
+};
+
+const { title, description, date, minutesRead, headings, heroImage, slug } = Astro.props;
+const disqusShortName = import.meta.env.DISQUS_NAME;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.hero-image {
+				max-width: 100%;
+				height: auto;
+				max-height: 70vh;
+			}
+
+			.author-section {
+				width: 100%;
+			}
+
+			.published-at {
+				line-height: 1em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main class="relative layer--1">
+			<div class="flex items--center justify--center px--xs">
+				{heroImage && <img src={heroImage} alt={title} class="hero-image rounded--m"/>}
+			</div>
+			<TableOfContents links={headings} />
+			<section class="container">
+				<div class="author-section flex row items--center py--s px--m mt--m bg--backgroundSecondary rounded--xxl">
+					<img class="rounded--full flex--0" width="45px" height="45px" src={siteMetadata.avatar} alt={siteMetadata.author} />
+					<div class="pl--s flex--1">
+						<h6 class="color--overline pt--zero pb--xs bold">{siteMetadata.author}</h6>
+						{date &&	(
+							<Time prefix="Published " suffix={`  ●  ${minutesRead}`}class="py--zero published-at" date={date} />
+						)}
+					</div>
+				</div>
+			</section>
+			<article class="container blog-post">
+				<h1 class="color--link">{title}</h1>
+				<hr />
+				<slot />
+			</article>
+			<section class="container">
+				<Comments client:only slug={`/${slug}`} title={title} shortname={disqusShortName}  />
+			</section>
+			<div class="flex row container">
+				<a
+					href={`https://mobile.twitter.com/search?q=${siteMetadata.siteUrl}/blog/${slug}`}
+					class="pr--l my--m "
+				>
+					Discuss it on Twitter
+				</a>
+				<a href={`${siteMetadata.source}/src/content/blog/${slug}`} class="pr--l my--m ">
+					Edit on Github
+				</a>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
