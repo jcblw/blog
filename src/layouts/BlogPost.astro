@@ -47,7 +47,7 @@ const disqusShortName = import.meta.env.DISQUS_NAME;
 		<Header />
 		<main class="relative layer--1">
 			<div class="flex items--center justify--center px--xs">
-				{heroImage && <Image src={heroImage} alt={title} class="hero-image rounded--m"/>}
+				{heroImage && <Image src={heroImage} width={1080} alt={title} class="hero-image rounded--m"/>}
 			</div>
 			<TableOfContents links={headings} />
 			<section class="container">
