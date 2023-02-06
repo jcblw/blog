@@ -14,7 +14,20 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://jcbl.ws",
   output: "static",
-  adapter: vercel(),
+  outDir: './.vercel/output/static',
+  adapter: vercel({
+    "images": {
+      "sizes": [640, 750, 828, 1080, 1200],
+      "domains": [],
+      "minimumCacheTTL": 60,
+      "formats": ["image/avif", "image/webp"],
+      "remotePatterns": [{
+        "protocol": "https",
+        "hostname": "^avatars1\\.githubusercontent\\.com$",
+        "pathname": "^/u/578259\\?s=460&v=4$"
+      }]
+    }
+  }),
   integrations: [
     mdx(),
     sitemap(),
