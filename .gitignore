@@ -68,3 +68,4 @@ yarn-error.log
 dist
 .astro
 .cache
+.vercel

@@ -31,7 +31,7 @@ const { projects } = Astro.props;
   {projects.map(({ name, url, description, stargazerCount }) => (
     <div class="repo-container flex column bg--backgroundSecondary rounded--m mb--l p--m">
       <div class="flex--1">
-        <h5 class="pt--zero pb--xs">
+        <h5 class="pt--zero pb--xs bold">
           <a href={url}>{name}</a>
         </h5>
         <p class="pt--zero pb--s">

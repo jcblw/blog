@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev --port 8000",
     "start": "astro dev --port 8000",
-    "build": "astro build",
+    "build": "astro build && cp ./vercel.config.json ./.vercel/output/config.json",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -15,6 +15,7 @@
     "@astrojs/react": "^2.0.2",
     "@astrojs/rss": "^2.1.0",
     "@astrojs/sitemap": "^1.0.1",
+    "@astrojs/vercel": "^3.0.1",
     "@astropub/md": "^0.1.4",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
