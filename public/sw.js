@@ -3,10 +3,14 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          console.log(`delete ${cacheName}`);
+          console.warn(`delete ${cacheName}`);
           return caches.delete(cacheName);
         })
       );
     })
   );
+});
+
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
 });
