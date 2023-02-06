@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import markdownIntegration from "@astropub/md";
+import vercel from '@astrojs/vercel/static';
 import rehypeLinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import { remarkReadingTime } from "./scripts/remark-reading-time.mjs";
@@ -12,6 +13,8 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://jcbl.ws",
+  output: "static",
+  adapter: vercel(),
   integrations: [
     mdx(),
     sitemap(),
