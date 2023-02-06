@@ -14,7 +14,7 @@ const posts = (await getCollection('blog')).sort(
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<BaseHead title={siteMetadata.title} description={siteMetadata.description} />
+		<BaseHead title={`All blog posts | ${siteMetadata.title}`} description={"These are all the blog posts on my website."} />
 		<style>
 			ul {
 				list-style-type: none;
@@ -23,7 +23,7 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body>
 		<Header />
-		<main class="container">
+		<main class="container layer--1 relative">
 			<section>
 				<h6 class="color--overline">All blog posts</h6>
 				<ul class="my--zero p--zero">

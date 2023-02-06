@@ -65,7 +65,7 @@ const pinnedItems = profile.pinnedItems.nodes;
 	</head>
 	<body>
 		<Header title={siteMetadata.title} />
-		<main class="container">
+		<main class="container layer--1 relative">
 			<section>
 				<div class="profile-container flex pb--xl">
           <div class="avatar-container flex flex--0 items--center mr--l mt--l">
@@ -76,10 +76,10 @@ const pinnedItems = profile.pinnedItems.nodes;
             />
             <div class="flex mt--zero mb--xxs px--s">
                 <a class="mr--s" href={siteMetadata.github}>
-                  <Icon icon="github" width="24" height="24" />
+                  <Icon icon="github" color="var(--link)" width="24" height="24" />
 								</a>
                 <a href={siteMetadata.linkedin}>
-                  <Icon icon="linkedin" width="24" height="24" />
+                  <Icon icon="linkedin" color="var(--link)" width="24" height="24" />
 								</a>
               </div>
             </div>

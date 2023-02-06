@@ -1,12 +1,21 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-
+import { Blob } from './Blob';
 const { title = 'jcblw'} = Astro.props;
 ---
-
-<header class="container">
+<style is:global>
+	.blob-canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+<Blob client:only />
+<header class="container layer--1 relative">
 	<nav class:list={['py--l flex items--center']}>
-		<HeaderLink href="/" class="h3">{title}</HeaderLink>
+		<HeaderLink href="/" class="h3 items--center flex mr--m"><img src="/favico.svg" width="32px" height="32px" class="mr--s" />{title}</HeaderLink>
 		<HeaderLink href="/blog">Blog</HeaderLink>
 		<HeaderLink href="/talks">Talks</HeaderLink>
 	</nav>

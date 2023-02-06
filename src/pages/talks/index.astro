@@ -14,7 +14,7 @@ const talks = (await getCollection('videos')).sort(
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<BaseHead title={siteMetadata.title} description={siteMetadata.description} />
+		<BaseHead title={`All talks | ${siteMetadata.title}`} description="These are some of the talks that I have given." />
 		<style>
 			ul {
 				list-style-type: none;
@@ -23,7 +23,7 @@ const talks = (await getCollection('videos')).sort(
 	</head>
 	<body>
 		<Header />
-		<main class="container">
+		<main class="container relative layer--1">
 			<section>
 				<h6 class="color--overline">All talks</h6>
 				<ul class="my--zero p--zero">
