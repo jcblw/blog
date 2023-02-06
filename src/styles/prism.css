@@ -39,7 +39,6 @@ pre[class*='language-'] {
   background: var(--background-secondary);
   border-radius: 0.5em;
   max-width: 100%;
-  width: 75vw;
   overflow-x: scroll;
 }
 
