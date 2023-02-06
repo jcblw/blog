@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 import { siteMetadata } from '../consts';
 import Time from '../components/Time.astro';
 import TableOfContents from '../components/TableOfContents.astro';
+import Image from '../components/Image.astro';
 
 import "../styles/prism.css"
 import { Comments } from '../components/Comments';
@@ -46,7 +47,7 @@ const disqusShortName = import.meta.env.DISQUS_NAME;
 		<Header />
 		<main class="relative layer--1">
 			<div class="flex items--center justify--center px--xs">
-				{heroImage && <img src={heroImage} alt={title} class="hero-image rounded--m"/>}
+				{heroImage && <Image src={heroImage} alt={title} class="hero-image rounded--m"/>}
 			</div>
 			<TableOfContents links={headings} />
 			<section class="container">

@@ -1,7 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
-import TableOfContents from '../components/TableOfContents.astro';
+import Image from '../components/Image.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -25,5 +25,5 @@ const formattedHeadings = headings.map(heading => ({
 
 <BlogPost {...post.data} minutesRead={minutesRead} headings={formattedHeadings} slug={post.slug}>
 	<!-- <pre><code>{JSON.stringify(post, null, 2)}</code></pre> -->
-	<Content />
+	<Content components={{ img: Image }} />
 </BlogPost>
