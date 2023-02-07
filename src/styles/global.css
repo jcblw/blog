@@ -245,3 +245,17 @@ li {
 .layer--4 {
   z-index: 40;
 }
+
+.border--none {
+  border: none;
+}
+
+.cursor--pointer {
+  cursor: pointer;
+}
+
+.cursor--default {
+  cursor: default;
+}
+
+

@@ -11,6 +11,7 @@ import PostEntryPreview from '../components/PostEntryPreview.astro';
 import Icon from '../components/Icon.astro';
 import { getProfileInfo, getReadme } from '../utils/github';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
+import { EmailList } from '../components/EmailList';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -103,7 +104,6 @@ const pinnedItems = profile.pinnedItems.nodes;
 			<section>
 				<FeaturedProjects projects={pinnedItems} />
 			</section>
-			
 		</main>
 		<Footer />
 	</body>

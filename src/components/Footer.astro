@@ -1,13 +1,18 @@
 ---
+import { EmailList } from "./EmailList";
+
 const today = new Date();
 const year = today.getFullYear();
 ---
 
-<footer class="container">
+<footer class="container relative layer--1">
 	<hr />
-	<p class="pb--xxl">&copy; {year} Jacob Lowe. All rights reserved.</p>
+	<p class="pb--zero">Join my <a href="https://buttondown.email/jcblw?tag=website">email list</a></p>
+	<p class="pb--xxl pt--zero">&copy; {year} Jacob Lowe. All rights reserved.</p>
 </footer>
+<EmailList client:idle />
 <script is:inline>
+	// This is temporary to remove old cache
 	const registerServiceWorker = async () => {
 		if ("serviceWorker" in navigator) {
 			try {
