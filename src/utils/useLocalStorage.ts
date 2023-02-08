@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 const { useState } = React
 
 const safeSerialize = <T extends unknown>(value: T): string | null => {
@@ -37,6 +37,20 @@ export const useLocalStorage = <T extends unknown>(
     }
     setValue(newValue)
   }
+
+  useEffect(() => {
+    const eventName = `storage:change:${key}`
+    const handler = () => {
+      const value = localStorage.getItem(key)
+      if (value !== null) {
+        setValue(safeParse<T>(value, defaultValue))
+      }
+    }
+    window.addEventListener(eventName, handler)
+    return () => {
+      window.removeEventListener(eventName, handler)
+    }
+  }, [key])
 
   return [value, setLocalStorageValue]
 }

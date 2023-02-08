@@ -53,3 +53,12 @@
     --overline: var(--raw-sienna);
   }
 }
+
+[data-theme="light"] {
+  --paragraph: var(--vulcan);
+  --link: var(--blumine);
+  --header: var(--tradewind);
+  --background: var(--bridal-health);
+  --background-secondary: var(--white);
+  --overline: var(--raw-sienna);
+}
