@@ -1,6 +1,6 @@
 # Blog of jcblw
 
-This is the source code for my blog, [jcblw.com](https://jcblw.com). It's built with [Astro](https://astro.build), a new static site generator that uses React components, JSX, and TypeScript.
+This is the source code for my blog, [jcbl.ws](https://jcbl.ws). It's built with [Astro](https://astro.build), a new static site generator that uses React components, JSX, and TypeScript.
 
 ## 💻 Tech Stack
 
