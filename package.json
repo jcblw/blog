@@ -21,7 +21,7 @@
     "@types/react-dom": "^18.0.6",
     "@vercel/analytics": "^0.1.8",
     "alea": "^1.0.1",
-    "astro": "^2.0.5",
+    "astro": "^2.0.9",
     "disqus-react": "^1.1.5",
     "mdast-util-to-string": "^3.1.1",
     "react": "^18.0.0",
