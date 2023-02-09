@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from '../utils/useLocalStorage'
+import { Icon } from './Icon'
 
 export const EmailList = () => {
   const [showEmailUpsell, setShowEmailUpsell] = useState(false)
@@ -50,7 +51,7 @@ export const EmailList = () => {
           {shouldShowEmailList && (
             <div
               tabIndex={0}
-              className="absolute h3 color--link p--s mr--s cursor--pointer"
+              className="absolute h3 color--link p--s cursor--pointer"
               style={{ right: 0, top: 0 }}
               onClick={() => {
                 setShowEmailUpsell(false)
@@ -63,7 +64,7 @@ export const EmailList = () => {
                 }
               }}
             >
-              <span>𝘅</span>
+              <Icon icon="close" width="24" height="24" />
             </div>
           )}
           <h4 className="color--overline bold pt--zero">

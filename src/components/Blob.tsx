@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useColorScheme } from 'use-color-scheme'
 import {
   getPointOnCircle,
   normalize,
@@ -115,7 +114,7 @@ const fpsTimeout = (callback: () => void, fps: number) => {
 export const Blob = ({
   scale = 1,
   lr = 0,
-  ur = 100,
+  ur = 200,
   animated = true,
   angles = 100,
 }: {
@@ -130,16 +129,15 @@ export const Blob = ({
   angles?: number
 }) => {
   const noisePoint = useMemo<Point>(() => [randomN(), randomN()], [])
-  const ref = useRef({ time: 0, color: `#1a1c27`, mouse: [0, 0] })
+  const ref = useRef({ time: 0, color: `#0d202d`, mouse: [0, 0] })
   const [canvas, setCanvas] = useState<HTMLCanvasElement>()
   const { colorScheme } = useColorPref()
-  const rageColor = colorScheme === 'dark' ? '#450f09' : '#ffd1d1'
 
   useEffect(() => {
     if (colorScheme === 'dark') {
-      Object.assign(ref.current, { color: `#1a1c27` })
+      Object.assign(ref.current, { color: `#0d202d` })
     } else {
-      Object.assign(ref.current, { color: `#fff` })
+      Object.assign(ref.current, { color: `#e3f4ff` })
     }
   }, [colorScheme])
 
@@ -153,12 +151,14 @@ export const Blob = ({
       ctx.canvas.height = window.innerHeight
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
+      ctx.filter = 'blur(100px)'
+
       drawBlob({
         scale,
         x: window.innerWidth - window.innerWidth / 3,
         y: window.innerHeight / 3,
-        lr: 0,
-        ur: 10,
+        lr,
+        ur,
         ctx,
         radius: Math.max(window.innerWidth, window.innerHeight) / 2,
         noisePoint,

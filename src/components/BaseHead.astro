@@ -65,3 +65,6 @@ const { title = "jcblw", description, image = '/placeholder-social.jpg' } = Astr
 		window.dispatchEvent(event);
 	}
 </script>
+{import.meta.env.MODE === 'production' && (
+	<link rel="stylesheet" href="/_vercel/insights/script.js" />
+)}
