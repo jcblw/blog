@@ -10,6 +10,14 @@ pre::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 0 2px var(--background-secondary);
 }
 
+:not(pre) > code { 
+  margin: 0 var(--spacing-xs);
+  background-color: var(--background-secondary);
+  border-radius: var(--spacing-xxs);
+  box-shadow: 0 0 0 var(--spacing-xxs) var(--background-secondary);
+  color: var(--overline)
+}
+
 code[class*='language-'], pre[class*='language-'] {
   color: var(--link);
   background: none;

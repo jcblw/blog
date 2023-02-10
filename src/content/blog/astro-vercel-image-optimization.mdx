@@ -1,0 +1,183 @@
+---
+title: 'Using Vercel image optimization with Astro'
+description: 'I recently moved my blog to Astro and wanted to use Vercel image optimization to serve my images. Here is how I did it.'
+date: 2023-02-10
+slug: /astro-vercel-image-optimization
+status: published
+heroImage: /rocket-moon.jpg
+---
+
+import Highlight from '../../components/Highlight.astro'
+
+I recently moved my blog to [Astro](https://astro.build). I was excited to see my new [lighthouse](https://web.dev/measure/) score. The performance scores were decent, 75-90, but not close to what I wanted, 90-100. I noticed that I was being deducted points significantly because of my images. I had the issue I needed to serve up modern image formats like WebP and that the images were huge. Astro's image component is excellent but doesn't support [Vercel image optimization](https://vercel.com/docs/concepts/image-optimization). It also took a lot of work to find an example of how to add Vercel image optimization with Astro online. So I decided to write this post to help others in the same boat.
+
+## Why does image optimization matter?
+
+> According to the W3Techs surveys, [94.1%](https://w3techs.com/technologies/overview/image_format) of websites use images. Being able to deliver high quality images that are loaded fast, optimized for the correct screen size, and in the ideal format is a critical part of the user experience. - Taken from Vercels Image Optimization docs
+
+Image optimization is a critical part of the user experience. It can make or break your site. If your images are optimized, your site will load faster, and your users will stay. You can use a service like Vercel to take advantage of their image optimization API. This API will automatically optimize your images for the correct screen size and in the ideal format. It will also compress your images to reduce the file size. This will result in faster load times and a better user experience.
+
+<Highlight
+  title="Need a quick solution?"
+  description="Check out my pre-built integration for Astro."
+  href="https://github.com/jcblw/astro-vercel-image"
+  design="dark"
+  image="/npm-package.svg"
+/>
+
+## How to setup without Astro's Vercel adapter
+
+description: string
+href?: string
+image: string
+imageAlt: string
+round?: boolean
+design?: 'light' | 'bright' | 'dark'
+
+Astro's Vercel adapter is primarily used with Vercel's [serverless functions](https://vercel.com/docs/serverless-functions/introduction), but it does not start to dig into some of the other [build output APIs](https://vercel.com/docs/build-output-api/v3#build-output-configuration/supported-properties/images) that Vercel provides. Image optimization is one of those APIs. I noticed that the adapter created a build output configuration, which would wipe out any customization. You can use image optimization without the adapter with a **static** site.
+
+#### Creating a build output configuration
+
+Vercel wants the build output configuration to live at `.vercel/output/config.json` and the static files to live at `.vercel/output/static.` I modified the config of my Astro build to output to this folder.
+
+```js
+// astro.config.mjs
+export default defineConfig({
+  ...
+  outDir: './.vercel/output/static',
+  ...
+})
+```
+
+This change works fine for local development, so there is no need to gate this behind a production flag. Astro will create these folders when they do not exist, so now we can add the new config file to the output root. In my blog setup, I made a config file in the root of my project, then moved it to the folder on the build.
+
+```json
+// vercel.config.json
+// see https://vercel.com/docs/build-output-api/v3#build-output-configuration/supported-properties/images
+{
+  "version": 3,
+  "images": {
+    "sizes": [640, 750, 828, 1080, 1200],
+    "domains": [],
+    "minimumCacheTTL": 60,
+    "formats": ["image/avif", "image/webp"],
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "^avatars1\\.githubusercontent\\.com$",
+        "pathname": "^/u/578259"
+      }
+    ]
+  }
+}
+```
+
+Then I modified the build script to handle moving the config file to the correct location.
+
+```json
+// package.json
+{
+  ...
+  "scripts": {
+    ...
+    "build": "astro build && cp ./vercel.config.json ./.vercel/output/config.json",
+  }
+}
+```
+
+Pushing this to Vercel will enable image optimization on the project, but it does not automatically optimize your images. You will need to create a component to handle this.
+
+#### Creating a component to handle image optimization
+
+I created a component called `Image` to wrap all my images. This component will handle image optimization.
+
+```astro
+---
+export interface Props extends astroHTML.JSX.ImgHTMLAttributes {
+  src: string
+  alt: string
+  quality?: number
+  width?: 640 | 750 | 828 | 1080 | 1200 // image sizes we generate in the config
+}
+
+const { src, alt, quality = 75, width = 828, ...rest } = Astro.props
+const optimizedURL =
+  import.meta.env.MODE === 'production' // this will only run in production
+    ? `/_vercel/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`
+    : src
+---
+
+<img src={optimizedURL} alt={alt} {...rest} />
+```
+
+> Note that I am using typescript in this file. You can remove the `Props` interface if you do not want typescript.
+
+When used and pushed to Vercel, this component will automatically optimize your images. To use it, import it and use it like an `img` tag. If you are like me, you are probably using markdown or MDX. You can tell Astro to use this component for all images passing it to the `Content` component.
+
+```astro
+...
+<Content components={{ img: Image }} />
+...
+```
+
+## Usage with Astro's Vercel adapter
+
+Using the adapter, you can use the same component above. The adapter will automatically create the build output config file. If you use the scripts above, the configuration will be overwritten by the npm build script. This overwriting can break your site because it has no idea about the other configuration you might be adding to the config file. You must make the script smarter about not overriding the config file if it already exists and only appending the image optimization config. Here is an example script that will do that.
+
+```js
+// scripts/vercel-config.js
+import fs from 'fs'
+import path from 'path'
+
+const pfs = fs.promises
+
+const configPath = path.join(__dirname, '.vercel/output/config.json')
+const existingConfig = JSON.parse(await pfs.readFile(configPath, 'utf-8'))
+
+const newConfig = {
+  ...existingConfig,
+  images: {
+    sizes: [640, 750, 828, 1080, 1200],
+    domains: [],
+    minimumCacheTTL: 60,
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '^avatars1\\.githubusercontent\\.com$',
+        pathname: '^/u/578259',
+      },
+    ],
+  },
+}
+
+// write the new config file
+await fs.writeFile(configPath, JSON.stringify(newConfig, null, 2))
+```
+
+Now on the build step, you need to call this script after the build instead of copying the config file.
+
+```json
+// package.json
+{
+  ...
+  "scripts": {
+    ...
+    "build": "astro build && node ./scripts/vercel-config.js",
+  }
+}
+```
+
+## Conclusion
+
+If you cannot get the code above working for you or would like to not set this up on your own, I made a pre-built npm package that is an Astro integration. Give it a try! It is my first Astro integration, so I would love any feedback.
+
+<Highlight
+  title="Download the npm package"
+  description="npm install astro-vercel-image"
+  href="https://github.com/jcblw/astro-vercel-image"
+  design="dark"
+  image="/npm-package.svg"
+/>
+
+Astro is an excellent tool for building static sites. The ecosystem is growing quite rapidly, and I am excited to contribute. I hope this post, or the pre-built integration, helps you get started with Astro and Vercel.
