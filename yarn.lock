@@ -923,10 +923,10 @@ astring@^1.8.0:
   resolved "https://registry.yarnpkg.com/astring/-/astring-1.8.4.tgz#6d4c5d8de7be2ead9e4a3cc0e2efb8d759378904"
   integrity sha512-97a+l2LBU3Op3bBQEff79i/E4jMD2ZLFD8rHx9B6mXyB2uQwhJQYfiDqUwtfjF4QA1F2qs//N6Cw8LetMbQjcw==
 
-astro-vercel-image@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/astro-vercel-image/-/astro-vercel-image-1.0.0.tgz#ac663c417400487e9bce527cc134ef5a84e68231"
-  integrity sha512-XLzzj6Ic9zV2LDe+bqEcy2/wJ48hsVxkFKxGTnqDm4fUwkdb0xWitgO/BEBR13HSUFv8pa2NoLNHGX+5ca4Mgg==
+astro-vercel-image@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/astro-vercel-image/-/astro-vercel-image-1.0.1.tgz#f6dfa70c20d53bbe91b6386f8c683d1af2826702"
+  integrity sha512-vIs50Ili3dVsb/hQvNUq3zOm6qvS/grS08k/ACO4J3F/vek7eQFtB8LRT7+iKWGiWDXITgZszH6Yb/zEvEnLyA==
 
 astro@^2.0.5:
   version "2.0.5"
