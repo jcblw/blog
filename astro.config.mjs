@@ -12,7 +12,6 @@ import { remarkReadingTime } from './scripts/remark-reading-time.mjs'
 export default defineConfig({
   site: 'https://jcbl.ws',
   output: 'static',
-  outDir: './.vercel/output/static',
   integrations: [
     mdx(),
     react(),
