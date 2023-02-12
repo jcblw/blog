@@ -9,7 +9,7 @@ export interface Props {
 	image?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString().replace(/\/$/, '');
 
 const googleFonts = 'https://fonts.googleapis.com/'
 const fonts = 'css2?family=Inconsolata&family=Oxygen:wght@300;400&display=swap'
