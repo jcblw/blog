@@ -15,17 +15,32 @@ interface Props extends TalkData {
 };
 
 const { title, description, date, slug, youtubeId } = Astro.props;
+
+const url = new URL(slug, siteMetadata.siteUrl)
+
+const microdata = {
+	"@context": "https://schema.org",
+	"@type": "VideoObject",
+	"name": title,
+	description,
+	"videoId": youtubeId,
+	"thumbnailUrl": `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
+	"embedUrl": `https://www.youtube.com/embed/${youtubeId}`,
+	'url': url.toString(),
+	"datePublished": date.toISOString(),
+	"dateModified": date.toISOString(),
+	"author": [{
+		"@type": "Person",
+		"name": siteMetadata.author,
+		"url": siteMetadata.github,
+	}],
+}
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			.hero-image {
-				max-width: 100%;
-				height: auto;
-				max-height: 70vh;
-			}
 
 			.author-section {
 				width: 100%;
@@ -34,21 +49,28 @@ const { title, description, date, slug, youtubeId } = Astro.props;
 			.published-at {
 				line-height: 1em;
 			}
+
+			.video {
+				aspect-ratio: 16 / 9;
+				width: 100%;
+			}
+
+	
 		</style>
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(microdata, null, 2)} />
 	</head>
 
 	<body>
 		<Header />
 		<main class="relative layer--1">
 			<article class="container talk-video">
-        <iframe
-          width="760"
-          height="428"
-          src={`https://www.youtube.com/embed/${youtubeId}`}
-          frameborder="0"
-          allowfullscreen
-          title={title}
-        />
+					<iframe
+						src={`https://www.youtube.com/embed/${youtubeId}`}
+						frameborder="0"
+						allowfullscreen
+						title={title}
+						class="video"
+					/>	
         <div class="author-section flex row items--center py--l">
           <img class="rounded--full flex--0" width="80px" height="80px" src={siteMetadata.avatar} alt={siteMetadata.author} />
           <div class="pl--s flex--1">
