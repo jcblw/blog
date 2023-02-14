@@ -20,9 +20,7 @@ class CustomStorage {
   }
   subscribe(key: string, callback: () => void) {
     const eventName = `change:${key}`
-    console.log('eventName', eventName)
     this.handlers.push([eventName, callback])
-    console.log(this.handlers)
     return () => {
       this.handlers = this.handlers.filter(
         ([name, handler]) => name !== eventName && handler !== callback

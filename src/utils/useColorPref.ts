@@ -22,25 +22,24 @@ export const useColorPrefManager = () => {
     useColorPref()
 
   useEffect(() => {
-    if (!storeScheme) {
-      if (matchMedia.toString() === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
+    if (
+      colorScheme === 'dark' &&
+      !document.documentElement.classList.contains('dark')
+    ) {
+      document.documentElement.classList.add('dark')
+    } else if (
+      colorScheme === 'light' &&
+      document.documentElement.classList.contains('dark')
+    ) {
+      document.documentElement.classList.remove('dark')
     }
-  }, [mediaMatch, storeScheme])
+  }, [colorScheme])
 
   return {
     colorScheme,
     toggleColorScheme: () => {
       const nextColorScheme = colorScheme === 'dark' ? 'light' : 'dark'
       setColorScheme(nextColorScheme)
-      if (nextColorScheme === 'dark') {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
     },
   }
 }

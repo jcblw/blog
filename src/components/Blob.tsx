@@ -129,7 +129,7 @@ export const Blob = ({
   angles?: number
 }) => {
   const noisePoint = useMemo<Point>(() => [randomN(), randomN()], [])
-  const ref = useRef({ time: 0, color: `#0d202d`, mouse: [0, 0] })
+  const ref = useRef({ time: 0, color: `#e3f4ff`, mouse: [0, 0] })
   const [canvas, setCanvas] = useState<HTMLCanvasElement>()
   const { colorScheme } = useColorPref()
 
