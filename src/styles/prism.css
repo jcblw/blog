@@ -1,26 +1,19 @@
 pre::-webkit-scrollbar {
-  width: var(--spacing-xs);
-  height: var(--spacing-xs);
+  width: 4px;
+  height: 4px;
   background-color: transparent;
 }
 
 pre::-webkit-scrollbar-thumb {
-  background-color: var(--background);
-  border-radius: var(--spacing-xs);
-  box-shadow: inset 0 0 0 2px var(--background-secondary);
+  @apply bg-blumine dark:bg-pictonBlue rounded-full;
 }
 
 :not(pre) > code { 
-  margin: 0 var(--spacing-xs);
-  background-color: var(--background-secondary);
-  border-radius: var(--spacing-xxs);
-  box-shadow: 0 0 0 var(--spacing-xxs) var(--background-secondary);
-  color: var(--overline)
+  @apply text-rawSienna dark:text-calico bg-white dark:bg-steelGrey shadow-white my-1 shadow-steelGrey rounded-xs p-1/2;
 }
 
 code[class*='language-'], pre[class*='language-'] {
-  color: var(--link);
-  background: none;
+  @apply text-steelGrey dark:text-bridalHealth bg-white dark:bg-steelGrey;
   font-family: 'Inconsolata', monospace;
   font-size: 1em;
   text-align: left;
@@ -38,16 +31,14 @@ code[class*='language-'] * {
 }
 
 pre[class*='language-'] {
-  padding: var(--spacing-m) var(--spacing-l) var(--spacing-s) var(--spacing-l);
-  margin: 0.5em 0;
+  @apply px-3 pb-2 pt-2 overflow-auto my-2;  
   overflow: auto;
 }
 
 :not(pre) > code[class*='language-'], pre[class*='language-'] {
-  background: var(--background-secondary);
+  @apply bg-white dark:bg-steelGrey overflow-x-scroll;
   border-radius: 0.5em;
   max-width: 100%;
-  overflow-x: scroll;
 }
 
 :not(pre) > code[class*='language-'] {
@@ -61,12 +52,12 @@ pre[class*='language-'] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #4d5162;
+  color: #58839f;
 }
 
 .token.punctuation {
-  color: var(--paragraph);
-}
+  @apply text-steelGrey dark:text-bridalHealth;
+} 
 
 .token.tag,
 .token.attr-name,
@@ -76,13 +67,13 @@ pre[class*='language-'] {
 }
 
 .token.function-name {
-  color: var(--header);
+  @apply text-tradewind dark:text-aeroBlue;
 }
 
 .token.boolean,
 .token.number,
 .token.function {
-  color: #f08d49;
+  @apply text-rawSienna dark:text-calico;
 }
 
 .token.property,

@@ -15,7 +15,13 @@ interface Props {
     | 'sol'
   width?: string
   height?: string
-  color?: string
+  color?:
+    | 'link'
+    | 'overline'
+    | 'header'
+    | 'paragraph'
+    | 'background'
+    | 'backgroundSecondary'
   className?: string
   onClick?: () => void
 }
@@ -56,7 +62,6 @@ export const Icon = ({
   onClick,
 }: Props) => {
   const viewBox = viewBoxOverrides[icon] || `0 0 48 48`
-  const iconColor = color || 'var(--paragraph)'
   const pathdata = IconMap[icon]
   return (
     <div
@@ -64,7 +69,7 @@ export const Icon = ({
       onClick={onClick}
     >
       <svg height={height ?? '48'} width={width ?? '48'} viewBox={viewBox}>
-        <path style={{ fill: iconColor }} d={pathdata} />
+        <path className={`color-${color}`} d={pathdata} />
       </svg>
     </div>
   )

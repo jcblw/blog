@@ -9,6 +9,9 @@ import rehypeSlug from 'rehype-slug'
 import { remarkReadingTime } from './scripts/remark-reading-time.mjs'
 
 // https://astro.build/config
+import tailwind from '@astrojs/tailwind'
+
+// https://astro.build/config
 export default defineConfig({
   site: 'https://jcbl.ws',
   output: 'static',
@@ -34,6 +37,7 @@ export default defineConfig({
         },
       ],
     }),
+    tailwind(),
   ],
   markdown: {
     extendDefaultPlugins: true,
@@ -48,8 +52,15 @@ export default defineConfig({
           content: {
             type: 'element',
             tagName: 'span',
-            properties: { className: ['heading-link'] },
-            children: [{ type: 'text', value: '⌗' }],
+            properties: {
+              className: ['heading-link'],
+            },
+            children: [
+              {
+                type: 'text',
+                value: '⌗',
+              },
+            ],
           },
         },
       ],

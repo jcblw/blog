@@ -23,10 +23,10 @@ const talks = (await getCollection('videos')).sort(
 	</head>
 	<body>
 		<Header />
-		<main class="container relative layer--1">
+		<main class="container relative z-10">
 			<section>
-				<h6 class="color--overline">All talks</h6>
-				<ul class="my--zero p--zero">
+				<h6 class="color-overline font-bold">All talks</h6>
+				<ul class="my-0 p-0">
 					{
 						talks.map((post) => (
 							<li>

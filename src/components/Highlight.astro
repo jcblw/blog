@@ -15,37 +15,11 @@ const {
   href,
   image,
   imageAlt,
-  round,
-  design = 'light',
 } = Astro.props
 
-const designs = {
-    light: {
-      color: 'var(--vulcan)',
-      backgroundColor: 'var(--aero-blue)',
-    },
-    bright: {
-      color: 'var(--vulcan)',
-      backgroundColor: 'var(--periwinkleGray)',
-    },
-    dark: {
-      color: 'var(--header)',
-      backgroundColor: 'var(--background-secondary)',
-    },
-  }
-
-const { color, backgroundColor } = designs[design] || designs.light
 
 ---
-<style define:vars={{ color, backgroundColor}}>
-  .highlight-bg {
-    background-color: var(--backgroundColor);
-  }
-
-  .highlight-color {
-    color: var(--color);
-  }
-
+<style define:vars={{ }}>
   .highlight-imageContainer {
     width: 60px;
     height: 60px;
@@ -55,21 +29,21 @@ const { color, backgroundColor } = designs[design] || designs.light
     max-width: 100%;
   }
 </style>
-<div class="flex items--baseline row px--zero">
-  <div class="highlight-bg p--m rounded--m flex row flex--1">
-    <div class="flex flex--0 items--center justify--center">
-      <div class="highlight-imageContainer mr--m flex items--center justify--center rounded--xl overflow--hidden">
+<div class="flex items-baseline flex-row px-0">
+  <div class="bg-backgroundSecondary p-3 rounded-md flex flex-row flex-1">
+    <div class="flex flex-0 items-center justify-center">
+      <div class="highlight-imageContainer mr-3 flex items-center justify-center rounded-lg overflow-hidden">
         <img class="highlight-image" alt={imageAlt} src={image} />
       </div>
     </div>
-    <div class="flex--1 flex column justify--center">
-      <h4 class="highlight-color py--zero">
+    <div class="flex-1 flex flex-col justify-center">
+      <h4 class="py-0">
         {title}
       </h4>
       {href ? (
-        <a class="highlight-color py--zero" href={href}>{description}</a>
+        <a class="py-0" href={href}>{description}</a>
       ): (
-        <p class="highlight-color py--zero">{description}</p>
+        <p class="py-0">{description}</p>
       )}
     </div>
   </div>

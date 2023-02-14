@@ -23,10 +23,10 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body>
 		<Header />
-		<main class="container layer--1 relative">
+		<main class="container z-10 relative">
 			<section>
-				<h6 class="color--overline">All blog posts</h6>
-				<ul class="my--zero p--zero">
+				<h6 class="color-overline font-bold">All blog posts</h6>
+				<ul class="my-0 p-0">
 					{
 						posts.map((post) => (
 							<li>

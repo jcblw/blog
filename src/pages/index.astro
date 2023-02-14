@@ -65,32 +65,32 @@ const pinnedItems = profile.pinnedItems.nodes;
 	</head>
 	<body>
 		<Header title={siteMetadata.title} />
-		<main class="container layer--1 relative">
+		<main class="container z-10 relative">
 			<section>
-				<div class="profile-container flex pb--xl">
-          <div class="avatar-container flex flex--0 items--center mr--l mt--l">
+				<div class="flex-col sm:flex-row flex pb-5">
+          <div class="flex flex-row sm:flex-col flex-0 items-center mr-4 mt-4">
             <img
               src={siteMetadata.avatar}
               alt={siteMetadata.author}
 							class="avatar"
             />
-            <div class="flex mt--zero mb--xxs px--s">
-                <a class="mr--s" href={siteMetadata.github}>
-                  <Icon icon="github" color="var(--link)" width="24" height="24" />
+            <div class="flex mt-0 sm:mt-2 mb-1/2 px-2">
+                <a class="mr-2" href={siteMetadata.github}>
+                  <Icon icon="github" color="link" width="24" height="24" />
 								</a>
                 <a href={siteMetadata.linkedin}>
-                  <Icon icon="linkedin" color="var(--link)" width="24" height="24" />
+                  <Icon icon="linkedin" color="link" width="24" height="24" />
 								</a>
               </div>
             </div>
-            <div class="flex--1">
+            <div class="flex-1">
 							{await markdown(readme)}
             </div>
           </div>
 			</section>
-			<section class="mb--l">
-				<h6 class="color--overline">Featured posts</h6>
-				<ul class="my--zero p--zero">
+			<section class="mb-4">
+				<h6 class="color-overline font-bold">Featured posts</h6>
+				<ul class="my-0 p-0">
 					{
 						posts.map((post) => (
 							<li>

@@ -22,19 +22,17 @@ export const EmailList = () => {
 
   return (
     <div
-      className="bg--backgroundSecondary p--m sticky bottom--0 relative layer--2 container"
+      className="bg-backgroundSecondary p-3 sticky bottom-0 z-20 container"
       style={{
-        transform: shouldShowEmailList
-          ? 'translateY(2px) scale(1)'
-          : 'translateY(200px) scale(0.95)',
+        transform: shouldShowEmailList ? 'scale(1)' : 'scale(0.95)',
         opacity: shouldShowEmailList ? 1 : 0,
         transition: `all ${shouldShowEmailList ? '0.5s' : '0.2s'} ease-in-out`,
-        borderTopLeftRadius: 'var(--spacing-l)',
-        borderTopRightRadius: 'var(--spacing-l)',
+        borderTopLeftRadius: '32px',
+        borderTopRightRadius: '32px',
       }}
     >
       <div
-        className="py--l"
+        className="py-4"
         aria-hidden={shouldShowEmailList ? 'false' : 'true'}
       >
         <form
@@ -51,7 +49,7 @@ export const EmailList = () => {
           {shouldShowEmailList && (
             <div
               tabIndex={0}
-              className="absolute h3 color--link p--s cursor--pointer"
+              className="absolute h3 color-link p-2 cursor-pointer"
               style={{ right: 0, top: 0 }}
               onClick={() => {
                 setShowEmailUpsell(false)
@@ -67,32 +65,32 @@ export const EmailList = () => {
               <Icon icon="close" width="24" height="24" />
             </div>
           )}
-          <h4 className="color--overline bold pt--zero">
+          <h4 className="color-overline font-bold pt-0">
             Subscribe to my newsletter
           </h4>
-          <p className="pt--zero">
+          <p className="pt-0">
             I will be sharing out my newest articles, projects, and other
             thoughts to the email list. Join me in exploring technology and how
             to build humane tech.
           </p>
-          <div className="flex row pb--s">
+          <div className="flex flex-row pb-2">
             <input
               required
               type="email"
               name="email"
               id="bd-email"
               placeholder="Your email"
-              className="bg--paragraph flex--1 color--backgroundSecondary rounded--m px--m py--xs border--none h6 mr--s"
+              className="bg-paragraph flex-1 color-backgroundSecondary rounded-md px-3 py-1 border-none mr-2"
             />
             <div className="flex--0">
               <input
                 type="submit"
-                className="h6 bg--overline color--backgroundSecondary rounded--m px--m py--xs border--none"
+                className="text-bold bg-overline color-backgroundSecondary rounded-md px-3 py-1 border-none"
                 value="Subscribe"
               />
             </div>
           </div>
-          <div className="text--right">
+          <div className="text-right">
             <small>
               <a href="https://buttondown.email" target="_blank">
                 Powered by Buttondown.
