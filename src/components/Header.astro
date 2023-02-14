@@ -14,9 +14,9 @@ const { title = 'jcblw'} = Astro.props;
 	}
 </style>
 <Blob client:only />
-<header class="container layer--1 relative flex items--center">
-	<nav class:list={['py--l flex items--center flex--1']}>
-		<HeaderLink href="/" class="h3 items--center flex mr--xs">{title}</HeaderLink>
+<header class="container z-10 relative flex items-center">
+	<nav class:list={['py-4 flex items-center flex-1']}>
+		<HeaderLink href="/" class="h3 items-center flex mr-1/2">{title}</HeaderLink>
 		<HeaderLink href="/blog">Blog</HeaderLink>
 		<HeaderLink href="/talks">Talks</HeaderLink>
 	</nav>

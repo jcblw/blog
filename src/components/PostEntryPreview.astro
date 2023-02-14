@@ -13,13 +13,13 @@ const { href, title, description, date, class: className, ...props } = Astro.pro
 const formattedDescription = description.length > 247 ? description.slice(0, 250) + '...' : description;
 ---
 
-<div class="py--m" {...props}>
-  <h3 class="pt--zero pb--s color--link">
-    <a href={href} class:list={[className, 'py--none no-underline']}>
+<div class="py-3" {...props}>
+  <h3 class="pt-0 pb-2 color-link">
+    <a href={href} class:list={[className, 'py-0 no-underline']}>
       {title}
     </a>
   </h3>
-  <p class="py--zero">{formattedDescription}</p>
+  <p class="py-0">{formattedDescription}</p>
   <hr />
-  <Time date={date} class="p--zero color--header" />
+  <Time date={date} class="p-0 color-header" />
 </div>

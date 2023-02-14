@@ -7,8 +7,6 @@ import { siteMetadata } from '../consts';
 import Time from '../components/Time.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import VercelImage from 'astro-vercel-image/VercelImage.astro';
-
-import "../styles/prism.css"
 import { Comments } from '../components/Comments';
 
 type BlogData = CollectionEntry<'blog'>['data'];
@@ -65,38 +63,38 @@ const microdata = {
 
 	<body>
 		<Header />
-		<main class="relative layer--1">
-			<div class="flex items--center justify--center px--xs">
-				{heroImage && <VercelImage src={heroImage} width={1080} alt={title} class="hero-image rounded--m"/>}
+		<main class="relative z-10">
+			<div class="flex items-center justify-center px-0 sm:px-1">
+				{heroImage && <VercelImage src={heroImage} width={1080} alt={title} class="hero-image rounded-none sm:rounded-md"/>}
 			</div>
 			<TableOfContents links={headings} />
 			<section class="container">
-				<div class="author-section flex row items--center py--s px--m mt--m bg--backgroundSecondary rounded--xxl">
-					<img class="rounded--full flex--0" width="45px" height="45px" src={siteMetadata.avatar} alt={siteMetadata.author} />
-					<div class="pl--s flex--1">
-						<h6 class="color--overline pt--zero pb--xs bold">{siteMetadata.author}</h6>
+				<div class="author-section flex flex-row items-center py-2 px-3 mt-3 bg-backgroundSecondary rounded-full">
+					<img class="rounded-full flex-0" width="45px" height="45px" src={siteMetadata.avatar} alt={siteMetadata.author} />
+					<div class="pl-2 flex-1">
+						<h6 class="color-overline pt-0 pb-1 font-bold">{siteMetadata.author}</h6>
 						{date &&	(
-							<Time prefix="Published " suffix={`  ●  ${minutesRead}`}class="py--zero published-at" date={date} />
+							<Time prefix="Published " suffix={`  ●  ${minutesRead}`}class="py-0 published-at" date={date} />
 						)}
 					</div>
 				</div>
 			</section>
 			<article class="container blog-post">
-				<h1 class="color--link">{title}</h1>
+				<h1 class="color-link">{title}</h1>
 				<hr />
 				<slot />
 			</article>
 			<section class="container">
 				<Comments client:only slug={`/${slug}`} title={title} shortname={disqusShortName}  />
 			</section>
-			<div class="flex row container">
+			<div class="flex flex-row container">
 				<a
 					href={`https://mobile.twitter.com/search?q=${siteMetadata.siteUrl}/blog/${slug}`}
-					class="pr--l my--m "
+					class="pr-4 my-3"
 				>
 					Discuss it on Twitter
 				</a>
-				<a href={`${siteMetadata.source}/src/content/blog/${slug}`} class="pr--l my--m ">
+				<a href={`${siteMetadata.source}/src/content/blog/${slug}`} class="pr-4 my-3 ">
 					Edit on Github
 				</a>
 			</div>

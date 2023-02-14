@@ -151,8 +151,6 @@ export const Blob = ({
       ctx.canvas.height = window.innerHeight
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
-      ctx.filter = 'blur(100px)'
-
       drawBlob({
         scale,
         x: window.innerWidth - window.innerWidth / 3,
@@ -168,7 +166,7 @@ export const Blob = ({
       })
 
       if (animated) {
-        Object.assign(ref.current, { time: ref.current.time + 0.05 })
+        Object.assign(ref.current, { time: ref.current.time + 0.005 })
       }
     }
     clearTimeout = fpsTimeout(renderCanvas, 60)
@@ -180,7 +178,7 @@ export const Blob = ({
   return (
     <canvas
       ref={(ref) => ref && setCanvas(ref)}
-      className="blob-canvas layer--0"
+      className="fixed top-0 left-0 w-full h-full"
     />
   )
 }

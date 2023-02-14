@@ -53,7 +53,9 @@ const microdata = {
 
 			.video {
 				aspect-ratio: 16 / 9;
-				width: 100%;
+				@apply w-full lg:w-4/6;
+				align-self: center;
+				justify-self: center;
 			}
 
 	
@@ -64,24 +66,26 @@ const microdata = {
 	<body>
 		<Header />
 		<main class="relative layer--1">
-			<article class="container talk-video">
-					<iframe
-						src={`https://www.youtube.com/embed/${youtubeId}`}
-						frameborder="0"
-						allowfullscreen
-						title={title}
-						class="video"
-					/>	
-        <div class="author-section flex row items--center py--l">
-          <img class="rounded--full flex--0" width="80px" height="80px" src={siteMetadata.avatar} alt={siteMetadata.author} />
-          <div class="pl--s flex--1">
-            <h1 class="color--paragraph pb--xs pt--zero h2 bold">{title}</h1>
-            {date &&	(
-              <Time prefix={`by ${siteMetadata.author} on `} class="py--zero published-at inline color--overline" date={date} />
-            )}
-          </div>
-        </div>
-        <slot />
+			<article class="talk-video flex flex-col">
+				<iframe
+					src={`https://www.youtube.com/embed/${youtubeId}`}
+					frameborder="0"
+					allowfullscreen
+					title={title}
+					class="video"
+				/>	
+				<div class="container">
+					<div class=" author-section flex row items-center py-5">
+						<img class="rounded-full flex-0" width="80px" height="80px" src={siteMetadata.avatar} alt={siteMetadata.author} />
+						<div class="pl-2 flex-1">
+							<h1 class="color--paragraph pb-1 pt-0 h2 bold">{title}</h1>
+							{date &&	(
+								<Time prefix={`by ${siteMetadata.author} on `} class="py-0 published-at inline color--overline" date={date} />
+							)}
+						</div>
+					</div>
+					<slot />
+				</div>
 			</article>
 		</main>
 		<Footer />

@@ -23,7 +23,11 @@ export const useColorPrefManager = () => {
 
   useEffect(() => {
     if (!storeScheme) {
-      document.documentElement.setAttribute('data-theme', mediaMatch)
+      if (matchMedia.toString() === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
   }, [mediaMatch, storeScheme])
 
@@ -32,7 +36,11 @@ export const useColorPrefManager = () => {
     toggleColorScheme: () => {
       const nextColorScheme = colorScheme === 'dark' ? 'light' : 'dark'
       setColorScheme(nextColorScheme)
-      document.documentElement.setAttribute('data-theme', nextColorScheme)
+      if (nextColorScheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     },
   }
 }

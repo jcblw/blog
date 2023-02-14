@@ -55,14 +55,8 @@ const { title = "jcblw", description, image = '/placeholder-social.jpg' } = Astr
 <link href={`${googleFonts}${fonts}`} rel="stylesheet" />
 <script is:inline>
 	const currentTheme = localStorage.getItem('_tp')?.replace(/"/g, '') ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-	if (currentTheme) {
-			document.documentElement.setAttribute('data-theme', currentTheme);
-	}
-	var originalSetItem = localStorage.setItem; 
-	localStorage.setItem = function(key){
-		originalSetItem.apply(this, arguments);
-		const event = new Event(`storage:change:${key}`);
-		window.dispatchEvent(event);
+	if (currentTheme === 'dark') {
+			document.documentElement.classList.add(currentTheme);
 	}
 </script>
 {import.meta.env.MODE === 'production' && (

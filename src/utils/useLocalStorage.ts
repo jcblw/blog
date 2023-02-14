@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-const { useState } = React
+import { useCallback, useMemo, useSyncExternalStore } from 'react'
+import { localStore } from './storage'
 
 const safeSerialize = <T extends unknown>(value: T): string | null => {
   try {
@@ -24,33 +24,28 @@ export const useLocalStorage = <T extends unknown>(
   key: string,
   defaultValue: T | null = null
 ): [T | null, (value: T) => void] => {
-  const [value, setValue] = useState<T | null>(() => {
-    const rawValue =
-      typeof localStorage === 'object' ? localStorage.getItem(key) : null
-    return rawValue ? safeParse<T>(rawValue, defaultValue) : defaultValue
-  })
-
   const setLocalStorageValue = (newValue: T) => {
     const serializedValue = safeSerialize(newValue)
     if (serializedValue) {
-      localStorage.setItem(key, serializedValue)
+      localStore.setItem(key, serializedValue)
     }
-    setValue(newValue)
   }
 
-  useEffect(() => {
-    const eventName = `storage:change:${key}`
-    const handler = () => {
-      const value = localStorage.getItem(key)
+  const subscribe = useCallback(localStore.subscribe.bind(localStore, key), [
+    key,
+  ])
+
+  const value = useSyncExternalStore(
+    subscribe,
+    () => {
+      const value = localStore.getItem(key)
       if (value !== null) {
-        setValue(safeParse<T>(value, defaultValue))
+        return safeParse<T>(value, defaultValue)
       }
-    }
-    window.addEventListener(eventName, handler)
-    return () => {
-      window.removeEventListener(eventName, handler)
-    }
-  }, [key])
+      return null
+    },
+    () => null
+  )
 
   return [value, setLocalStorageValue]
 }

@@ -8,19 +8,6 @@ const { links, prefix, ...props } = Astro.props;
 ---
 
 <style>
-  .table-of-contents {
-    top: 0;
-    left: 0;
-    display: none;
-  }
-  
-
-  @media (min-width: 1280px) {
-    .table-of-contents {
-      display: block;
-    }
-  }
-
   .table-of-contents > div {
     width: 100%;
     max-width: 300px;
@@ -29,12 +16,12 @@ const { links, prefix, ...props } = Astro.props;
     left: 50%;
   } 
 </style>
-<aside class="sticky table-of-contents">
-  <div class="absolute top-0 bg--background rounded--m py--xs px--m mt--m">
+<aside class="sticky top-0 table-of-contents">
+  <div class="absolute hidden xl:block top-0 bg-backgroundSecondary rounded-lg py-1 px-3 mt-3">
     <details>
-    <summary><h5 class="inline-flex bold pb--xs pt--xs">Sections</h5></summary>
+    <summary><h5 class="inline-flex font-bold pb-1 pt-1">Sections</h5></summary>
     {links.map(({href, label}) => {
-      return <p class="py--zero"><a href={`#${href}`}>{label}</a></p>;
+      return <p class="py-0"><a href={`#${href}`}>{label}</a></p>;
     })}
     </details>
   </div>
