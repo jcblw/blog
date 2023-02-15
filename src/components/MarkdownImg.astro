@@ -12,4 +12,4 @@ const {className, ...props} = Astro.props
 
 
 ---
-<Img client:idle className={`rounded-xs max-w-full ${className ?? ''}`} {...props} width={828} />
+<Img client:load className={`rounded-xs max-w-full ${className ?? ''}`} {...props} width={828} />
