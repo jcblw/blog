@@ -1,0 +1,15 @@
+---
+import type { Props  as ImgProps } from "./Img";
+import { Img } from "./Img";
+
+export interface Props extends ImgProps {
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+const {className, ...props} = Astro.props
+
+
+---
+<Img client:visible className={`rounded-sm ${className}`} {...props}  />
