@@ -12,8 +12,8 @@ const isBuild = import.meta.env.MODE === 'production'
 
 export const Img = ({
   src,
-  width,
-  quality,
+  width = 640,
+  quality = 75,
   alt,
   className,
   ...rest
