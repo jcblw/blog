@@ -14,12 +14,9 @@ export const EmailList = () => {
     if (hasClosedEmailList) {
       return
     }
-    // const timeout = setTimeout(() => {
-    //   setShowEmailUpsell(true)
-    // }, 10000)
     const timeout = setTimeout(() => {
       setShowEmailUpsell(true)
-    }, 1000)
+    }, 10000)
     return () => clearTimeout(timeout)
   }, [hasClosedEmailList])
 
