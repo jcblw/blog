@@ -26,6 +26,9 @@ export const Img = ({
         placeholderURL: `/_vercel/image?url=${encodeURIComponent(
           src
         )}&w=8&q=50`,
+        optimizedURL: `/_vercel/image?url=${encodeURIComponent(
+          src
+        )}&w=${width}&q=${quality}`,
       }
     } else {
       return {
@@ -38,13 +41,15 @@ export const Img = ({
 
   useEffect(() => {
     if (shouldBlur && !isLoaded) {
+      console.log('loading image', optimizedURL)
       const img = new Image()
-      img.src = src
+      img.src = optimizedURL
       img.onload = () => {
+        console.log('img loading', optimizedURL)
         setIsLoaded(true)
       }
     }
-  }, [src, shouldBlur])
+  }, [optimizedURL, shouldBlur])
 
   return (
     <div className={className} style={width ? { width: `${width}px` } : {}}>
