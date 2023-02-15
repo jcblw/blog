@@ -12,4 +12,4 @@ const {className, ...props} = Astro.props
 
 
 ---
-<Img client:visible className={`rounded-sm ${className}`} {...props}  />
+<Img client:visible className={`rounded-sm ${className ?? ''}`} {...props} width={828} />
