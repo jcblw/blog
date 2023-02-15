@@ -6,7 +6,7 @@ export interface Props extends HTMLAttributes<HTMLImageElement> {
   alt: string
   width?: number
   quality?: number
-  aspectRatio?: CSSProperties['aspectRatio']
+  aspectRatio?: 'aspect-video' | 'aspect-auto'
 }
 
 const isBuild = import.meta.env.MODE === 'production'
@@ -17,7 +17,7 @@ export const Img = ({
   quality = 100,
   alt,
   className,
-  aspectRatio = 'auto',
+  aspectRatio = 'aspect-auto',
   ...rest
 }: Props) => {
   const [isLoaded, setIsLoaded] = useState(!isBuild)
@@ -54,16 +54,13 @@ export const Img = ({
   }, [optimizedURL, shouldBlur])
 
   return (
-    <div
-      className={className}
-      style={width ? { width: `${width}px`, aspectRatio } : {}}
-    >
+    <div style={width ? { width: `${width}px` } : {}}>
       {shouldBlur && !isLoaded ? (
         <img
           src={placeholderURL}
           alt={alt}
           width={`${width}px`}
-          className={className}
+          className={`${aspectRatio} object-cover ${className}`}
           {...rest}
         />
       ) : (
@@ -71,7 +68,7 @@ export const Img = ({
           src={optimizedURL}
           alt={alt}
           width={`${width}px`}
-          className={className}
+          className={`${aspectRatio} object-cover ${className}`}
           {...rest}
         />
       )}
