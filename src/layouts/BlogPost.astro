@@ -8,6 +8,7 @@ import Time from '../components/Time.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import VercelImage from 'astro-vercel-image/VercelImage.astro';
 import { Comments } from '../components/Comments';
+import type { Img } from '../components/Img';
 
 type BlogData = CollectionEntry<'blog'>['data'];
 
@@ -65,7 +66,7 @@ const microdata = {
 		<Header />
 		<main class="relative z-10">
 			<div class="flex items-center justify-center px-0 sm:px-1">
-				{heroImage && <VercelImage src={heroImage} width={1080} alt={title} class="hero-image rounded-none sm:rounded-md"/>}
+				{heroImage && <Img src={heroImage} width={1080} alt={title} className="hero-image rounded-none sm:rounded-md"/>}
 			</div>
 			<TableOfContents links={headings} />
 			<section class="container">
