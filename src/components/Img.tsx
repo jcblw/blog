@@ -54,7 +54,10 @@ export const Img = ({
   }, [optimizedURL, shouldBlur])
 
   return (
-    <div style={width ? { width: `${width}px` } : {}}>
+    <div
+      className={`overflow-hidden ${className}`}
+      style={width ? { width: `${width}px` } : {}}
+    >
       {shouldBlur && !isLoaded ? (
         <img
           src={placeholderURL}
