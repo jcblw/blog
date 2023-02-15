@@ -60,7 +60,7 @@ export const Img = ({
           src={placeholderURL}
           alt={alt}
           width={`${width}px`}
-          className={`${aspectRatio} object-cover ${className}`}
+          className={`${aspectRatio} blur-lg object-cover ${className}`}
           {...rest}
         />
       ) : (
