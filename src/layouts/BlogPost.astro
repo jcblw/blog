@@ -65,7 +65,7 @@ const microdata = {
 		<Header />
 		<main class="relative z-10">
 			<div class="flex items-center justify-center px-0 sm:px-1">
-				{heroImage && <Img client:visible src={heroImage} width={1080} alt={title} className="hero-image rounded-none sm:rounded-md"/>}
+				{heroImage && <Img client:visible src={heroImage} aspectRatio="16 / 9" width={1080} alt={title} className="hero-image rounded-none sm:rounded-md"/>}
 			</div>
 			<TableOfContents links={headings} />
 			<section class="container">

@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react'
+import type { CSSProperties, HTMLAttributes } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
 export interface Props extends HTMLAttributes<HTMLImageElement> {
@@ -6,6 +6,7 @@ export interface Props extends HTMLAttributes<HTMLImageElement> {
   alt: string
   width?: number
   quality?: number
+  aspectRatio?: CSSProperties['aspectRatio']
 }
 
 const isBuild = import.meta.env.MODE === 'production'
@@ -13,9 +14,10 @@ const isBuild = import.meta.env.MODE === 'production'
 export const Img = ({
   src,
   width = 640,
-  quality = 75,
+  quality = 100,
   alt,
   className,
+  aspectRatio = 'auto',
   ...rest
 }: Props) => {
   const [isLoaded, setIsLoaded] = useState(!isBuild)
@@ -52,7 +54,10 @@ export const Img = ({
   }, [optimizedURL, shouldBlur])
 
   return (
-    <div className={className} style={width ? { width: `${width}px` } : {}}>
+    <div
+      className={className}
+      style={width ? { width: `${width}px`, aspectRatio } : {}}
+    >
       {shouldBlur && !isLoaded ? (
         <img
           src={placeholderURL}
