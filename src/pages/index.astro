@@ -1,109 +1,109 @@
 ---
 import { markdown } from '@astropub/md'
 
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { siteMetadata } from '../consts';
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { siteMetadata } from '../consts'
 
-import { getCollection } from 'astro:content';
-import PostEntryPreview from '../components/PostEntryPreview.astro';
-import { Icon } from '../components/Icon';
-import { getProfileInfo, getReadme } from '../utils/github';
-import FeaturedProjects from '../components/FeaturedProjects.astro';
+import { getCollection } from 'astro:content'
+import PostEntryPreview from '../components/PostEntryPreview.astro'
+import { Icon } from '../components/Icon'
+import { getProfileInfo, getReadme } from '../utils/github'
+import FeaturedProjects from '../components/FeaturedProjects.astro'
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-).slice(0, 3)
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3)
 
-const readme = await getReadme();
-const profile = await getProfileInfo();
-const pinnedItems = profile.pinnedItems.nodes;
-
+const readme = await getReadme()
+const profile = await getProfileInfo()
+const pinnedItems = profile.pinnedItems.nodes
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={siteMetadata.title} description={siteMetadata.description} />
-		<style>
-			ul {
-				list-style-type: none;
-			}
+  <head>
+    <BaseHead
+      title={siteMetadata.title}
+      description={siteMetadata.description}
+    />
+    <style>
+      ul {
+        list-style-type: none;
+      }
 
-			.profile-container {
-				flex-direction: column;
-			}
+      .profile-container {
+        flex-direction: column;
+      }
 
-			.avatar-container {
-				flex-direction: row;
-			}
+      .avatar-container {
+        flex-direction: row;
+      }
 
-			.avatar {
-				max-width: 67px;
-				border-radius: 50%;
-				margin-bottom: 0;
-			}
+      .avatar {
+        max-width: 67px;
+        border-radius: 50%;
+        margin-bottom: 0;
+      }
 
-			@media (min-width: 768px) {
-				.profile-container {
-					flex-direction: row;
-				}
+      @media (min-width: 768px) {
+        .profile-container {
+          flex-direction: row;
+        }
 
-				.avatar-container {
-					flex-direction: column;
-				}
+        .avatar-container {
+          flex-direction: column;
+        }
 
-				.avatar {
-					max-width: 120px;
-					margin-bottom: var(--spacing-m);
-				}
-			}
-
-
-		</style>
-	</head>
-	<body>
-		<Header title={siteMetadata.title} />
-		<main class="container z-10 relative">
-			<section>
-				<div class="flex-col sm:flex-row flex pb-5">
-          <div class="flex flex-row sm:flex-col flex-0 items-center mr-4 mt-4">
+        .avatar {
+          max-width: 120px;
+          margin-bottom: var(--spacing-m);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header title={siteMetadata.title} />
+    <main class="container relative z-10">
+      <section>
+        <div class="flex flex-col pb-5 sm:flex-row">
+          <div class="flex-0 mr-4 mt-4 flex flex-row items-center sm:flex-col">
             <img
               src={siteMetadata.avatar}
               alt={siteMetadata.author}
-							class="avatar"
+              class="avatar"
             />
-            <div class="flex mt-0 sm:mt-2 mb-1/2 px-2">
-                <a class="mr-2" href={siteMetadata.github}>
-                  <Icon icon="github" color="link" width="24" height="24" />
-								</a>
-                <a href={siteMetadata.linkedin}>
-                  <Icon icon="linkedin" color="link" width="24" height="24" />
-								</a>
-              </div>
-            </div>
-            <div class="flex-1">
-							{await markdown(readme)}
+            <div class="mt-0 mb-1/2 flex px-2 sm:mt-2">
+              <a class="mr-2" href={siteMetadata.github}>
+                <Icon icon="github" color="link" width="24" height="24" />
+              </a>
+              <a href={siteMetadata.linkedin}>
+                <Icon icon="linkedin" color="link" width="24" height="24" />
+              </a>
             </div>
           </div>
-			</section>
-			<section class="mb-4">
-				<h6 class="color-overline font-bold">Featured posts</h6>
-				<ul class="my-0 p-0">
-					{
-						posts.map((post) => (
-							<li>
-								<PostEntryPreview {...post.data} href={`${post.slug}`} />
-							</li>
-						))
-					}
-				</ul>
-			</section>
-			<section>
-				<FeaturedProjects projects={pinnedItems} />
-			</section>
-		</main>
-		<Footer />
-	</body>
+          <div class="flex-1">
+            {await markdown(readme)}
+          </div>
+        </div>
+      </section>
+      <section class="mb-4">
+        <h6 class="color-overline font-bold">Featured posts</h6>
+        <ul class="my-0 p-0">
+          {
+            posts.map((post) => (
+              <li>
+                <PostEntryPreview {...post.data} href={`${post.slug}`} />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      <section>
+        <FeaturedProjects projects={pinnedItems} />
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>

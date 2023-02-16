@@ -1,42 +1,45 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { siteMetadata } from '../../consts';
-import { getCollection } from 'astro:content';
-import PostEntryPreview from '../../components/PostEntryPreview.astro';
+import BaseHead from '../../components/BaseHead.astro'
+import Header from '../../components/Header.astro'
+import Footer from '../../components/Footer.astro'
+import { siteMetadata } from '../../consts'
+import { getCollection } from 'astro:content'
+import PostEntryPreview from '../../components/PostEntryPreview.astro'
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={`All blog posts | ${siteMetadata.title}`} description={"These are all the blog posts on my website."} />
-		<style>
-			ul {
-				list-style-type: none;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main class="container z-10 relative">
-			<section>
-				<h6 class="color-overline font-bold">All blog posts</h6>
-				<ul class="my-0 p-0">
-					{
-						posts.map((post) => (
-							<li>
-								<PostEntryPreview {...post.data} href={`${post.slug}`} />
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead
+      title={`All blog posts | ${siteMetadata.title}`}
+      description={'These are all the blog posts on my website.'}
+    />
+    <style>
+      ul {
+        list-style-type: none;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main class="container relative z-10">
+      <section>
+        <h6 class="color-overline font-bold">All blog posts</h6>
+        <ul class="my-0 p-0">
+          {
+            posts.map((post) => (
+              <li>
+                <PostEntryPreview {...post.data} href={`${post.slug}`} />
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>

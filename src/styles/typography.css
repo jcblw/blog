@@ -1,54 +1,89 @@
-
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   @apply m-0 p-0;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  @apply pt-3 pb-3 dark:text-aeroBlue text-tradewind;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  @apply pt-3 pb-3 text-tradewind dark:text-aeroBlue;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   @apply text-xl font-bold;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   @apply text-lg font-normal;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   @apply text-lg font-bold;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   @apply text-base font-bold;
 }
 
-h5, .h5 {
+h5,
+.h5 {
   @apply text-sm font-normal;
 }
 
-h6, .h6 {
+h6,
+.h6 {
   @apply text-sm font-bold;
 }
 
-p, .paragraph {
+p,
+.paragraph {
   line-height: 2em;
-  @apply dark:text-white text-vulcan fill-vulcan dark:fill-white pt-2 pb-2 text-sm font-normal;
+  @apply fill-vulcan pt-2 pb-2 text-sm font-normal text-vulcan dark:fill-white dark:text-white;
 }
 
-a, .link, a:hover, .link:hover, a:visited, .link:visited {
-  @apply dark:text-periwinkleGray text-blumine;
+a,
+.link,
+a:hover,
+.link:hover,
+a:visited,
+.link:visited {
+  @apply text-blumine dark:text-periwinkleGray;
 }
 
-a, .link {
+a,
+.link {
   text-decoration: none;
 }
 
-a:hover, .link:hover {
+a:hover,
+.link:hover {
   text-decoration: underline;
 }
 
-h1 .heading-link, h2 .heading-link, h3 .heading-link, h4 .heading-link, h5 .heading-link, h6 .heading-link {
+h1 .heading-link,
+h2 .heading-link,
+h3 .heading-link,
+h4 .heading-link,
+h5 .heading-link,
+h6 .heading-link {
   color: inherit;
   text-decoration: none;
   position: absolute;
@@ -59,9 +94,12 @@ h1 .heading-link, h2 .heading-link, h3 .heading-link, h4 .heading-link, h5 .head
   @apply pr-1;
 }
 
-
-h1:hover .heading-link, h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover .heading-link, h6:hover .heading-link {
+h1:hover .heading-link,
+h2:hover .heading-link,
+h3:hover .heading-link,
+h4:hover .heading-link,
+h5:hover .heading-link,
+h6:hover .heading-link {
   display: block;
   opacity: 1;
 }
-

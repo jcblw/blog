@@ -22,7 +22,7 @@ export const EmailList = () => {
 
   return (
     <div
-      className="bg-backgroundSecondary p-3 sticky bottom-0 z-20 container"
+      className="bg-backgroundSecondary container sticky bottom-0 z-20 p-3"
       style={{
         transform: shouldShowEmailList ? 'scale(1)' : 'scale(0.95)',
         opacity: shouldShowEmailList ? 1 : 0,
@@ -49,7 +49,7 @@ export const EmailList = () => {
           {shouldShowEmailList && (
             <div
               tabIndex={0}
-              className="absolute h3 color-link p-2 cursor-pointer"
+              className="h3 color-link absolute cursor-pointer p-2"
               style={{ right: 0, top: 0 }}
               onClick={() => {
                 setShowEmailUpsell(false)
@@ -65,7 +65,7 @@ export const EmailList = () => {
               <Icon icon="close" width="24" height="24" />
             </div>
           )}
-          <h4 className="color-overline font-bold pt-0">
+          <h4 className="color-overline pt-0 font-bold">
             Subscribe to my newsletter
           </h4>
           <p className="pt-0">
@@ -80,12 +80,12 @@ export const EmailList = () => {
               name="email"
               id="bd-email"
               placeholder="Your email"
-              className="bg-paragraph flex-1 color-backgroundSecondary rounded-md px-3 py-1 border-none mr-2"
+              className="bg-paragraph color-backgroundSecondary mr-2 flex-1 rounded-md border-none px-3 py-1"
             />
             <div className="flex--0">
               <input
                 type="submit"
-                className="text-bold bg-overline color-backgroundSecondary rounded-md px-3 py-1 border-none"
+                className="text-bold bg-overline color-backgroundSecondary rounded-md border-none px-3 py-1"
                 value="Subscribe"
               />
             </div>

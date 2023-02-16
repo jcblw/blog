@@ -1,22 +1,22 @@
-@import "./typography.css";
-@import "./prism.css";
+@import './typography.css';
+@import './prism.css';
 
-html, body {
-  @apply dark:bg-vulcan bg-bridalHealth min-h-full;
+html,
+body {
+  @apply min-h-full bg-bridalHealth dark:bg-vulcan;
 }
 
 ::marker {
-  @apply dark:text-bridalHealth text-steelGrey pl-2;
+  @apply pl-2 text-steelGrey dark:text-bridalHealth;
 }
 
-
 blockquote {
-  @apply relative flex flex-row items-center pl-3 mx-0 my-2;
+  @apply relative mx-0 my-2 flex flex-row items-center pl-3;
 }
 
 blockquote::before {
   content: '';
-  @apply block absolute left-0 dark:bg-calico bg-rawSienna rounded-full;
+  @apply absolute left-0 block rounded-full bg-rawSienna dark:bg-calico;
   width: 4px;
   height: 50%;
 }
@@ -25,55 +25,63 @@ li {
   @apply py-1 text-steelGrey dark:text-bridalHealth;
 }
 
-.color-paragraph, p {
-  @apply dark:text-white text-vulcan fill-vulcan dark:fill-white;
+.color-paragraph,
+p {
+  @apply fill-vulcan text-vulcan dark:fill-white dark:text-white;
 }
 
-.color-link, a {
-  @apply dark:text-periwinkleGray text-blumine fill-blumine dark:fill-periwinkleGray;
+.color-link,
+a {
+  @apply fill-blumine text-blumine dark:fill-periwinkleGray dark:text-periwinkleGray;
 }
 
-.color-header, h1, h2, h3, h4, h5, h6 {
-  @apply dark:text-aeroBlue text-tradewind fill-tradewind dark:fill-aeroBlue;
+.color-header,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply fill-tradewind text-tradewind dark:fill-aeroBlue dark:text-aeroBlue;
 }
 
 .color-background {
-  @apply dark:bg-vulcan bg-bridalHealth fill-bridalHealth dark:fill-vulcan;
+  @apply bg-bridalHealth fill-bridalHealth dark:bg-vulcan dark:fill-vulcan;
 }
 
 .color-background-secondary {
-  @apply dark:bg-steelGrey bg-white fill-white dark:fill-steelGrey;
+  @apply bg-white fill-white dark:bg-steelGrey dark:fill-steelGrey;
 }
 
 .color-overline {
-  @apply dark:text-calico text-rawSienna fill-rawSienna dark:fill-calico;
+  @apply fill-rawSienna text-rawSienna dark:fill-calico dark:text-calico;
 }
 
 .bg-paragraph {
-  @apply dark:bg-white bg-vulcan;
+  @apply bg-vulcan dark:bg-white;
 }
 
 .bg-link {
-  @apply dark:bg-periwinkleGray bg-blumine;
+  @apply bg-blumine dark:bg-periwinkleGray;
 }
 
 .bg-header {
-  @apply dark:bg-aeroBlue bg-tradewind;
+  @apply bg-tradewind dark:bg-aeroBlue;
 }
 
 .bg-background {
-  @apply dark:bg-vulcan bg-bridalHealth;
+  @apply bg-bridalHealth dark:bg-vulcan;
 }
 
 .bg-backgroundSecondary {
-  @apply dark:bg-steelGrey bg-white;
+  @apply bg-white dark:bg-steelGrey;
 }
 
 .bg-overline {
-  @apply dark:bg-calico bg-rawSienna;
+  @apply bg-rawSienna dark:bg-calico;
 }
 
 hr {
   padding-top: 1px;
-  @apply bg-white dark:bg-vulcan border-none my-2;
+  @apply my-2 border-none bg-white dark:bg-vulcan;
 }

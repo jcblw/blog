@@ -1,30 +1,28 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-import TableOfContents from '../../components/TableOfContents.astro';
-import TalkVideo from '../../layouts/TalkVideo.astro';
+import { CollectionEntry, getCollection } from 'astro:content'
+import BlogPost from '../../layouts/BlogPost.astro'
+import TableOfContents from '../../components/TableOfContents.astro'
+import TalkVideo from '../../layouts/TalkVideo.astro'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('videos');
-	return posts.map((post) => ({
-		params: { slug: post.slug.replace(/^\//, '') },
-		props: { ...post, slug: `/talks/${post.slug.replace(/^\//, '')}` },
-	}));
+  const posts = await getCollection('videos')
+  return posts.map((post) => ({
+    params: { slug: post.slug.replace(/^\//, '') },
+    props: { ...post, slug: `/talks/${post.slug.replace(/^\//, '')}` },
+  }))
 }
-type Props = CollectionEntry<'videos'>;
+type Props = CollectionEntry<'videos'>
 
-const post = Astro.props;
-const { Content, headings, remarkPluginFrontmatter } = await post.render();
+const post = Astro.props
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
 const minutesRead = remarkPluginFrontmatter.minutesRead
-const formattedHeadings = headings.map(heading => ({
-	label: heading.text.replace('⌗', ''),
-	href: heading.slug
+const formattedHeadings = headings.map((heading) => ({
+  label: heading.text.replace('⌗', ''),
+  href: heading.slug,
 }))
-
-
 ---
 
 <TalkVideo {...post.data} slug={post.slug}>
-	<!-- <pre><code>{JSON.stringify(post, null, 2)}</code></pre> -->
-	<Content />
+  <!-- <pre><code>{JSON.stringify(post, null, 2)}</code></pre> -->
+  <Content />
 </TalkVideo>

@@ -19,7 +19,7 @@ As a web extension, it's easy to lose sight of how important it is to be a good 
 ```javascript
 htmlElement.innerHTML = `
 	Toucans are a <a href="/fruit">fruit</a> eating <span lang="es">pájaro</span>.
-`;
+`
 ```
 
 There is a number of reasons why this piece of code is not great. Let's kinda breeze over that there are tons of potential issues with reevaluating HTML and focus on what this means in a modern web stack and why this broke so much.
@@ -33,7 +33,7 @@ You may see how this can be an issue, imagine an extension going through your ni
 Now the question is how did we resolve this? This all comes down to one line of code.
 
 ```javascript
-textNode.replaceWith([pre, translation, post]);
+textNode.replaceWith([pre, translation, post])
 ```
 
 This one line of code was a powerful realization for me for a number of reasons. The first was that I never really played around with text nodes, I always am focused on HTML elements. Not realizing there was a lot of depth to the API of a text node I was able to see that we did not need to touch HTML elements when replacing content. This is important because you can not attach interaction with text nodes, only HTML elements. That means that if we were to replace a text node there was no chance that a program was going to have event listeners attached to that node\*. We would be able to replace content on the page, but that content would be something that would not break any functionality. Finally, a way to replace that would be light as a feather on these web pages.

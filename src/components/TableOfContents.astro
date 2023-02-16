@@ -1,10 +1,9 @@
 ---
 export interface Props extends astroHTML.JSX.HTMLAttributes {
- links: { href: string; label: string; }[];
+  links: { href: string; label: string }[]
 }
 
-const { links, prefix, ...props } = Astro.props;
-
+const { links, prefix, ...props } = Astro.props
 ---
 
 <style>
@@ -14,15 +13,25 @@ const { links, prefix, ...props } = Astro.props;
     /* pushes content to the edge of the blog content */
     transform: translateX(calc(760px / 2));
     left: 50%;
-  } 
+  }
 </style>
-<aside class="sticky top-0 table-of-contents">
-  <div class="absolute hidden xl:block top-0 bg-backgroundSecondary rounded-lg py-1 px-3 mt-3">
+<aside class="table-of-contents sticky top-0">
+  <div
+    class="bg-backgroundSecondary absolute top-0 mt-3 hidden rounded-lg py-1 px-3 xl:block"
+  >
     <details>
-    <summary><h5 class="inline-flex font-bold pb-1 pt-1">Sections</h5></summary>
-    {links.map(({href, label}) => {
-      return <p class="py-0"><a href={`#${href}`}>{label}</a></p>;
-    })}
+      <summary
+        ><h5 class="inline-flex pb-1 pt-1 font-bold">Sections</h5></summary
+      >
+      {
+        links.map(({ href, label }) => {
+          return (
+            <p class="py-0">
+              <a href={`#${href}`}>{label}</a>
+            </p>
+          )
+        })
+      }
     </details>
   </div>
 </aside>

@@ -1,20 +1,20 @@
 ---
-import { Icon } from './Icon';
+import { Icon } from './Icon'
 
 export interface Props {
-  projects: { 
-    nameWithOwner: string, 
-    description: string, 
-    stargazerCount: number; 
-    url: string, 
-    id: string,
-    name: string,
-  }[];
+  projects: {
+    nameWithOwner: string
+    description: string
+    stargazerCount: number
+    url: string
+    id: string
+    name: string
+  }[]
 }
 
-const { projects } = Astro.props;
-
+const { projects } = Astro.props
 ---
+
 <style>
   .repo-container {
     width: 100%;
@@ -27,28 +27,26 @@ const { projects } = Astro.props;
 </style>
 <h5 class="color-overline font-bold">Featured Projects</h5>
 <div class="flex flex-row flex-wrap justify-between">
-  {projects.map(({ name, url, description, stargazerCount }) => (
-    <div class="repo-container flex  flex-col bg-backgroundSecondary rounded-md mb-4 p-3">
-      <div class="flex-1">
-        <h5 class="pt-0 pb-1 bold">
-          <a href={url}>{name}</a>
-        </h5>
-        <p class="pt-0 pb-2">
-          {description}
-        </p>
+  {
+    projects.map(({ name, url, description, stargazerCount }) => (
+      <div class="repo-container bg-backgroundSecondary  mb-4 flex flex-col rounded-md p-3">
+        <div class="flex-1">
+          <h5 class="bold pt-0 pb-1">
+            <a href={url}>{name}</a>
+          </h5>
+          <p class="pt-0 pb-2">{description}</p>
+        </div>
+        <div class="flex items-center justify-end">
+          <Icon
+            icon="star"
+            width="24"
+            height="24"
+            className="mr-1/2"
+            color="overline"
+          />
+          <p class="pt-0 pb-0">{Intl.NumberFormat().format(stargazerCount)}</p>
+        </div>
       </div>
-      <div class="flex justify-end items-center">
-        <Icon
-          icon="star"
-          width="24"
-          height="24"
-          className="mr-1/2"
-          color="overline"
-        />
-        <p class="pt-0 pb-0">
-          {Intl.NumberFormat().format(stargazerCount)}
-        </p>
-      </div>
-    </div>
-  ))}
+    ))
+  }
 </div>

@@ -7,7 +7,7 @@ status: published
 heroImage: /birth-of-a-cyborg.png
 ---
 
-import Highlight from "../../components/Highlight.astro";
+import Highlight from '../../components/Highlight.astro'
 
 ###### How I used GitHub Copilot to learn how to use Tensorflow
 
@@ -42,10 +42,10 @@ As someone who has been using Copilot since its launch, I am pretty good at pers
 ```javascript
 // Create a model for predicting the next word
 // ^ I wrote this
-const model = tf.sequential();
-model.add(tf.layers.lstm({ units: 128, inputShape: [null, 1] }));
-model.add(tf.layers.dense({ units: 1, activation: "softmax" }));
-model.compile({ loss: "categoricalCrossentropy", optimizer: "adam" });
+const model = tf.sequential()
+model.add(tf.layers.lstm({ units: 128, inputShape: [null, 1] }))
+model.add(tf.layers.dense({ units: 1, activation: 'softmax' }))
+model.compile({ loss: 'categoricalCrossentropy', optimizer: 'adam' })
 // ^ Copilot wrote all this code
 ```
 

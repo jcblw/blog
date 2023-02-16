@@ -1,10 +1,10 @@
-import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
-import { siteMetadata } from "../consts";
+import rss from '@astrojs/rss'
+import { getCollection } from 'astro:content'
+import { siteMetadata } from '../consts'
 
 export async function get(context: any) {
-  const posts = await getCollection("blog");
-  const videos = await getCollection("videos");
+  const posts = await getCollection('blog')
+  const videos = await getCollection('videos')
   return rss({
     title: siteMetadata.title,
     description: siteMetadata.description,
@@ -20,8 +20,8 @@ export async function get(context: any) {
           ...video.data,
           pubDate: video.data.date,
           link: `/videos/${video.slug}/`,
-          status: "published",
+          status: 'published',
         }))
       ),
-  });
+  })
 }

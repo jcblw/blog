@@ -19,25 +19,25 @@ My experiment was to be able to make an iframe that I could pass data to, via th
 <title>Echo Iframe</title>
 <meta charset="utf8" />
 <script>
-  var keyValues = (location.search || "").split("?").pop().split("&"),
+  var keyValues = (location.search || '').split('?').pop().split('&'),
     query = {},
-    keyValue;
+    keyValue
 
   // echoing back the query data to the parent window
   function sendMessage(message) {
-    var target = location.protocol + "//" + location.host;
+    var target = location.protocol + '//' + location.host
     if (parent) {
-      parent.postMessage("iframe:" + JSON.stringify(message), target);
+      parent.postMessage('iframe:' + JSON.stringify(message), target)
     }
   }
 
   // parsing the query
   for (var i = 0; i < keyValues.length; i += 1) {
-    keyValue = keyValues[i].split("=");
-    query[keyValue[0]] = keyValue[1];
+    keyValue = keyValues[i].split('=')
+    query[keyValue[0]] = keyValue[1]
   }
 
-  sendMessage(query); // send it
+  sendMessage(query) // send it
 </script>
 ```
 
@@ -50,13 +50,13 @@ So after putting this HTML inside of an iframe, I had a good baseline for testin
 <!-- assumes echo is in same directory as parent.html -->
 <iframe id="echo" src="./echo.html?state=1"></iframe>
 <script>
-  window.iframe = document.getElementById("echo");
-  window.addEventListener("message", function (e) {
-    if (e && typeof e.data === "string" && e.data.match(/^iframe:/)) {
-      var data = e.data.split("iframe:").join("");
-      console.log(JSON.parse(data));
+  window.iframe = document.getElementById('echo')
+  window.addEventListener('message', function (e) {
+    if (e && typeof e.data === 'string' && e.data.match(/^iframe:/)) {
+      var data = e.data.split('iframe:').join('')
+      console.log(JSON.parse(data))
     }
-  });
+  })
 </script>
 ```
 

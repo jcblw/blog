@@ -178,7 +178,7 @@ export const Blob = ({
   return (
     <canvas
       ref={(ref) => ref && setCanvas(ref)}
-      className="fixed top-0 left-0 w-full h-full"
+      className="fixed top-0 left-0 h-full w-full"
     />
   )
 }

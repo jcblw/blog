@@ -1,37 +1,38 @@
 ---
-import { EmailList } from "./EmailList";
+import { EmailList } from './EmailList'
 
-const today = new Date();
-const year = today.getFullYear();
+const today = new Date()
+const year = today.getFullYear()
 ---
 
 <footer class="container relative z-10">
-	<hr />
-	<p class="pb-0">Join my <a href="https://buttondown.email/jcblw?tag=website">email list</a></p>
-	<p class="pb-6 pt-0">&copy; {year} Jacob Lowe. All rights reserved.</p>
+  <hr />
+  <p class="pb-0">
+    Join my <a href="https://buttondown.email/jcblw?tag=website">email list</a>
+  </p>
+  <p class="pb-6 pt-0">&copy; {year} Jacob Lowe. All rights reserved.</p>
 </footer>
 <EmailList client:idle />
 <script is:inline>
-	// This is temporary to remove old cache
-	const registerServiceWorker = async () => {
-		if ("serviceWorker" in navigator) {
-			try {
-				const registration = await navigator.serviceWorker.register("/sw.js", {
-					scope: "/",
-				});
-				if (registration.installing) {
-					console.log("Service worker installing");
-				} else if (registration.waiting) {
-					console.log("Service worker installed");
-				} else if (registration.active) {
-					console.log("Service worker active");
-				}
-			} catch (error) {
-				console.error(`Registration failed with ${error}`);
-			}
-		}
-	};
+  // This is temporary to remove old cache
+  const registerServiceWorker = async () => {
+    if ('serviceWorker' in navigator) {
+      try {
+        const registration = await navigator.serviceWorker.register('/sw.js', {
+          scope: '/',
+        })
+        if (registration.installing) {
+          console.log('Service worker installing')
+        } else if (registration.waiting) {
+          console.log('Service worker installed')
+        } else if (registration.active) {
+          console.log('Service worker active')
+        }
+      } catch (error) {
+        console.error(`Registration failed with ${error}`)
+      }
+    }
+  }
 
-	registerServiceWorker();
+  registerServiceWorker()
 </script>
-

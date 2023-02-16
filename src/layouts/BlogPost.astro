@@ -1,104 +1,147 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { siteMetadata } from '../consts';
-import Time from '../components/Time.astro';
-import TableOfContents from '../components/TableOfContents.astro';
-import VercelImage from 'astro-vercel-image/VercelImage.astro';
-import { Comments } from '../components/Comments';
+import type { CollectionEntry } from 'astro:content'
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { siteMetadata } from '../consts'
+import Time from '../components/Time.astro'
+import TableOfContents from '../components/TableOfContents.astro'
+import VercelImage from 'astro-vercel-image/VercelImage.astro'
+import { Comments } from '../components/Comments'
 
-type BlogData = CollectionEntry<'blog'>['data'];
+type BlogData = CollectionEntry<'blog'>['data']
 
 interface Props extends BlogData {
-	minutesRead: string;
-	headings: {href: string, label:string}[];
-	slug: string;
-};
+  minutesRead: string
+  headings: { href: string; label: string }[]
+  slug: string
+}
 
-const { title, description, date, minutesRead, headings, heroImage, slug } = Astro.props;
-const disqusShortName = import.meta.env.DISQUS_NAME;
+const { title, description, date, minutesRead, headings, heroImage, slug } =
+  Astro.props
+const disqusShortName = import.meta.env.DISQUS_NAME
 const url = new URL(slug, siteMetadata.siteUrl)
-const imageUrl = heroImage ? new URL(heroImage, siteMetadata.siteUrl).toString() : undefined;
+const imageUrl = heroImage
+  ? new URL(heroImage, siteMetadata.siteUrl).toString()
+  : undefined
 
 const microdata = {
-	"@context": "https://schema.org",
-	"@type": "BlogPosting",
-	"headline": title,
-	description,
-	"image": [imageUrl],
-	"inLanguage": "en-US",
-	'url': url.toString(),
-	"datePublished": date.toISOString(),
-	"dateModified": date.toISOString(),
-	"author": [{
-		"@type": "Person",
-		"name": siteMetadata.author,
-		"url": siteMetadata.github,
-	}],
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: [imageUrl],
+  inLanguage: 'en-US',
+  url: url.toString(),
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  author: [
+    {
+      '@type': 'Person',
+      name: siteMetadata.author,
+      url: siteMetadata.github,
+    },
+  ],
 }
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} image={heroImage} />
-		<script is:inline type="application/ld+json" set:html={JSON.stringify(microdata, null, 2)} />
-		<style>
-			.hero-image {
-				max-width: 100%;
-				height: auto;
-				max-height: 70vh;
-			}
+  <head>
+    <BaseHead title={title} description={description} image={heroImage} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(microdata, null, 2)}
+    ></script>
+    <style>
+      .hero-image {
+        max-width: 100%;
+        height: auto;
+        max-height: 70vh;
+      }
 
-			.author-section {
-				width: 100%;
-			}
+      .author-section {
+        width: 100%;
+      }
 
-			.published-at {
-				line-height: 1em;
-			}
-		</style>
-	</head>
+      .published-at {
+        line-height: 1em;
+      }
+    </style>
+  </head>
 
-	<body>
-		<Header />
-		<main class="relative z-10">
-			<div class="flex items-center justify-center px-0 sm:px-1">
-				{heroImage && <VercelImage src={heroImage} width={1080} alt={title} class="hero-image rounded-none sm:rounded-md"/>}
-			</div>
-			<TableOfContents links={headings} />
-			<section class="container">
-				<div class="author-section flex flex-row items-center py-2 px-3 mt-3 bg-backgroundSecondary rounded-full">
-					<img class="rounded-full flex-0" width="45px" height="45px" src={siteMetadata.avatar} alt={siteMetadata.author} />
-					<div class="pl-2 flex-1">
-						<h6 class="color-overline pt-0 pb-1 font-bold">{siteMetadata.author}</h6>
-						{date &&	(
-							<Time prefix="Published " suffix={`  ●  ${minutesRead}`}class="py-0 published-at" date={date} />
-						)}
-					</div>
-				</div>
-			</section>
-			<article class="container blog-post">
-				<h1 class="color-link">{title}</h1>
-				<hr />
-				<slot />
-			</article>
-			<section class="container">
-				<Comments client:only slug={`/${slug}`} title={title} shortname={disqusShortName}  />
-			</section>
-			<div class="flex flex-row container">
-				<a
-					href={`https://mobile.twitter.com/search?q=${siteMetadata.siteUrl}/blog/${slug}`}
-					class="pr-4 my-3"
-				>
-					Discuss it on Twitter
-				</a>
-				<a href={`${siteMetadata.source}/src/content/blog/${slug}`} class="pr-4 my-3 ">
-					Edit on Github
-				</a>
-			</div>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <main class="relative z-10">
+      <div class="flex items-center justify-center px-0 sm:px-1">
+        {
+          heroImage && (
+            <VercelImage
+              src={heroImage}
+              width={1080}
+              alt={title}
+              class="hero-image rounded-none sm:rounded-md"
+            />
+          )
+        }
+      </div>
+      <TableOfContents links={headings} />
+      <section class="container">
+        <div
+          class="author-section bg-backgroundSecondary mt-3 flex flex-row items-center rounded-full py-2 px-3"
+        >
+          <img
+            class="flex-0 rounded-full"
+            width="45px"
+            height="45px"
+            src={siteMetadata.avatar}
+            alt={siteMetadata.author}
+          />
+          <div class="flex-1 pl-2">
+            <h6 class="color-overline pt-0 pb-1 font-bold">
+              {siteMetadata.author}
+            </h6>
+            {
+              date && (
+                <Time
+                  prefix="Published "
+                  suffix={`  ●  ${minutesRead}`}
+                  class="published-at py-0"
+                  date={date}
+                />
+              )
+            }
+          </div>
+        </div>
+      </section>
+      <article class="blog-post container">
+        <h1 class="color-link">{title}</h1>
+        <hr />
+        <slot />
+      </article>
+      <section class="container">
+        <Comments
+          client:only
+          slug={`/${slug}`}
+          title={title}
+          shortname={disqusShortName}
+        />
+      </section>
+      <div class="container flex flex-row">
+        <a
+          href={`https://mobile.twitter.com/search?q=${siteMetadata.siteUrl}/blog/${slug}`}
+          class="my-3 pr-4"
+        >
+          Discuss it on Twitter
+        </a>
+        <a
+          href={`${siteMetadata.source}/src/content/blog/${slug}`}
+          class="my-3 pr-4"
+        >
+          Edit on Github
+        </a>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>
