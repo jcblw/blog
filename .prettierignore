@@ -1,0 +1,4 @@
+**/dist
+**/.vercel
+**/.cache
+**/.astro

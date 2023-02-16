@@ -8,7 +8,8 @@
     "start": "astro dev --port 8000",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/mdx": "^0.16.0",
@@ -35,6 +36,8 @@
     "use-color-scheme": "^1.1.3"
   },
   "devDependencies": {
+    "prettier-plugin-astro": "^0.8.0",
+    "prettier-plugin-tailwindcss": "^0.2.3",
     "prop-types": "^15.8.1"
   }
 }

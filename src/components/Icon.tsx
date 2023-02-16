@@ -65,7 +65,7 @@ export const Icon = ({
   const pathdata = IconMap[icon]
   return (
     <div
-      className={`${className} inline-flex items--center justify--center`}
+      className={`${className} items--center justify--center inline-flex`}
       onClick={onClick}
     >
       <svg height={height ?? '48'} width={width ?? '48'} viewBox={viewBox}>

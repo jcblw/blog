@@ -1,28 +1,32 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../layouts/BlogPost.astro';
-import VercelImage from 'astro-vercel-image/VercelImage.astro';
+import { CollectionEntry, getCollection } from 'astro:content'
+import BlogPost from '../layouts/BlogPost.astro'
+import VercelImage from 'astro-vercel-image/VercelImage.astro'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug.replace(/^\//, '') },
-		props: { ...post, slug: post.slug.replace(/^\//, '') },
-	}));
+  const posts = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { slug: post.slug.replace(/^\//, '') },
+    props: { ...post, slug: post.slug.replace(/^\//, '') },
+  }))
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'blog'>
 
-const post = Astro.props;
-const { Content, headings, remarkPluginFrontmatter } = await post.render();
+const post = Astro.props
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
 const minutesRead = remarkPluginFrontmatter.minutesRead
-const formattedHeadings = headings.map(heading => ({
-	label: heading.text.replace('⌗', ''),
-	href: heading.slug
+const formattedHeadings = headings.map((heading) => ({
+  label: heading.text.replace('⌗', ''),
+  href: heading.slug,
 }))
-
 ---
 
-<BlogPost {...post.data} minutesRead={minutesRead} headings={formattedHeadings} slug={post.slug}>
-	<!-- <pre><code>{JSON.stringify(post, null, 2)}</code></pre> -->
-	<Content components={{ img: VercelImage }} />
+<BlogPost
+  {...post.data}
+  minutesRead={minutesRead}
+  headings={formattedHeadings}
+  slug={post.slug}
+>
+  <!-- <pre><code>{JSON.stringify(post, null, 2)}</code></pre> -->
+  <Content components={{ img: VercelImage }} />
 </BlogPost>

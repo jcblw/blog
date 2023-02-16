@@ -1,5 +1,5 @@
 ---
-title: "Effortlessly Debug Your Chrome Extension with React Devtools"
+title: 'Effortlessly Debug Your Chrome Extension with React Devtools'
 description: "Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level."
 date: 2021-08-07
 status: published
@@ -16,12 +16,12 @@ I have been building out Chrome extensions for years now, and one thing that has
 What I was trying to debug was the content script of the application, and when opening up the inspector, you would see that no react app is detected. This of course, if the page you are currently on is not a React app too. This wasn't very reassuring to see, but not an uncommon thing in the Chrome extension world. Let me outline why it was not working.
 
 ```javascript
-window.__REACT_DEVTOOLS_APPEND_COMPONENT_STACK__ = true;
-window.__REACT_DEVTOOLS_BREAK_ON_CONSOLE_ERRORS__ = false;
+window.__REACT_DEVTOOLS_APPEND_COMPONENT_STACK__ = true
+window.__REACT_DEVTOOLS_BREAK_ON_CONSOLE_ERRORS__ = false
 window.__REACT_DEVTOOLS_COMPONENT_FILTERS__ = [
   { type: 1, value: 7, isEnabled: true },
-];
-window.__REACT_DEVTOOLS_SHOW_INLINE_WARNINGS_AND_ERRORS__ = true;
+]
+window.__REACT_DEVTOOLS_SHOW_INLINE_WARNINGS_AND_ERRORS__ = true
 ```
 
 This is what is in the script that gets injected into the page. As you can see, React dev tools uses the **window** object to attach some global flags. This will not work with a React app in a content script because we do not have access to the same **window** as the page. The dev tools is built to work with web pages first and foremost. To get it to work, we need to do a little bit of hacking to give it access to our window.
@@ -54,8 +54,8 @@ Then when I am injecting my main content script, I also inject the react devtool
 
 ```javascript
 browser.tabs.executeScript(tabId, {
-  file: "./scripts/react-devtools.js",
-});
+  file: './scripts/react-devtools.js',
+})
 ```
 
 Once the injection happens and your React app starts up, you should see the React devtools connect, and you should be able to see your React app in the devtools 🪄.

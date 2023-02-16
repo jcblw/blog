@@ -1,24 +1,27 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { Blob } from './Blob';
-import { DarkModeToggle } from './DarkModeToggle';
-const { title = 'jcblw'} = Astro.props;
+import HeaderLink from './HeaderLink.astro'
+import { Blob } from './Blob'
+import { DarkModeToggle } from './DarkModeToggle'
+const { title = 'jcblw' } = Astro.props
 ---
+
 <style is:global>
-	.blob-canvas {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+  .blob-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 <Blob client:only />
-<header class="container z-10 relative flex items-center">
-	<nav class:list={['py-4 flex items-center flex-1']}>
-		<HeaderLink href="/" class="h3 items-center flex mr-1/2">{title}</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/talks">Talks</HeaderLink>
-	</nav>
-	<DarkModeToggle client:only />
+<header class="container relative z-10 flex items-center">
+  <nav class:list={['py-4 flex items-center flex-1']}>
+    <HeaderLink href="/" class="h3 items-center flex mr-1/2">
+      {title}
+    </HeaderLink>
+    <HeaderLink href="/blog">Blog</HeaderLink>
+    <HeaderLink href="/talks">Talks</HeaderLink>
+  </nav>
+  <DarkModeToggle client:only />
 </header>

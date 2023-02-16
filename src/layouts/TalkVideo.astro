@@ -1,93 +1,107 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { siteMetadata } from '../consts';
-import Time from '../components/Time.astro';
+import type { CollectionEntry } from 'astro:content'
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { siteMetadata } from '../consts'
+import Time from '../components/Time.astro'
 
-import "../styles/prism.css"
+import '../styles/prism.css'
 
-type TalkData = CollectionEntry<'videos'>['data'];
+type TalkData = CollectionEntry<'videos'>['data']
 
 interface Props extends TalkData {
-	slug: string;
-};
+  slug: string
+}
 
-const { title, description, date, slug, youtubeId } = Astro.props;
+const { title, description, date, slug, youtubeId } = Astro.props
 
 const url = new URL(slug, siteMetadata.siteUrl)
 
 const microdata = {
-	"@context": "https://schema.org",
-	"@type": "VideoObject",
-	"name": title,
-	description,
-	"videoId": youtubeId,
-	"thumbnailUrl": `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
-	"embedUrl": `https://www.youtube.com/embed/${youtubeId}`,
-	'url': url.toString(),
-	"datePublished": date.toISOString(),
-	"dateModified": date.toISOString(),
-	"uploadDate": date.toISOString(),
-	"author": [{
-		"@type": "Person",
-		"name": siteMetadata.author,
-		"url": siteMetadata.github,
-	}],
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: title,
+  description,
+  videoId: youtubeId,
+  thumbnailUrl: `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`,
+  embedUrl: `https://www.youtube.com/embed/${youtubeId}`,
+  url: url.toString(),
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  uploadDate: date.toISOString(),
+  author: [
+    {
+      '@type': 'Person',
+      name: siteMetadata.author,
+      url: siteMetadata.github,
+    },
+  ],
 }
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      .author-section {
+        width: 100%;
+      }
 
-			.author-section {
-				width: 100%;
-			}
+      .published-at {
+        line-height: 1em;
+      }
 
-			.published-at {
-				line-height: 1em;
-			}
+      .video {
+        aspect-ratio: 16 / 9;
+        @apply w-full lg:w-4/6;
+        align-self: center;
+        justify-self: center;
+      }
+    </style>
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(microdata, null, 2)}
+    ></script>
+  </head>
 
-			.video {
-				aspect-ratio: 16 / 9;
-				@apply w-full lg:w-4/6;
-				align-self: center;
-				justify-self: center;
-			}
-
-	
-		</style>
-		<script is:inline type="application/ld+json" set:html={JSON.stringify(microdata, null, 2)} />
-	</head>
-
-	<body>
-		<Header />
-		<main class="relative layer--1">
-			<article class="talk-video flex flex-col">
-				<iframe
-					src={`https://www.youtube.com/embed/${youtubeId}`}
-					frameborder="0"
-					allowfullscreen
-					title={title}
-					class="video"
-				/>	
-				<div class="container">
-					<div class=" author-section flex row items-center py-5">
-						<img class="rounded-full flex-0" width="80px" height="80px" src={siteMetadata.avatar} alt={siteMetadata.author} />
-						<div class="pl-2 flex-1">
-							<h1 class="color--paragraph pb-1 pt-0 h2 bold">{title}</h1>
-							{date &&	(
-								<Time prefix={`by ${siteMetadata.author} on `} class="py-0 published-at inline color--overline" date={date} />
-							)}
-						</div>
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+    <main class="layer--1 relative">
+      <article class="talk-video flex flex-col">
+        <iframe
+          src={`https://www.youtube.com/embed/${youtubeId}`}
+          frameborder="0"
+          allowfullscreen
+          title={title}
+          class="video"></iframe>
+        <div class="container">
+          <div class="author-section row flex items-center py-5">
+            <img
+              class="flex-0 rounded-full"
+              width="80px"
+              height="80px"
+              src={siteMetadata.avatar}
+              alt={siteMetadata.author}
+            />
+            <div class="flex-1 pl-2">
+              <h1 class="color--paragraph h2 bold pb-1 pt-0">{title}</h1>
+              {
+                date && (
+                  <Time
+                    prefix={`by ${siteMetadata.author} on `}
+                    class="published-at color--overline inline py-0"
+                    date={date}
+                  />
+                )
+              }
+            </div>
+          </div>
+          <slot />
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </body>
 </html>

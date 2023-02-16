@@ -15,14 +15,14 @@ On the surface, it sounds super simple to just listen to all the click events on
 The first solution we found is to grab the event, and call event.preventDefault then set window.location after we have tracked the event.
 
 ```javascript
-window.addEventListener("click", function (e) {
-  var href = e.target.href;
+window.addEventListener('click', function (e) {
+  var href = e.target.href
 
   // this makes the xhr call
-  trackEvent("link exit", e, function (err, res) {
-    window.location = href;
-  });
-});
+  trackEvent('link exit', e, function (err, res) {
+    window.location = href
+  })
+})
 ```
 
 We were not a huge fan of this because it would take shift + clicks and ctrl + clicks and make them work the same way a normal click does when clearly that was not the user’s intent.
@@ -32,16 +32,16 @@ We were not a huge fan of this because it would take shift + clicks and ctrl + c
 We decided that the event needed to stay an event and dispatch again once we have tracked it.
 
 ```javascript
-window.addEventListener("click", function (e) {
-  if (e.tracked) return;
+window.addEventListener('click', function (e) {
+  if (e.tracked) return
 
-  var mockEvent = new e.constructor(e.type, e);
-  mockEvent.tracked = true;
+  var mockEvent = new e.constructor(e.type, e)
+  mockEvent.tracked = true
 
-  trackEvent("link exit", e, function (err, res) {
-    e.target.dispatchEvent(mockEvent);
-  });
-});
+  trackEvent('link exit', e, function (err, res) {
+    e.target.dispatchEvent(mockEvent)
+  })
+})
 ```
 
 What is nice about this approach is that now the click events will work as intended. Whenever a user ctrl + clicks it still works because with this approach we copy the event via new e.constructor( e.type, e ), so all the modifier keys are still intact when dispatching the event again.
@@ -69,61 +69,61 @@ When a user is using a modifier key, lets say ctrl, tracking is not a problem be
 Here is the full code:
 
 ```javascript
-window.addEventListener("click", function (e) {
+window.addEventListener('click', function (e) {
   // this means the click has already been canceled
-  if (e.defaultPrevented) return;
+  if (e.defaultPrevented) return
 
   // ensure link
   var el = e.target,
     origin,
     mockEvent,
-    dispathed;
+    dispathed
 
   // checking parents to see if we are nested in an anchor tag
-  while (el && "A" !== el.nodeName) {
-    el = el.parentNode;
+  while (el && 'A' !== el.nodeName) {
+    el = el.parentNode
   }
 
   // check the el is an achor tag
-  if (!el || "A" !== el.nodeName) {
-    return;
+  if (!el || 'A' !== el.nodeName) {
+    return
   }
 
   // getting origin
-  origin = location.protocol + "//" + location.hostname;
+  origin = location.protocol + '//' + location.hostname
 
   if (location.port) {
-    origin += ":" + location.port; // add port to origin
+    origin += ':' + location.port // add port to origin
   }
 
   // same origin
   if (el.href && 0 === el.href.indexOf(origin)) {
-    return;
+    return
   }
 
   // check to see if we already tracked the event
   if (e.tracked) {
-    return;
+    return
   }
 
-  mockEvent = new e.constructor(e.type, e);
-  mockEvent.tracked = true;
+  mockEvent = new e.constructor(e.type, e)
+  mockEvent.tracked = true
 
   if (e.metaKey || e.ctrlKey || e.shiftKey) {
-    dispatched = true; // set this so we dont send this out twice
+    dispatched = true // set this so we dont send this out twice
   } else {
-    e.preventDefault();
+    e.preventDefault()
   }
 
   trackEvent(
-    "link exit",
+    'link exit',
     e,
     function (err, res) {
       if (!dispatched) {
-        e.target.dispatchEvent(mockEvent);
+        e.target.dispatchEvent(mockEvent)
       }
     },
     1500 /* this sets the timeout */
-  );
-});
+  )
+})
 ```

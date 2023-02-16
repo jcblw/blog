@@ -9,17 +9,10 @@ export interface Props {
   design?: 'light' | 'bright' | 'dark'
 }
 
-const {
-  title,
-  description,
-  href,
-  image,
-  imageAlt,
-} = Astro.props
-
-
+const { title, description, href, image, imageAlt } = Astro.props
 ---
-<style define:vars={{ }}>
+
+<style define:vars={{}}>
   .highlight-imageContainer {
     width: 60px;
     height: 60px;
@@ -29,22 +22,28 @@ const {
     max-width: 100%;
   }
 </style>
-<div class="flex items-baseline flex-row px-0">
-  <div class="bg-backgroundSecondary p-3 rounded-md flex flex-row flex-1">
-    <div class="flex flex-0 items-center justify-center">
-      <div class="highlight-imageContainer mr-3 flex items-center justify-center rounded-lg overflow-hidden">
+<div class="flex flex-row items-baseline px-0">
+  <div class="bg-backgroundSecondary flex flex-1 flex-row rounded-md p-3">
+    <div class="flex-0 flex items-center justify-center">
+      <div
+        class="highlight-imageContainer mr-3 flex items-center justify-center overflow-hidden rounded-lg"
+      >
         <img class="highlight-image" alt={imageAlt} src={image} />
       </div>
     </div>
-    <div class="flex-1 flex flex-col justify-center">
+    <div class="flex flex-1 flex-col justify-center">
       <h4 class="py-0">
         {title}
       </h4>
-      {href ? (
-        <a class="py-0" href={href}>{description}</a>
-      ): (
-        <p class="py-0">{description}</p>
-      )}
+      {
+        href ? (
+          <a class="py-0" href={href}>
+            {description}
+          </a>
+        ) : (
+          <p class="py-0">{description}</p>
+        )
+      }
     </div>
   </div>
 </div>

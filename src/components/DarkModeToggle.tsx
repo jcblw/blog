@@ -9,7 +9,7 @@ export const DarkModeToggle = () => {
     <div className="flex items-center justify-center">
       <Icon
         icon={colorScheme === 'dark' ? 'luna' : 'sol'}
-        className="p-2 cursor-pointer"
+        className="cursor-pointer p-2"
         width="32"
         height="32"
         color={colorScheme === 'dark' ? 'link' : 'overline'}

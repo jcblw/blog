@@ -7,16 +7,16 @@ export const getReadme = async () => {
         Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
       },
     }
-  );
-  const json = await result.json();
-  return Buffer.from(json.content, "base64").toString("utf-8");
-};
+  )
+  const json = await result.json()
+  return Buffer.from(json.content, 'base64').toString('utf-8')
+}
 
 export const getProfileInfo = async () => {
-  const result = await fetch("https://api.github.com/graphql", {
-    method: "POST",
+  const result = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       // @ts-ignore
       Authorization: `Bearer ${import.meta.env.GITHUB_TOKEN}`,
     },
@@ -48,9 +48,9 @@ export const getProfileInfo = async () => {
       }
       `,
       variables: {
-        username: "jcblw",
+        username: 'jcblw',
       },
     }),
-  });
-  return (await result.json())?.data?.user;
-};
+  })
+  return (await result.json())?.data?.user
+}

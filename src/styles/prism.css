@@ -5,15 +5,16 @@ pre::-webkit-scrollbar {
 }
 
 pre::-webkit-scrollbar-thumb {
-  @apply bg-blumine dark:bg-pictonBlue rounded-full;
+  @apply rounded-full bg-blumine dark:bg-pictonBlue;
 }
 
-:not(pre) > code { 
-  @apply text-rawSienna dark:text-calico bg-white dark:bg-steelGrey shadow-white my-1 shadow-steelGrey rounded-xs p-1/2;
+:not(pre) > code {
+  @apply my-1 rounded-xs bg-white p-1/2 text-rawSienna shadow-white shadow-steelGrey dark:bg-steelGrey dark:text-calico;
 }
 
-code[class*='language-'], pre[class*='language-'] {
-  @apply text-steelGrey dark:text-bridalHealth bg-white dark:bg-steelGrey;
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply bg-white text-steelGrey dark:bg-steelGrey dark:text-bridalHealth;
   font-family: 'Inconsolata', monospace;
   font-size: 1em;
   text-align: left;
@@ -31,12 +32,13 @@ code[class*='language-'] * {
 }
 
 pre[class*='language-'] {
-  @apply px-3 pb-2 pt-2 overflow-auto my-2;  
+  @apply my-2 overflow-auto px-3 pb-2 pt-2;
   overflow: auto;
 }
 
-:not(pre) > code[class*='language-'], pre[class*='language-'] {
-  @apply bg-white dark:bg-steelGrey overflow-x-scroll;
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  @apply overflow-x-scroll bg-white dark:bg-steelGrey;
   border-radius: 0.5em;
   max-width: 100%;
 }
@@ -57,7 +59,7 @@ pre[class*='language-'] {
 
 .token.punctuation {
   @apply text-steelGrey dark:text-bridalHealth;
-} 
+}
 
 .token.tag,
 .token.attr-name,
