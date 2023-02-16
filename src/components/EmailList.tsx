@@ -70,7 +70,7 @@ export const EmailList = () => {
                 <Icon icon="close" width="24" height="24" />
               </div>
             )}
-            <h4 className="color-overline py-2 pt-0 font-bold">
+            <h4 className="color-overline py-2 pt-0 font-medium">
               Subscribe to my newsletter
             </h4>
             <p className="pt-0">

@@ -25,7 +25,7 @@ h6,
 
 h1,
 .h1 {
-  @apply text-xl font-bold;
+  @apply text-xl font-medium;
 }
 
 h2,
@@ -35,12 +35,12 @@ h2,
 
 h3,
 .h3 {
-  @apply text-lg font-bold;
+  @apply text-lg font-medium;
 }
 
 h4,
 .h4 {
-  @apply text-base font-bold;
+  @apply text-base font-medium;
 }
 
 h5,
@@ -50,7 +50,7 @@ h5,
 
 h6,
 .h6 {
-  @apply text-sm font-bold;
+  @apply text-sm font-medium;
 }
 
 p,
