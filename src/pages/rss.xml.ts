@@ -2,8 +2,6 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { siteMetadata } from '../consts'
 
-const isProduction = import.meta.env.MODE === 'production'
-
 export async function get(context: any) {
   const posts = await getCollection('blog')
   const videos = await getCollection('videos')
@@ -12,7 +10,7 @@ export async function get(context: any) {
     description: siteMetadata.description,
     site: context.site,
     items: posts
-      .filter((post) => isProduction || post.data.status === 'published')
+      .filter((post) => !post.data.status || post.data.status !== 'draft')
       .map((post) => ({
         ...post.data,
         pubDate: post.data.date,
