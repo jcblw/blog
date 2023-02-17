@@ -13,6 +13,7 @@ import { getProfileInfo, getReadme } from '../utils/github'
 import FeaturedProjects from '../components/FeaturedProjects.astro'
 
 const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.status || post.data.status !== 'draft')
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3)
 
