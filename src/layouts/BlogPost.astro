@@ -8,6 +8,7 @@ import Time from '../components/Time.astro'
 import TableOfContents from '../components/TableOfContents.astro'
 import VercelImage from 'astro-vercel-image/VercelImage.astro'
 import { Comments } from '../components/Comments'
+import { Icon } from '../components/Icon'
 
 type BlogData = CollectionEntry<'blog'>['data']
 
@@ -17,13 +18,22 @@ interface Props extends BlogData {
   slug: string
 }
 
-const { title, description, date, minutesRead, headings, heroImage, slug } =
-  Astro.props
+const {
+  title,
+  description,
+  date,
+  minutesRead,
+  headings,
+  heroImage,
+  slug,
+  status,
+} = Astro.props
 const disqusShortName = import.meta.env.DISQUS_NAME
 const url = new URL(slug, siteMetadata.siteUrl)
 const imageUrl = heroImage
   ? new URL(heroImage, siteMetadata.siteUrl).toString()
   : undefined
+const isDraft = status !== 'published'
 
 const microdata = {
   '@context': 'https://schema.org',
@@ -87,6 +97,27 @@ const microdata = {
       </div>
       <TableOfContents links={headings} />
       <section class="container">
+        {
+          isDraft && (
+            <div class="mt-3 flex flex-row items-center justify-center">
+              <Icon
+                className="flex-0 rounded-full"
+                width="32px"
+                height="32px"
+                icon="hidden"
+                color="overline"
+              />
+              <div class="flex-1 pl-2">
+                <h6 class="color-overline pt-0 pb-0 font-medium">
+                  Status is draft
+                </h6>
+                <p class="pt-0 pb-0 font-medium">
+                  This is not visible to discovery but can be accessed directly.
+                </p>
+              </div>
+            </div>
+          )
+        }
         <div
           class="author-section bg-backgroundSecondary mt-3 flex flex-row items-center rounded-full py-2 px-3"
         >
@@ -104,7 +135,7 @@ const microdata = {
             {
               date && (
                 <Time
-                  prefix="Published "
+                  prefix={isDraft ? 'Drafted ' : 'Published '}
                   suffix={`  ●  ${minutesRead}`}
                   class="published-at py-0"
                   date={date}

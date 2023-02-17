@@ -6,9 +6,12 @@ import { siteMetadata } from '../../consts'
 import { getCollection } from 'astro:content'
 import PostEntryPreview from '../../components/PostEntryPreview.astro'
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-)
+const isProduction = import.meta.env.MODE === 'production'
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post) =>
+    isProduction ? !post.data.status || post.data.status !== 'draft' : true
+  )
 ---
 
 <!DOCTYPE html>

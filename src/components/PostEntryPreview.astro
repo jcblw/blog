@@ -1,5 +1,10 @@
 ---
+import type { CollectionEntry } from 'astro:content'
+import { Icon } from './Icon'
 import Time from './Time.astro'
+
+type BlogData = CollectionEntry<'blog'>['data']
+type BaseProps = astroHTML.JSX.HTMLAttributes & BlogData
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
   href: string
@@ -14,14 +19,30 @@ const {
   title,
   description,
   date,
+  status,
   class: className,
   ...props
 } = Astro.props
 const formattedDescription =
   description.length > 247 ? description.slice(0, 250) + '...' : description
+const isDraft = status && status !== 'published'
 ---
 
-<div class="py-3" {...props}>
+<div class={`py-3 ${isDraft ? '' : ''}`} {...props}>
+  {
+    isDraft && (
+      <div class="flex items-center rounded-sm">
+        <Icon
+          icon="hidden"
+          height="16px"
+          width="16px"
+          color="overline"
+          className="mr-1"
+        />
+        <span class="color-overline text-sm">Draft</span>
+      </div>
+    )
+  }
   <h3 class="color-link pt-0 pb-2">
     <a href={href} class:list={[className, 'py-0 no-underline']}>
       {title}

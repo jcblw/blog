@@ -46,11 +46,11 @@ h6 {
 }
 
 .color-background {
-  @apply bg-bridalHealth fill-bridalHealth dark:bg-vulcan dark:fill-vulcan;
+  @apply text-bridalHealth fill-bridalHealth dark:text-vulcan dark:fill-vulcan;
 }
 
 .color-background-secondary {
-  @apply bg-white fill-white dark:bg-steelGrey dark:fill-steelGrey;
+  @apply text-white fill-white dark:text-steelGrey dark:fill-steelGrey;
 }
 
 .color-overline {
