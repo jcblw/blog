@@ -5,9 +5,1142 @@ date: 2014-05-29
 youtubeId: 'ClQQc41AKxo'
 ---
 
+import Transcripts from '../../components/Transcripts.astro'
+
+> This was my first talk at JSLA. At the time I had given talks quite a bit a meetup called Riverside.JS. I love looking back on this talk because it was just at the time when [**electron**](https://github.com/electron/electron) was split into its own project. I do not even think that I name electron at all because at the time it was called atom-shell.
+
 Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over
 
 - what are the options out there
 - what kind of things can these apps do compared to webapps
-- what are the current pro/cons of making a NodeJS native Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app
-- and more.
+- what are the current pro/cons of making a NodeJS native
+
+Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit.
+
+<Transcripts
+  transcripts={`
+0:05
+so how's everybody doing
+0:07
+um my name is jacob and i'm going to be
+0:09
+talking about native node.js apps
+0:13
+i'm on github it's my username for
+0:15
+github i'm going to have i have some
+0:17
+relevant material up there so if you
+0:19
+want to go check that out um all my
+0:21
+demos will be up there as well
+0:22
+i work full time at a company called
+0:24
+honey inc we make embeddable
+0:26
+quizzes and and ads and stuff it's
+0:29
+really cool um we're looking uh we have
+0:32
+some job openings up on our website um
+0:35
+if you're interested come talk to me
+0:36
+afterwards and then i'm also an
+0:38
+ambassador for syngrid
+0:41
+so you might be thinking like what is a
+0:42
+native node.js app
+0:45
+you can almost say like isn't all
+0:47
+node.js apps native because you can
+0:49
+essentially run c code from them so
+0:52
+i don't know how much more native you
+0:54
+can get
+0:56
+well yeah they are they are native
+0:58
+node.js apps but i'm i was trying to
+1:00
+think like what
+1:02
+should i call these type of apps because
+1:04
+there's not really like a a
+1:05
+qualification or like a marketing term
+1:07
+for these type of apps so like it's not
+1:09
+a web app at all because it does so much
+1:12
+more than a web app it would be kind of
+1:13
+degrading to it to say hey it's a web
+1:15
+app
+1:16
+a native web app is actually a little
+1:17
+bit better but it's it's not a web app
+1:20
+at all because a kind of a web app like
+1:22
+implies that it can be ran on a browser
+1:24
+which if you run a heavily modified
+1:27
+browser you can run these apps but not
+1:29
+really on a regular web browser
+1:32
+node.js app it is kind of a node.js app
+1:35
+but like when you say node.js app
+1:38
+you're usually talking about something
+1:39
+like a web server or some type of
+1:41
+networking server or even though it can
+1:43
+be a number of things and then like
+1:46
+native node.js app is kind of lame as
+1:48
+well i mean i don't like it i think we
+1:50
+could do a little bit better
+1:52
+so like super effing cool way to use
+1:54
+webtech to make a native-esque type of
+1:57
+app
+1:58
+i like that a lot better
+2:00
+so but really what i'm talking about is
+2:03
+a lightweight version of a browser
+2:05
+and then the runtime of the browser is
+2:08
+replaced with node.js runtime which is
+2:10
+really cool and i say most instances
+2:13
+because there's a lot of choices
+2:15
+um well not a lot of choices but there's
+2:17
+multiple choices to this
+2:19
+and and luckily they're open source as
+2:20
+well
+2:22
+so
+2:23
+the first one i'm going to talk about is
+2:26
+desk shell now desk shell
+2:28
+has been around for a while
+2:30
+it's
+2:31
+not that actually actively developed but
+2:34
+it is very close to a web app you
+2:37
+essentially are running a web app that
+2:39
+interacts with the backend
+2:41
+and they're kind of they're it used to
+2:42
+be called app.js and i think they
+2:44
+changed the name because they're looking
+2:45
+to support php i don't know if that's
+2:46
+considered like a bad thing about this
+2:49
+type of app but
+2:52
+um and then the big guy that i think
+2:54
+most of you have probably heard about is
+2:56
+a node webkit it's very full featured
+2:58
+i've built apps in node webkit it is
+3:00
+very cool they even have a grunt plugin
+3:02
+to pack applications which is just
+3:04
+awesome
+3:05
+like you have no idea
+3:07
+it is kind of slow to start up
+3:10
+and there's a number of reasons for that
+3:13
+and actually i was going to talk about
+3:15
+node webkit throughout this whole entire
+3:17
+presentation
+3:18
+um but then something happened uh this
+3:21
+month and just for reference for people
+3:23
+who are watching this online this is may
+3:25
+of 2014
+3:27
+so what happened is that
+3:29
+github
+3:31
+released their atom ide to open source
+3:33
+which i thought was great i mean a new
+3:35
+project that's open source it's using
+3:37
+very similar technologies i've actually
+3:39
+speculated with a lot of my friends that
+3:40
+they're using node webkit
+3:42
+in atom to build this ide
+3:45
+but they actually hired on one of the
+3:47
+core developers of node webkit to build
+3:50
+adam shell
+3:51
+which is very actively developed because
+3:54
+it's
+3:55
+from github and it acts just like
+3:57
+node.js runtime
+3:59
+it is missing a few key features because
+4:01
+really it was just built to run their
+4:03
+ide and now they're just open sourcing
+4:05
+it so eventually they'll get these
+4:06
+features like uh for instance you can't
+4:08
+even set like an icon to the app very
+4:10
+easily grant you can do it but you have
+4:13
+to kind of hack around to do it compared
+4:15
+to like what you can do in node webkit
+4:18
+so before i talk about like
+4:20
+how cool these things are these types of
+4:22
+apps there is some things to think about
+4:24
+before you like try to build a
+4:25
+production app with one of these
+4:28
+so it's different i mean this is with
+4:30
+all new technology it's going to be
+4:32
+different um for instance like things
+4:34
+like live reload will not work right off
+4:37
+the bat with it maybe actually this
+4:39
+stuff's being actively developed pretty
+4:40
+quick so there actually might be a
+4:42
+plug-in for live reload now
+4:44
+but at the time of making this there
+4:45
+wasn't
+4:46
+and like
+4:47
+it's it's just weird and like for
+4:49
+instance have you ever made a web app
+4:51
+that you've never had that you don't
+4:53
+have access to the window object like
+4:56
+you always have access to that where you
+4:57
+can like just store stuff in there and
+4:59
+you can just pull stuff right back out
+5:01
+these types of apps you don't have that
+5:02
+capability
+5:04
+sometimes you have it'll
+5:06
+access window a lot of times though
+5:08
+and then like there's something that we
+5:10
+don't have to deal with as web
+5:12
+programmers that you have to deal with
+5:14
+with these type of apps which is like
+5:15
+uses on different os's usually these
+5:17
+browsers just work on these different
+5:19
+os's and you have to worry about you
+5:21
+know the actual processes and stuff
+5:23
+but um
+5:25
+you have the same
+5:26
+browser but now you you're storing data
+5:28
+into different locations i actually have
+5:31
+an app that i built that like
+5:33
+i had a friend on a mac computer that
+5:35
+couldn't run it just for some stupid
+5:37
+reason
+5:39
+um but yeah that's one thing to look out
+5:41
+for
+5:42
+um and then actually uh the app store
+5:44
+like a lot of people are trying to like
+5:45
+release these apps the app store i've
+5:47
+heard a lot of nightmare situations
+5:48
+where they didn't uh pass
+5:50
+uh the app store and then i've actually
+5:54
+heard of a few node webkit ones that
+5:56
+have
+5:57
+but um adam shell i guess there's people
+5:59
+trying to do it but a few of the github
+6:01
+employees don't think that they're gonna
+6:04
+pass
+6:05
+and then it's experimental like some of
+6:07
+the features that you've used on web and
+6:10
+that you've come to love or on node.js
+6:13
+some of those features just don't work
+6:15
+like
+6:16
+granted you can get native plugins to
+6:17
+work npm modules that run c code but
+6:20
+like there is catches for instance like
+6:22
+adam shell
+6:23
+is only running version 0
+6:26
+0 11 9 is the first version that it came
+6:29
+out with so if you have a native plugin
+6:30
+that's running at 0 10
+6:33
+only is compatible with 0 10 versions of
+6:35
+node
+6:36
+you're going to run into a lot of issues
+6:37
+because they did a lot of changes with
+6:38
+native bindings
+6:40
+but there is before i blame you guys out
+6:42
+there is a lot of exciting stuff about
+6:44
+this app about these types of apps and
+6:46
+one thing that really excites me is that
+6:47
+like w3 standards they have a bunch of
+6:50
+different specs that come out all the
+6:51
+time that like are just like
+6:53
+experimental sometimes or sometimes you
+6:56
+know have been around for a while but
+6:58
+actually these features can be built by
+6:59
+just your regular
+7:01
+javascript programmer so they can start
+7:03
+playing with these types of things right
+7:05
+away and actually what's cool is that
+7:06
+you can actually learn these
+7:07
+technologies before they even come out
+7:09
+in browsers so when they do come out
+7:11
+it's not something new to you
+7:14
+and then you actually have control over
+7:15
+the browser as a web programmer there's
+7:17
+always been that moment where you just
+7:19
+like curse ie8 you know to all hell
+7:22
+where like something's broken you don't
+7:24
+know why you actually control
+7:26
+the the browser that you're running on
+7:28
+which is great which means you can run
+7:30
+you know all the cool apis that that
+7:32
+browser gives you
+7:34
+um
+7:35
+it's it isn't just a node.js app it does
+7:38
+so much more like it has a gui that
+7:40
+isn't a terminal i mean i don't know how
+7:42
+many times you know
+7:44
+a client has asked you for a terminal
+7:46
+program that they can play around with
+7:48
+because it doesn't happen because
+7:49
+clients usually want something that's
+7:51
+nice and pretty and something that has
+7:53
+an actual gui not just a terminal
+7:55
+program
+7:57
+it this is for people who like
+8:00
+hate saying setting up dbs or they just
+8:02
+don't want to do it
+8:03
+it actually has built-in web storage so
+8:05
+if you wanted to actually get up and
+8:06
+started without having to set up
+8:07
+something like leveldb or our uh
+8:10
+mysql or sqlite or something some
+8:13
+embeddable database it actually already
+8:15
+has indexeddb and local storage and all
+8:17
+that kind of cool stuff in it so you can
+8:20
+get started really quick
+8:21
+and it has a real dom i don't know how
+8:23
+important this is to you but
+8:25
+you can actually interact with this dom
+8:26
+and see things happening where like if
+8:28
+you use js dom and stuff it feels kind
+8:30
+of abstract
+8:31
+you're interacting with it but it's it's
+8:33
+kind of you know something that is um
+8:36
+very abstract
+8:38
+and then you have access to native
+8:39
+features and i'm talking about like
+8:41
+native gui features like menus menu bars
+8:44
+windows docs start menu and actually i
+8:47
+have a demo here of a
+8:49
+node webkit app
+8:51
+um and this is a note-taking app that
+8:54
+syncs up with gist and actually you have
+8:56
+access to
+8:58
+as you can see here i have you know
+9:00
+access to the file menu
+9:01
+when i like try to switch apps you see
+9:03
+that it's in here
+9:05
+let me close that
+9:07
+so you actually have access to those
+9:08
+types of things which is great because
+9:11
+like you i granted you could probably do
+9:12
+that with a regular node.js app but you
+9:14
+have to hack around to get to it and
+9:16
+then it's like kind of awkward without a
+9:17
+window to actually show a gui in
+9:21
+so all those things were about like node
+9:23
+uh like web apps like what abs what uh
+9:26
+what web apps do compared to node.js
+9:28
+apps so i want to explain why it's not
+9:31
+just a web app
+9:33
+so you have access to node.js apis like
+9:36
+streams file system child processes all
+9:38
+kinds of really cool stuff built in and
+9:41
+i'm not talking about like file access
+9:43
+like you would have in chrome or file
+9:45
+access that you would have like through
+9:47
+browserify or something you actually
+9:49
+have access to the whole file system
+9:51
+which is great we'll grant it you have
+9:52
+the permissions
+9:55
+um and then synchronous module imports
+9:58
+these are really great where you just
+9:59
+like
+10:00
+require something and it's there
+10:03
+where like i i can hear you saying like
+10:05
+oh whatever you know you can you you can
+10:08
+actually do this stuff with component i
+10:10
+o or or browserify so why is that
+10:13
+important
+10:14
+but actually you have like access to
+10:16
+like all the npm modules on npm granted
+10:19
+there are some um some gotchas where
+10:22
+like with native modules and stuff like
+10:24
+that where
+10:25
+they kind of don't work um sometimes but
+10:28
+a lot of the modules will work right out
+10:30
+of the box
+10:32
+and one thing that's really cool is that
+10:33
+you can actually interact with installed
+10:35
+programs like git python or like your
+10:38
+keychain or something and actually i
+10:39
+have another demo showing this
+10:42
+so i'm going to go to my terminal
+10:45
+switch over
+10:48
+and i'm going to go
+10:53
+so i'm going to start up the app this is
+10:54
+actually an adam shell app
+10:58
+as you can see it's showing me like a to
+11:00
+do of like a a to do md
+11:04
+and actually i'll go into my editor
+11:07
+and i'll open up this one let me bring
+11:09
+that back
+11:11
+so
+11:12
+um
+11:13
+let's say i want to
+11:14
+check off like we went to the the kitty
+11:17
+bar afterwards
+11:18
+so i save that and then you'll see
+11:21
+that it should update
+11:25
+so it updated so i'm actually
+11:26
+interacting with git here
+11:28
+i'm actually
+11:29
+just running a
+11:31
+um
+11:33
+a child process to
+11:35
+run git right here so i spawn a get
+11:39
+process and then i just spit that the
+11:41
+output straight to the the uh
+11:44
+the window
+11:46
+which is really cool because i didn't
+11:47
+have to set up web sockets or or
+11:49
+anything crazy to get that running i
+11:51
+just it was it felt kind of natural
+11:53
+those things just interacting with each
+11:54
+other
+11:56
+and then also another really cool thing
+11:58
+is that i have access to hardware now i
+12:00
+have another demo here
+12:03
+and i'm not a hardware guy so
+12:05
+it's just a little bit of a warning so i
+12:07
+have this arduino board hooked up to a
+12:11
+like a breadboard with an accelerometer
+12:13
+on here
+12:14
+and then i have a demo app
+12:23
+that i'm going to run and is anybody
+12:25
+epileptic because i'm going to change
+12:27
+the background color of this thing
+12:29
+pretty quickly
+12:31
+yeah
+12:34
+oh actually real quick it's going to
+12:35
+throw an air
+12:37
+and that is because
+12:39
+i need to be sudo to get access to the
+12:41
+usb port
+12:45
+okay
+12:46
+so give it a second it's going to start
+12:49
+turning colors
+12:50
+so actually the wiring is probably off
+12:53
+on here because i'm not a uh
+12:56
+a uh
+12:57
+hardware guy but i can actually move
+12:59
+this thing around and it will change
+13:01
+colors and sometimes you'll get some
+13:02
+pretty colors out of it
+13:04
+but
+13:05
+yeah so i'm actually talking directly to
+13:07
+the app from this piece of hardware
+13:09
+which i mean i don't know of any web
+13:12
+apps that can really do that and i'm
+13:14
+using uh johnny five and
+13:16
+some hackery to to get this thing
+13:18
+working on adam's shell it's kind of a
+13:20
+pain to get that kind of stuff working
+13:22
+but yeah
+13:23
+my name is jacob and thanks
+13:41
+um so you can't run these things on
+13:43
+mobile phones right now just because you
+13:45
+would have to install like an apk or
+13:49
+an actual like ios app and these things
+13:51
+are mainly for desktop currently so but
+13:55
+you can have access to the camera of the
+13:57
+computer
+13:59
+but again you can do that kind of stuff
+14:00
+with web apps as well with get user
+14:02
+media and stuff like that
+14:07
+so if you were starting a new project
+14:09
+would you use node webkit or or adam
+14:11
+michelle
+14:12
+okay so
+14:13
+i should have said this before but the
+14:14
+main difference between adam's shell and
+14:16
+node webkit is that
+14:19
+node webkit your entry point is like an
+14:21
+html file so you essentially you render
+14:24
+that html file and then you start
+14:25
+running the scripts on that html page
+14:28
+and that's how you start up a node
+14:29
+webkit app
+14:30
+and with adam's shell it's different
+14:33
+because you have an entry point of a
+14:35
+js file so you actually start running
+14:38
+the js process and then you can open up
+14:41
+windows when your app's ready which is
+14:42
+kind of good with like
+14:44
+perceived uh performance like oh it's
+14:47
+opening up real fast but really you're
+14:49
+just waiting before and then opening up
+14:51
+the app
+14:52
+i would have to say
+14:53
+i would probably use adam's shell
+14:56
+well
+14:57
+it depends because if i
+14:59
+if the the timeline was like a month
+15:02
+probably node webkit because i need a
+15:04
+lot of the features that node webkit has
+15:06
+but if let's say it's like six months
+15:09
+adam shell probably will catch up in
+15:11
+terms of like the nice features like
+15:13
+icons and stuff like that in six months
+15:16
+so i would probably for a longer project
+15:18
+picked adam shell
+15:21
+it's written in coffee script oh yeah
+15:23
+that is the down part but
+15:25
+luckily you can interact with it with
+15:27
+javascript
+15:30
+okay um i think this is probably not a
+15:34
+fair question for you but i've been
+15:35
+using atom editor and
+15:38
+ui wise visual
+15:40
+it's awesome i love it but performance
+15:42
+wise
+15:43
+it's really sluggish
+15:46
+yes
+15:47
+you can speak on that at all so you is
+15:50
+you're essentially you're not completely
+15:51
+native you're still running a web
+15:53
+browser you're dealing with all the the
+15:55
+rendering of a web browser i mean it's
+15:57
+the same performance issues that you
+15:58
+would run into with a regular web
+16:00
+browser
+16:01
+right now it's not completely optimized
+16:05
+and i don't think there's you know
+16:07
+there's stuff that they can do
+16:09
+eventually to to optimize that but i
+16:11
+yeah i don't know i guess i'm just like
+16:14
+it's almost a proxy question for you i
+16:16
+want to ask when i said get up but like
+16:18
+are they aware of it
+16:20
+yeah they are aware of it actually i i
+16:22
+saw recently they pushed a big update
+16:23
+for scrolling speeds that's supposed to
+16:25
+improve the scrolling speeds actually i
+16:27
+have a linux box so i haven't really had
+16:30
+the the
+16:31
+the royalties of getting to use atom uh
+16:34
+the the actual ide
+16:35
+until recently so
+16:37
+yeah i don't
+16:39
+yeah i think they're they're doing stuff
+16:40
+to make the performance a little bit
+16:42
+better but it's still not completely
+16:43
+native
+16:49
+can we see the code for the hardware
+16:51
+yeah
+16:53
+so in the hardware
+16:56
+i just require the app here let me blow
+16:58
+this up
+16:59
+a little bit
+17:04
+so i require the app and then with adam
+17:07
+they have like this browser window and
+17:08
+then this is johnny five it's just a
+17:11
+module that i had to install
+17:13
+and then i just make a new board
+17:15
+when the board's ready i
+17:17
+make an accelerometer which is
+17:21
+talking to this thing and then when the
+17:23
+accelerometer inputs change i emitted
+17:26
+event
+17:27
+and let's see if we scroll over
+17:28
+accelerometer change and that just sends
+17:31
+out the data to that event
+17:34
+and here i'm just opening up the window
+17:35
+when the app is ready
+17:37
+and then actually the html file
+17:41
+so you have to do like background
+17:43
+require remote and then as you see from
+17:45
+the background i can require the app
+17:48
+and then in here
+17:49
+see this is converting it all
+17:52
+and right here i listen to the change
+17:53
+event so i grab the app and i look for
+17:55
+that excel change and then i handle the
+17:58
+change which then does some conversion
+18:01
+stuff to make it a little bit more like
+18:02
+rgb
+18:05
+than it comes out as
+18:11
+right here so
+18:13
+i guess given some of the like cross
+18:17
+uh cross os compatibility issues like
+18:20
+when
+18:21
+what would be the primary use case for
+18:23
+this like when would you say yeah we'll
+18:25
+do
+18:26
+we'll use uh node webkit rather than
+18:29
+just we'll build a node app and we'll
+18:32
+tell people to run it in webkit
+18:35
+um so
+18:36
+i think the main use case is when you
+18:39
+need something that's um
+18:43
+you want to build like a node app that
+18:45
+that has some good performance and you
+18:47
+want to write node code but you also
+18:49
+want access to some modules that you can
+18:52
+then like pull out bluetooth or some
+18:55
+technology that's just not quite there
+18:58
+plus like
+19:00
+for instance i i reference the the
+19:02
+service worker api or spec that's coming
+19:05
+out um
+19:06
+and like there's gonna they're gonna do
+19:08
+a lot of like network proxy next network
+19:11
+proxy and stuff with that to make like
+19:13
+caching really good in a browser but
+19:16
+with like this type of stuff you can
+19:17
+already do like those types of things to
+19:19
+where you can have really good caching
+19:21
+and really good you know uh access
+19:24
+really good like um
+19:25
+access to cash assets and stuff
+19:29
+so i would say like if you're doing
+19:30
+something with hardware it's a definite
+19:31
+go because
+19:33
+i don't know when you're ever going to
+19:34
+be able to like connect up a usb to
+19:36
+arduino board and then run like a web
+19:38
+app
+19:39
+um
+19:40
+but besides that there's there is i mean
+19:43
+there's a lot of cool things about it
+19:45
+but really uh
+19:47
+there's not too many differences from
+19:50
+the web platform which is kind of nice
+19:52
+in itself because then you can you know
+19:54
+have very similar code bases if you
+19:55
+wanted to make a web app in one of these
+19:57
+kind of like native esk apps
+20:01
+uh give it up for jacob
+20:11
+you`}
+/>

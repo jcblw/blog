@@ -5,4 +5,392 @@ date: 2014-08-28
 youtubeId: 'vv7EtNjpuKA'
 ---
 
+import Transcripts from '../../components/Transcripts.astro'
+
 Module of the month was a small series at jsla in which people of the community would give talks about a specific module in the nodejs ecosystem. This months talk was about LevelUp.
+
+<Transcripts
+  transcripts={`
+0:07
+the module i'll be going over today is
+0:09
+level up so what level up is is a high
+0:13
+level wrapper around a database called
+0:15
+leveldb
+0:16
+and
+0:18
+leveldb is actually a database that was
+0:20
+created by google it's an embedded
+0:22
+database it's just a key value store
+0:24
+it's actually what backs indexeddb
+0:27
+on the google chrome browser it also i
+0:30
+think is in mariadb as kind of like a
+0:32
+cache layer
+0:34
+for their values and also is in this
+0:36
+really cool project called
+0:38
+dat
+0:40
+which is all about sharing information
+0:42
+between servers and multiple databases
+0:44
+uses it behind the scenes really cool
+0:46
+project i suggest checking it out
+0:48
+so level up to install it you do npm
+0:52
+install level up
+0:53
+but it does have a dependency of level
+0:55
+down that doesn't include inside of its
+0:57
+package.json because you can actually
+0:59
+swap it out for different things so to
+1:01
+install it you need to do
+1:04
+npm install level up level down and then
+1:07
+save those or you could just do npm
+1:09
+install level
+1:10
+um i already have installed because it
+1:13
+level down is does have some c-scripts
+1:15
+so it takes a little bit to install
+1:17
+but i do have installed in this repo um
+1:20
+so what i'm going to do is start
+1:21
+building a an application with it so the
+1:24
+first thing you do
+1:25
+is that you include level up into
+1:29
+your app
+1:36
+and then
+1:39
+we're going to create a database and
+1:41
+this is real simple you just say
+1:47
+level up
+1:50
+and there might be a little bit of lag
+1:51
+in between my typing and what's going on
+1:54
+is
+1:55
+on the screen
+1:57
+uh
+1:58
+we just pointed towards a local
+1:59
+directory now this will actually build a
+2:01
+database if it's not there already but
+2:03
+if it will hook up to the existing
+2:04
+database if there is one i've actually
+2:06
+created one and has a little bit of data
+2:08
+in it uh not too much um so now since we
+2:11
+have an empty database we'll essentially
+2:13
+have an empty database um
+2:15
+we're gonna want to do some uh actions
+2:18
+against it's like put information inside
+2:20
+of it so i'm gonna create this little
+2:21
+log file so that way we can see the
+2:23
+information coming out
+2:25
+and i'm going to use that crazy bind
+2:26
+method
+2:29
+to make a little logging function
+2:33
+and then
+2:34
+so we want to put information in so with
+2:37
+level uh up it's really easy i do db
+2:40
+put
+2:41
+and then
+2:42
+a key
+2:44
+and then
+2:45
+a value
+2:46
+um
+2:48
+so i'm going to say jsla is effing
+2:52
+awesome
+2:53
+and then that takes a callback function
+2:55
+because after the write is done it it
+2:58
+lets me know so i'm just going to pass
+3:00
+in a log
+3:02
+and then i'm going to run it
+3:06
+um and as you can see well you will see
+3:09
+it didn't spit out anything which is
+3:10
+good because it actually the only thing
+3:12
+that it will pass back is an error if it
+3:14
+happens
+3:15
+so it looks like we're all good so we
+3:16
+want to see you know now the next thing
+3:18
+you want to do with
+3:19
+a database is to actually read that
+3:21
+information out that you've stored with
+3:23
+it so what i'm going to do
+3:27
+is i'm going to
+3:28
+push this down and then say db.get
+3:32
+and then we want to get jsla and then
+3:34
+i'm going to pass it that log function
+3:35
+we only have to pass the one uh two
+3:37
+parameters with this one um
+3:40
+the the key and the callback
+3:43
+so i'm gonna save
+3:46
+and then we'll go back to the console
+3:53
+so
+3:54
+now
+3:55
+you see it brings back nola's effing
+3:57
+awesome it's all right i mean those
+3:59
+pretty cool but knows where the value of
+4:01
+the error would be
+4:03
+uh and then that is the the value of
+4:05
+that that key that we stored
+4:07
+um
+4:08
+so let's say i've been to jsla and i
+4:11
+don't think it's it's super effing
+4:12
+awesome
+4:13
+so
+4:14
+let's say we're going to do a delete
+4:17
+on this key
+4:20
+don't worry don't worry
+4:23
+so we're going to save that and then
+4:25
+we're going to run it
+4:26
+and this doesn't have anything as well
+4:28
+that comes out because it's supposed to
+4:29
+just bring back an error
+4:31
+um
+4:32
+so we're all good so we've actually
+4:34
+written things uh read things and then
+4:36
+we've deleted things from the database i
+4:38
+do think jsla is effing awesome so we're
+4:41
+gonna we're gonna we're gonna run that
+4:43
+again um just to put that back in the
+4:45
+database
+4:46
+uh so another cool thing
+4:48
+about this module is that uh it has
+4:50
+streaming
+4:51
+um so what i'm gonna do is i'm gonna
+4:54
+create a second database so db2 is level
+4:57
+up
+4:58
+and then we're just going to put in a
+5:00
+random database name
+5:03
+so that way you see that i don't you
+5:05
+know i didn't
+5:06
+pre-fill this
+5:08
+so i'm going to create a
+5:10
+read stream
+5:12
+which to do this all you do is db dot
+5:16
+create
+5:17
+read stream
+5:23
+and i'm also going to create a right
+5:25
+stream because a level db or
+5:28
+level up has both of them
+5:30
+so db2
+5:32
+dot
+5:33
+create
+5:38
+right stream
+5:40
+cool
+5:41
+so now i have a restream and a right
+5:42
+stream and what i want to do is i want
+5:44
+to essentially copy my whole entire
+5:46
+first database and then pump it into the
+5:49
+second database
+5:50
+and we can do this real easy by saying
+5:52
+read stream dot pipe
+5:55
+into our right stream
+5:58
+so i'm gonna run this it's not gonna do
+6:00
+anything in the console because we're
+6:01
+not catching any errors
+6:03
+but we're gonna assume that everything
+6:04
+went okay i mean didn't throw any really
+6:07
+bad errors
+6:09
+so now we want to see uh that
+6:11
+information
+6:12
+to see if it actually uh put it into
+6:15
+that second database so i'm just going
+6:17
+to go up into this read stream and
+6:20
+change it to the second database
+6:23
+and then i'm going to take my read
+6:24
+stream and say on
+6:26
+data
+6:28
+and then we're just going to
+6:30
+use the log function as our callback
+6:33
+now i'm gonna go back over and run it
+6:38
+as you can see i had a couple little
+6:40
+bits of information already in there
+6:43
+in the first database but now this is
+6:44
+the second database that we just created
+6:46
+on the fly and pumped all the
+6:47
+information from the first database into
+6:48
+the second database using streaming
+6:51
+so that's a level up i encourage you
+6:53
+guys to to use it it's a very cool
+6:55
+module
+6:56
+and thank you
+7:03
+you`}
+/>

@@ -5,4 +5,999 @@ date: 2017-02-25
 youtubeId: 'nxRRbwVlbUE'
 ---
 
+import Transcripts from '../../components/Transcripts.astro'
+
 This was a talk I had given in early 2017 that showed off some webaudio APIs and how they can be used to create some interesting visualizations. I also talked about some of the creative coding tools I use to make these things.
+
+<Transcripts
+  transcripts={`
+0:06
+all right my name is Jacob I am JCB LW
+0:10
+everywhere on the web and that's not bad
+0:12
+i don't really care about that social
+0:14
+website and also i'm an organizer of
+0:17
+jail a because i love the Jazz community
+0:19
+today I'm going to be talking about
+0:22
+visualizing audio on the web very
+0:25
+descriptive title nothing fancy no click
+0:28
+bait or anything you know you're getting
+0:30
+what you see there I probably can work
+0:32
+on that especially when we put up the
+0:33
+video you want to make it a little bit
+0:34
+more enticing and do something with it
+0:37
+but right now it's just visualizing the
+0:39
+audio on the web so before we go forward
+0:43
+and talk about visualizing audio I kind
+0:44
+of want steak a step back I mean I'm
+0:46
+getting older I turned 29 this month and
+0:49
+you know got here the older the older I
+0:53
+get the more I like to look back and be
+0:54
+nostalgic about the things that of my
+0:56
+path and one thing is you know
+0:59
+visualizing audio or visualizing music
+1:02
+was like it's something that I really
+1:03
+really liked now who remembers this yeah
+1:07
+so this is windows media player this was
+1:10
+actually my first visualizations that I
+1:13
+ever you know fall or probably even
+1:15
+dealt with as a young child and is it
+1:19
+like when I see this I'm like oh it
+1:21
+brings me back to a place where I'm
+1:23
+sitting in front of my computer and I'm
+1:24
+shoving CDs and my you know CD Drive and
+1:27
+like opening up a program is before
+1:29
+streaming or anything without now this
+1:32
+is a YouTube video and let's see
+1:34
+comments like this it really makes me
+1:35
+sad because it's like this is no longer
+1:38
+going to be available to me to be able
+1:40
+to use this even though granted i
+1:41
+probably wouldn't use it but there's no
+1:43
+there's no chance than we actually using
+1:45
+it and it's being a YouTube video of
+1:47
+course there is like funny comments okay
+1:49
+out of trip balls on your 10 this was
+1:52
+kind of funny because like I was
+1:53
+probably like 10 when i was using
+1:57
+windows media player and actually i
+1:59
+think this is a pretty good talk title
+2:03
+if you don't mind me i'm gonna change
+2:06
+this real quick
+2:09
+[Music]
+2:13
+there we go I think that's gonna that's
+2:16
+gonna get two clicks right there all
+2:19
+right going forward all right enough
+2:23
+about going in the past let's talk about
+2:24
+the present so I don't know if you guys
+2:27
+have checked out like modern interfaces
+2:29
+for playing audio pretty sure you spot a
+2:31
+Phi or iTunes or something and one thing
+2:34
+about that is that music visualizations
+2:36
+are usually gone from those interfaces
+2:38
+it's more or less like these are behind
+2:41
+some tab or like they're non-existent or
+2:45
+the some static visualization which is
+2:47
+like on soundcloud you actually have
+2:49
+like these very static visualizations
+2:52
+and it's pretty much just a progress bar
+2:53
+that you're going through and back to
+2:56
+myself I actually just started a new job
+2:58
+and it's not this really cool place
+2:59
+called headspace the meditation app we
+3:01
+actually hosted their last month but one
+3:04
+thing that's interesting as this is a
+3:05
+progression in my like career is also
+3:07
+that my prior places I was working with
+3:10
+maps and latitude longitude putting pins
+3:14
+on a map and if I ever wanted to do
+3:17
+anything with audio is really on my own
+3:19
+time and there was no really like
+3:20
+practical use for me to do it our main
+3:23
+product that headspace is actually audio
+3:25
+files so me getting to look into these
+3:27
+new Web Audio API is actually beneficial
+3:29
+for my job as well which I kind of love
+3:32
+that like I'm actually doing something
+3:33
+that I wanted you as well as it's kind
+3:36
+of like benefiting me a little bit and
+3:38
+before like started I was like checking
+3:40
+out the product that headspace and they
+3:42
+have this really cool player it's very
+3:44
+light but you can see that the player is
+3:46
+kind of moving a little bit it has like
+3:47
+a little bit of animation supposed to
+3:49
+just be smooth and like soothing it's
+3:52
+not really like it's not doing any audio
+3:55
+visualization even though you kind of
+3:56
+say it's like a vibe type of
+3:58
+visualization or something because it is
+4:00
+the meditation app but I thought it was
+4:02
+really intriguing like I usually you see
+4:04
+audio players and it's just a play
+4:06
+button and then a stop button maybe a
+4:08
+progress bar but you really don't have
+4:10
+much innovation and besides doing that
+4:13
+you have you know album art as big as
+4:15
+you can get it or something and the
+4:17
+first thing that went through my mind
+4:18
+which I think probably goes through a
+4:20
+lot of our minds
+4:22
+time to time is I just want to implement
+4:24
+it in JavaScript like why we actually
+4:26
+have a web player at head space but it
+4:29
+looks nothing like that cool one that I
+4:31
+was talking about that was like our
+4:32
+mobile player and that was actually a
+4:34
+youtube video that I was showing that so
+4:37
+before I started I actually took off a
+4:40
+month and I rode my skateboard around
+4:42
+New York and DC but during that time
+4:44
+actually stopped in a bunch of coffee
+4:46
+shops and I would just hack on stuff and
+4:48
+it was mostly trying to implement this
+4:50
+thing in JavaScript now the next slide
+4:54
+that i'm going to show you is my first
+4:55
+try or not first try it's the first step
+4:58
+in a progression of trying to implement
+5:01
+this player now when you look at this
+5:05
+and sorry for the blurry quality but
+5:06
+this looks nothing like that player at
+5:10
+all so let me kind of like go through my
+5:14
+thought process of this so the player is
+5:16
+kind of like this random blob and
+5:18
+there's like pieces of it moving in a
+5:20
+certain direction so what I did was like
+5:22
+I want to pick make a bunch of points
+5:24
+and put them around a circle and then
+5:25
+move them in a random direction and
+5:27
+that's what this is except I'm really
+5:29
+bad at math so as you can see it's not a
+5:32
+circle it actually came out something
+5:34
+that's more like a sideways donut I
+5:37
+thought it was really cool and like when
+5:39
+I built something really cool i liked
+5:40
+like at least take a screenshot or put
+5:43
+it on twitter or something so that's
+5:46
+what i did with this mess just a
+5:48
+progression in it as you can see i got
+5:50
+better at math there's another
+5:52
+visualization why didn't get better i
+5:54
+just like figured out what my problem
+5:55
+was and fix it and yeah so this is just
+6:00
+like a i'm changing the colors around as
+6:02
+you can see it's a little bit more
+6:03
+coherence getting a little bit closer
+6:04
+still doesn't look anything like it and
+6:06
+what you'll see in some of my demos as
+6:08
+well as just some of the other slides is
+6:10
+I like to like I make things very
+6:12
+declarative so I can just like take
+6:14
+these like numbers and just twist them
+6:16
+and like turn them to 11 and then
+6:18
+probably turn it back to nine because my
+6:19
+computer is lagging too much and that's
+6:21
+what you'll see in a lot of these demos
+6:23
+is me just kind of like messing around
+6:25
+with numbers and I also have another
+6:29
+step in here but the thing is is that I
+6:31
+did a lot of this without source control
+6:34
+and I really wish that I
+6:36
+I used sorts of control the entire time
+6:37
+because then I can show you a better
+6:38
+progression of this because the last
+6:41
+slide to this next slide is way
+6:44
+different so more or less like there's a
+6:47
+big gap in this entire history of this
+6:50
+Wiz players came and more or less what I
+6:54
+did when I connected those points made
+6:56
+quadratic curves between them and made
+6:58
+it one solid shape and then I actually
+7:00
+started playing audio with it and this
+7:02
+next step and fun so this is what it
+7:07
+looks like there's a little bit of music
+7:09
+here as you can see revision we actually
+7:11
+are starting to visualize audio in this
+7:13
+and francha this is nothing is not very
+7:17
+calm if you look at it this would not be
+7:20
+soothing to be inside of a meditation
+7:22
+else but more or less this was just me
+7:25
+taking that knob and dialing it to 11
+7:27
+and so this is like a very simple
+7:29
+visualization so I'm taking those random
+7:32
+points and usually looks like a small
+7:34
+threshold and that's kind of like at a
+7:35
+rest 8 and when the one there's like a
+7:38
+snare head or a beat drop or something
+7:41
+the frequency goes up and you're able to
+7:43
+have a larger variation and that's where
+7:45
+you feel like the little spikes because
+7:47
+it goes in and it goes out now have
+7:49
+another one go and turn it back on this
+7:53
+one is not so much a demo of the player
+7:55
+i'm kind of like showing off some of the
+7:56
+functionality because I I kind of build
+7:59
+this in stats so but as you can see the
+8:03
+animation got a little bit more subtle
+8:05
+this one's a little bit better you could
+8:07
+actually see this probably in kind of
+8:08
+like an interface you could say the
+8:11
+animation change instead of just doing
+8:13
+like the random points and having a
+8:14
+bigger threshold to them this one
+8:16
+actually the border gets a little bit
+8:17
+larger but it's actually what I found
+8:19
+interesting at this point is there's a
+8:22
+lot of different things you can do with
+8:24
+audio visualization that's not so
+8:26
+straightforward I mean this is like a
+8:28
+subtle animation if you thought about
+8:30
+windows media player that I had in the
+8:31
+very first slide or second slide it
+8:33
+actually that was like a full screen
+8:35
+immersion sometimes a little too much I
+8:38
+could say where this is a little bit
+8:40
+more subtle granted it probably would
+8:41
+get annoying after a while and this
+8:44
+really sparked my interest and kind of
+8:46
+like audio visualization so much so that
+8:48
+I actually built
+8:50
+npm module it's called sound dashboard
+8:52
+it's on NPM and also you can find it on
+8:55
+my github will actually post this to the
+8:56
+flak channel afterwards so you guys can
+8:59
+check it out if you want what this
+9:00
+allows me to do is load up like an audio
+9:02
+buffer file and then be able to like
+9:04
+analyze the data of it when it's like
+9:06
+playing and grab that data out really
+9:08
+conveniently instead of hooking up these
+9:11
+AP is now you you might be thinking like
+9:15
+oh that's cool and all but like how are
+9:17
+you actually doing this like what is
+9:19
+actually going on that maybe somebody
+9:21
+else wants to do audio visualization and
+9:22
+like what is the steps that I had to
+9:25
+take to get to that point so I have a
+9:28
+couple little pieces of code and I'll
+9:30
+try to walk through this and then i'll
+9:33
+answer questions at the end and i'm
+9:34
+pretty sure it'll be mostly about these
+9:36
+slides but essentially i'm using the
+9:39
+audio contacts API it's I want to say
+9:42
+it's you but it's been around for a
+9:44
+couple years now the the support for it
+9:48
+is pretty good there is some methods
+9:50
+that are a little bit spotty on in terms
+9:52
+of browser support and more or less like
+9:55
+my demos only work in chrome and firefox
+9:57
+right now but more or less I'm creating
+10:01
+the audio context and that's what I'm
+10:02
+doing that new audio context I'm
+10:04
+creating a buffer source what a buffer
+10:06
+source is essentially I can attach like
+10:08
+an audio buffer to it and that will
+10:12
+allow me to like play and stop the audio
+10:15
+buffer and then I'm also creating an
+10:17
+analyzer now the analyzer does exactly
+10:19
+what it sounds like it's analyzing the
+10:21
+data that is going through it in the way
+10:24
+that I can pump data through the
+10:25
+analyzer is down below as you can see i
+10:29
+am adding the audio buffer now that's
+10:32
+like a un aid array which is like a
+10:34
+array of arrays that's holding like
+10:36
+binary data inside of it and i'm
+10:39
+connecting it to the analyzer which i
+10:41
+think it's spelled one of these wrong
+10:43
+but analyzer connect and then i'm
+10:46
+connecting the analyzer straight to the
+10:47
+destination you can think of this as
+10:48
+with speakers of your computer and then
+10:50
+i'm just starting it you can add a bunch
+10:52
+of params for that to start it at a
+10:54
+certain point
+10:55
+now to get the data out of the analyzed
+10:59
+because I just showed you how to connect
+11:00
+the analyzer this is how you would get
+11:02
+it out so you get a buffered lang that's
+11:04
+pretty much a the audio that it's
+11:07
+playing at a certain time because we're
+11:10
+going to call this function over and
+11:11
+over and over again so whenever you're
+11:13
+playing like an audio file and you want
+11:14
+to get a certain data out of a certain
+11:17
+time when it's playing you can get the
+11:19
+length of the actual binary how long it
+11:22
+is and then I'm going to create a UN 28
+11:23
+array with that length which is going to
+11:26
+just create a blank one and then call it
+11:28
+calling audio analyzer get byte time
+11:31
+domain data I really love that method
+11:33
+name but then call it coin it with data
+11:36
+array is actually going to hydrate that
+11:38
+data array with a bunch of binary data
+11:40
+from that current buffer and then as you
+11:42
+can see here I'm just using
+11:43
+requestanimationframe to call this thing
+11:45
+over and over and over again and get out
+11:46
+the the data for each sequence and this
+11:52
+is what actually creating the
+11:53
+visualization looks like now like I said
+11:55
+I'm not good at math so I don't know
+11:57
+exactly what's going on here granted
+11:58
+there's only a little bit of code but
+12:00
+more or less what's happening is we're
+12:02
+we're calculating a waveform and we're
+12:05
+just getting x and y coordinates for it
+12:07
+that's what these are and then you can
+12:10
+take those x and y coordinates and you
+12:11
+can put absolute this gives or more
+12:14
+likely you probably want to render those
+12:15
+to a canvas and then you would have like
+12:17
+an actual waveform if you just rendered
+12:20
+those that's like circles on a canvas
+12:21
+which is really cool because it's like
+12:23
+that's not that much code to be able to
+12:25
+render out a waveform and if you want to
+12:29
+look at more there's actually a good mdn
+12:31
+doc that i have in like some of my
+12:33
+github repos that is the place where i
+12:36
+actually learned how to do a lot of this
+12:37
+stuff because they have a doc on how to
+12:39
+analyze audio data on the web and that's
+12:43
+where a lot of this code came from now
+12:45
+as a few demos the first one I have here
+12:48
+I was just playing around with stuff
+12:50
+cranking the knobs on things and this is
+12:54
+like a very sporadic like it's exactly
+12:56
+like a small snippet of like an
+12:58
+animation that you'll see later on but
+13:02
+more or less like I call this one that
+13:03
+event horizon I just thought it was cool
+13:06
+yeah it's a very chaotic
+13:08
+and then now I have another demo and
+13:13
+this is actually turn this is actually
+13:19
+the blob player that I was showing you i
+13:22
+just have it down here kind of as a
+13:23
+player it's not I mean the whole
+13:26
+interface that doesn't revolve around
+13:28
+this audio visualization exactly there's
+13:30
+a lot of times where I think audio
+13:32
+visualization is very good at when it's
+13:34
+subtle just these subtle things I mean
+13:36
+you talking to your Google assistant or
+13:38
+theory or something they're doing a
+13:40
+little bit of visualization of the input
+13:41
+that's coming into your phone and it's
+13:43
+nice that you're getting that feedback
+13:44
+that there actually is like audio going
+13:46
+through it so I kind of like you know
+13:48
+just doing these subtle things but then
+13:50
+again I don't always do very subtle
+13:53
+things and I have some demos that are a
+13:55
+little bit more chaotic now this is a 3d
+14:02
+demo it's very it moves very quickly and
+14:06
+it's very jagged and this is one trouble
+14:08
+that I've been having with visualizing
+14:10
+audio it's just that you're getting so
+14:11
+much data coming in I like you saw I'm
+14:14
+actually i'm just doing
+14:15
+requestanimationframe i could delay that
+14:17
+but the more i delay it where's the
+14:19
+visualizations become and when you have
+14:22
+these things happening in every like 100
+14:25
+milliseconds or probably shorter than
+14:26
+that it's hard to do tween between the
+14:29
+different points and be able to do
+14:30
+smooth animations it's possible but it's
+14:33
+not that easy but this is showing you
+14:35
+you can actually like integrate this
+14:36
+kind of stuff into anything even like 3d
+14:39
+objects then I have one more same song
+14:46
+but this is actually just a waveform but
+14:49
+it's around a surrounded circle so
+14:53
+essentially took that same math that i
+14:54
+was able to like to put points around
+14:56
+the circle and then I just apply to
+14:58
+waveform to it and then that way when it
+15:00
+hits like a snare drum or beat drop or
+15:02
+something you'll see that the kind of
+15:05
+like fan out I'm actually caching like
+15:07
+five versions of you know the waveform
+15:10
+and then cycling through those and then
+15:12
+this outer one is the oldest and the
+15:15
+inner
+15:15
+it's the newest and actually i'll show
+15:17
+you really quick how easy it is to like
+15:21
+change this around and this is this is
+15:23
+why i have so many just random looking
+15:26
+visualization I want to go to my code
+15:28
+real quick and as you can see I just
+15:30
+have like a bunch of variables up at the
+15:31
+top but what's cool is that I could just
+15:33
+say like 100 and then that should update
+15:39
+and that's not I can refresh as you see
+15:44
+it changed around the whole
+15:45
+visualization I mean granted i think the
+15:47
+other one was cooler looking this is not
+15:49
+bad as you can see this is actually the
+15:51
+one that the event horizon originally
+15:53
+came from because you see the lines from
+15:55
+the circles the outline and then i could
+15:58
+even do things like this which this is
+16:00
+actually going to just make my computer
+16:02
+go super slow so now i'm catching up to
+16:09
+10 of these things and doing the
+16:10
+visualizations with that but it once you
+16:13
+get something like this it actually
+16:15
+starts to slow down the animation it
+16:16
+looks very laggy but it's you know it
+16:19
+looks really cool especially when you're
+16:20
+not hearing the audio because when
+16:22
+you're not hearing the audio it just
+16:23
+looks like a cool animation but that is
+16:28
+it and thank you we have the second mic
+16:46
+up here yeah he's got the mic for you
+16:57
+um I was using at weaning library uh and
+17:02
+the it was just in a blob demo a lot of
+17:07
+those things I'm just taking the raw
+17:08
+audio data and then I'm trying to make a
+17:09
+some type of wave for more like
+17:12
+frequency something and then just
+17:15
+putting that straight into the points
+17:17
+with the blob player and I I'm not
+17:19
+really using any animations and like the
+17:21
+main thing here but you'll see when I
+17:24
+actually press like pause it's kind of
+17:27
+like you know tweens out and from those
+17:31
+different points that's the only place
+17:33
+when i'm actually using animation
+17:34
+library at all but definitely if i
+17:36
+wanted to smooth things out for instance
+17:38
+in like a 3d one it's very jarring
+17:39
+sometimes and I'm definitely thinking
+17:42
+about integrating some types of
+17:44
+animation library or some tweeting
+17:45
+library to be able to submit those
+17:46
+things out
+17:54
+are you kidding a drum so really a lot
+18:05
+of the visualizations are more or less
+18:07
+based off of what would be the part of
+18:10
+the waveform I'm taking like a highest
+18:12
+peak of the wave form and saying that's
+18:13
+kind of like the highest bit inside of
+18:16
+so essentially like based off of that
+18:18
+I'm making like the border fatter or the
+18:20
+threshold for the the random points
+18:23
+larger because you can't really like I
+18:25
+mean you can get into a lot of like and
+18:26
+like breaking apart the the song and
+18:28
+whatnot you can actually do that with
+18:30
+the stuff smarter people than I am can
+18:32
+do that with that stuff I really just
+18:34
+like to make things look cool right off
+18:36
+the bat but more or less like what
+18:38
+you're seeing here has nothing to do
+18:40
+with like separating any of the sounds
+18:41
+it's just more or less heavy taking part
+18:44
+of the waveform at its peak and being
+18:46
+like okay this is a very loud part of
+18:48
+the song or something like that no
+19:02
+that's a good question because I was
+19:04
+going to say something but sometimes I
+19:06
+forget to say something so you might see
+19:09
+in this slide I actually connect instead
+19:12
+of connecting I could connect the source
+19:14
+directly to the destination and I that's
+19:19
+actually I think inside of the the mdn
+19:22
+doc that I was referencing earlier
+19:23
+that's how they did it one thing I
+19:26
+noticed when I did that though is that
+19:27
+the visualization sometimes got out of
+19:30
+sync so the way that I was able to kind
+19:33
+of fix it was that I would straight from
+19:36
+the analyzer go to Z the speaker so that
+19:39
+way it always had to go through the
+19:40
+analyzer before it hit the speakers so a
+19:42
+lot of that latency wasn't there just
+19:44
+because the analyzer had already gotten
+19:46
+the data out of the buffer that was
+19:49
+playing at that current time by the time
+19:51
+it hit the speakers
+19:56
+alright
+20:00
+[Applause]
+`}
+/>

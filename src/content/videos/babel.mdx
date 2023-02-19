@@ -5,4 +5,401 @@ date: 2015-05-29
 youtubeId: 'TmngDf0l1c8'
 ---
 
+import Transcripts from '../../components/Transcripts.astro'
+
 Module of the month was a small series at jsla in which people of the community would give talks about a specific module in the nodejs ecosystem. This months talk was about Babel.
+
+<Transcripts
+  transcripts={`
+0:05
+I would be talking about a Babel or
+0:08
+Babel depends on where you're at and how
+0:11
+you call it but essentially Babel is a
+0:15
+trance compiler that will take next
+0:18
+generation JavaScript and turn it into
+0:20
+readable es5 JavaScript which means that
+0:23
+you can then run it on node or on a
+0:27
+browser at least some of the more modern
+0:30
+browsers there's still some that you
+0:32
+can't run it on and I say next
+0:35
+generation because it's not only es6 but
+0:38
+actually it's also es7 because like es6
+0:42
+now has been like finalized and we're
+0:45
+going to start seeing it roll into some
+0:46
+of the newer browsers usually the ones
+0:48
+that we use but es7 is a lot of
+0:52
+proposals and whatnot but a lot of the
+0:54
+people behind babel are you know at the
+0:57
+forefront of this so they're writing
+0:59
+these things out so that they can start
+1:00
+playing with these different proposals
+1:03
+but they're behind experimental flags so
+1:05
+don't worry you don't have to mess with
+1:07
+them if you don't want you so here's a
+1:10
+website there's like a ton of good
+1:13
+instructions on here on how to use this
+1:15
+thing I'm going to show you a few
+1:16
+examples of how to use this thing that
+1:19
+hopefully will apply to something that
+1:21
+you can actually start using so the
+1:25
+first thing is that it's a COI tool but
+1:29
+you can also use it programmatically
+1:30
+with in JavaScript I'm going to be using
+1:32
+the CLI tool but pretty much the options
+1:34
+come across the same exact way so first
+1:37
+off we need to start writing some es6
+1:39
+code so let me write so those classes in
+1:45
+es6 oh I'm gonna lie to class I'm just
+1:47
+going to make a class foo and it's going
+1:51
+to need a constructor and as you can see
+1:54
+this doesn't look like JavaScript the
+1:57
+stuff that we write this is totally
+1:59
+different and actually what I want to do
+2:01
+is pass them like options to this but
+2:04
+I'm also going to give it like a default
+2:05
+argument so that way it's always an
+2:07
+object I can count on it being that and
+2:09
+we'll just console.log that out just to
+2:13
+say just to show you that this is
+2:16
+working so type of
+2:18
+options and we're also going to do like
+2:23
+a basic like greet function part create
+2:26
+method we're going to use we're going to
+2:29
+pass an argument of name and then we're
+2:32
+going to return a hello name as you can
+2:41
+see there i'm actually using string
+2:42
+interpolation nu te s six so now we want
+2:47
+to actually do something with this so
+2:49
+I'm just going to say Const foo is equal
+2:53
+to new foo I'm going to pass anything to
+2:56
+it so that way we can see default
+2:58
+arguments working and then we're going
+3:00
+to say console.log and then food 3gs la
+3:11
+now let's say I want to run this on node
+3:15
+I'm a no developer I just want to run an
+3:18
+es6 file so babel comes with not only
+3:21
+the Babel command which as you can see
+3:24
+it will do nothing if I don't pass
+3:26
+anything but also Babel node which is
+3:30
+one's kind of straightforward
+3:30
+essentially you're running Babel inside
+3:33
+of node or you're essentially doing a
+3:35
+wrapper around node that will then
+3:37
+transform all of your code into es6 or
+3:40
+transfer all of your ESX code into es5
+3:42
+so it can be run on node so all I'm
+3:45
+going to do is point it towards this
+3:47
+file which is in Babel node directory
+3:49
+let's see and then index or is it mean
+3:54
+what is it mean
+4:03
+yeah ah sorry about that sorry guys I'm
+4:21
+terrible at spelling and then I got to
+4:26
+fix the other one again alright cool so
+4:30
+we got the type of object so actually
+4:32
+didn't pass anything there the default
+4:34
+arguments worked in hello JSL a witch
+4:36
+did string interpolation but as you can
+4:38
+see I didn't it didn't show any of the
+4:40
+compilation it did it on the fly while I
+4:42
+was running inside of node let's say
+4:44
+you're not lucky to use note at your
+4:46
+your work or any of your projects you
+4:49
+just write client apps so you need to be
+4:52
+able to trans compile this which is the
+4:55
+regular Babel command so what I'm going
+4:57
+to do is I'm going to take my contents
+4:59
+in this file and I'm going to go over
+5:01
+into this file here we're just gonna
+5:03
+paste over what's here so we already
+5:06
+know a console logs out object and hello
+5:08
+j SLA so what I'm going to do is I'm
+5:11
+going to run instead of Babel node I'm
+5:14
+just going to run Babel and then I'm
+5:15
+going to pass it my file which was in
+5:20
+extra j/s now as you can see it just
+5:22
+output it to the standard out what I'm
+5:24
+going to do is I'm actually just going
+5:25
+to copy this right now and it's readable
+5:30
+to a certain extent there's some crazy
+5:32
+stuff in here and I'm going to take this
+5:36
+over into my browser so you can see this
+5:39
+is just es5 code and we have the console
+5:43
+log object in hello jla so we trans
+5:46
+compiled es6 code and we're now running
+5:49
+it inside of a browser granted you don't
+5:51
+want to copy and paste it from your
+5:53
+standard out and then paste it into your
+5:55
+browser's console that's not logical so
+5:59
+well you can deal with Babel is you can
+6:02
+actually output it to a file so I'm just
+6:04
+going to do it out to a file called
+6:06
+compiled without the dash
+6:11
+it's going to be dash oh so da show is
+6:14
+output or you can do dash dash out push
+6:17
+output file its going to run so it
+6:21
+compiled it and we'll just run that on
+6:22
+node with regular note command and then
+6:26
+compilation and then compiled and as you
+6:29
+can see it's the same thing so that ran
+6:31
+a lot faster I don't know if you noticed
+6:33
+with the last time I ran it ran pretty
+6:35
+slow because it was compiling the files
+6:36
+and then running them so let's say
+6:39
+you're like using something like a
+6:41
+puddle electron project well you don't
+6:44
+really have access to node so you can't
+6:46
+really like be like oh I'm going to use
+6:47
+babel node to run it in that instance
+6:51
+you don't really have a way to you
+6:53
+besides there's this thing called a
+6:56
+Babel register which will allow you to
+6:59
+register all of the required statements
+7:01
+inside of node and pretty much hook into
+7:04
+that and then compile those things while
+7:06
+you're essentially requiring them in of
+7:09
+course it's a little bit slower you're
+7:11
+doing compilation but it does work so i
+7:14
+have this required transform slightly
+7:17
+es6 file here it's just another foo
+7:20
+class i'm doing some more stuff with it
+7:23
+passing some arguments to it and pulling
+7:25
+things out but also have this index file
+7:28
+so this is es5 it's actually a little
+7:31
+bit of es6 just the cost but i'm running
+7:33
+in I ojs so I can actually use those
+7:36
+type of things and as you can see like
+7:39
+I'm just using required it's it looks
+7:41
+like basic codes that maybe you work
+7:43
+with on a day-to-day basis except i have
+7:45
+require Babel and then / register so
+7:49
+what I can do with this is actually now
+7:51
+I can run node and then the required
+7:55
+transform and then the index file and as
+8:00
+you can see it console logged all my
+8:02
+stuff out we can go back and verify that
+8:04
+those are the right things but actually
+8:06
+I'm able to run es6 code in files that I
+8:10
+require so the base the only thing that
+8:12
+sucks about this is that the base file
+8:13
+your entry point file has to be es5 you
+8:16
+can try to es6 inside of it because
+8:18
+essentially we're just overriding the
+8:19
+requires statement so that's really cool
+8:23
+so you're able to now use it inside of
+8:26
+node you're able to use it inside of a
+8:29
+client app there's actually things for
+8:31
+doing like if you were to use browserify
+8:35
+there's babe laughs I there's gold Babel
+8:38
+they have plugins for everything it's
+8:40
+really cool it's like production ready
+8:43
+there's a ton of people already using a
+8:45
+Babel and it's you know Yahoo's using it
+8:48
+I actually have a list here because they
+8:51
+have it all over their website
+8:53
+cloudflare Netflix Airbnb is actually
+8:56
+using some really cool projects ghost
+8:58
+Adam the editor which I would have been
+9:01
+editing the stuff on so it's really cool
+9:03
+I suggest you know even if you don't
+9:07
+really like doing trance compiling stuff
+9:08
+you want to play around with the new
+9:10
+version of the language download Babel
+9:12
+and just play around with it and see if
+9:14
+you can actually make something thank
+9:16
+you
+`}
+/>

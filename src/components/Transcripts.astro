@@ -1,0 +1,32 @@
+---
+export interface Props {
+  transcripts: string
+}
+
+const { transcripts } = Astro.props
+const lines = transcripts
+  .split('\n')
+  .filter((line) => line !== '')
+  .reduce<Array<[string, string]>>((acc, line, index, items) => {
+    if (index % 2 === 0) {
+      acc.push([line.padStart(5, '0'), items[index + 1]])
+    }
+    return acc
+  }, [])
+---
+
+<div>
+  <h3>Transcripts <small>(auto-generate)</small></h3>
+  <ul>
+    {
+      lines.map(([time, text]) => (
+        <li class="flex flex-row items-center font-mono">
+          <div class="bg-link rounded-xs mr-1 py-0 px-1">
+            <span class="color-background">{time}</span>
+          </div>
+          {text}
+        </li>
+      ))
+    }
+  </ul>
+</div>
