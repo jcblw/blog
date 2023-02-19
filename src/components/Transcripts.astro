@@ -15,8 +15,12 @@ const lines = transcripts
   }, [])
 ---
 
-<div>
-  <h3>Transcripts <small>(auto-generate)</small></h3>
+<details>
+  <summary>
+    <h4 class="ml-1 inline-block align-middle">
+      Transcripts <small>(auto-generate)</small>
+    </h4>
+  </summary>
   <ul>
     {
       lines.map(([time, text]) => (
@@ -29,4 +33,4 @@ const lines = transcripts
       ))
     }
   </ul>
-</div>
+</details>
