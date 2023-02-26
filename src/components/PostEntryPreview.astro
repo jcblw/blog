@@ -28,7 +28,7 @@ const formattedDescription =
 const isDraft = status && status !== 'published'
 ---
 
-<div class={`py-3 ${isDraft ? '' : ''}`} {...props}>
+<div class={`pb-4 ${isDraft ? '' : ''}`} {...props}>
   {
     isDraft && (
       <div class="flex items-center rounded-sm">

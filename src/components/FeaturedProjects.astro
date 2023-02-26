@@ -9,6 +9,13 @@ export interface Props {
     url: string
     id: string
     name: string
+    isFork: boolean
+    collaborators: {
+      nodes: {
+        avatarUrl: string
+        login: string
+      }[]
+    }
   }[]
 }
 
@@ -23,30 +30,61 @@ const { projects } = Astro.props
     .repo-container {
       width: calc(50% - 24px);
     }
+
+    .startgazer-avatar {
+      border-width: 2px;
+      border-style: solid;
+    }
   }
 </style>
 <h5 class="color-overline font-medium">Featured Projects</h5>
 <div class="flex flex-row flex-wrap justify-between">
   {
-    projects.map(({ name, url, description, stargazerCount }) => (
-      <div class="repo-container bg-backgroundSecondary  mb-4 flex flex-col rounded-md p-3">
-        <div class="flex-1">
-          <h5 class="bold pt-0 pb-1">
-            <a href={url}>{name}</a>
-          </h5>
-          <p class="pt-0 pb-2">{description}</p>
-        </div>
-        <div class="flex items-center justify-end">
-          <Icon
-            icon="star"
-            width="24"
-            height="24"
-            className="mr-1/2"
-            color="overline"
-          />
-          <p class="pt-0 pb-0">{Intl.NumberFormat().format(stargazerCount)}</p>
-        </div>
-      </div>
-    ))
+    projects.map(
+      ({
+        nameWithOwner,
+        url,
+        description,
+        stargazerCount,
+        isFork,
+        collaborators,
+      }) => {
+        const formattedNumber =
+          stargazerCount > 1000
+            ? `${(stargazerCount / 1000).toFixed(1)}k`
+            : stargazerCount
+        return (
+          <div class="repo-container bg-backgroundSecondary  mb-4 flex flex-col rounded-md p-3">
+            <div class="flex flex-1">
+              <Icon
+                icon={isFork ? 'repo-fork' : 'repo'}
+                width="16"
+                height="16"
+                className="mt-1 mr-1"
+                color="link"
+              />
+              <div>
+                <h5 class="bold pt-1/2 pb-1">
+                  <a href={url}>{nameWithOwner}</a>
+                </h5>
+                <p class="pt-0 pb-1">{description}</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-end">
+              <div class="flex-0 flex items-center">
+                <Icon
+                  icon="star"
+                  width="16"
+                  height="16"
+                  className="mr-1"
+                  color="overline"
+                />
+                <p class="pt-0 pb-0">{formattedNumber}</p>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    )
   }
 </div>

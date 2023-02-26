@@ -14,5 +14,7 @@ const { pathname } = Astro.url
   ]}
   {...props}
 >
-  <slot />
+  <span class="select-none">
+    <slot />
+  </span>
 </a>

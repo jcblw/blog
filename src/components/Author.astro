@@ -1,0 +1,43 @@
+---
+import { siteMetadata } from '../consts'
+interface Props {
+  subtitle?: string
+  titlePrefix?: string
+  title?: string
+  avatarSize?: string
+}
+
+const {
+  subtitle,
+  titlePrefix,
+  title = siteMetadata.author,
+  avatarSize = '45px',
+} = Astro.props
+---
+
+<div
+  class="author-section bg-backgroundSecondary mt-3 flex flex-row items-center rounded-xl py-2 px-3"
+>
+  <img
+    class="flex-0 rounded-full"
+    width={avatarSize}
+    height={avatarSize}
+    src={siteMetadata.avatar}
+    alt={siteMetadata.author}
+  />
+  <div class="flex-1 pl-2">
+    <h6 class="color-link pt-0 pb-1 font-medium">
+      {titlePrefix}
+      <a href="/jacob-lowe" class="color-overline">{title}</a>
+    </h6>
+    {
+      subtitle ? (
+        <p class="color-textSecondary pt-0 pb-0 text-sm leading-none">
+          {subtitle}
+        </p>
+      ) : (
+        <slot name="subtitle" />
+      )
+    }
+  </div>
+</div>

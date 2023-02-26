@@ -81,6 +81,30 @@ h6 {
   @apply bg-rawSienna dark:bg-calico;
 }
 
+.border-paragraph {
+  @apply border-vulcan dark:border-white;
+}
+
+.border-link {
+  @apply border-blumine dark:border-periwinkleGray;
+}
+
+.border-header {
+  @apply border-tradewind dark:border-aeroBlue;
+}
+
+.border-background {
+  @apply border-bridalHealth dark:border-vulcan;
+}
+
+.border-backgroundSecondary {
+  @apply border-white dark:border-steelGrey;
+}
+
+.border-overline {
+  @apply border-rawSienna dark:border-calico;
+}
+
 hr {
   padding-top: 1px;
   @apply my-2 border-none bg-white dark:bg-vulcan;

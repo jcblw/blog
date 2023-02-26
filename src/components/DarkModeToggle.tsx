@@ -10,8 +10,8 @@ export const DarkModeToggle = () => {
       <Icon
         icon={colorScheme === 'dark' ? 'luna' : 'sol'}
         className="cursor-pointer p-2"
-        width="32"
-        height="32"
+        width="24"
+        height="24"
         color={colorScheme === 'dark' ? 'link' : 'overline'}
         onClick={toggleColorScheme}
       />

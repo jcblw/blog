@@ -26,6 +26,10 @@ module.exports = {
       5: '40px', // xl
       6: '56px', // xxl
       7: '80px', // xxxl
+      8: '120px', // xxxxl
+      9: '160px', // xxxxxl
+      10: '240px', // xxxxxxl
+      11: '320px', // xxxxxxxl
     },
     borderRadius: {
       none: '0',
@@ -34,6 +38,7 @@ module.exports = {
       default: '16px',
       md: '24px',
       lg: '32px',
+      xl: '40px',
       full: '9999px',
     },
     fontFamily: {

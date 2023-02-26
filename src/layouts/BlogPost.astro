@@ -9,6 +9,7 @@ import TableOfContents from '../components/TableOfContents.astro'
 import VercelImage from 'astro-vercel-image/VercelImage.astro'
 import { Comments } from '../components/Comments'
 import { Icon } from '../components/Icon'
+import Author from '../components/Author.astro'
 
 type BlogData = CollectionEntry<'blog'>['data']
 
@@ -102,8 +103,8 @@ const microdata = {
             <div class="mt-3 flex flex-row items-center justify-center">
               <Icon
                 className="flex-0 rounded-full"
-                width="32px"
-                height="32px"
+                width="24"
+                height="24"
                 icon="hidden"
                 color="overline"
               />
@@ -118,32 +119,19 @@ const microdata = {
             </div>
           )
         }
-        <div
-          class="author-section bg-backgroundSecondary mt-3 flex flex-row items-center rounded-full py-2 px-3"
-        >
-          <img
-            class="flex-0 rounded-full"
-            width="45px"
-            height="45px"
-            src={siteMetadata.avatar}
-            alt={siteMetadata.author}
-          />
-          <div class="flex-1 pl-2">
-            <h6 class="color-overline pt-0 pb-1 font-medium">
-              {siteMetadata.author}
-            </h6>
-            {
-              date && (
-                <Time
-                  prefix={isDraft ? 'Drafted ' : 'Published '}
-                  suffix={`  ●  ${minutesRead}`}
-                  class="published-at py-0"
-                  date={date}
-                />
-              )
-            }
-          </div>
-        </div>
+        <Author>
+          {
+            date && (
+              <Time
+                prefix={isDraft ? 'Drafted ' : 'Published '}
+                suffix={`  ●  ${minutesRead}`}
+                class="published-at py-0"
+                date={date}
+                slot="subtitle"
+              />
+            )
+          }
+        </Author>
       </section>
       <article class="blog-post container">
         <h1 class="color-link">{title}</h1>

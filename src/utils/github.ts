@@ -32,9 +32,16 @@ export const getProfileInfo = async () => {
                 id
                 name
                 nameWithOwner
+                isFork
                 url
                 description
                 stargazerCount
+                collaborators(last: 5) {
+                  nodes {
+                    avatarUrl
+                    login
+                  }
+                }
               }
             }
           }
