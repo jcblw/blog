@@ -1,7 +1,7 @@
 ---
 title: Waking up to a new climate cognition
 description: What is climate cognition, and how I am taking steps to wake up to my climate cognition.
-date: 2023-02-17
+date: 2023-03-18
 slug: /climate-cognition
 heroImage: /forest-in-a-bottle.jpg
 status: draft
