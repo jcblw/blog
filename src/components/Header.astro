@@ -16,7 +16,11 @@ const { title = 'jcblw' } = Astro.props
 </style>
 <Blob client:only />
 <header class="container relative z-10 flex items-center">
-  <nav class:list={['py-4 flex items-center flex-1']}>
+  <nav
+    class:list={[
+      'py-4 flex items-center flex-1 justify-between sm:justify-start',
+    ]}
+  >
     <HeaderLink href="/" class="h3 items-center flex mr-1/2">
       {title}
     </HeaderLink>
