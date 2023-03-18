@@ -9,7 +9,7 @@ status: draft
 
 ## Journey to a new climate cognition
 
-I am not sure about you, but I have a mission statement for life. I created one a few years back when hearing a talk from [Jeff Weiner](https://www.linkedin.com/in/jeffweiner08/) at [Headspace](https://headspace.com/) when I worked there. It was an exciting concept because it was a very general statement that could make it super simple to decide. I have been looking for a job recently, and I could ask myself this question. Does this new job follow my mission statement? If no, I could immediately say no. My mission statement at the time of writing this is as follows:
+I am not sure about you, but I have a mission statement for life. I created one a few years back when hearing a talk from [Jeff Weiner](https://www.linkedin.com/in/jeffweiner08/) at [Headspace](https://headspace.com/) when I worked there. It was an exciting concept because it was a very general statement that could make it super simple to decisions. I was looking for a job recently, and I could ask myself this question. Does this new job follow my mission statement? If no, I could immediately say no. My mission statement at the time of writing this is as follows:
 
 > To increase access to new experiences around the world.
 
