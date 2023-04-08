@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import vercelImage from 'astro-vercel-image'
+import sitePreset from '@jcblw/astro-site-integration'
 import react from '@astrojs/react'
 import markdownIntegration from '@astropub/md'
 import rehypeLinkHeadings from 'rehype-autolink-headings'
@@ -15,6 +15,7 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
   site: 'https://jcbl.ws',
   output: 'static',
+  trailingSlash: 'never',
   integrations: [
     mdx(),
     react(),
@@ -29,7 +30,8 @@ export default defineConfig({
         ...otherProps,
       }),
     }),
-    vercelImage({
+    sitePreset({
+      middleware: './middleware.js',
       sizes: [640, 750, 828, 1080, 1200],
       domains: [],
       minimumCacheTTL: 60,
