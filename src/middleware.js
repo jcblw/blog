@@ -1,6 +1,6 @@
 function rewrite(destination, init) {
   const headers = new Headers({})
-  headers.set('x-middleware-rewrite', String(destination))
+  headers.set('Location', String(destination))
   return new Response(null, {
     ...init,
     headers,
