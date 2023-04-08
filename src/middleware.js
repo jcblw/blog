@@ -1,6 +1,23 @@
+function handleMiddlewareField(init, headers) {
+  var _a
+  if (
+    (_a = init == null ? void 0 : init.request) == null ? void 0 : _a.headers
+  ) {
+    if (!(init.request.headers instanceof Headers)) {
+      throw new Error('request.headers must be an instance of Headers')
+    }
+    const keys = []
+    for (const [key, value] of init.request.headers) {
+      headers.set('x-middleware-request-' + key, value)
+      keys.push(key)
+    }
+    headers.set('x-middleware-override-headers', keys.join(','))
+  }
+}
 function rewrite(destination, init) {
-  const headers = new Headers({})
-  headers.set('Location', String(destination))
+  const headers = new Headers((init == null ? void 0 : init.headers) ?? {})
+  headers.set('x-middleware-rewrite', String(destination))
+  handleMiddlewareField(init, headers)
   return new Response(null, {
     ...init,
     headers,
