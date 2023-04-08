@@ -8,8 +8,8 @@ export default function middleware(request, _event) {
   const { pathname } = url
   const hasTrailingSlash = pathname.endsWith('/')
   if (hasTrailingSlash) {
-    response.status = 301
-    response.headers.set('Location', pathname.slice(0, -1))
+    const redirectUrl = new URL(pathname.slice(0, -1), url.origin)
+    response.redirect(redirectUrl, 301)
   }
 
   return response
