@@ -33,8 +33,6 @@ export default function middleware(request, _event) {
   const hasTrailingSlash = pathname.endsWith('/')
   const hasPathname = pathname !== '/'
   if (hasTrailingSlash && hasPathname) {
-    return rewrite(new URL(pathname.slice(0, -1), url.origin), {
-      status: 301,
-    })
+    return rewrite(new URL(pathname.slice(0, -1), url.origin))
   }
 }
