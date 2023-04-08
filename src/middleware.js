@@ -1,23 +1,6 @@
-function handleMiddlewareField(init, headers) {
-  var _a
-  if (
-    (_a = init == null ? void 0 : init.request) == null ? void 0 : _a.headers
-  ) {
-    if (!(init.request.headers instanceof Headers)) {
-      throw new Error('request.headers must be an instance of Headers')
-    }
-    const keys = []
-    for (const [key, value] of init.request.headers) {
-      headers.set('x-middleware-request-' + key, value)
-      keys.push(key)
-    }
-    headers.set('x-middleware-override-headers', keys.join(','))
-  }
-}
 function rewrite(destination, init) {
-  const headers = new Headers((init == null ? void 0 : init.headers) ?? {})
-  headers.set('x-middleware-rewrite', String(destination))
-  handleMiddlewareField(init, headers)
+  const headers = new Headers({})
+  headers.set('location', String(destination))
   return new Response(null, {
     ...init,
     headers,
@@ -33,6 +16,6 @@ export default function middleware(request, _event) {
   const hasTrailingSlash = pathname.endsWith('/')
   const hasPathname = pathname !== '/'
   if (hasTrailingSlash && hasPathname) {
-    return rewrite(new URL(pathname.slice(0, -1), url.origin))
+    return rewrite(new URL(pathname.slice(0, -1), url.origin), { status: 301 })
   }
 }
