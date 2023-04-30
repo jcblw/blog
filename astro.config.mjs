@@ -32,7 +32,7 @@ export default defineConfig({
     }),
     sitePreset({
       middleware: './middleware.js',
-      serverlessFunctions: ['./og-image.mjs'],
+      edgeFunctions: ['./og-image.mjs'],
       sizes: [640, 750, 828, 1080, 1200],
       domains: [],
       minimumCacheTTL: 60,
