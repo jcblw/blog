@@ -29,6 +29,7 @@ export default defineConfig({
         url: url.replace(/\/$/, ''),
         ...otherProps,
       }),
+      filter: (page) => !page.includes('draft'),
     }),
     sitePreset({
       middleware: './middleware.js',
