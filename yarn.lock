@@ -100,10 +100,10 @@
     "@babel/core" ">=7.0.0-0 <8.0.0"
     "@babel/plugin-transform-react-jsx" "^7.17.12"
 
-"@astrojs/rss@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-2.1.0.tgz#fb50909a8a57134243a21ed91f8e842877f10cc3"
-  integrity sha512-PrqtIDDAyu4MyIvhBZEQhftui5fqyO9JPvOe4QnVDhErMIYWXd0pVPpqdnE0SKZ5xykMkphYPAQdWDr7VeCzBg==
+"@astrojs/rss@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-2.4.0.tgz#6ac6d006cbdc730f9096a900f24008750b6fb23b"
+  integrity sha512-cbSgrNUCmwfzXTEqfK/6vk+Ut5auHnIpv6Z5e5JaiDPUX7vcn3175nFBj68ujcb5HGY0rQ9ohGY4a4VX3ScmDg==
   dependencies:
     fast-xml-parser "^4.0.8"
     kleur "^4.1.5"
