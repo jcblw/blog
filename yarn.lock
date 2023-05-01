@@ -491,10 +491,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz#c5a1a4bfe1b57f0c3e61b29883525c6da3e5c091"
   integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
-"@jcblw/astro-site-integration@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@jcblw/astro-site-integration/-/astro-site-integration-1.4.1.tgz#dc31fdbbd4be8dd710e930196dd030440ef67049"
-  integrity sha512-jrDjdd9LO8WOmMbLAKS5J04zCGtIQtDmWAXTDO8SmJF6Ta4wTqHKsiqFZWOWM3bLifPQgbuBofKakDzJxXPOFA==
+"@jcblw/astro-site-integration@1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@jcblw/astro-site-integration/-/astro-site-integration-1.4.2.tgz#b1a2c34ad23985a10dc1b79aa423a4ef6ed5bc11"
+  integrity sha512-jsxStiyaCeLe7evizlnl/ezti4vysnW20SnZTdU9NGUE0HQFoEvTE8iwxd0/5GED3V+KjmOl8nSnBs0lqn+X4Q==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
