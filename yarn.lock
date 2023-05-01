@@ -491,12 +491,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz#c5a1a4bfe1b57f0c3e61b29883525c6da3e5c091"
   integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
-"@jcblw/astro-site-integration@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@jcblw/astro-site-integration/-/astro-site-integration-1.3.0.tgz#ffa9eba411a9bb6a2a9b2e4b6dfc6b58851e690f"
-  integrity sha512-dZWCd43zQAtvzbALlWrQbbiLTTa5nE1ahnpzivfF1CrQaak9lN0dy4cqMPAtn+NMdSfN8kCyWnFsCb99JOrK1w==
-  dependencies:
-    esbuild-plugin-wasm "^1.0.0"
+"@jcblw/astro-site-integration@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@jcblw/astro-site-integration/-/astro-site-integration-1.4.1.tgz#dc31fdbbd4be8dd710e930196dd030440ef67049"
+  integrity sha512-jrDjdd9LO8WOmMbLAKS5J04zCGtIQtDmWAXTDO8SmJF6Ta4wTqHKsiqFZWOWM3bLifPQgbuBofKakDzJxXPOFA==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
@@ -1405,11 +1403,6 @@ es-module-lexer@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.1.0.tgz#bf56a09b5f1c6aea6ba231b0a636a0f60c410b70"
   integrity sha512-fJg+1tiyEeS8figV+fPcPpm8WqJEflG3yPU0NOm5xMvrNkuiy7HzX/Ljng4Y0hAoiw4/3hQTCFYw+ub8+a2pRA==
-
-esbuild-plugin-wasm@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-wasm/-/esbuild-plugin-wasm-1.0.0.tgz#4ca95ac4ae553331d2b0099223f8713a49b6cff2"
-  integrity sha512-iXIf3hwfqorExG66/eNr3U8JakIZuge70nMNQtinvxbzdljQ/RjvwaBiGPqF/DvuIumUApbe3zj2kqHLVyc7uQ==
 
 esbuild@^0.16.3:
   version "0.16.17"
