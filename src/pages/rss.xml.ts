@@ -9,6 +9,7 @@ export async function get(context: any) {
     title: siteMetadata.title,
     description: siteMetadata.description,
     site: context.site,
+    stylesheet: '/rss/styles.xsl',
     items: posts
       .filter((post) => !post.data.status || post.data.status !== 'draft')
       .map((post) => ({
