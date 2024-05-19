@@ -7,9 +7,10 @@ import { siteMetadata } from '../consts'
 import Time from '../components/Time.astro'
 import TableOfContents from '../components/TableOfContents.astro'
 import VercelImage from 'astro-vercel-image/VercelImage.astro'
-import { Comments } from '../components/Comments'
 import { Icon } from '../components/Icon'
 import Author from '../components/Author.astro'
+import similarities from '../../similarities.json'
+import RelatedPosts from '../components/RelatedPosts.astro'
 
 type BlogData = CollectionEntry<'blog'>['data']
 
@@ -31,6 +32,8 @@ const {
 } = Astro.props
 const disqusShortName = import.meta.env.DISQUS_NAME
 const url = new URL(slug, siteMetadata.siteUrl)
+// @ts-expect-error this is valid
+const relatedPosts = similarities[`/${slug}`]
 const imageUrl = heroImage
   ? new URL(heroImage, siteMetadata.siteUrl).toString()
   : undefined
@@ -109,10 +112,10 @@ const microdata = {
                 color="overline"
               />
               <div class="flex-1 pl-2">
-                <h6 class="color-overline pt-0 pb-0 font-medium">
+                <h6 class="color-overline pb-0 pt-0 font-medium">
                   Status is draft
                 </h6>
-                <p class="pt-0 pb-0 font-medium">
+                <p class="pb-0 pt-0 font-medium">
                   This is not visible to discovery but can be accessed directly.
                 </p>
               </div>
@@ -138,21 +141,17 @@ const microdata = {
         <hr />
         <slot />
       </article>
-      <section class="container">
-        <Comments
-          client:only
-          slug={`/${slug}`}
-          title={title}
-          shortname={disqusShortName}
-        />
-      </section>
+      {
+        relatedPosts && relatedPosts.length > 0 && (
+          <>
+            <hr class="container my-2" />
+            <RelatedPosts relatedPosts={relatedPosts} />
+            <hr class="container my-2" />
+          </>
+        )
+      }
+
       <div class="container flex flex-row">
-        <a
-          href={`https://mobile.twitter.com/search?q=${siteMetadata.siteUrl}/blog/${slug}`}
-          class="my-3 pr-4"
-        >
-          Discuss it on Twitter
-        </a>
         <a
           href={`${siteMetadata.source}/src/content/blog/${slug}`}
           class="my-3 pr-4"

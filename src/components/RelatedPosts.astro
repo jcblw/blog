@@ -1,0 +1,28 @@
+---
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+  relatedPosts: {
+    title: string
+    description: string
+    slug: string
+    heroImage?: string
+  }[]
+}
+
+const { relatedPosts, ...props } = Astro.props
+---
+
+<section class="relate-posts container relative z-10 flex flex-col" {...props}>
+  <h3>Related Posts</h3>
+  <ul class="flex flex-col gap-4">
+    {
+      relatedPosts.map((post) => (
+        <a href={post.slug}>
+          <li class="bg-backgroundSecondary flex-1 rounded-lg p-4">
+            <h4 class="p-0">{post.title}</h4>
+            <p class="p-0">{post.description.substr(0, 150)}...</p>
+          </li>
+        </a>
+      ))
+    }
+  </ul>
+</section>

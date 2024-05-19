@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "checkJs": true
   }
 }

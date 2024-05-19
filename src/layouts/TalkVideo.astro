@@ -5,8 +5,10 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { siteMetadata } from '../consts'
 import Time from '../components/Time.astro'
+import similarities from '../../similarities.json'
 
 import '../styles/prism.css'
+import RelatedPosts from '../components/RelatedPosts.astro'
 
 type TalkData = CollectionEntry<'videos'>['data']
 
@@ -15,6 +17,8 @@ interface Props extends TalkData {
 }
 
 const { title, description, date, slug, youtubeId } = Astro.props
+// @ts-expect-error this is valid
+const relatedPosts = similarities[slug]
 
 const url = new URL(slug, siteMetadata.siteUrl)
 
@@ -101,7 +105,16 @@ const microdata = {
           <slot />
         </div>
       </article>
+      {
+        relatedPosts && relatedPosts.length > 0 && (
+          <>
+            <hr class="container my-2" />
+            <RelatedPosts relatedPosts={relatedPosts} />
+            <div class="pb-4" />
+          </>
+        )
+      }
+      <Footer />
     </main>
-    <Footer />
   </body>
 </html>
