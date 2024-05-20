@@ -1,146 +1,144 @@
 {
   "/2021-review": [
     {
-      "similarity": 0.8944988939729276,
-      "slug": "/loving-the-things-i-have",
-      "title": "Falling in love with the things I have instead of the things I don't",
-      "description": "My journey back to minimalism"
-    },
-    {
-      "similarity": 0.8861859367088276,
-      "slug": "/billion-dollar-breaks",
-      "title": "A billion dollar mindset toward breaks.",
-      "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
-    },
-    {
-      "similarity": 0.885848205972148,
-      "slug": "/discontinuing-mujo-web-extension",
-      "title": "Discontinuing the Mujō Web Extension",
-      "description": "The reasons behind discontinuing the Mujō web extension."
-    }
-  ],
-  "/30-day-no-social-apps": [
-    {
-      "similarity": 0.9245959890564633,
-      "slug": "/loving-the-things-i-have",
-      "title": "Falling in love with the things I have instead of the things I don't",
-      "description": "My journey back to minimalism"
-    },
-    {
-      "similarity": 0.9205408852831632,
-      "slug": "/billion-dollar-breaks",
-      "title": "A billion dollar mindset toward breaks.",
-      "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
-    },
-    {
-      "similarity": 0.9015638196374182,
-      "slug": "/compass-of-narvil",
-      "title": "Compass of Narvil",
-      "description": "Finding the directions to grief."
-    }
-  ],
-  "/working-with-arc-browser": [
-    {
-      "similarity": 0.9348198763530295,
-      "slug": "/astro-vercel-image-optimization",
-      "title": "Using Vercel image optimization with Astro",
-      "description": "I recently moved my blog to Astro and wanted to use Vercel image optimization to serve my images. Here is how I did it.",
-      "heroImage": "/rocket-moon.jpg"
-    },
-    {
-      "similarity": 0.928996795384221,
-      "slug": "/harness-the-back-button",
-      "title": "Harness the back button.",
-      "description": "in unusual ways."
-    },
-    {
-      "similarity": 0.9259940526967403,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
-    }
-  ],
-  "/astro-vercel-image-optimization": [
-    {
-      "similarity": 0.9348198763530295,
-      "slug": "/working-with-arc-browser",
-      "title": "Organizing my thoughts on the Web with Arc Browser",
-      "description": "Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.",
-      "heroImage": "/organizing-thoughts-2.png"
-    },
-    {
-      "similarity": 0.9176518363869086,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
-    },
-    {
-      "similarity": 0.907646119343639,
-      "slug": "/harness-the-back-button",
-      "title": "Harness the back button.",
-      "description": "in unusual ways."
-    }
-  ],
-  "/avoid-double-use-effect-react-18-use-sync-external-store": [
-    {
-      "similarity": 0.9373917156045259,
-      "slug": "/chrome-extension-react-devtools",
-      "title": "Effortlessly Debug Your Chrome Extension with React Devtools",
-      "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
-      "heroImage": "/react-devtools.png"
-    },
-    {
-      "similarity": 0.9080267491884978,
-      "slug": "/tracking-link-exits",
-      "title": "Tracking link exits",
-      "description": "while preserving native browser functionality."
-    },
-    {
-      "similarity": 0.9043376343284435,
-      "slug": "/finch-graphql",
-      "title": "Finch GraphQL - a chatty bird.",
-      "description": "Modernizing communication with-in extensions.",
-      "heroImage": "/finch.jpg"
-    }
-  ],
-  "/billion-dollar-breaks": [
-    {
-      "similarity": 0.9229088207975837,
-      "slug": "/loving-the-things-i-have",
-      "title": "Falling in love with the things I have instead of the things I don't",
-      "description": "My journey back to minimalism"
-    },
-    {
-      "similarity": 0.9205408852831632,
+      "similarity": 0.38512469366715607,
       "slug": "/30-day-no-social-apps",
       "title": "I took social media off my phone for 30 days and this is what happened.",
       "description": "Why did I allow this piece of equipment to have an abusive relationship with me."
     },
     {
-      "similarity": 0.9108992843398502,
+      "similarity": 0.3505332114013884,
+      "slug": "/loving-the-things-i-have",
+      "title": "Falling in love with the things I have instead of the things I don't",
+      "description": "My journey back to minimalism"
+    },
+    {
+      "similarity": 0.3023278710505596,
+      "slug": "/growing-a-digital-flower",
+      "title": "Growing a digital flower",
+      "description": "How I made a unique digital flower for each user of my app."
+    }
+  ],
+  "/30-day-no-social-apps": [
+    {
+      "similarity": 0.38512469366715607,
+      "slug": "/2021-review",
+      "title": "A lookback at 2021",
+      "description": "My thoughts on 2021, and my place in it."
+    },
+    {
+      "similarity": 0.3561268234623467,
+      "slug": "/billion-dollar-breaks",
+      "title": "A billion dollar mindset toward breaks.",
+      "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
+    },
+    {
+      "similarity": 0.2977398474455177,
+      "slug": "/learning-tensorflow-with-copilot-ai",
+      "title": "Learning AI with AI",
+      "description": "How I used GitHub Copilot to learn how to use Tensorflow",
+      "heroImage": "/birth-of-a-cyborg.png"
+    }
+  ],
+  "/working-with-arc-browser": [
+    {
+      "similarity": 0.3795459268396933,
+      "slug": "/harness-the-back-button",
+      "title": "Harness the back button.",
+      "description": "in unusual ways."
+    },
+    {
+      "similarity": 0.36028262334316535,
+      "slug": "/love-war-augmenting-web",
+      "title": "In love and war, augmenting the web.",
+      "description": "How Toucan tries not to break your site."
+    },
+    {
+      "similarity": 0.35568561381011443,
+      "slug": "/discontinuing-mujo-web-extension",
+      "title": "Discontinuing the Mujō Web Extension",
+      "description": "The reasons behind discontinuing the Mujō web extension."
+    }
+  ],
+  "/astro-vercel-image-optimization": [
+    {
+      "similarity": 0.31766112913042993,
+      "slug": "/growing-a-digital-flower",
+      "title": "Growing a digital flower",
+      "description": "How I made a unique digital flower for each user of my app."
+    },
+    {
+      "similarity": 0.26253204132008,
+      "slug": "/learning-tensorflow-with-copilot-ai",
+      "title": "Learning AI with AI",
+      "description": "How I used GitHub Copilot to learn how to use Tensorflow",
+      "heroImage": "/birth-of-a-cyborg.png"
+    },
+    {
+      "similarity": 0.22036721926317338,
+      "slug": "/2021-review",
+      "title": "A lookback at 2021",
+      "description": "My thoughts on 2021, and my place in it."
+    }
+  ],
+  "/avoid-double-use-effect-react-18-use-sync-external-store": [
+    {
+      "similarity": 0.27565454661701955,
+      "slug": "/chrome-extension-react-devtools",
+      "title": "'Effortlessly Debug Your Chrome Extension with React Devtools'",
+      "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
+      "heroImage": "/react-devtools.png"
+    },
+    {
+      "similarity": 0.2489520696778759,
+      "slug": "/2021-review",
+      "title": "A lookback at 2021",
+      "description": "My thoughts on 2021, and my place in it."
+    },
+    {
+      "similarity": 0.2489480251376135,
+      "slug": "/growing-a-digital-flower",
+      "title": "Growing a digital flower",
+      "description": "How I made a unique digital flower for each user of my app."
+    }
+  ],
+  "/billion-dollar-breaks": [
+    {
+      "similarity": 0.5850603345403074,
+      "slug": "/talks/10x-engineer",
+      "title": "Become a 10x Engineer by Avoiding Burnout",
+      "description": "A talk about how I have learned to cherish taking breaks in my day to increase productivity and avoid burnout"
+    },
+    {
+      "similarity": 0.44087385348890695,
       "slug": "/mujo-calendar-events",
       "title": "Calendar events that won't give you anxiety",
       "description": "Make your calendar events more meaningful and less stressful using Mujō.",
       "heroImage": "/calendar.png"
+    },
+    {
+      "similarity": 0.3561268234623467,
+      "slug": "/30-day-no-social-apps",
+      "title": "I took social media off my phone for 30 days and this is what happened.",
+      "description": "Why did I allow this piece of equipment to have an abusive relationship with me."
     }
   ],
   "/chrome-extension-react-devtools": [
     {
-      "similarity": 0.9373917156045259,
-      "slug": "/avoid-double-use-effect-react-18-use-sync-external-store",
-      "title": "Avoiding useEffect for fetching in React 18: A use-case for useSyncExternalStore and Observables",
-      "description": "This blog will show you how I avoided double useEffect fetches in React 18 by migrating a library to use useSyncExternalStore and observables.",
-      "heroImage": "/bullet-train.png"
-    },
-    {
-      "similarity": 0.9343297866627381,
+      "similarity": 0.5093251561524782,
       "slug": "/finch-graphql",
       "title": "Finch GraphQL - a chatty bird.",
       "description": "Modernizing communication with-in extensions.",
       "heroImage": "/finch.jpg"
     },
     {
-      "similarity": 0.925155383070667,
+      "similarity": 0.3914017188202545,
+      "slug": "/talks/native-nodejs-apps",
+      "title": "Native NodeJS Apps",
+      "description": "'Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more.'"
+    },
+    {
+      "similarity": 0.3635516022038101,
       "slug": "/love-war-augmenting-web",
       "title": "In love and war, augmenting the web.",
       "description": "How Toucan tries not to break your site."
@@ -148,188 +146,191 @@
   ],
   "/compass-of-narvil": [
     {
-      "similarity": 0.912666485764714,
+      "similarity": 0.270226749002402,
       "slug": "/loving-the-things-i-have",
       "title": "Falling in love with the things I have instead of the things I don't",
       "description": "My journey back to minimalism"
     },
     {
-      "similarity": 0.907419854799909,
-      "slug": "/billion-dollar-breaks",
-      "title": "A billion dollar mindset toward breaks.",
-      "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
+      "similarity": 0.17673630417125252,
+      "slug": "/electric-road-trip",
+      "title": "'From the West Coast to the Heartland'",
+      "description": "\"Take a journey with me as I road trip across America in a Tesla Model 3 electric car. Along the way, I'll share my experiences with charging infrastructure and the practicalities of driving an EV on a long-distance trip. Find out what it's like to travel in a Tesla Model 3, and see why electric vehicles are the way of the future.\"",
+      "heroImage": "/tesla-charging.jpg"
     },
     {
-      "similarity": 0.9015638196374182,
-      "slug": "/30-day-no-social-apps",
-      "title": "I took social media off my phone for 30 days and this is what happened.",
-      "description": "Why did I allow this piece of equipment to have an abusive relationship with me."
+      "similarity": 0.17023274405045866,
+      "slug": "/chrome-extension-react-devtools",
+      "title": "'Effortlessly Debug Your Chrome Extension with React Devtools'",
+      "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
+      "heroImage": "/react-devtools.png"
     }
   ],
   "/discontinuing-mujo-web-extension": [
     {
-      "similarity": 0.9124739405697262,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
-    },
-    {
-      "similarity": 0.9115499613443302,
-      "slug": "/finch-graphql",
-      "title": "Finch GraphQL - a chatty bird.",
-      "description": "Modernizing communication with-in extensions.",
-      "heroImage": "/finch.jpg"
-    },
-    {
-      "similarity": 0.9094021312499186,
+      "similarity": 0.3801375816810616,
       "slug": "/learning-tensorflow-with-copilot-ai",
       "title": "Learning AI with AI",
       "description": "How I used GitHub Copilot to learn how to use Tensorflow",
       "heroImage": "/birth-of-a-cyborg.png"
+    },
+    {
+      "similarity": 0.35568561381011443,
+      "slug": "/working-with-arc-browser",
+      "title": "'Organizing my thoughts on the Web with Arc Browser'",
+      "description": "'Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.'",
+      "heroImage": "/organizing-thoughts-2.png"
+    },
+    {
+      "similarity": 0.3434773811070667,
+      "slug": "/finch-graphql",
+      "title": "Finch GraphQL - a chatty bird.",
+      "description": "Modernizing communication with-in extensions.",
+      "heroImage": "/finch.jpg"
     }
   ],
   "/electric-road-trip": [
     {
-      "similarity": 0.8821598207574141,
-      "slug": "/compass-of-narvil",
-      "title": "Compass of Narvil",
-      "description": "Finding the directions to grief."
+      "similarity": 0.25754028624608216,
+      "slug": "/loving-the-things-i-have",
+      "title": "Falling in love with the things I have instead of the things I don't",
+      "description": "My journey back to minimalism"
     },
     {
-      "similarity": 0.877531742997616,
-      "slug": "/working-with-arc-browser",
-      "title": "Organizing my thoughts on the Web with Arc Browser",
-      "description": "Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.",
-      "heroImage": "/organizing-thoughts-2.png"
+      "similarity": 0.2515425200713631,
+      "slug": "/2021-review",
+      "title": "A lookback at 2021",
+      "description": "My thoughts on 2021, and my place in it."
     },
     {
-      "similarity": 0.8733970079085622,
-      "slug": "/30-day-no-social-apps",
-      "title": "I took social media off my phone for 30 days and this is what happened.",
-      "description": "Why did I allow this piece of equipment to have an abusive relationship with me."
+      "similarity": 0.18130620616703494,
+      "slug": "/talks/native-nodejs-apps",
+      "title": "Native NodeJS Apps",
+      "description": "'Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more.'"
     }
   ],
   "/finch-graphql": [
     {
-      "similarity": 0.9343297866627381,
+      "similarity": 0.5093251561524782,
       "slug": "/chrome-extension-react-devtools",
-      "title": "Effortlessly Debug Your Chrome Extension with React Devtools",
+      "title": "'Effortlessly Debug Your Chrome Extension with React Devtools'",
       "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
       "heroImage": "/react-devtools.png"
     },
     {
-      "similarity": 0.9331721301096555,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
+      "similarity": 0.4047768211481079,
+      "slug": "/talks/native-nodejs-apps",
+      "title": "Native NodeJS Apps",
+      "description": "'Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more.'"
     },
     {
-      "similarity": 0.9165284713936529,
-      "slug": "/working-with-arc-browser",
-      "title": "Organizing my thoughts on the Web with Arc Browser",
-      "description": "Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.",
-      "heroImage": "/organizing-thoughts-2.png"
+      "similarity": 0.3434773811070667,
+      "slug": "/discontinuing-mujo-web-extension",
+      "title": "Discontinuing the Mujō Web Extension",
+      "description": "The reasons behind discontinuing the Mujō web extension."
     }
   ],
   "/growing-a-digital-flower": [
     {
-      "similarity": 0.8990985232305636,
+      "similarity": 0.32324803298163246,
+      "slug": "/learning-tensorflow-with-copilot-ai",
+      "title": "Learning AI with AI",
+      "description": "How I used GitHub Copilot to learn how to use Tensorflow",
+      "heroImage": "/birth-of-a-cyborg.png"
+    },
+    {
+      "similarity": 0.31766112913042993,
       "slug": "/astro-vercel-image-optimization",
-      "title": "Using Vercel image optimization with Astro",
-      "description": "I recently moved my blog to Astro and wanted to use Vercel image optimization to serve my images. Here is how I did it.",
+      "title": "'Using Vercel image optimization with Astro'",
+      "description": "'I recently moved my blog to Astro and wanted to use Vercel image optimization to serve my images. Here is how I did it.'",
       "heroImage": "/rocket-moon.jpg"
     },
     {
-      "similarity": 0.8905484372288139,
-      "slug": "/30-day-no-social-apps",
-      "title": "I took social media off my phone for 30 days and this is what happened.",
-      "description": "Why did I allow this piece of equipment to have an abusive relationship with me."
-    },
-    {
-      "similarity": 0.8895045362954392,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
+      "similarity": 0.3093761821998355,
+      "slug": "/mujo-calendar-events",
+      "title": "Calendar events that won't give you anxiety",
+      "description": "Make your calendar events more meaningful and less stressful using Mujō.",
+      "heroImage": "/calendar.png"
     }
   ],
   "/harness-the-back-button": [
     {
-      "similarity": 0.9441542179386333,
+      "similarity": 0.450393459935606,
       "slug": "/tracking-link-exits",
       "title": "Tracking link exits",
       "description": "while preserving native browser functionality."
     },
     {
-      "similarity": 0.9300188902409737,
+      "similarity": 0.3795459268396933,
+      "slug": "/working-with-arc-browser",
+      "title": "'Organizing my thoughts on the Web with Arc Browser'",
+      "description": "'Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.'",
+      "heroImage": "/organizing-thoughts-2.png"
+    },
+    {
+      "similarity": 0.37044422001340155,
       "slug": "/love-war-augmenting-web",
       "title": "In love and war, augmenting the web.",
       "description": "How Toucan tries not to break your site."
-    },
-    {
-      "similarity": 0.928996795384221,
-      "slug": "/working-with-arc-browser",
-      "title": "Organizing my thoughts on the Web with Arc Browser",
-      "description": "Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.",
-      "heroImage": "/organizing-thoughts-2.png"
     }
   ],
   "/learning-tensorflow-with-copilot-ai": [
     {
-      "similarity": 0.9094021312499186,
+      "similarity": 0.3801375816810616,
       "slug": "/discontinuing-mujo-web-extension",
       "title": "Discontinuing the Mujō Web Extension",
       "description": "The reasons behind discontinuing the Mujō web extension."
     },
     {
-      "similarity": 0.8821422199099441,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
+      "similarity": 0.33177991127296286,
+      "slug": "/talks/native-nodejs-apps",
+      "title": "Native NodeJS Apps",
+      "description": "'Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more.'"
     },
     {
-      "similarity": 0.8806655921741959,
-      "slug": "/talks/level-up",
-      "title": "jsla - Module of the Month: LevelUp",
-      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was LevelUp"
+      "similarity": 0.32324803298163246,
+      "slug": "/growing-a-digital-flower",
+      "title": "Growing a digital flower",
+      "description": "How I made a unique digital flower for each user of my app."
     }
   ],
   "/love-war-augmenting-web": [
     {
-      "similarity": 0.9331721301096555,
-      "slug": "/finch-graphql",
-      "title": "Finch GraphQL - a chatty bird.",
-      "description": "Modernizing communication with-in extensions.",
-      "heroImage": "/finch.jpg"
-    },
-    {
-      "similarity": 0.9300188902409737,
+      "similarity": 0.37044422001340155,
       "slug": "/harness-the-back-button",
       "title": "Harness the back button.",
       "description": "in unusual ways."
     },
     {
-      "similarity": 0.9259940526967403,
+      "similarity": 0.3635516022038101,
+      "slug": "/chrome-extension-react-devtools",
+      "title": "'Effortlessly Debug Your Chrome Extension with React Devtools'",
+      "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
+      "heroImage": "/react-devtools.png"
+    },
+    {
+      "similarity": 0.36028262334316535,
       "slug": "/working-with-arc-browser",
-      "title": "Organizing my thoughts on the Web with Arc Browser",
-      "description": "Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.",
+      "title": "'Organizing my thoughts on the Web with Arc Browser'",
+      "description": "'Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.'",
       "heroImage": "/organizing-thoughts-2.png"
     }
   ],
   "/loving-the-things-i-have": [
     {
-      "similarity": 0.9245959890564633,
-      "slug": "/30-day-no-social-apps",
-      "title": "I took social media off my phone for 30 days and this is what happened.",
-      "description": "Why did I allow this piece of equipment to have an abusive relationship with me."
+      "similarity": 0.3505332114013884,
+      "slug": "/2021-review",
+      "title": "A lookback at 2021",
+      "description": "My thoughts on 2021, and my place in it."
     },
     {
-      "similarity": 0.9229088207975837,
+      "similarity": 0.34239799567790163,
       "slug": "/billion-dollar-breaks",
       "title": "A billion dollar mindset toward breaks.",
       "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
     },
     {
-      "similarity": 0.912666485764714,
+      "similarity": 0.270226749002402,
       "slug": "/compass-of-narvil",
       "title": "Compass of Narvil",
       "description": "Finding the directions to grief."
@@ -337,146 +338,145 @@
   ],
   "/mujo-calendar-events": [
     {
-      "similarity": 0.9108992843398502,
+      "similarity": 0.44087385348890695,
       "slug": "/billion-dollar-breaks",
       "title": "A billion dollar mindset toward breaks.",
       "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
     },
     {
-      "similarity": 0.8980185507853745,
-      "slug": "/discontinuing-mujo-web-extension",
-      "title": "Discontinuing the Mujō Web Extension",
-      "description": "The reasons behind discontinuing the Mujō web extension."
+      "similarity": 0.4167605303536766,
+      "slug": "/talks/10x-engineer",
+      "title": "Become a 10x Engineer by Avoiding Burnout",
+      "description": "A talk about how I have learned to cherish taking breaks in my day to increase productivity and avoid burnout"
     },
     {
-      "similarity": 0.896510672698672,
-      "slug": "/working-with-arc-browser",
-      "title": "Organizing my thoughts on the Web with Arc Browser",
-      "description": "Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.",
-      "heroImage": "/organizing-thoughts-2.png"
+      "similarity": 0.3093761821998355,
+      "slug": "/growing-a-digital-flower",
+      "title": "Growing a digital flower",
+      "description": "How I made a unique digital flower for each user of my app."
     }
   ],
   "/tracking-link-exits": [
     {
-      "similarity": 0.9441542179386333,
+      "similarity": 0.450393459935606,
       "slug": "/harness-the-back-button",
       "title": "Harness the back button.",
       "description": "in unusual ways."
     },
     {
-      "similarity": 0.9155940718228135,
-      "slug": "/love-war-augmenting-web",
-      "title": "In love and war, augmenting the web.",
-      "description": "How Toucan tries not to break your site."
+      "similarity": 0.2955162165751597,
+      "slug": "/working-with-arc-browser",
+      "title": "'Organizing my thoughts on the Web with Arc Browser'",
+      "description": "'Arc is a browser made by The Browser Company, which changed how I think about browsers. I have enjoyed using it over the past month, and I would like to share why I think you should make Arc your default browser.'",
+      "heroImage": "/organizing-thoughts-2.png"
     },
     {
-      "similarity": 0.9130541259656891,
-      "slug": "/chrome-extension-react-devtools",
-      "title": "Effortlessly Debug Your Chrome Extension with React Devtools",
-      "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
-      "heroImage": "/react-devtools.png"
+      "similarity": 0.2661940061871975,
+      "slug": "/discontinuing-mujo-web-extension",
+      "title": "Discontinuing the Mujō Web Extension",
+      "description": "The reasons behind discontinuing the Mujō web extension."
     }
   ],
   "/talks/10x-engineer": [
     {
-      "similarity": 0.8993513988904204,
-      "slug": "/talks/visualizing-sound-on-the-web",
-      "title": "Visualizing sound on the web",
-      "description": "A talk about creative coding, and some audio visualization APIs"
-    },
-    {
-      "similarity": 0.8988289300863991,
+      "similarity": 0.5850603345403074,
       "slug": "/billion-dollar-breaks",
       "title": "A billion dollar mindset toward breaks.",
       "description": "Sitting at my desk I had an overwhelming feeling doing to much but also getting nothing done."
     },
     {
-      "similarity": 0.8986627243459498,
-      "slug": "/talks/native-nodejs-apps",
-      "title": "Native NodeJS Apps",
-      "description": "Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more."
+      "similarity": 0.4687360762120157,
+      "slug": "/talks/visualizing-sound-on-the-web",
+      "title": "Visualizing sound on the web",
+      "description": "A talk about creative coding, and some audio visualization APIs"
+    },
+    {
+      "similarity": 0.4167605303536766,
+      "slug": "/mujo-calendar-events",
+      "title": "Calendar events that won't give you anxiety",
+      "description": "Make your calendar events more meaningful and less stressful using Mujō.",
+      "heroImage": "/calendar.png"
     }
   ],
   "/talks/babel": [
     {
-      "similarity": 0.9757298035616345,
+      "similarity": 0.8120776014885895,
       "slug": "/talks/level-up",
-      "title": "jsla - Module of the Month: LevelUp",
+      "title": "'jsla - Module of the Month: LevelUp'",
       "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was LevelUp"
     },
     {
-      "similarity": 0.9338460674864846,
+      "similarity": 0.5451055125732508,
       "slug": "/talks/native-nodejs-apps",
       "title": "Native NodeJS Apps",
-      "description": "Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more."
+      "description": "'Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more.'"
     },
     {
-      "similarity": 0.8905903642107056,
+      "similarity": 0.3924407126856212,
+      "slug": "/talks/visualizing-sound-on-the-web",
+      "title": "Visualizing sound on the web",
+      "description": "A talk about creative coding, and some audio visualization APIs"
+    }
+  ],
+  "/talks/level-up": [
+    {
+      "similarity": 0.8120776014885895,
+      "slug": "/talks/babel",
+      "title": "'jsla - Module of the Month: Babel'",
+      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was babel"
+    },
+    {
+      "similarity": 0.4735259097442629,
+      "slug": "/talks/native-nodejs-apps",
+      "title": "Native NodeJS Apps",
+      "description": "'Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more.'"
+    },
+    {
+      "similarity": 0.3998359232436295,
+      "slug": "/talks/visualizing-sound-on-the-web",
+      "title": "Visualizing sound on the web",
+      "description": "A talk about creative coding, and some audio visualization APIs"
+    }
+  ],
+  "/talks/native-nodejs-apps": [
+    {
+      "similarity": 0.5451055125732508,
+      "slug": "/talks/babel",
+      "title": "'jsla - Module of the Month: Babel'",
+      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was babel"
+    },
+    {
+      "similarity": 0.4735259097442629,
+      "slug": "/talks/level-up",
+      "title": "'jsla - Module of the Month: LevelUp'",
+      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was LevelUp"
+    },
+    {
+      "similarity": 0.4047768211481079,
       "slug": "/finch-graphql",
       "title": "Finch GraphQL - a chatty bird.",
       "description": "Modernizing communication with-in extensions.",
       "heroImage": "/finch.jpg"
     }
   ],
-  "/talks/level-up": [
-    {
-      "similarity": 0.9757298035616345,
-      "slug": "/talks/babel",
-      "title": "jsla - Module of the Month: Babel",
-      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was babel"
-    },
-    {
-      "similarity": 0.9408658009830797,
-      "slug": "/talks/native-nodejs-apps",
-      "title": "Native NodeJS Apps",
-      "description": "Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more."
-    },
-    {
-      "similarity": 0.9013234181434306,
-      "slug": "/chrome-extension-react-devtools",
-      "title": "Effortlessly Debug Your Chrome Extension with React Devtools",
-      "description": "\"Are you tired of struggling to debug your React Chrome extension? Learn how to use React devtools to make the process effortless. From installing the standalone version to injecting it into your content script, this guide covers everything you need to know to optimize your extension's performance and squash bugs like a pro. Get ready to revolutionize your debugging process and take your extension to the next level.\"",
-      "heroImage": "/react-devtools.png"
-    }
-  ],
-  "/talks/native-nodejs-apps": [
-    {
-      "similarity": 0.9408658009830797,
-      "slug": "/talks/level-up",
-      "title": "jsla - Module of the Month: LevelUp",
-      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was LevelUp"
-    },
-    {
-      "similarity": 0.9338460674864846,
-      "slug": "/talks/babel",
-      "title": "jsla - Module of the Month: Babel",
-      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was babel"
-    },
-    {
-      "similarity": 0.9146144118662979,
-      "slug": "/talks/visualizing-sound-on-the-web",
-      "title": "Visualizing sound on the web",
-      "description": "A talk about creative coding, and some audio visualization APIs"
-    }
-  ],
   "/talks/visualizing-sound-on-the-web": [
     {
-      "similarity": 0.9146144118662979,
-      "slug": "/talks/native-nodejs-apps",
-      "title": "Native NodeJS Apps",
-      "description": "Native NodeJS apps are a relatively new breed of apps coming out of the NodeJS community that combine NodeJS and Webkit. Ill be going over : what are the options out there, what kind of things can these apps do compared to webapps, what are the current pro/cons of making a NodeJS native app, and more."
-    },
-    {
-      "similarity": 0.8993513988904204,
+      "similarity": 0.4687360762120157,
       "slug": "/talks/10x-engineer",
       "title": "Become a 10x Engineer by Avoiding Burnout",
       "description": "A talk about how I have learned to cherish taking breaks in my day to increase productivity and avoid burnout"
     },
     {
-      "similarity": 0.8857319233529245,
+      "similarity": 0.3998359232436295,
       "slug": "/talks/level-up",
-      "title": "jsla - Module of the Month: LevelUp",
+      "title": "'jsla - Module of the Month: LevelUp'",
       "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was LevelUp"
+    },
+    {
+      "similarity": 0.3924407126856212,
+      "slug": "/talks/babel",
+      "title": "'jsla - Module of the Month: Babel'",
+      "description": "Module of the month is a segment that highlights one of the many npm modules that make Node.js so great. This month's module was babel"
     }
   ]
 }
