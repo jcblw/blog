@@ -6,7 +6,8 @@ import { fileURLToPath } from 'node:url'
 
 const hf = new HfInference(process.env.HF_TOKEN)
 const dirname = path.dirname(fileURLToPath(import.meta.url))
-const model = 'thenlper/gte-large'
+// const model = 'thenlper/gte-large'
+const model = 'sentence-transformers/all-MiniLM-L6-v2'
 
 const SKIP_EMBEDDINGS = false
 
