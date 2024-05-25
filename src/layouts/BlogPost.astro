@@ -9,8 +9,9 @@ import TableOfContents from '../components/TableOfContents.astro'
 import VercelImage from 'astro-vercel-image/VercelImage.astro'
 import { Icon } from '../components/Icon'
 import Author from '../components/Author.astro'
-import similarities from '../../similarities.json'
 import RelatedPosts from '../components/RelatedPosts.astro'
+import { getSimilarPosts } from '../utils/sql'
+import 'dotenv/config'
 
 type BlogData = CollectionEntry<'blog'>['data']
 
@@ -30,10 +31,8 @@ const {
   slug,
   status,
 } = Astro.props
-const disqusShortName = import.meta.env.DISQUS_NAME
 const url = new URL(slug, siteMetadata.siteUrl)
-// @ts-expect-error this is valid
-const relatedPosts = similarities[`/${slug}`]
+const relatedPosts = await getSimilarPosts(`/${slug}`)
 const imageUrl = heroImage
   ? new URL(heroImage, siteMetadata.siteUrl).toString()
   : undefined

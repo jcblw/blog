@@ -1,13 +1,14 @@
-import { HfInference } from '@huggingface/inference'
 import fs from 'node:fs/promises'
 import 'dotenv/config'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-
-const hf = new HfInference(process.env.HF_TOKEN)
 const dirname = path.dirname(fileURLToPath(import.meta.url))
-// const model = 'thenlper/gte-large'
-const model = 'sentence-transformers/all-MiniLM-L6-v2'
+
+import { sql } from '@vercel/postgres'
+
+
+import { embed } from 'ai'
+import { openai } from '@ai-sdk/openai'
 
 const SKIP_EMBEDDINGS = false
 
@@ -112,14 +113,21 @@ const isOneDimensionalArray = (x) =>
       if (isDraft || !content || content?.includes('status: draft')) {
         return Promise.resolve()
       }
-      console.log(`Generating embeddings for ${file}...`)
-      const embeddings = await hf.featureExtraction({
-        model,
-        inputs: content,
-      })
+      const embeddings = (
+        await embed({
+          model: openai.embedding('text-embedding-3-small'),
+          value: content,
+        })
+      ).embedding
+      // console.log({ embeddings })
       if (isOneDimensionalArray(embeddings)) {
         console.log(`Embeddings generated for ${file}!`)
         cache.set(file, { ...fileCache, embeddings })
+        const embeddingsString = `[${embeddings.join(',')}]`
+        await sql`
+          INSERT INTO Post (slug, content, is_draft, embeddings, title, description, hero_image)
+          VALUES (${fileCache.slug}, ${content}, ${isDraft}, ${embeddingsString}, ${fileCache.title}, ${fileCache.description}, ${fileCache.heroImage})
+        `
       }
     })
   }, Promise.resolve())

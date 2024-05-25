@@ -5,7 +5,7 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { siteMetadata } from '../consts'
 import Time from '../components/Time.astro'
-import similarities from '../../similarities.json'
+import { getSimilarPosts } from '../utils/sql'
 
 import '../styles/prism.css'
 import RelatedPosts from '../components/RelatedPosts.astro'
@@ -17,8 +17,7 @@ interface Props extends TalkData {
 }
 
 const { title, description, date, slug, youtubeId } = Astro.props
-// @ts-expect-error this is valid
-const relatedPosts = similarities[slug]
+const relatedPosts = await getSimilarPosts(`${slug}`)
 
 const url = new URL(slug, siteMetadata.siteUrl)
 

@@ -8,10 +8,8 @@ import { siteMetadata } from '../consts'
 
 import { getCollection } from 'astro:content'
 import PostEntryPreview from '../components/PostEntryPreview.astro'
-import { Icon } from '../components/Icon'
 import { getProfileInfo, getReadme } from '../utils/github'
 import FeaturedProjects from '../components/FeaturedProjects.astro'
-import Profile from '../components/Profile.astro'
 import Author from '../components/Author.astro'
 
 const posts = (await getCollection('blog'))
@@ -19,7 +17,6 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3)
 
-const readme = await getReadme()
 const profile = await getProfileInfo()
 const pinnedItems = profile.pinnedItems.nodes
 ---
