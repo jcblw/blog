@@ -106,13 +106,15 @@ const microdata = {
       </article>
       {
         relatedPosts && relatedPosts.length > 0 && (
-          <>
-            <hr class="container my-2" />
-            <RelatedPosts relatedPosts={relatedPosts} />
-            <div class="pb-4" />
-          </>
-        )
-      }
+        <>
+          <RelatedPosts relatedPosts={relatedPosts.map(post => ({
+            title: post.title,
+            slug: post.slug,
+            heroImage: post.hero_image,
+            description: post.description.substring(0, 200),
+          }))} />
+        </>
+      )}
       <Footer />
     </main>
   </body>
