@@ -26,6 +26,9 @@ dependencies:
   '@astropub/md':
     specifier: ^0.1.4
     version: 0.1.5
+  '@jcblw/astro-site-integration':
+    specifier: ^1.0.2
+    version: 1.4.2(astro@2.10.15)
   '@types/react':
     specifier: ^18.0.28
     version: 18.3.3
@@ -972,6 +975,14 @@ packages:
       strip-ansi-cjs: /strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: /wrap-ansi@7.0.0
+    dev: false
+
+  /@jcblw/astro-site-integration@1.4.2(astro@2.10.15):
+    resolution: {integrity: sha512-jsxStiyaCeLe7evizlnl/ezti4vysnW20SnZTdU9NGUE0HQFoEvTE8iwxd0/5GED3V+KjmOl8nSnBs0lqn+X4Q==}
+    peerDependencies:
+      astro: ^2.0.0-beta.0
+    dependencies:
+      astro: 2.10.15
     dev: false
 
   /@jridgewell/gen-mapping@0.3.5:
