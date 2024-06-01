@@ -14,7 +14,7 @@ const { title = 'jcblw' } = Astro.props
     height: 100%;
   }
 </style>
-<Blob client:only />
+<Blob client:only="react" />
 <header class="container relative z-10 flex items-center">
   <nav
     class:list={[
@@ -28,5 +28,5 @@ const { title = 'jcblw' } = Astro.props
     <HeaderLink href="/talks">Talks</HeaderLink>
     <HeaderLink href="/jacob-lowe">About</HeaderLink>
   </nav>
-  <DarkModeToggle client:only />
+  <DarkModeToggle client:only="react" />
 </header>
