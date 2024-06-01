@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro'
 import { siteMetadata } from '../consts'
 import Time from '../components/Time.astro'
 import TableOfContents from '../components/TableOfContents.astro'
-import VercelImage from 'astro-vercel-image/VercelImage.astro'
+import { Image } from 'astro:assets';
 import { Icon } from '../components/Icon'
 import Author from '../components/Author.astro'
 import RelatedPosts from '../components/RelatedPosts.astro'
@@ -89,9 +89,10 @@ const microdata = {
       <div class="flex items-center justify-center px-0 sm:px-1">
         {
           heroImage && (
-            <VercelImage
+            <Image
               src={heroImage}
               width={1080}
+              height={607}
               alt={title}
               class="hero-image aspect-video rounded-none object-cover sm:rounded-md"
             />
