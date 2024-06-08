@@ -1,6 +1,10 @@
 @import './typography.css';
 @import './prism.css';
 
+html:is(.dark) {
+  @apply bg-vulcan;
+}
+
 html,
 body {
   @apply min-h-full bg-bridalHealth dark:bg-vulcan;
