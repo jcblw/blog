@@ -12,24 +12,29 @@ const { relatedPosts, ...props } = Astro.props
 ---
 
 <section class="relate-posts container flex flex-col" {...props}>
-  <div class="bg-backgroundSecondary flex-1 rounded-lg px-4 pt-2 pb-4">
-  <h3>Related Posts</h3>
-  <ul class="flex flex-col gap-4">
-    {
-      relatedPosts.map((post) => (
-        <a class="flex-1" href={post.slug}>
-          <li class="rounded-lg flex flex-row">
-            <div>
-              {post.heroImage ? <img src={post.heroImage} alt={post.title} class="w-4 h-4 rounded-full object-cover mr-2 mt-2" /> : <div class="w-4 h-4 bg-background rounded-full mr-2 mt-2 bg-gray-300"></div>}
-            </div>
-            <div class="flex-0">
-              <h4 class="p-0">{post.title}</h4>
-              <p class="p-0">{post.description}</p>
-            </div>
-          </li>
-        </a>
-      ))
-    }
-  </ul>
+  <div class="flex flex-col">
+    <hr class="bg-backgroundSecondary" />
+    <h4 class="pt-0 pb-02">Related Posts</h4>
+    <ul class=" grid grid-cols-1 md:grid-cols-3 gap-4 m-0 p-0">
+      {
+        relatedPosts.map((post) => (
+          <a class="flex-1 bg-backgroundSecondary rounded-xs pb-2" href={post.slug}>
+            <li class="flex flex-col py-0">
+              <div class="rounded-xs mb-2">
+                {post.heroImage ? 
+                  <img src={post.heroImage} alt={post.title} class="w-full aspect-video rounded-xs object-cover" /> : 
+                  <img src="/placeholder-social.jpg" alt={post.title} class="w-full aspect-video rounded-xs object-cover" />
+                }
+              </div>
+              <div class="flex-0 px-2">
+                <h5 class="p-0 line-clamp-2 pb-1">{post.title}</h5>
+                <small class="p-0 line-clamp-2">{post.description}</small>
+              </div>
+            </li>
+          </a>
+        ))
+      }
+    </ul>
+    <hr class="bg-backgroundSecondary" />
   </div>
 </section>

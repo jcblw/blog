@@ -1,8 +1,128 @@
 ---
-title: Exploration of embeddings
-description: A dive into embeddings and using them for practical applications.
+title: A Beginner’s Exploration into Embeddings
+description:  Dive into the fascinating world of embeddings with this simple use-case. Learn how to implement embeddings to enhance your blog, discover practical applications, and see how this powerful AI tool can transform your content.
 date: 2024-07-01
 slug: /exploration-of-embeddings
-heroImage: /finch.jpg
-status: draft
+heroImage: /impressionist-recommendations-ui.jpg
+status: published
 ---
+
+I watched some great videos on YouTube about embeddings. I have played around with various ML APIs but never embeddings directly. It seemed approachable in terms of the concept and the implementation. Check these out:
+
+- [Simon Willison's: Embeddings: What they are and why they matter](https://www.youtube.com/watch?v=ArnMdc-ICCM)
+- [Rabbit Hole Syndrome: $0 Embeddings](https://www.youtube.com/watch?v=QdDoFfkVkcw)
+
+I wanted to try out embeddings in a practical application. Instead of integrating them into one of my side projects, I used embeddings in my blog, which I interact with regularly.
+
+## What are embeddings?
+
+Embeddings represent a word(s) in a multi-dimensional vector space. Embeddings are useful because they allow us to compare words or sentences based on their similarity. Embeddings are helpful in a lot of NLP tasks, but also in other areas like recommendation systems.
+
+[word embeddings on wikipedia](https://en.wikipedia.org/wiki/Word_embedding)
+
+## Use case for embeddings
+
+It would be good to attempt to use embeddings to power a similar article section in my blog. In Simon Willison's, he does something similar for his TIL posts, so it is a good use case for me to try. It also allows readers of my blog to see similar published articles.
+
+My blog, based on [MDX](https://mdxjs.com/), is structured in a single document. This simplicity is a key advantage, as it means I can easily create an embedding for the entire document. I don't need to worry about stitching together multiple sources, making the process efficient and straightforward.
+
+## Implementation
+
+I tried a few things to get this to work for me. The Rabbit Hole Syndrome video explored using free models, which was appealing to me. That is where I decided to start. I was also going to use JavaScript to create these embeddings.
+
+### Intergration with my blog
+
+My blog is a [astro.build](https://astro.build/) site, and I am pretty sure I could have made an integration, but I wanted to test it before complicating things. So, in a scripts folder at the root of my repo, I setup a pretty basic script to start.
+
+- Read the content directory of my blog `src/content/blog`
+- Load the files found based on whether they are markdown or MDX files.
+- Write a JSON result of the embeddings test in the JSON file.
+
+Here is what that roughly looked like:
+
+```typescript
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+// a new way to get the __dirname
+const dirname = path.dirname(fileURLToPath(import.meta.url))
+
+// A way to resolve the content directory
+const resolveBlog = (file) =>
+  path.resolve(dirname, '../src/content/blog', file)
+
+const blogDir = resolveBlog('')
+const files = await fs.readdir(blogDir)
+
+const fileMeta = await Promise.all(
+  files.map(async (file) => {
+    const content = await fs.readFile(resolveBlog(file), 'utf-8')
+    return {
+      file,
+      content,
+    }
+  })
+)
+
+// generating the embeddings can happen here
+
+// write to root
+await fs.writeFile(
+  path.resolve(dirname, '../related-post.json'),
+  JSON.stringify({}, null, 2)  // we will fill this in later
+)
+```
+
+### Generating the embeddings
+
+I was ready to start trying out some models. I ended up starting with [Huggingface.js](https://huggingface.co/docs/huggingface.js/en/index). I have heard of Huggingface before but have yet to use the client library. I got a [token](https://huggingface.co/docs/hub/en/security-tokens) and tried some models. Huggingface has many models, so I could try out a few to see what worked best for me.
+
+I first started with `thenlper/gte-large` model. It had a good ranking on their [leaderboard](https://huggingface.co/spaces/mteb/leaderboard). I could set up some code and see it start spitting out embeddings. Here is what the code looked like:
+
+```typescript
+import { HfInference } from '@huggingface/inference'
+import 'dotenv/config' // just to load in the token
+...
+const model = 'thenlper/gte-large'
+const hf = new HfInference(process.env.HF_TOKEN)
+...
+// content is the content of the blog post
+const embeddings = await hf.featureExtraction({
+  model,
+  inputs: content,
+})
+// log the embeddings
+```
+
+There was one gotcha that I ran into, which had to do with the shape of the output. I wanted a single-dimension array, and some models will spit out a 2d array. This response is mainly due to some of the embedding models with work on the sentence, where the 2d arrays will be creating embeddings for [tokens](https://geoffrey-geofe.medium.com/tokenization-vs-embedding-understanding-the-differences-and-their-importance-in-nlp-b62718b5964a) in a sentence. If you look for the tag `sentence-transformers` in the huggingface models, you will find models more likely to give you a single-dimension array. 
+
+### Comparing embeddings
+
+Lastly, I needed to compare the embeddings to get this to work. The idea with embeddings is to compare how close two are to determine how similar a post is. I used the [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity) to compare the embeddings. Here is what that looked like:
+
+```typescript
+const cosineSimilarity = (a, b) => {
+  if (a.length !== b.length) {
+    throw new Error('Vectors must be of the same length')
+  }
+
+  const dotProduct = a.reduce((acc, val, i) => acc + val * b[i], 0)
+  const magnitudeA = Math.sqrt(a.reduce((acc, val) => acc + val ** 2, 0))
+  const magnitudeB = Math.sqrt(b.reduce((acc, val) => acc + val ** 2, 0))
+  return dotProduct / (magnitudeA * magnitudeB)
+}
+```
+
+I compared all the embeddings and sorted them based on their similarity. I then wrote the results in the JSON file. I could then use this JSON file to power the similar articles section of my blog.
+
+### What I learned and have changed
+
+Writing to a file and constantly recreating embedding seems like a waste of time/money. I have since moved this to a database, where I can store the embeddings and compare them on build time using [pgvector](https://github.com/pgvector/pgvector). I am also switching the architecture of my blog to allow for searching articles using the exact embeddings.
+
+Since the plan was to do that, I ended up going with a solution for the embeddings that was easier for me to manage. So I swapped the embeddings to use [openai embeddings](https://platform.openai.com/docs/guides/embeddings). This change allowed me to quickly push the embedding code to the cloud and generate embeddings on the fly for search queries.
+
+[Here is the current version of the script](https://github.com/jcblw/blog/blob/main/scripts/create-embeddings.js) that I am using to generate the embeddings.
+
+
+

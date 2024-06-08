@@ -23,7 +23,7 @@ export const getSimilarPosts = async (slug: string) => {
             embeddings <=> (SELECT embeddings FROM target_post) AS similarity
       FROM Post
       WHERE slug != ${slug}  -- Exclude the target post itself
-      ORDER BY embeddings <=> (SELECT embeddings FROM target_post)
+      ORDER BY embeddings <=> (SELECT embeddings FROM target_post) ASC
       LIMIT 3;
     `;
     return rows;
