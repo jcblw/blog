@@ -14,37 +14,42 @@ export default defineConfig({
   site: 'https://jcbl.ws',
   output: 'hybrid',
   trailingSlash: 'never',
-  integrations: [mdx({
-    syntaxHighlight: 'prism',
-    remarkPlugins: [remarkReadingTime],
-    rehypePlugins: [rehypeSlug, [rehypeLinkHeadings, {
-      behavior: 'prepend',
-      content: {
-        type: 'element',
-        tagName: 'span',
-        properties: {
-          className: ['heading-link']
-        },
-        children: [{
-          type: 'text',
-          value: '⌗'
-        }]
-      }
-    }]]
-  }), react(), sitemap({
-    changefreq: 'weekly',
-    priority: 0.7,
-    lastmod: new Date(),
-    // serialize function should strip away trailing slashes on urls to match canonical urls
-    serialize: ({
-      url,
-      ...otherProps
-    }) => ({
-      url: url.replace(/\/$/, ''),
-      ...otherProps
-    }),
-    filter: page => !page.includes('draft')
-  }), tailwind()],
+  integrations: [
+    mdx({
+      syntaxHighlight: 'prism',
+      remarkPlugins: [remarkReadingTime],
+      rehypePlugins: [rehypeSlug, [rehypeLinkHeadings, {
+        behavior: 'prepend',
+        content: {
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['heading-link']
+          },
+          children: [{
+            type: 'text',
+            value: '⌗'
+          }]
+        }
+      }]]
+    }), 
+    react(), 
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      // serialize function should strip away trailing slashes on urls to match canonical urls
+      serialize: ({
+        url,
+        ...otherProps
+      }) => ({
+        url: url.replace(/\/$/, ''),
+        ...otherProps
+      }),
+      filter: page => !page.includes('draft')
+    }), 
+    tailwind()
+  ],
   adapter: vercel({
     imageService: true,
     imagesConfig: {
