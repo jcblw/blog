@@ -1,5 +1,5 @@
 ---
-import { markdown } from '@astropub/md'
+import { marked } from 'marked'
 import { siteMetadata } from '../consts'
 import { Icon } from './Icon'
 
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { readme } = Astro.props
+const readmeHtml = await marked(readme)
 ---
 
 <div class="flex flex-col pb-5 sm:flex-row">
@@ -27,6 +28,6 @@ const { readme } = Astro.props
     </div>
   </div>
   <div class="flex-1">
-    {await markdown(readme)}
+    <Fragment set:html={readmeHtml} />
   </div>
 </div>

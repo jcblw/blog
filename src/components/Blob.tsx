@@ -15,7 +15,7 @@ import {
   radianBetweenPoints,
   distance,
   angleToRadian,
-  Point,
+  type Point,
 } from '../utils/math'
 import { useColorPref } from '../utils/useColorPref'
 

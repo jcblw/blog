@@ -33,7 +33,7 @@ const talks = (await getCollection('videos')).sort(
           {
             talks.map((post) => (
               <li>
-                <PostEntryPreview {...post.data} href={`/talks/${post.slug}`} />
+                <PostEntryPreview {...post.data} href={`/talks/${post.id}`} />
               </li>
             ))
           }

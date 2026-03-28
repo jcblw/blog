@@ -1,20 +1,19 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content'
-import BlogPost from '../../layouts/BlogPost.astro'
-import TableOfContents from '../../components/TableOfContents.astro'
+import { type CollectionEntry, getCollection, render } from 'astro:content'
 import TalkVideo from '../../layouts/TalkVideo.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('videos')
   return posts.map((post) => ({
-    params: { slug: post.slug.replace(/^\//, '') },
-    props: { ...post, slug: `/talks/${post.slug.replace(/^\//, '')}` },
+    params: { slug: post.id },
+    props: post,
   }))
 }
 type Props = CollectionEntry<'videos'>
 
 const post = Astro.props
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const slug = `/talks/${post.id}`
+const { Content, headings, remarkPluginFrontmatter } = await render(post)
 const minutesRead = remarkPluginFrontmatter.minutesRead
 const formattedHeadings = headings.map((heading) => ({
   label: heading.text.replace('⌗', ''),
@@ -22,7 +21,6 @@ const formattedHeadings = headings.map((heading) => ({
 }))
 ---
 
-<TalkVideo {...post.data} slug={post.slug}>
-  <!-- <pre><code>{JSON.stringify(post, null, 2)}</code></pre> -->
+<TalkVideo {...post.data} slug={slug}>
   <Content />
 </TalkVideo>

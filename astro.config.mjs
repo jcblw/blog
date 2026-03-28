@@ -5,18 +5,18 @@ import react from '@astrojs/react';
 import rehypeLinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import { remarkReadingTime } from './scripts/remark-reading-time.mjs';
-import tailwind from '@astrojs/tailwind';
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jcbl.ws',
-  output: 'hybrid',
   trailingSlash: 'never',
+  markdown: {
+    syntaxHighlight: 'prism',
+  },
   integrations: [
     mdx({
-      syntaxHighlight: 'prism',
       remarkPlugins: [remarkReadingTime],
       rehypePlugins: [rehypeSlug, [rehypeLinkHeadings, {
         behavior: 'prepend',
@@ -32,8 +32,8 @@ export default defineConfig({
           }]
         }
       }]]
-    }), 
-    react(), 
+    }),
+    react(),
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
@@ -47,8 +47,7 @@ export default defineConfig({
         ...otherProps
       }),
       filter: page => !page.includes('draft')
-    }), 
-    tailwind()
+    }),
   ],
   adapter: vercel({
     imageService: true,

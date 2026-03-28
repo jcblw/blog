@@ -1,6 +1,4 @@
 ---
-import { markdown } from '@astropub/md'
-
 import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -55,7 +53,7 @@ const pinnedItems = profile.pinnedItems.nodes
           {
             posts.map((post) => (
               <li>
-                <PostEntryPreview {...post.data} href={`${post.slug}`} />
+                <PostEntryPreview {...post.data} href={`${(post.data.slug || post.id).replace(/^\//, '')}`} />
               </li>
             ))
           }

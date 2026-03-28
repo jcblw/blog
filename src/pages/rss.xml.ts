@@ -2,7 +2,7 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { siteMetadata } from '../consts'
 
-export async function get(context: any) {
+export async function GET(context: any) {
   const posts = await getCollection('blog')
   const videos = await getCollection('videos')
   return rss({
@@ -15,13 +15,13 @@ export async function get(context: any) {
       .map((post) => ({
         ...post.data,
         pubDate: post.data.date,
-        link: `/${post.slug}/`,
+        link: `/${(post.data.slug || post.id).replace(/^\//, '')}/`,
       }))
       .concat(
         videos.map((video) => ({
           ...video.data,
           pubDate: video.data.date,
-          link: `/talks/${video.slug}/`,
+          link: `/talks/${video.id}/`,
           status: 'published',
         }))
       )
