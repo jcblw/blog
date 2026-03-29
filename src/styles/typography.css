@@ -1,105 +1,107 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  @apply m-0 p-0;
-}
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    @apply m-0 p-0;
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  @apply pt-3 pb-3 text-tradewind dark:text-aeroBlue;
-}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    @apply pt-3 pb-3 text-tradewind dark:text-aeroBlue;
+  }
 
-h1,
-.h1 {
-  @apply text-xl font-medium;
-}
+  h1,
+  .h1 {
+    @apply text-xl font-medium;
+  }
 
-h2,
-.h2 {
-  @apply text-lg font-normal;
-}
+  h2,
+  .h2 {
+    @apply text-lg font-normal;
+  }
 
-h3,
-.h3 {
-  @apply text-lg font-medium;
-}
+  h3,
+  .h3 {
+    @apply text-lg font-medium;
+  }
 
-h4,
-.h4 {
-  @apply text-base font-medium;
-}
+  h4,
+  .h4 {
+    @apply text-base font-medium;
+  }
 
-h5,
-.h5 {
-  @apply text-sm font-normal;
-}
+  h5,
+  .h5 {
+    @apply text-sm font-normal;
+  }
 
-h6,
-.h6 {
-  @apply text-sm font-medium;
-}
+  h6,
+  .h6 {
+    @apply text-sm font-medium;
+  }
 
-p,
-.paragraph {
-  line-height: 2em;
-  @apply fill-vulcan pt-2 pb-2 text-sm font-normal text-vulcan dark:fill-white dark:text-white;
-}
+  p,
+  .paragraph {
+    line-height: 2em;
+    @apply fill-vulcan pt-2 pb-2 text-sm font-normal text-vulcan dark:fill-white dark:text-white;
+  }
 
-a,
-.link,
-a:hover,
-.link:hover,
-a:visited,
-.link:visited {
-  @apply text-blumine dark:text-periwinkleGray;
-}
+  a,
+  .link,
+  a:hover,
+  .link:hover,
+  a:visited,
+  .link:visited {
+    @apply text-blumine dark:text-periwinkleGray;
+  }
 
-a,
-.link {
-  text-decoration: none;
-}
+  a,
+  .link {
+    text-decoration: none;
+  }
 
-a:hover,
-.link:hover {
-  text-decoration: underline;
-}
+  a:hover,
+  .link:hover {
+    text-decoration: underline;
+  }
 
-h1 .heading-link,
-h2 .heading-link,
-h3 .heading-link,
-h4 .heading-link,
-h5 .heading-link,
-h6 .heading-link {
-  color: inherit;
-  text-decoration: none;
-  position: absolute;
-  transform: translate(-100%, -0.25em);
-  font-size: 0.75em;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  @apply pr-1;
-}
+  h1 .heading-link,
+  h2 .heading-link,
+  h3 .heading-link,
+  h4 .heading-link,
+  h5 .heading-link,
+  h6 .heading-link {
+    color: inherit;
+    text-decoration: none;
+    position: absolute;
+    transform: translate(-100%, -0.25em);
+    font-size: 0.75em;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    @apply pr-1;
+  }
 
-h1:hover .heading-link,
-h2:hover .heading-link,
-h3:hover .heading-link,
-h4:hover .heading-link,
-h5:hover .heading-link,
-h6:hover .heading-link {
-  display: block;
-  opacity: 1;
+  h1:hover .heading-link,
+  h2:hover .heading-link,
+  h3:hover .heading-link,
+  h4:hover .heading-link,
+  h5:hover .heading-link,
+  h6:hover .heading-link {
+    display: block;
+    opacity: 1;
+  }
 }

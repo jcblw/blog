@@ -1,0 +1,55 @@
+---
+title: 'I ruined my weekends teaching a 1B model to interpret dreams on a phone'
+description: 'Fine-tuning Gemma 3 1B for on-device dream analysis, from a frontend engineer who had no business doing any of it.'
+date: 2026-03-28
+status: published
+heroImage: /sandman-hero.png
+---
+
+*Written by a frontend engineer who had no business doing any of this*
+
+---
+
+I'm a frontend engineer. TypeScript, React, the usual. Until about a year ago, the closest I'd gotten to machine learning was `fetch("https://api.openai.com/...")`. Then I had this idea for a dream journal app, and the idea ruined my weekends and I love it.
+
+The app is called [Sandman](https://sandman.sh). You wake up, record your dream, and an AI running on your phone extracts themes, tags emotions, identifies symbols, and finds patterns over time. The important part: nothing leaves the device.
+
+I wanted it this way for two reasons. Privacy is the obvious one. Dreams are weird and personal and I didn't want to build something that uploads your subconscious to somebody else's server. The less obvious reason is resource cost. A single ChatGPT query uses roughly 10x the energy of a Google search. A 1B model running on your phone doesn't need any of that. No network call, no server, no cooling system. The chip in your pocket was already drawing power whether you ran inference on it or not. A dream journal doesn't need a data center.
+
+That "on-device" constraint is what made the project interesting. It's also what made it hard.
+
+## Choosing a model
+
+On-device narrows your options fast. I looked at [SmolLM2](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B), Meta's [MobileLLM](https://github.com/facebookresearch/MobileLLM), and [Qwen 2.5](https://huggingface.co/Qwen/Qwen2.5-0.5B) at 500M, but Sandman needs both structured extraction and conversational text. [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/genai/llm_inference)'s conversion pipeline works best with [Gemma](https://ai.google.dev/gemma), and I didn't want to fight the tooling on top of everything else. I also tried [FunctionGemma](https://huggingface.co/google/gemma-2-2b-it-function-calling-GGUF), but it *only* wanted to call functions. Ask it for free-form text and it'd refuse or shoehorn the response into a function call.
+
+[Gemma 3 1B](https://huggingface.co/google/gemma-3-1b-it) was the smallest general-purpose option in the family. I was already building a native Android app in Kotlin, so Google's ecosystem made sense. What I didn't appreciate yet: 1B is small. Every bad decision during fine-tuning costs you more because the model has less capacity to absorb your mistakes.
+
+## Data and first mistakes
+
+I had about 22,000 training examples from [DreamBank](https://dreambank.net/), a CC0-licensed [Dryad dataset](https://datadryad.org/), a cross-cultural interpretation dataset, and a symbol dictionary. I spent more time reformatting data than on any other part of this project. Fine-tuning is a data preparation problem. The actual training run is the easy part.
+
+My first run used the full dataset and the model overfit. It memorized the training data so thoroughly that it was brittle with real input. I had to scale back and clean more aggressively. More data isn't automatically better with a 1B model. It'll happily memorize everything instead of learning the underlying behavior.
+
+The other disaster was JSON. The model needed to output structured data, and after my first run it couldn't reliably close a curly brace. It'd produce these flowing natural language interpretations but couldn't output valid JSON to save its life. What fixed it: putting a system prompt in every training example with varied wording so it learned the behavior, not one specific string. Also, validating every assistant turn against the expected schema and never mixing output formats. One format per task.
+
+## One model, multiple jobs
+
+Sandman needs four capabilities: extract themes, identify symbols, tag emotions, and generate interpretations. Running four models on a phone isn't realistic, so I went multitask. I had to balance the training data distribution across tasks so the model wouldn't get good at one and terrible at the rest. Adding a task type hint in the system prompt like `"Output format: symbol_extraction"` made a surprisingly big difference.
+
+## Getting it on a phone
+
+Going from a fine-tuned [HuggingFace](https://huggingface.co/) model to something running on a phone is a three-stage process: [SafeTensors](https://huggingface.co/docs/safetensors/) to [TFLite](https://www.tensorflow.org/lite) using [`ai_edge_torch`](https://github.com/google-ai-edge/ai-edge-torch), then TFLite to a `.task` bundle using MediaPipe's bundler. Your fine-tuned model's architecture has to be identical to base Gemma 3 1B because the conversion tool hardcodes the topology. If you used [LoRA](https://huggingface.co/docs/peft/conceptual_guides/adapter#low-rank-adaptation-lora), merge the adapters first. Also budget 64GB+ RAM for conversion. I tried it on a 32GB machine and spent an embarrassing amount of time debugging OOM errors.
+
+A 1B model in FP32 is about 3.8GB, which is too big for most phones. I started with INT8 quantization (~1GB, 33 tok/s) and moved to INT4 (~657MB, 47 tok/s) when the quality loss turned out to be fine for my use case. Speed matters more than you'd think for a dream journal. You're using it right after you wake up. You're groggy. If the response takes too long, the dream fades and you close the app.
+
+## What I'd do differently
+
+I'd prototype the full pipeline before optimizing any single step. I spent weeks on training data before confirming the conversion pipeline even worked. Getting a hello world through the entire chain should have been day one. I'd also think harder about whether a 1B LLM was even the right tool. For structured extraction with consistent schemas, smaller models or non-LLM approaches might have worked and would have been way faster on-device.
+
+## Where it's at now
+
+The model is on HuggingFace at [`mujo-labs/sandman-gemma3-1b-multitask`](https://huggingface.co/mujo-labs/sandman-gemma3-1b-multitask). It runs on-device in a native Kotlin Android app and produces structured JSON for dream analysis. Speed is acceptable on flagship phones with INT4 quantization. Not great. Acceptable. But it runs on a phone, it does what I trained it to do, and no dream data goes anywhere. I'll take that for now.
+
+---
+
+*I'm still figuring a lot of this out. If you're working on something similar, I'd like to hear about it.*
