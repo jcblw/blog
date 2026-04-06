@@ -3,6 +3,7 @@ title: '6 things that changed when I swapped Gemma 3 for Gemma 4'
 description: 'I shipped Sandman with a fine-tuned Gemma 3 1B model. Gemma 4 came out three days later and I ripped it all out.'
 date: 2026-04-06
 status: published
+heroImage: /gemma-4-hero.png
 ---
 
 In my [last post](/fine-tuned-1b-model-on-phone), I wrote about fine-tuning [Gemma 3](https://ai.google.dev/gemma) 1B to analyze dreams on-device for my app [Sandman](https://sandman.sh). That post covered the whole mess: dataset creation, LoRA fine-tuning, the conversion pipeline, getting it running through [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/genai/llm_inference). It worked. I shipped it.
