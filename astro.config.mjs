@@ -14,6 +14,7 @@ export default defineConfig({
   trailingSlash: 'never',
   markdown: {
     syntaxHighlight: 'prism',
+    remarkPlugins: [remarkReadingTime],
   },
   integrations: [
     mdx({
