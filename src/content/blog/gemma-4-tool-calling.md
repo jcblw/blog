@@ -3,6 +3,7 @@ title: 'Gemma 4 tool calling turned my 2B model into something I actually want t
 description: 'A follow-up to my Gemma 4 post. On-device tool calling, agent loops, and what it is like to actually use a 2B model every day.'
 date: 2026-04-11
 status: published
+heroImage: /gemma-4-tool-calling-hero.png
 ---
 
 I published my [Gemma 4 post](/swapped-gemma-3-for-gemma-4) and almost immediately realized I left out the thing I've been most excited about. Tool calling.
