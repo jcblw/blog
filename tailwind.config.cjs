@@ -16,6 +16,7 @@ module.exports = {
       blumine: '#225b82',
       tradewind: '#4ba796',
       rawSienna: '#d08654',
+      rosewood: '#c25b5b',
     },
     spacing: {
       0: '0px', // zero or none

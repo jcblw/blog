@@ -17,6 +17,8 @@ interface Props {
     | 'north-star'
     | 'repo'
     | 'repo-fork'
+    | 'heart'
+    | 'heart-filled'
   width?: string
   height?: string
   color?:
@@ -26,6 +28,7 @@ interface Props {
     | 'paragraph'
     | 'background'
     | 'backgroundSecondary'
+    | 'liked'
   className?: string
   onClick?: () => void
 }
@@ -55,6 +58,10 @@ const IconMap: Record<Props['icon'], string> = {
   repo: 'M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z',
   ['repo-fork']:
     'M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z',
+  heart:
+    'M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0Z',
+  ['heart-filled']:
+    'M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 1 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0Z',
 }
 
 const viewBoxOverrides: Record<string, string> = {
@@ -68,6 +75,8 @@ const viewBoxOverrides: Record<string, string> = {
   ['north-star']: '0 0 16 16',
   repo: '0 0 16 16',
   ['repo-fork']: '0 0 16 16',
+  heart: '2 4 20 18',
+  ['heart-filled']: '2 4 20 18',
 }
 
 export const Icon = ({

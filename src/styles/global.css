@@ -43,6 +43,10 @@ a {
   @apply fill-blumine text-blumine dark:fill-periwinkleGray dark:text-periwinkleGray;
 }
 
+.color-liked {
+  @apply fill-rosewood text-rosewood;
+}
+
 .color-header,
 h1,
 h2,
@@ -116,4 +120,26 @@ h6 {
 hr {
   padding-top: 1px;
   @apply my-2 border-none bg-white dark:bg-vulcan;
+}
+
+.like-icon {
+  transition: transform 0.1s ease;
+}
+
+.like-icon:hover {
+  transform: scale(1.1);
+}
+
+.like-icon:active {
+  transform: scale(0.9);
+}
+
+.like-pop {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
 }

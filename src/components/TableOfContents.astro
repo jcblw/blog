@@ -1,37 +1,46 @@
 ---
 export interface Props extends astroHTML.JSX.HTMLAttributes {
   links: { href: string; label: string }[]
+  slug?: string
 }
 
-const { links, prefix, ...props } = Astro.props
+const { links, slug, prefix, ...props } = Astro.props
 ---
 
 <style>
-  .table-of-contents > div {
+  .table-of-contents .toc-wrapper {
     width: 100%;
     max-width: 300px;
-    /* pushes content to the edge of the blog content */
     transform: translateX(calc(760px / 2));
     left: 50%;
   }
 </style>
 <aside class="table-of-contents sticky top-0">
   <div
-    class="bg-backgroundSecondary absolute top-0 mt-3 hidden rounded-lg py-1 px-3 xl:block"
+    class="toc-wrapper absolute top-0 mt-3 hidden flex-col gap-1 xl:flex"
   >
-    <details>
-      <summary
-        ><h5 class="inline-flex pb-1 pt-1 font-medium">Sections</h5></summary
-      >
-      {
-        links.map(({ href, label }) => {
-          return (
-            <p class="py-0">
-              <a href={`#${href}`}>{label}</a>
-            </p>
-          )
-        })
-      }
-    </details>
+    <div class="bg-backgroundSecondary rounded-lg py-1 px-3">
+      <details>
+        <summary
+          ><h5 class="inline-flex pb-1 pt-1 font-medium">Sections</h5></summary
+        >
+        {
+          links.map(({ href, label }) => {
+            return (
+              <p class="py-0">
+                <a href={`#${href}`}>{label}</a>
+              </p>
+            )
+          })
+        }
+      </details>
+    </div>
+    {slug && (
+      <div class="bg-backgroundSecondary rounded-lg py-0 px-2 flex items-center">
+        <slot name="like-button" />
+        <div class="mx-2 h-2 border-l border-header opacity-30"></div>
+        <slot name="edit-link" />
+      </div>
+    )}
   </div>
 </aside>
