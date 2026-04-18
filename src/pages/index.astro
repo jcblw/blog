@@ -9,6 +9,7 @@ import PostEntryPreview from '../components/PostEntryPreview.astro'
 import { getProfileInfo, getReadme } from '../utils/github'
 import FeaturedProjects from '../components/FeaturedProjects.astro'
 import Author from '../components/Author.astro'
+import GrainOverlay from '../components/GrainOverlay.astro'
 
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.status || post.data.status !== 'draft')
@@ -33,6 +34,7 @@ const pinnedItems = profile.pinnedItems.nodes
     </style>
   </head>
   <body>
+    <GrainOverlay />
     <Header title={siteMetadata.title} />
     <main class="container relative z-10">
       <section class="pb-7">

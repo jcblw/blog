@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import { Icon } from './Icon'
 import Time from './Time.astro'
+import HeroThumbnail from './HeroThumbnail.astro'
 
 type BlogData = CollectionEntry<'blog'>['data']
 type BaseProps = astroHTML.JSX.HTMLAttributes & BlogData
@@ -11,6 +12,7 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
   title: string
   description: string
   date: Date
+  heroImage?: string
   class?: string
 }
 
@@ -20,6 +22,7 @@ const {
   description,
   date,
   status,
+  heroImage,
   class: className,
   ...props
 } = Astro.props
@@ -28,27 +31,30 @@ const formattedDescription =
 const isDraft = status && status !== 'published'
 ---
 
-<div class={`pb-4 ${isDraft ? '' : ''}`} {...props}>
-  {
-    isDraft && (
-      <div class="flex items-center rounded-sm">
-        <Icon
-          icon="hidden"
-          height="16px"
-          width="16px"
-          color="overline"
-          className="mr-1"
-        />
-        <span class="color-overline text-sm">Draft</span>
-      </div>
-    )
-  }
-  <h3 class="color-link pt-0 pb-2">
-    <a href={href} class:list={[className, 'py-0 no-underline']}>
-      {title}
-    </a>
-  </h3>
-  <p class="py-0">{formattedDescription}</p>
-  <hr />
-  <Time date={date} class="p-0 color-header" />
+<div class={`pb-4 flex gap-4 ${isDraft ? '' : ''}`} {...props}>
+  <div class="flex-1">
+    {
+      isDraft && (
+        <div class="flex items-center rounded-sm">
+          <Icon
+            icon="hidden"
+            height="16px"
+            width="16px"
+            color="overline"
+            className="mr-1"
+          />
+          <span class="color-overline text-sm">Draft</span>
+        </div>
+      )
+    }
+    <h3 class="color-link pt-0 pb-2">
+      <a href={href} class:list={[className, 'py-0 no-underline']}>
+        {title}
+      </a>
+    </h3>
+    <p class="py-0">{formattedDescription}</p>
+    <hr />
+    <Time date={date} class="p-0 color-header" />
+  </div>
+  {heroImage && <HeroThumbnail src={heroImage} alt={`Hero image for ${title}`} href={href} />}
 </div>
