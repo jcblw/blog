@@ -3,6 +3,7 @@ title: 'The agent loop pattern that made a 2B model stop embarrassing itself'
 description: "One giant prompt didn't work. Splitting the agent loop into route, execute, respond made a 2B local model actually reliable."
 date: 2026-04-18
 status: published
+heroImage: /agent-loops-local-models-hero.png
 ---
 
 My [last post](/gemma-4-tool-calling) was about adding tool calling to [Sandman](https://sandman.sh). That post covered the what. This one is about the how, and specifically about the thing that took the longest to figure out: the agent loop itself.

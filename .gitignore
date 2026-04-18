@@ -69,3 +69,6 @@ dist
 .astro
 .cache
 .vercel
+
+# claude
+.claude/settings.local.json
