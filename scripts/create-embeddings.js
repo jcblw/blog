@@ -71,11 +71,13 @@ const isOneDimensionalArray = (x) =>
         return null
       }
       const slug = content.match(/slug: (.*)/)?.[1]
+      const filename = file.split('/').pop()?.split('.')[0]
+      const fallbackSlug = file.includes('/videos/') ? `/talks/${filename}` : `/${filename}`
       const descriptor = {
         content,
         title: content.match(/title: (.*)/)?.[1],
         description: content.match(/description: (.*)/)?.[1],
-        slug: slug ?? `/talks/${file.split('/').pop()?.split('.')[0]}`,
+        slug: slug ?? fallbackSlug,
         heroImage: content.match(/heroImage: (.*)/)?.[1],
         isDraft: false,
       }
