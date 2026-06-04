@@ -1,184 +1,119 @@
 // @ts-ignore
 import { createNoise2D } from 'simplex-noise'
 import alea from 'alea'
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
-import {
-  getPointOnCircle,
-  normalize,
-  radianBetweenPoints,
-  distance,
-  angleToRadian,
-  type Point,
-} from '../utils/math'
+import { useEffect, useRef, useState } from 'react'
 import { useColorPref } from '../utils/useColorPref'
 
 const prng = alea('seed')
 const noise2D = createNoise2D(prng)
 
-export const drawBlob = ({
-  scale,
-  x,
-  y,
-  lr,
-  ur,
-  ctx,
-  radius,
-  noisePoint,
-  angles,
-  animated,
-  meta,
-}: {
-  scale: number
-  x: number
-  y: number
-  lr: number
-  ur: number
-  ctx: CanvasRenderingContext2D
-  radius: number
-  noisePoint: Point
-  angles: number
-  animated: boolean
-  meta: any
-}) => {
-  const arr: Point[] = []
-  const center: Point = [x, y]
-  const noiseCenter = getPointOnCircle(
-    ...noisePoint,
-    angleToRadian(meta.current.time),
-    10
-  )
-  for (let angle = 0; angle <= Math.PI * 2; angle += Math.PI / angles) {
-    const perlinPoint = getPointOnCircle(...noiseCenter, angle, 0.5)
-    const off = normalize(noise2D(...perlinPoint), 0, 1, lr, ur)
+const GRID_SIZE = 40
+const DOT_RADIUS = 2.5
 
-    const radii = radius * scale + off
-    const px = radii * Math.cos(angle) + center[0]
-    const py = radii * Math.sin(angle) + center[1]
-    arr.push([px, py])
-  }
+const LIGHT_COLORS = [
+  '#4ba796', // tradewind
+  '#4e9ee4', // pictonBlue
+  '#225b82', // blumine
+  '#d08654', // rawSienna
+  '#c25b5b', // rosewood
+  '#ADCBE0', // periwinkleGray
+]
 
-  arr.sort(
-    (a, b) => radianBetweenPoints(b, center) - radianBetweenPoints(a, center)
-  )
-
-  const newArr = arr
-    .filter((point) => distance(point, center) > 3)
-    .map((point) => {
-      const d = distance(point, center)
-      const r = radianBetweenPoints(center, point)
-      return getPointOnCircle(...center, r, d)
-    })
-
-  let started = false
-  ctx.beginPath()
-  ctx.fillStyle = meta.current.color
-  newArr.forEach(([px, py], ii) => {
-    if (started) {
-      ctx.lineTo(px, py)
-    } else {
-      ctx.moveTo(px, py)
-      started = true
-    }
-  })
-  ctx.closePath()
-  ctx.fill()
-}
-
-const randomN = (n = 100) => Math.floor(Math.random() * n)
+const DARK_COLORS = [
+  '#4ba796', // tradewind
+  '#4e9ee4', // pictonBlue
+  '#b8fff2', // aeroBlue
+  '#e2b393', // calico
+  '#ADCBE0', // periwinkleGray
+]
 
 const fpsTimeout = (callback: () => void, fps: number) => {
-  let requestAnimationFrame: number
+  let raf: number
   let time = Date.now()
-  const checkTime = () => {
-    const delay = 1000 / fps
-    if (time + delay - Date.now() < 0) {
+  const check = () => {
+    if (time + 1000 / fps - Date.now() < 0) {
       callback()
       time = Date.now()
     }
-    requestAnimationFrame = window.requestAnimationFrame(checkTime)
+    raf = window.requestAnimationFrame(check)
   }
-  requestAnimationFrame = window.requestAnimationFrame(checkTime)
-
-  return () => {
-    cancelAnimationFrame(requestAnimationFrame)
-  }
+  raf = window.requestAnimationFrame(check)
+  return () => cancelAnimationFrame(raf)
 }
 
-export const Blob = ({
-  scale = 1,
-  lr = 0,
-  ur = 200,
-  animated = true,
-  angles = 100,
-}: {
-  scale?: number
-  x?: number
-  x2?: number
-  y?: number
-  lr?: number
-  ur?: number
-  radius?: number
-  animated?: boolean
-  angles?: number
-}) => {
-  const noisePoint = useMemo<Point>(() => [randomN(), randomN()], [])
-  const ref = useRef({ time: 0, color: `#e3f4ff`, mouse: [0, 0] })
+export const Blob = () => {
   const [canvas, setCanvas] = useState<HTMLCanvasElement>()
   const { colorScheme } = useColorPref()
+  const meta = useRef({ time: 0, colorScheme: 'light' })
 
   useEffect(() => {
-    if (colorScheme === 'dark') {
-      Object.assign(ref.current, { color: `#0d202d` })
-    } else {
-      Object.assign(ref.current, { color: `#e3f4ff` })
-    }
+    meta.current.colorScheme = colorScheme
   }, [colorScheme])
 
   useEffect(() => {
     const ctx = canvas?.getContext('2d')
     if (!ctx) return
-    let clearTimeout: () => void
-    const renderCanvas = () => {
-      // clear canvas
-      ctx.canvas.width = window.innerWidth
-      ctx.canvas.height = window.innerHeight
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
-      drawBlob({
-        scale,
-        x: window.innerWidth - window.innerWidth / 3,
-        y: window.innerHeight / 3,
-        lr,
-        ur,
-        ctx,
-        radius: Math.max(window.innerWidth, window.innerHeight) / 2,
-        noisePoint,
-        angles,
-        animated,
-        meta: ref,
-      })
+    const render = () => {
+      const w = window.innerWidth
+      const h = window.innerHeight
+      ctx.canvas.width = w
+      ctx.canvas.height = h
 
-      if (animated) {
-        Object.assign(ref.current, { time: ref.current.time + 0.005 })
+      const isDark = meta.current.colorScheme === 'dark'
+      const colors = isDark ? DARK_COLORS : LIGHT_COLORS
+      const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,17,29,0.07)'
+      const t = meta.current.time
+
+      // Grid lines
+      ctx.strokeStyle = gridColor
+      ctx.lineWidth = 1
+      ctx.beginPath()
+      for (let x = 0; x <= w; x += GRID_SIZE) {
+        ctx.moveTo(x, 0)
+        ctx.lineTo(x, h)
       }
+      for (let y = 0; y <= h; y += GRID_SIZE) {
+        ctx.moveTo(0, y)
+        ctx.lineTo(w, y)
+      }
+      ctx.stroke()
+
+      // Dots at grid intersections
+      for (let x = 0; x <= w; x += GRID_SIZE) {
+        for (let y = 0; y <= h; y += GRID_SIZE) {
+          const n1 = noise2D(x * 0.006 + t * 0.25, y * 0.006 + t * 0.15)
+          const n2 = noise2D(x * 0.009 + 100, y * 0.009 + t * 0.08)
+
+          // n1 drives opacity and size
+          const brightness = (n1 + 1) / 2
+          if (brightness < 0.3) continue // skip very dim dots for sparsity
+
+          const opacity = (brightness - 0.3) / 0.7 * 0.75 + 0.05
+          const radius = DOT_RADIUS * (0.4 + brightness * 0.8)
+
+          // n2 drives color choice
+          const colorIdx = Math.floor(((n2 + 1) / 2) * colors.length) % colors.length
+
+          ctx.globalAlpha = opacity
+          ctx.fillStyle = colors[colorIdx]
+          ctx.beginPath()
+          ctx.arc(x, y, radius, 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
+
+      ctx.globalAlpha = 1
+      meta.current.time += 0.004
     }
-    clearTimeout = fpsTimeout(renderCanvas, 60)
-    return () => {
-      clearTimeout()
-    }
+
+    return fpsTimeout(render, 60)
   }, [canvas])
 
   return (
     <canvas
       ref={(ref) => ref && setCanvas(ref)}
-      className="fixed top-0 left-0 h-full w-full"
+      className="fixed top-0 left-0 h-full w-full pointer-events-none"
     />
   )
 }
