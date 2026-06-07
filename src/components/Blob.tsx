@@ -71,7 +71,7 @@ export const Blob = () => {
       ctx.canvas.height = h
 
       const isDark = meta.current.colorScheme === 'dark'
-      const blobColor = isDark ? '#0d202d' : '#e3f4ff'
+      const blobColor = isDark ? '#b8fff2' : '#4ba796'
       const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,17,29,0.07)'
       const ghostDotColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,17,29,0.08)'
       const t = meta.current.time
