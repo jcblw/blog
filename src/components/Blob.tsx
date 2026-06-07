@@ -1,20 +1,12 @@
 // @ts-ignore
 import { createNoise2D } from 'simplex-noise'
 import alea from 'alea'
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   getPointOnCircle,
   normalize,
-  radianBetweenPoints,
-  distance,
   angleToRadian,
+  distance,
   type Point,
 } from '../utils/math'
 import { useColorPref } from '../utils/useColorPref'
@@ -22,163 +14,130 @@ import { useColorPref } from '../utils/useColorPref'
 const prng = alea('seed')
 const noise2D = createNoise2D(prng)
 
-export const drawBlob = ({
-  scale,
-  x,
-  y,
-  lr,
-  ur,
-  ctx,
-  radius,
-  noisePoint,
-  angles,
-  animated,
-  meta,
-}: {
-  scale: number
-  x: number
-  y: number
-  lr: number
-  ur: number
-  ctx: CanvasRenderingContext2D
-  radius: number
-  noisePoint: Point
-  angles: number
-  animated: boolean
-  meta: any
-}) => {
-  const arr: Point[] = []
-  const center: Point = [x, y]
-  const noiseCenter = getPointOnCircle(
-    ...noisePoint,
-    angleToRadian(meta.current.time),
-    10
-  )
-  for (let angle = 0; angle <= Math.PI * 2; angle += Math.PI / angles) {
-    const perlinPoint = getPointOnCircle(...noiseCenter, angle, 0.5)
-    const off = normalize(noise2D(...perlinPoint), 0, 1, lr, ur)
-
-    const radii = radius * scale + off
-    const px = radii * Math.cos(angle) + center[0]
-    const py = radii * Math.sin(angle) + center[1]
-    arr.push([px, py])
-  }
-
-  arr.sort(
-    (a, b) => radianBetweenPoints(b, center) - radianBetweenPoints(a, center)
-  )
-
-  const newArr = arr
-    .filter((point) => distance(point, center) > 3)
-    .map((point) => {
-      const d = distance(point, center)
-      const r = radianBetweenPoints(center, point)
-      return getPointOnCircle(...center, r, d)
-    })
-
-  let started = false
-  ctx.beginPath()
-  ctx.fillStyle = meta.current.color
-  newArr.forEach(([px, py], ii) => {
-    if (started) {
-      ctx.lineTo(px, py)
-    } else {
-      ctx.moveTo(px, py)
-      started = true
-    }
-  })
-  ctx.closePath()
-  ctx.fill()
-}
+const GRID_SIZE = 40
+const DOT_RADIUS = 2.5
+const FADE_ZONE = GRID_SIZE * 2
 
 const randomN = (n = 100) => Math.floor(Math.random() * n)
 
 const fpsTimeout = (callback: () => void, fps: number) => {
-  let requestAnimationFrame: number
+  let raf: number
   let time = Date.now()
-  const checkTime = () => {
-    const delay = 1000 / fps
-    if (time + delay - Date.now() < 0) {
+  const check = () => {
+    if (time + 1000 / fps - Date.now() < 0) {
       callback()
       time = Date.now()
     }
-    requestAnimationFrame = window.requestAnimationFrame(checkTime)
+    raf = window.requestAnimationFrame(check)
   }
-  requestAnimationFrame = window.requestAnimationFrame(checkTime)
-
-  return () => {
-    cancelAnimationFrame(requestAnimationFrame)
-  }
+  raf = window.requestAnimationFrame(check)
+  return () => cancelAnimationFrame(raf)
 }
 
-export const Blob = ({
-  scale = 1,
-  lr = 0,
-  ur = 200,
-  animated = true,
-  angles = 100,
-}: {
-  scale?: number
-  x?: number
-  x2?: number
-  y?: number
-  lr?: number
-  ur?: number
-  radius?: number
-  animated?: boolean
-  angles?: number
-}) => {
+const getBlobRadius = (
+  angle: number,
+  noisePoint: Point,
+  time: number,
+  baseRadius: number
+) => {
+  const noiseCenter = getPointOnCircle(
+    ...noisePoint,
+    angleToRadian(time),
+    10
+  )
+  const perlinPoint = getPointOnCircle(...noiseCenter, angle, 0.5)
+  const off = normalize(noise2D(...perlinPoint), 0, 1, 0, 200)
+  return baseRadius + off
+}
+
+export const Blob = () => {
   const noisePoint = useMemo<Point>(() => [randomN(), randomN()], [])
-  const ref = useRef({ time: 0, color: `#e3f4ff`, mouse: [0, 0] })
   const [canvas, setCanvas] = useState<HTMLCanvasElement>()
   const { colorScheme } = useColorPref()
+  const meta = useRef({ time: 0, colorScheme: 'light' })
 
   useEffect(() => {
-    if (colorScheme === 'dark') {
-      Object.assign(ref.current, { color: `#0d202d` })
-    } else {
-      Object.assign(ref.current, { color: `#e3f4ff` })
-    }
+    meta.current.colorScheme = colorScheme
   }, [colorScheme])
 
   useEffect(() => {
     const ctx = canvas?.getContext('2d')
     if (!ctx) return
-    let clearTimeout: () => void
-    const renderCanvas = () => {
-      // clear canvas
-      ctx.canvas.width = window.innerWidth
-      ctx.canvas.height = window.innerHeight
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
-      drawBlob({
-        scale,
-        x: window.innerWidth - window.innerWidth / 3,
-        y: window.innerHeight / 3,
-        lr,
-        ur,
-        ctx,
-        radius: Math.max(window.innerWidth, window.innerHeight) / 2,
-        noisePoint,
-        angles,
-        animated,
-        meta: ref,
-      })
+    const render = () => {
+      const w = window.innerWidth
+      const h = window.innerHeight
+      ctx.canvas.width = w
+      ctx.canvas.height = h
 
-      if (animated) {
-        Object.assign(ref.current, { time: ref.current.time + 0.005 })
+      const isDark = meta.current.colorScheme === 'dark'
+      const blobColor = isDark ? '#b8fff2' : '#4ba796'
+      const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,17,29,0.07)'
+      const ghostDotColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,17,29,0.08)'
+      const t = meta.current.time
+
+      const cx = w - w / 3
+      const cy = h / 3
+      const baseRadius = Math.max(w, h) / 2
+
+      // Grid lines
+      ctx.strokeStyle = gridColor
+      ctx.lineWidth = 1
+      ctx.beginPath()
+      for (let x = 0; x <= w; x += GRID_SIZE) {
+        ctx.moveTo(x, 0)
+        ctx.lineTo(x, h)
       }
+      for (let y = 0; y <= h; y += GRID_SIZE) {
+        ctx.moveTo(0, y)
+        ctx.lineTo(w, y)
+      }
+      ctx.stroke()
+
+      // Dots at grid intersections
+      for (let x = 0; x <= w; x += GRID_SIZE) {
+        for (let y = 0; y <= h; y += GRID_SIZE) {
+          const angle = Math.atan2(y - cy, x - cx)
+          const dist = distance([x, y], [cx, cy])
+          const blobR = getBlobRadius(angle, noisePoint, t, baseRadius)
+          const diff = blobR - dist // positive = inside, negative = outside
+
+          if (diff < -FADE_ZONE) {
+            // outside and beyond fade zone — ghost dot only
+            ctx.globalAlpha = 1
+            ctx.fillStyle = ghostDotColor
+            ctx.beginPath()
+            ctx.arc(x, y, 1.5, 0, Math.PI * 2)
+            ctx.fill()
+            continue
+          }
+
+          if (diff >= 0) {
+            // fully inside
+            ctx.globalAlpha = 1
+          } else {
+            // in the fade zone
+            ctx.globalAlpha = 1 + diff / FADE_ZONE
+          }
+
+          ctx.fillStyle = blobColor
+          ctx.beginPath()
+          ctx.arc(x, y, DOT_RADIUS, 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
+
+      ctx.globalAlpha = 1
+      meta.current.time += 0.005
     }
-    clearTimeout = fpsTimeout(renderCanvas, 60)
-    return () => {
-      clearTimeout()
-    }
-  }, [canvas])
+
+    return fpsTimeout(render, 60)
+  }, [canvas, noisePoint])
 
   return (
     <canvas
       ref={(ref) => ref && setCanvas(ref)}
-      className="fixed top-0 left-0 h-full w-full"
+      className="fixed top-0 left-0 h-full w-full pointer-events-none"
     />
   )
 }
