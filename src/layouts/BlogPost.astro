@@ -13,6 +13,7 @@ import RelatedPosts from '../components/RelatedPosts.astro'
 import { getSimilarPosts } from '../utils/sql'
 import { LikeButton } from '../components/LikeButton'
 import GrainOverlay from '../components/GrainOverlay.astro'
+import SubscribeCTA from '../components/SubscribeCTA.astro'
 import 'dotenv/config'
 
 type BlogData = CollectionEntry<'blog'>['data']
@@ -179,6 +180,9 @@ const microdata = {
         <hr />
         <slot />
       </article>
+      <section class="container">
+        <SubscribeCTA source="post-footer" />
+      </section>
       {
         relatedPosts && relatedPosts.length > 0 && (
           <>

@@ -1,0 +1,54 @@
+---
+import { siteMetadata } from '../consts'
+
+interface Props {
+  source?: string
+  heading?: string
+  body?: string
+  cta?: string
+}
+
+const {
+  source = 'post-footer',
+  heading = 'Enjoyed this?',
+  body = 'Get new articles, projects, and thoughts on humane technology in your inbox. Free, no spam.',
+  cta = 'Subscribe on Substack',
+} = Astro.props
+
+const href = `${siteMetadata.substack}/subscribe?utm_source=website&utm_medium=${source}`
+---
+
+<aside class="subscribe-cta">
+  <div class="subscribe-cta__inner">
+    <h4 class="color-overline pb-1 pt-0 font-medium">{heading}</h4>
+    <p class="pb-3 pt-0">{body}</p>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="subscribe-cta__button"
+    >
+      {cta}
+    </a>
+  </div>
+</aside>
+
+<style>
+  .subscribe-cta {
+    margin: 2rem 0;
+  }
+  .subscribe-cta__inner {
+    background: var(--color-backgroundSecondary);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .subscribe-cta__button {
+    display: inline-block;
+    background: var(--color-overline);
+    color: var(--color-backgroundSecondary);
+    border-radius: 8px;
+    padding: 0.4rem 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>
