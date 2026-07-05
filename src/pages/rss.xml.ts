@@ -1,21 +1,23 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
+import type { APIContext } from 'astro'
 import { siteMetadata } from '../consts'
+import { isPublished, getPostSlug } from '../utils/posts'
 
-export async function GET(context: any) {
+export async function GET(context: APIContext) {
   const posts = await getCollection('blog')
   const videos = await getCollection('videos')
   return rss({
     title: siteMetadata.title,
     description: siteMetadata.description,
-    site: context.site,
+    site: context.site!,
     stylesheet: '/rss/styles.xsl',
     items: posts
-      .filter((post) => !post.data.status || post.data.status !== 'draft')
+      .filter(isPublished)
       .map((post) => ({
         ...post.data,
         pubDate: post.data.date,
-        link: `/${(post.data.slug || post.id).replace(/^\//, '')}/`,
+        link: `/${getPostSlug(post)}/`,
       }))
       .concat(
         videos.map((video) => ({

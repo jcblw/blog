@@ -63,6 +63,7 @@ const microdata = {
 }
 ---
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} image={heroImage} />
@@ -107,6 +108,13 @@ const microdata = {
         line-height: 1em;
       }
     </style>
+    <noscript>
+      <style>
+        .hero-image-wrapper .hero-image {
+          opacity: 1;
+        }
+      </style>
+    </noscript>
   </head>
 
   <body>

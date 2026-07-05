@@ -6,19 +6,21 @@ import { siteMetadata } from '../consts'
 
 import { getCollection } from 'astro:content'
 import PostEntryPreview from '../components/PostEntryPreview.astro'
-import { getProfileInfo, getReadme } from '../utils/github'
+import { getProfileInfo } from '../utils/github'
 import FeaturedProjects from '../components/FeaturedProjects.astro'
 import Author from '../components/Author.astro'
 import GrainOverlay from '../components/GrainOverlay.astro'
 import SubscribeCTA from '../components/SubscribeCTA.astro'
+import { isPublished, getPostSlug } from '../utils/posts'
 
+const isProduction = import.meta.env.MODE === 'production'
 const posts = (await getCollection('blog'))
-  .filter((post) => !post.data.status || post.data.status !== 'draft')
+  .filter((post) => (isProduction ? isPublished(post) : true))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3)
 
 const profile = await getProfileInfo()
-const pinnedItems = profile.pinnedItems.nodes
+const pinnedItems = profile?.pinnedItems?.nodes ?? []
 ---
 
 <!DOCTYPE html>
@@ -56,7 +58,7 @@ const pinnedItems = profile.pinnedItems.nodes
           {
             posts.map((post) => (
               <li>
-                <PostEntryPreview {...post.data} href={`${(post.data.slug || post.id).replace(/^\//, '')}`} />
+                <PostEntryPreview {...post.data} href={getPostSlug(post)} />
               </li>
             ))
           }
@@ -69,9 +71,13 @@ const pinnedItems = profile.pinnedItems.nodes
           body="I send new posts, projects, and thoughts on humane technology straight to your inbox."
         />
       </section>
-      <section>
-        <FeaturedProjects projects={pinnedItems} />
-      </section>
+      {
+        pinnedItems.length > 0 && (
+          <section>
+            <FeaturedProjects projects={pinnedItems} />
+          </section>
+        )
+      }
     </main>
     <Footer />
   </body>

@@ -5,13 +5,12 @@ import Footer from '../../components/Footer.astro'
 import { siteMetadata } from '../../consts'
 import { getCollection } from 'astro:content'
 import PostEntryPreview from '../../components/PostEntryPreview.astro'
+import { isPublished, getPostSlug } from '../../utils/posts'
 
 const isProduction = import.meta.env.MODE === 'production'
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .filter((post) =>
-    isProduction ? !post.data.status || post.data.status !== 'draft' : true
-  )
+  .filter((post) => (isProduction ? isPublished(post) : true))
 ---
 
 <!DOCTYPE html>
@@ -36,7 +35,7 @@ const posts = (await getCollection('blog'))
           {
             posts.map((post) => (
               <li>
-                <PostEntryPreview {...post.data} href={`${(post.data.slug || post.id).replace(/^\//, '')}`} />
+                <PostEntryPreview {...post.data} href={getPostSlug(post)} />
               </li>
             ))
           }

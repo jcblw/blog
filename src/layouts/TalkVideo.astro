@@ -43,6 +43,7 @@ const microdata = {
 }
 ---
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
@@ -77,6 +78,7 @@ const microdata = {
           src={`https://www.youtube.com/embed/${youtubeId}`}
           frameborder="0"
           allowfullscreen
+          loading="lazy"
           title={title}
           class="video"></iframe>
         <div class="container">
@@ -115,7 +117,7 @@ const microdata = {
           }))} />
         </>
       )}
-      <Footer />
     </main>
+    <Footer />
   </body>
 </html>
