@@ -1,9 +1,90 @@
+@import 'tailwindcss';
+
 @import './typography.css';
 @import './prism.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 24px;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 760px) {
+    max-width: 760px;
+  }
+}
+
+@theme {
+  --color-*: initial;
+  --color-white: #fff;
+  --color-vulcan: #0f111d;
+  --color-steelGrey: #1a1c27;
+  --color-periwinkleGray: #adcbe0;
+  --color-aeroBlue: #b8fff2;
+  --color-calico: #e2b393;
+  --color-pictonBlue: #4e9ee4;
+  --color-bridalHealth: #fffaf4;
+  --color-blumine: #225b82;
+  --color-tradewind: #4ba796;
+  --color-rawSienna: #d08654;
+  --color-rosewood: #c25b5b;
+
+  --spacing-*: initial;
+  --spacing-0: 0px;
+  --spacing-1: 8px;
+  --spacing-2: 16px;
+  --spacing-3: 24px;
+  --spacing-4: 32px;
+  --spacing-5: 40px;
+  --spacing-6: 56px;
+  --spacing-7: 80px;
+  --spacing-8: 120px;
+  --spacing-9: 160px;
+  --spacing-10: 240px;
+  --spacing-11: 320px;
+  --spacing-1\/2: 4px;
+
+  --radius-*: initial;
+  --radius-none: 0;
+  --radius-xs: 8px;
+  --radius-sm: 16px;
+  --radius-default: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  --radius-full: 9999px;
+
+  --font-*: initial;
+  --font-sans: Oxygen, sans-serif;
+  --font-mono: Inconsolata, monospace;
+
+  --text-*: initial;
+  --text-xs: 12px;
+  --text-sm: 16px;
+  --text-base: 24px;
+  --text-lg: 32px;
+  --text-xl: 40px;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 html:is(.dark) {
   @apply bg-vulcan;

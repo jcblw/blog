@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import rehypeLinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import { remarkReadingTime } from './scripts/remark-reading-time.mjs';
+import tailwindcss from '@tailwindcss/vite';
 
 import vercel from "@astrojs/vercel";
 
@@ -12,6 +13,9 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   site: 'https://jcbl.ws',
   trailingSlash: 'never',
+  vite: {
+    plugins: [tailwindcss()],
+  },
   markdown: {
     syntaxHighlight: 'prism',
     remarkPlugins: [remarkReadingTime],

@@ -7,7 +7,6 @@ import { siteMetadata } from '../consts'
 import Time from '../components/Time.astro'
 import { getSimilarPosts } from '../utils/sql'
 
-import '../styles/prism.css'
 import RelatedPosts from '../components/RelatedPosts.astro'
 
 type TalkData = CollectionEntry<'videos'>['data']
@@ -48,6 +47,8 @@ const microdata = {
   <head>
     <BaseHead title={title} description={description} />
     <style>
+      @reference '../styles/global.css';
+
       .author-section {
         width: 100%;
       }
