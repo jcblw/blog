@@ -42,7 +42,6 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
       // serialize function should strip away trailing slashes on urls to match canonical urls
       serialize: ({
         url,
