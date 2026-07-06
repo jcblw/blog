@@ -7,7 +7,6 @@ import { siteMetadata } from '../consts'
 import Time from '../components/Time.astro'
 import { getSimilarPosts } from '../utils/sql'
 
-import '../styles/prism.css'
 import RelatedPosts from '../components/RelatedPosts.astro'
 
 type TalkData = CollectionEntry<'videos'>['data']
@@ -43,10 +42,13 @@ const microdata = {
 }
 ---
 
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} type="video.other" />
     <style>
+      @reference '../styles/global.css';
+
       .author-section {
         width: 100%;
       }
@@ -77,6 +79,7 @@ const microdata = {
           src={`https://www.youtube.com/embed/${youtubeId}`}
           frameborder="0"
           allowfullscreen
+          loading="lazy"
           title={title}
           class="video"></iframe>
         <div class="container">
@@ -115,7 +118,7 @@ const microdata = {
           }))} />
         </>
       )}
-      <Footer />
     </main>
+    <Footer />
   </body>
 </html>

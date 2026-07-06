@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useSyncExternalStore } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 import { localStore } from './storage'
 
 const safeSerialize = <T extends unknown>(value: T): string | null => {
@@ -24,12 +24,15 @@ export const useLocalStorage = <T extends unknown>(
   key: string,
   defaultValue: T | null = null
 ): [T | null, (value: T) => void] => {
-  const setLocalStorageValue = (newValue: T) => {
-    const serializedValue = safeSerialize(newValue)
-    if (serializedValue) {
-      localStore.setItem(key, serializedValue)
-    }
-  }
+  const setLocalStorageValue = useCallback(
+    (newValue: T) => {
+      const serializedValue = safeSerialize(newValue)
+      if (serializedValue) {
+        localStore.setItem(key, serializedValue)
+      }
+    },
+    [key]
+  )
 
   const subscribe = useCallback(localStore.subscribe.bind(localStore, key), [
     key,

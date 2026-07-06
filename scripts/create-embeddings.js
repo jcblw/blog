@@ -27,6 +27,12 @@ const isOneDimensionalArray = (x) =>
   Array.isArray(x) && x.every((y) => typeof y === 'number')
 
 ;(async () => {
+  if (!process.env.POSTGRES_URL || !process.env.OPENAI_API_KEY) {
+    console.warn(
+      'Skipping embeddings: POSTGRES_URL and/or OPENAI_API_KEY not set.'
+    )
+    return
+  }
   console.log('Generating embeddings...')
   const resolveBlog = resolveContent('blog')
   const resolveVideo = resolveContent('videos')
@@ -140,4 +146,7 @@ const isOneDimensionalArray = (x) =>
   }, Promise.resolve())
 
   console.log('Embeddings generated! 🚀')
-})()
+})().catch((error) => {
+  // Similar-post data going stale is preferable to blocking the deploy.
+  console.warn('Embeddings generation failed, continuing build:', error)
+})

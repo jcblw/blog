@@ -1,18 +1,19 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content'
 import BlogPost from '../layouts/BlogPost.astro'
+import { getPostSlug } from '../utils/posts'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
   return posts.map((post) => ({
-    params: { slug: (post.data.slug || post.id).replace(/^\//, '') },
+    params: { slug: getPostSlug(post) },
     props: post,
   }))
 }
 type Props = CollectionEntry<'blog'>
 
 const post = Astro.props
-const slug = (post.data.slug || post.id).replace(/^\//, '')
+const slug = getPostSlug(post)
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
 const minutesRead = remarkPluginFrontmatter.minutesRead
 const formattedHeadings = headings.map((heading) => ({
