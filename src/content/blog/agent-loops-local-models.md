@@ -68,4 +68,4 @@ The pipeline approach changed how Sandman feels to use. Before, I'd send a messa
 
 ---
 
-*This is part of an ongoing series about building [Sandman](https://sandman.sh), an on-device dream journal app. Previous post: ["Gemma 4 tool calling turned my 2B model into something I actually want to talk to"](/gemma-4-tool-calling).*
+*This is part of an ongoing series about building [Sandman](https://sandman.sh), an on-device dream journal app. Previous post: ["Gemma 4 tool calling turned my 2B model into something I actually want to talk to"](/gemma-4-tool-calling). Next post: ["Don't wake it, your phone's dreaming"](/dont-wake-it-your-phone-is-dreaming).*

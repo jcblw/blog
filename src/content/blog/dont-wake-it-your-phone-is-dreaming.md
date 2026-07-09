@@ -1,5 +1,5 @@
 ---
-title: "Don't wake it, your phone's thinking"
+title: "Don't wake it, your phone's dreaming"
 description: "What building Sandman's background weekly summaries taught me about taking LLMs beyond the chat box, and why idle compute is about to get very busy."
 date: 2026-07-08
 status: published
@@ -50,3 +50,7 @@ I'd bet that in a few years the idle compute on our devices is mostly spoken for
 Two things. First, packing more work into each overnight model load, so the same session that writes the weekly summary can also handle smaller precomputed artifacts without paying the cold-start tax twice. Second, precomputing embeddings for every entry so semantic search over your dream history is instant, another job that can run while nobody's watching.
 
 There's something I find genuinely funny about all of this: I built a dream journal, and it turns out the app also does its best work while you're asleep.
+
+---
+
+*This is part of an ongoing series about building [Sandman](https://sandman.sh), an on-device dream journal app. The previous post, ["The agent loop pattern that made a 2B model stop embarrassing itself"](/agent-loops-local-models), covers splitting the on-device agent loop into route, execute, and respond stages.*
