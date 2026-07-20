@@ -40,7 +40,9 @@ export const DarkModeToggle = () => {
   // 0 = moon (dark mode), 1 = sun (light mode)
   const target = isDark ? 0 : 1
   const [progress, setProgress] = useState(target)
+  const [rotation, setRotation] = useState(0)
   const progressRef = useRef(progress)
+  const rotationRef = useRef(0)
   const rafRef = useRef<number>()
 
   useEffect(() => {
@@ -48,13 +50,18 @@ export const DarkModeToggle = () => {
     if (from === target) {
       return
     }
+    // Rotation is cumulative so the spin stays clockwise in both
+    // directions, rather than playing backwards on sun -> moon.
+    const rotationFrom = rotationRef.current
     const start = performance.now()
     const tick = (now: number) => {
       const elapsed = Math.min((now - start) / DURATION_MS, 1)
       const eased = easeInOutQuad(elapsed)
       const value = from + (target - from) * eased
       progressRef.current = value
+      rotationRef.current = rotationFrom + eased * 180
       setProgress(value)
+      setRotation(rotationRef.current)
       if (elapsed < 1) {
         rafRef.current = requestAnimationFrame(tick)
       }
@@ -80,7 +87,7 @@ export const DarkModeToggle = () => {
         <path
           d={buildSmoothPath(lerpPoints(MOON, SUN, progress))}
           fill="currentColor"
-          transform={`rotate(${progress * 180})`}
+          transform={`rotate(${rotation})`}
         />
       </svg>
     </button>
