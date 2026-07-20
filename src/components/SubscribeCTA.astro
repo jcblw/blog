@@ -12,24 +12,30 @@ const {
   source = 'post-footer',
   heading = 'Enjoyed this?',
   body = 'Get new articles, projects, and thoughts on humane technology in your inbox. Free, no spam.',
-  cta = 'Subscribe on Substack',
+  cta = 'Subscribe',
 } = Astro.props
-
-const href = `${siteMetadata.substack}/subscribe?utm_source=website&utm_medium=${source}`
 ---
 
 <aside class="subscribe-cta">
   <div class="subscribe-cta__inner">
     <h4 class="color-overline pb-1 pt-0 font-medium">{heading}</h4>
     <p class="pb-3 pt-0">{body}</p>
-    <a
-      href={href}
+    <form
+      action={siteMetadata.newsletterSubscribeEndpoint}
+      method="post"
       target="_blank"
-      rel="noopener noreferrer"
-      class="subscribe-cta__button"
+      class="subscribe-cta__form"
     >
-      {cta}
-    </a>
+      <input type="hidden" name="tag" value={source} />
+      <input
+        required
+        type="email"
+        name="email"
+        placeholder="Your email"
+        class="subscribe-cta__input bg-paragraph color-backgroundSecondary rounded-md border-none px-3 py-1"
+      />
+      <button type="submit" class="subscribe-cta__button">{cta}</button>
+    </form>
   </div>
 </aside>
 
@@ -42,13 +48,22 @@ const href = `${siteMetadata.substack}/subscribe?utm_source=website&utm_medium=$
     border-radius: 12px;
     padding: 1.25rem 1.5rem;
   }
+  .subscribe-cta__form {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .subscribe-cta__input {
+    flex: 1;
+    min-width: 0;
+  }
   .subscribe-cta__button {
-    display: inline-block;
     background: var(--color-overline);
     color: var(--color-backgroundSecondary);
+    border: none;
     border-radius: 8px;
     padding: 0.4rem 0.9rem;
     font-weight: 600;
-    text-decoration: none;
+    cursor: pointer;
   }
 </style>
