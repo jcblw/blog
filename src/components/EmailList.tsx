@@ -3,8 +3,6 @@ import { useLocalStorage } from '../utils/useLocalStorage'
 import { Icon } from './Icon'
 import { siteMetadata } from '../consts'
 
-const SUBSCRIBE_URL = `${siteMetadata.substack}/subscribe?utm_source=website&utm_medium=popup`
-
 export const EmailList = () => {
   const [showEmailUpsell, setShowEmailUpsell] = useState(false)
   const [hasClosedEmailList, setEmailListClosed] = useLocalStorage(
@@ -48,41 +46,54 @@ export const EmailList = () => {
           className="relative p-2"
           aria-hidden={shouldShowEmailList ? 'false' : 'true'}
         >
-          {shouldShowEmailList && (
-            <div
-              tabIndex={0}
-              role="button"
-              aria-label="Dismiss newsletter prompt"
-              className="color-link absolute cursor-pointer p-2"
-              style={{ right: 0, top: 0 }}
-              onClick={dismiss}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  dismiss()
-                }
-              }}
-            >
-              <Icon icon="close" width="24" height="24" />
+          <form
+            action={siteMetadata.newsletterSubscribeEndpoint}
+            method="post"
+            target="_blank"
+            onSubmit={dismiss}
+          >
+            {shouldShowEmailList && (
+              <div
+                tabIndex={0}
+                role="button"
+                aria-label="Dismiss newsletter prompt"
+                className="color-link absolute cursor-pointer p-2"
+                style={{ right: 0, top: 0 }}
+                onClick={dismiss}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    dismiss()
+                  }
+                }}
+              >
+                <Icon icon="close" width="24" height="24" />
+              </div>
+            )}
+            <h4 className="color-overline py-2 pt-0 font-medium">
+              Subscribe to my newsletter
+            </h4>
+            <p className="pt-0">
+              I share new articles, projects, and thoughts on building humane
+              technology. Free, no spam, unsubscribe anytime.
+            </p>
+            <input type="hidden" name="tag" value="popup" />
+            <div className="flex flex-row pb-2">
+              <input
+                required
+                type="email"
+                name="email"
+                placeholder="Your email"
+                className="bg-paragraph color-backgroundSecondary mr-2 flex-1 rounded-md border-none px-3 py-1"
+              />
+              <div className="flex--0">
+                <input
+                  type="submit"
+                  className="text-bold bg-overline color-backgroundSecondary cursor-pointer rounded-md border-none px-3 py-1"
+                  value="Subscribe"
+                />
+              </div>
             </div>
-          )}
-          <h4 className="color-overline py-2 pt-0 font-medium">
-            Subscribe to my newsletter
-          </h4>
-          <p className="pt-0">
-            I share new articles, projects, and thoughts on building humane
-            technology. Free, no spam, unsubscribe anytime.
-          </p>
-          <div className="flex flex-row items-center pb-2">
-            <a
-              href={SUBSCRIBE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={dismiss}
-              className="text-bold bg-overline color-backgroundSecondary rounded-md border-none px-3 py-1 no-underline"
-            >
-              Subscribe on Substack
-            </a>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -4,7 +4,9 @@ export const siteMetadata = {
   siteUrl: 'https://jcbl.ws',
   github: 'https://github.com/jcblw',
   linkedin: 'https://www.linkedin.com/in/%F0%9F%8C%BF-jacob-lowe-50a49126/',
-  substack: 'https://mujojcblw.substack.com',
+  newsletter: 'https://buttondown.com/jcblw',
+  newsletterSubscribeEndpoint:
+    'https://buttondown.com/api/emails/embed-subscribe/jcblw',
   author: 'Jacob Lowe',
   aboutAuthor: 'I am a founder of Mujō.',
   avatar: 'https://avatars1.githubusercontent.com/u/578259?s=460&v=4',
