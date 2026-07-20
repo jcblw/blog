@@ -1,55 +1,44 @@
 ---
 title: "Don't wake it, your phone's dreaming"
-description: "What building Sandman's background weekly summaries taught me about taking LLMs beyond the chat box, and why idle compute is about to get very busy."
+description: "Idle compute is already becoming an appealing place to precompute. How Sandman uses your phone's overnight hours to make weekly summaries feel like magic."
 date: 2026-07-08
 status: published
+heroImage: /dont-wake-it-your-phone-is-dreaming-hero.png
 ---
 
-Last Sunday morning I opened Sandman and my weekly dream summary was just there. No button, no spinner, no streaming tokens. The phone had written it overnight while sitting on the charger next to my bed. It's a small thing, but it felt different from every other LLM interaction I have in a day, and I've been chewing on why.
+Last Sunday morning I opened Sandman and my weekly dream summary was just there. I didn't get to experience the fantastic animations Sandman plays while it's thinking. It was just there. The phone had written it overnight while sitting on the charger next to my bed. It's a small thing, but it felt different from most LLM interactions I have in a day.
 
-Almost every LLM product is chat. You ask, you wait, the answer streams in. The model only does work when a human is staring at the screen. Sandman's weekly summaries flip that: the model runs before anyone asks, and the answer is waiting when you show up. I think this pattern, precomputing things for the user, is where a lot of on-device AI is headed. Getting it working also taught me how many things stand in the way right now.
+Here's the thought that I keep coming back to. My phone spends around 7 hours a night on a charger, with an NPU chip that can crunch a bunch of matrix math. That's a nightly window of free compute, not warm from watching videos, not on the last 10% of juice, and it's an appealing place to precompute things instead of making people wait for them.
 
-I'm clearly not the only one thinking this way. Google's new [Health Coach](https://blog.google/products-and-platforms/products/google-health/google-health-coach/) does the same thing with workouts: it compiles a plan for your week, sends you a notification when your recommendations are ready, and quietly rebuilds the plan when your readiness or sleep changes. They've even shifted the whole app from daily goals to weekly ones to match. The chat interface is still there, but the core value is the stuff the model did while you weren't looking. The difference is that Google's coach runs in the cloud on your health data, and Sandman runs on your phone. Same pattern, very different place for your data to live.
+Google's [Health Coach](https://blog.google/products-and-platforms/products/google-health/google-health-coach/) creates a workout plan for the week before you ask and lets you know about it Monday morning. The chat box is still there for changes on the fly, but the value is the stuff the model did while you weren't looking. The difference is that Google's coach runs in the cloud on your health data. Sandman runs the same pattern on the phone, and no dream ever leaves the device.
 
-## How the summaries actually run
+## How the sausage is made
 
-Sandman is a dream journal, and everything happens on the phone. The weekly summary is a [WorkManager](https://developer.android.com/develop/background-work/background-tasks/persistent) periodic job with constraints: device charging, battery not low. When Android decides the conditions are met, usually somewhere in the middle of the night, the job loads Gemma 4 E2B through LiteRT-LM, feeds it the week's journal entries, and writes out a summary of themes, recurring symbols, and patterns. The user sees a finished artifact in the morning. No dream ever leaves the device.
+The weekly summary is a [WorkManager](https://developer.android.com/develop/background-work/background-tasks/persistent) cron job with constraints: device charging, battery not low. When Android decides I can run this job, usually somewhere in the middle of the night, the job loads Gemma 4 E2B through LiteRT-LM, feeds it the week's journal entries, and writes out a summary of themes, recurring symbols, and patterns. The user sees a finished artifact in the morning.
 
-The thing that makes this viable is that latency stops mattering. There's a [recent benchmark of edge LLM inference](https://arxiv.org/abs/2603.23640) where a dedicated edge NPU generated about 7 tokens per second at under 2 watts. The authors point out that a 500-token response takes roughly 72 seconds at that rate, which is hopeless for conversation but perfectly fine for background summarization. Nobody is waiting. The whole cost model changes when the user isn't watching a cursor blink.
+What makes this viable is that latency stops mattering. There's a [recent benchmark of edge LLM inference](https://arxiv.org/abs/2603.23640) where a dedicated edge NPU generated about 7 tokens per second at under 2 watts. A 500-token response takes over a minute at that rate, which is hopeless for conversation and perfectly fine for a job nobody is waiting on.
 
-## Android does not want you to do this
+## Android permits, but is not a fan
 
-The first hurdle is that the operating system is actively suspicious of background work, for good historical reasons. Doze mode and App Standby exist because apps used to burn battery doing sketchy things at 3am, and now every app pays the tax.
+Doze mode and App Standby exist because apps used to burn battery doing sketchy things at 3am, and now every app pays the compute tax. A "weekly" WorkManager interval is a minimum, not a schedule, work can slip to the next maintenance window, and OEM battery managers kill background work even more aggressively. I've made peace with slop in the schedule: the job runs overnight Saturday, but "overnight" means whenever Android decides the constraints line up, not a time I picked.
 
-The practical consequence: a "weekly" job is not weekly. WorkManager's periodic intervals are minimums, not schedules, and the [official guidance](https://medium.com/androiddevelopers/workmanager-periodicity-ff35185ff006) is blunt that work can be delayed to the next maintenance window if the device is dozing. Then there are OEM battery managers on top of stock Android that kill background work even more aggressively. I've made peace with slop in the schedule. The job runs overnight Saturday so the summary is waiting Sunday morning, but "overnight" means whenever Android decides the constraints line up, not a time I picked. If I needed it at exactly 6am, I'd be using the wrong tool, and honestly the wrong platform.
+Getting the job to start is only half of it, because a regular worker gets about ten minutes before the system stops it, and a model load plus a week of entries can blow past that. The fix I landed on is promoting the worker to a [foreground service](https://developer.android.com/develop/background-work/services/foreground-services) mid-job: `setForeground()` turns my invisible batch job into something Android treats like the user is watching it. You need the `FOREGROUND_SERVICE` permission, a declared service type (I use `specialUse`, since on-device inference doesn't fit any of the named categories, which also means explaining yourself to Play review), and `POST_NOTIFICATIONS` so the mandatory persistent notification actually shows. It's a strange bargain: to be allowed to work while nobody's watching, the app has to put up a sign saying it's working. I'll be honest, I use these same permissions for chat already, so it's not like I'm adding new ones just for this workaround.
 
-## Heat is the real ceiling
+## The heat is turning up
 
-The second hurdle surprised me more. In that same edge inference benchmark, an iPhone 16 Pro lost nearly half its throughput within two iterations of sustained load, and the Galaxy S24 Ultra hit a hard OS-enforced GPU frequency floor. Phones are built for bursts. Sustained LLM inference is the opposite of a burst.
+In that same benchmark, an iPhone 16 Pro lost nearly half its throughput within two iterations of sustained load. Phones are built for bursts, and sustained inference is the opposite of a burst. That's why Sandman's inference runs on the NPU: sustained throughput at a fraction of the power draw with basically no throttling, and Google has been [pushing LiteRT toward NPU delegation](https://developers.googleblog.com/building-real-world-on-device-ai-with-litert-and-npu/) hard this year. The phone stays cool, the job finishes, and nobody wakes up to a warm brick.
 
-Those numbers are exactly why Sandman's inference runs on the NPU instead. NPUs handle sustained inference at a fraction of the power draw with basically no throttling, and Google has been [pushing LiteRT toward NPU delegation](https://developers.googleblog.com/building-real-world-on-device-ai-with-litert-and-npu/) hard this year. The charging constraint still matters, since I'm not spending the user's battery, but a couple watts overnight on the NPU is a much easier ask than heating up the GPU for twenty minutes. The phone stays cool, the job finishes, and nobody wakes up to a warm brick.
+## Chat is cheap, this needs validation
 
-## Nobody is there to say "that's wrong"
+In chat, bad output is cheap. The user reads it, says "no, I meant the other thing," and the model corrects. A batch job has no second turn, so the first thing a user sees has to be the finished product. Gemma 4 E2B uses sliding window attention for most of its layers, and over long contexts I've found it can drift, holding the format fine at entry three and going sideways by entry seven. So I chunk the week's entries, run a validation pass on the output structure, and keep the prompts more conservative than I would for interactive use. Boring prompts, somewhat reliable output.
 
-This one is more subtle. In chat, bad output is cheap. The user reads it, says "no, I meant the other thing," and the model corrects. A batch job has no second turn. The summary has to land right the first time, because the first time a user sees it is the finished product.
+## What's worth computing before anyone asks
 
-That raises the quality bar in ways I didn't expect. Gemma 4 E2B uses sliding window attention for most of its layers, and I've found that over long contexts the model can drift, holding the format fine at entry three and going sideways by entry seven. In a chat you'd notice and course-correct. In a background job, drift ships. So I chunk the week's entries, run a validation pass on the output structure, and keep the prompts more conservative than I would for interactive use. Boring prompts, reliable output. I've learned to like boring.
+What gets me is how much of this works right now, with current models. A model small enough to fit in a phone's memory can read a week of messy, personal writing and hand back real structure: themes, recurring symbols, patterns I hadn't noticed myself. Give it the overnight window and today's on-device models are already enough for digests, embeddings for semantic search over everything you've written, indexes over your own data, drafts of things you'll probably want. None of that needs a frontier model. It needs a quiet hour and a charger.
 
-Cold starts sting too. Model loading in that arxiv setup took almost 12 seconds before a single token. Once a week, who cares. But if I want lots of small precomputed things instead of one big weekly one, the load cost starts to dominate, and the design pressure becomes doing as much as possible per model load instead of loading the model whenever a job needs it.
+And the models are the fastest-moving part of the stack. Each generation of small models absorbs things that needed a cloud GPU the year before; Gemma 4 E2B already handles tool calling well enough to run the agent loop from the last post. Give that trend a year or two and I think the overnight jobs stop being summaries and start being work: agents that organize and cross-reference your data, draft the things you were going to write anyway, maybe fine-tune themselves to your voice without your words leaving the device. I'd bet the idle compute on our phones ends up mostly spoken for, the same way idle bandwidth got spoken for by sync and prefetch. Chat will probably exist forever, but as a way to steer when the precomputed answer misses.
 
-## All the compute, all the time
-
-Here's the frame I keep coming back to. My phone spends around eight hours a night on a charger, plugged into wall power, with an NPU that draws almost nothing at idle. That's a nightly window of free, thermally comfortable, battery-irrelevant compute, and right now almost nothing uses it.
-
-I think that changes. Once inference is cheap enough and the scheduling problems get tamed, the interesting question stops being "how fast can the model answer" and becomes "what's worth computing before anyone asks." Digests are the obvious first case. But also: embeddings for semantic search, indexes over your own data, drafts of things you'll probably want, answers to questions you haven't asked yet. Speculative work, done on spec, discarded when wrong. Wasteful by the old accounting, free by the new one.
-
-I'd bet that in a few years the idle compute on our devices is mostly spoken for, the same way idle network bandwidth got spoken for by sync and prefetch. Chat will still exist, but it'll be the exception, the thing you do when the precomputed answer missed.
-
-## What I'm trying next
-
-Two things. First, packing more work into each overnight model load, so the same session that writes the weekly summary can also handle smaller precomputed artifacts without paying the cold-start tax twice. Second, precomputing embeddings for every entry so semantic search over your dream history is instant, another job that can run while nobody's watching.
-
-There's something I find genuinely funny about all of this: I built a dream journal, and it turns out the app also does its best work while you're asleep.
+For Sandman that means packing more work into each overnight model load, since cold starts cost about 12 seconds before the first token, precomputing embeddings so semantic search over your dream history is instant, and eventually a year-of-dreams retrospective no interactive session would sit through. There's something I find genuinely funny about all of this: I built a dream journal, and it turns out the app also does its best work while you're asleep.
 
 ---
 
